@@ -1,0 +1,18 @@
+<meta charset="UTF-8" />
+<div ng-if="pedidos.length<=5">
+
+
+
+<p ng-show="p.quantidade>0" class="text-itens-mov" ng-class="{'riscado':p.quantidade==0}"
+	 ng-repeat="p in pedidos track by $index">
+	    {{ p.quantidade || p.quantAnt }}x <strong>{{p.produto.nome|limiter:35|uppercase}}
+		{{p.opcao.nomeOpcao}}</Strong> <i
+		ng-show="p.valorUnitario && p.valorUnitario!=0"> a <strong
+		uib-tooltip="Preço unitário do Pedido"
+		style="color: green; border-bottom-style: dashed; border-bottom-width: 1px; border-bottom-color: #828486;">R$
+		{{p.valorUnitario|number:2}}</strong></i>
+</p>
+</div>
+
+<button ng-show="!hideButtonTodos" ng-click="openDetalhe(pedidos)" class="btn btn-xs btn-default btn-block" ng-if="pedidos.length>5">Visualizar Pedidos ({{pedidos.length}}) <i class="fa fa-external-link-square"></i></button>
+

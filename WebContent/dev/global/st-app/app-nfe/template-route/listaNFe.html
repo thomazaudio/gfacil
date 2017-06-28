@@ -1,0 +1,85 @@
+<meta charset="UTF-8" />
+<vertical-space></vertical-space>
+<div ng-controller="stControl">
+  <div class="row">
+    <st-filter-map
+		    filter-map-instace="filterMapInstance"
+			busca-especial="buscaEspecial"
+			filtros="[
+ 	        
+ 	        {attr:'chaveNFE',placeholder:'Chave da NFe'},
+			{attr:'movimentacao.pessoa.nome',placeholder:'Nome do cliente'},
+			{attr:'cfopPrincipal',placeholder:'cfop Principal'},
+			
+			]
+			">
+   </st-filter-map>
+</div>
+
+
+ 	
+<div class="row"></div>
+
+<div class="col-lg-12"  id="no-more-tables">
+   <table class="modern-table st-table table-bordered table-striped table-condensed cf" >
+       <thead class="cf">
+		<tr>
+			
+			<th></th>
+			<th>Chave de acesso</th>
+			<th>CNPJ/CPF do emitente</th>
+			<th>CNPJ/CPF do destinatário</th>
+			
+		</tr>
+		</thead>
+		<tbody>
+		<tr class="alert-info" ng-repeat="nfe in objetos">
+		
+		
+		   
+		    <td data-title="Opções" >
+	             <div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Opções
+					  <i class="caret"></i></button>
+					  <ul class="dropdown-menu">
+					       <li class="list-group-item" ng-click="changeInfoBusca(info)" >
+					          <i class="fa fa-print"></i> Imprimir DANFE
+					       </li>
+					       <li class="list-group-item" ng-click="changeInfoBusca(info)" >
+					         <i class="fa fa-arrow-down"></i> Baixar xml
+					       </li>
+					       <li class="list-group-item" ng-click="changeInfoBusca(info)" >
+					         <i class="fa fa-times"></i> Cancelar nota
+					       </li>
+					       <li class="list-group-item" ng-click="changeInfoBusca(info)" >
+					         <i class="fa fa-file-text-o" aria-hidden="true"></i> Carta correção 
+					       </li>
+					       <li ng-click="goToNFe(nfe.id)" class="list-group-item" >
+					         <i class="fa fa-edit"></i>  Editar nota
+					       </li>
+					  </ul>
+					</div>
+			 </td> 
+			 
+			  <td>
+		        <strong>{{nfe.chaveNFE}}</strong>
+		     </td>
+		     
+		     <td>
+		        {{nfe.docEmit}}
+		     </td>
+		     
+		      <td>
+		        {{nfe.docDest}}
+		     </td>
+		
+		
+			
+		     
+		</tr>
+		
+	  </tbody>
+	</table>
+</div>
+<st-pagination class="only-mobile" filter-map-instance="filterMapInstance"></st-pagination>
+</div>

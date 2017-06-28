@@ -1,0 +1,182 @@
+<meta charset="UTF-8" />
+<modal-content icone-titulo="'list'" titulo="'NFe'"
+	modal-instance="this"> <vertical-space></vertical-space>
+<div class="col-lg-12">
+	<st-nav active-tab="activeTab"
+		tabs="[
+	
+	{label:'Cabeçalho'},
+	{label:'Emitente'},
+	{label:'Destinatário'},
+	{label:'Itens'},
+	{label:'Totais'},
+	{label:'Transporte'},
+	{label:'Inf. Adicionais'},
+	{label:'Faturamento'},
+	{label:'Histórico'},
+	]">
+
+	</st-nav>
+</div>
+
+<vertical-space></vertical-space>
+<div class="col-lg-12">
+	<p ng-if="carregandoNFe==true" class="text-muted">
+		Carregando dados da NFe <i class="fa fa-refresh faa-spin animated"></i>
+	</p>
+	
+	<!-- Erros de validação -->
+	<div ng-show="erros.length>0">
+	   <vertical-space></vertical-space>
+	  <p ng-repeat="e in erros" class="text-muted"><i class="fa fa-exclamation-triangle warning" aria-hidden="true" ></i> {{e.descricao}}</p>
+	</div>
+	
+
+	<vertical-space></vertical-space>
+	<div class="form-group col-lg-12 text-muted">
+		<label><input ng-model="materarAlteracoesVenda"
+			type="checkbox" value=""> Manter alterações na venda
+			realizada</label>
+	</div>
+
+	<hr></hr>
+</div>
+<div disabled="" ng-if="nfe">
+	<!-- CABEÇALHO -->
+	<div ng-show="activeTab==0">
+
+		<div class="form-group col-lg-12">
+			<label>Chave de acesso da NFe</label> <input disabled=""
+				ng-model="nfe.infNFe.id" class="form-control" />
+			<hr></hr>
+		</div>
+
+		<div class="form-group col-lg-6">
+			<label>CFOP Padrão</label>
+			<nfe-cfop cfop="nfe.cfopPadrao"></nfe-cfop>
+		</div>
+
+		<div class="form-group col-lg-6">
+			<label class="text-muted text-small">Natureza da operação</label> <input
+				placeholder="Ex: Venda de produtos" class="form-control"
+				ng-model="nfe.infNFe.ide.natOp" />
+		</div>
+
+
+		<div class="col-lg-12">
+			<hr></hr>
+		</div>
+
+		<!-- Dados de identificação da nfe.infNFe -->
+		<nfe-ide nfe="nfe.infNFe.ide"></nfe-ide>
+
+	</div>
+	<!-- FIM CABEÇALHO -->
+
+	<!-- EMITENTE -->
+	<div ng-show="activeTab==1">
+
+		<nfe-emit emit="nfe.infNFe.emit"></nfe-emit>
+
+	</div>
+	<!-- FIM EMITENTE -->
+
+	<!-- DESTINATÁRIO -->
+	<div ng-show="activeTab==2">
+
+		<!-- Para mudança de destinatário -->
+		<div class="col-lg-5">
+			<auto-complete-object id-input="'dest-nfe'"
+				get-complete-object="true" extra-class="'input-lg'"
+				ng-change="alterarDestinatario(nfe.movimentacao.pessoa)"
+				inline="true" tipo="'select'" label-cad="'Cadastrar novo Cliente'"
+				place-holder="'Digite o nome do Cliente'" object-op="'cliente'"
+				querys="" label="'nome'" ng-model="nfe.movimentacao.pessoa" />
+		</div>
+
+		<nfe-dest dest="nfe.infNFe.dest"></nfe-dest>
+	</div>
+	<!-- FIM DESTINATÁRIO -->
+
+	<!-- ITENS -->
+	<div ng-show="activeTab==3">
+		<nfe-det dets="nfe.infNFe.det"></nfe-det>
+	</div>
+	<!-- FIM ITENS -->
+
+	<!-- TOTAIS -->
+	<div ng-show="activeTab==4">
+
+		<nfe-total total="nfe.infNFe.total"></nfe-total>
+
+	</div>
+	<!-- FIM TOTAIS -->
+
+	<!-- TRANSPORTE -->
+	<div ng-show="activeTab==5">
+
+		<nfe-transp transp="nfe.infNFe.transp"></nfe-transp>
+
+	</div>
+	<!-- FIM TRANSPORTE -->
+
+
+	<!-- Inf. Adicionais -->
+	<div ng-show="activeTab==6">
+
+		<nfe-inf-adic inf-adic="nfe.infNFe.infAdic"></nfe-inf-adic>
+
+	</div>
+	<!-- FIM Inf. Adicionais -->
+
+
+	<!-- COBRANÇA -->
+	<div ng-show="activeTab==7">
+
+		<nfe-cobr cobr="nfe.infNFe.cobr"></nfe-cobr>
+
+	</div>
+	<!-- FIM CONBRANÇA -->
+
+
+	<!-- HISTÓRICO -->
+	<div ng-show="activeTab==8">
+
+		<nfe.infNFe-historico nfe="nfe.infNFe"></nfe.infNFe-historico>
+
+	</div>
+	<!-- FIM HISTÓRICO -->
+
+
+
+	<div class="col-lg-12">
+		<hr></hr>
+	</div>
+
+	<footer class="col-lg-12">
+		<div class="col-lg-3">
+			<button class="btn btn-default">
+				<i class="fa fa-file"></i> Pré-visualizar DANFE
+			</button>
+		</div>
+
+		<div class="col-lg-5"></div>
+
+		<div class="col-lg-6 pull-right">
+			<button ng-click="salvar(nfe)" class="btn btn-default">
+				<i class="fa fa-floppy-o"></i> Apenas salvar
+			</button>
+			<button class="btn btn-default" ng-click="validaNFe(nfe)">
+				<i class="fa fa-check"></i> Validar NFe
+			</button>
+			<button class="btn btn-default">
+				<i class="fa fa-external-link"></i> Salvar e Transmitir
+			</button>
+		</div>
+	</footer>
+	<div class="col-lg-12">
+		<hr></hr>
+	</div>
+
+</div>
+</modal-content>

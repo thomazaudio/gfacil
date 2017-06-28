@@ -1,0 +1,28 @@
+<div class="list-group" ng-repeat="item in itens">
+
+<strong class="alert-info">{{getLt(item,'labelitem')}}</strong>
+<a href="{{getLink(item)}}" class="list-group-item"> 
+<div class="row">
+
+	<div class="col-xs-{{tamleft}}">
+	<span>{{getLt(item,'tl')}}</span><br>
+	<span>{{getLt(item,'cl')}}</span><br>
+    <span>{{getLt(item,'bl')}}</span>
+	</div>
+	
+	<div class="col-xs-{{tamright}}">
+	<span class="pull-right">{{getLt(item,'tr')}}</span><br>
+	<span class="pull-right">{{getLt(item,'cr')}}</span><br>
+	<span class="pull-right">{{getLt(item,'br')}}</span>
+	</div>
+
+</div>
+</a>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+<meta charset="UTF-8" />
+<!--panel-->
+<div class="panel panel-default">
+	<div class="panel-heading" data-toggle="collapse"
+		data-target="#collapse{{$id}}">
+		<h3 class="panel-title text-muted"> <strong><i class="fa fa-{{icone}}"></i> {{titulo}}</strong></h3>
+	</div>
+	<div id="collapse{{$id}}" class="panel-body collapse" ng-class="{'in':show==true}" ng-transclude>
+		
+	</div>
+</div>
+<!--/panel-->

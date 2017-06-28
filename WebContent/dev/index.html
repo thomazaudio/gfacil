@@ -1,0 +1,493 @@
+﻿<!DOCTYPE html>
+<html ng-app="adm" lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Informações relacionadas  -->
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='canonical' href='https://ceasaplus.com.br/'>
+<link rel='manifest' href='manifest.json'>
+<meta name='mobile-web-app-capable' content='yes'>
+<meta name="apple-mobile-web-app-status-bar-style"	content="black-translucent">
+<meta name="mobile-web-app-status-bar-style" content="black-translucent">
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='application-name' content='Ceasa Plus'>
+<meta name='apple-mobile-web-app-status-bar-style' content='black'>
+<meta name='apple-mobile-web-app-title' content='Ceasa Plus'>
+<link rel='icon sizes=192x192' href='icone.png'>
+<link rel='apple-touch-icon' href='icone.png'>
+<meta name='msapplication-TileImage' content='icone.png'>
+<meta name='msapplication-TileColor' content='#3f51b5'>
+<meta name='theme-color' content='#3f51b5'>
+<meta property='og:title' content='Gestão Fácil'>
+<meta property='og:type' content='website'>
+<meta property='og:image' content='icone.png'>
+<meta property='og:url' content='https://www.ceasaplus.com.br/'>
+<meta property='og:description' content=''>
+<meta name='twitter:card' content='summary'>
+<meta name='twitter:url' content='https://airhorner.com/'>
+<meta name='twitter:title' content='Air Horn'>
+<meta name='twitter:description' content='The best and easiest Air Horn web app there is. No install just use it right away in your browser!'>
+<meta name='twitter:image' content='https://airhorner.com/images/touch/Airhorner_192.png'>
+<meta name='twitter:creator' content='@paul_kinlan'>
+<!--  -->
+
+<title></title>
+<div id="spin_ini" style="z-index: 9999"></div>
+
+<!-- Spin -->
+<script src="global/lib/spin.js"></script>
+<script>
+
+	window.inicioCarregamento = new Date().getTime();
+
+	var opts = {
+		radius : 27,
+		width : 10,
+		length : 19
+	};
+	var target = document.getElementById('spin_ini')
+	var spinner = new Spinner(opts).spin(target);
+	
+	function id(el) {
+		return document.getElementById(el);
+	}
+	
+	function hide(el) {
+		//id(el).style.display = 'none';//escondendo html
+	}
+	
+	window.onload = function() {
+		id('appG').style.display = 'block';//liberando html qndo terminar
+		$("#spin_ini").hide();  //Escondendo Spinner de carregamento
+	}
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
+
+
+<!-- escolha dinamica do tema a ser utilizado 
+<link ng-href="global/{{config.confs.temaLayout||'light'}}.css"rel="stylesheet">
+
+-->
+
+<!-- CSS -->
+<!-- CSS -->
+<!-- build:css css/style.css -->
+<link ng-href="global/light.css" rel="stylesheet">
+<link href="global/lib/bootstrap.min.css" rel="stylesheet">
+<link href="global/lib/bootstrap-checkbox.css" rel="stylesheet">
+<link href="css/metisMenu.min.css" rel="stylesheet">
+<link href="css/timeline.css" rel="stylesheet">
+<link href="css/sb-admin-2.css" rel="stylesheet">
+<link href="global/lib/font-awesome-4.5.0/css/font-awesome.css"	rel="stylesheet">
+<link href="global/lib/font-awesome-4.5.0/css/awesome-animation.css" rel="stylesheet">
+<link rel="stylesheet" href="global/style.css">
+<link rel="stylesheet" href="global/animation.css">
+<link rel="stylesheet" href="global/tablet-and-mobile.css">
+<link rel="stylesheet" href="global/desktop.css">
+<link rel="stylesheet" href="global/angularPrint.css">
+<link href="global/lib/jquery-ui.css" rel="stylesheet">
+<link rel="stylesheet" href="global/lib/angular/angular-chart.css">
+<link rel="stylesheet" href="global/lib/ripple.css">
+<link rel="stylesheet" href="global/lib/bootflap.css">
+<link href="global/lib/mfb.css" rel="stylesheet" />
+<link href="global/lib/angular/angular-growl.min.css" rel="stylesheet" />
+<link href="global/lib/angular/angular-json-tree.css" rel="stylesheet" />
+<link href="global/st-app/st-modal/css/style.css" rel="stylesheet" />
+<link href="global/st-app/app-autocomplete/style/autoComplete.css" rel="stylesheet" />
+<link href="global/st-app/app-pdv/style/appPdvStyle.css" rel="stylesheet" />
+<link href="global/st-app/st-checkbox/style/stCheckbox.css" rel="stylesheet" />
+<link href="global/st-app/test-user/style/style.css" rel="stylesheet" />
+<link href="global/st-app/st-util/style/style.css" rel="stylesheet" />
+<link href="global/lib/bootstrap-tour.css" rel="stylesheet" />
+<link href="global/lib/angular/textAngular.css" rel="stylesheet" />
+
+
+<!-- endbuild -->
+
+<!-- Libs base-->
+<!-- build:js js/base.js -->
+<script src="global/lib/jquery.min.js"></script>
+<script src="global/lib/jlinq.js"></script>
+<script src="global/lib/maskedinput.js"></script>
+<script src="global/lib/maskMoney.js"></script>
+<script src="global/lib/jquery-ui.js"></script>
+<script src="global/lib/bootstrap-checkbox.js" type="text/javascript"></script>
+<script src="global/lib/MonthPicker.js"></script>
+<script src="global/lib/date-picker-br.js"></script>
+<script src="global/lib/angular/angular.js"></script>
+<script src="global/lib/angular/textAngular-rangy.min.js"></script>
+<script src="global/lib/angular/textAngular.min.js"></script>
+<script src="global/lib/angular/angular-animate.js"></script>
+<script src="global/lib/angular/angular-locale_pt-br.js"></script>
+<script src="global/lib/angular/angular-sanitize.js"></script>
+<script src="global/lib/angular/angular-messages.js"></script>
+<script src="global/lib/angular/angular-route.js"></script>
+<script src="global/lib/angular/angular-chrono.min.js"></script>
+<script src="global/lib/bootstrap-tour.js"></script>
+<script src="js/app.js"></script>
+<script src="js/config/configAdmRouter.js"></script>
+<script src="value/config.js"></script>
+<script src="global/lib/ui-bootstrap.js"></script>
+<script src="global/lib/Chart.js" type="text/javascript"></script>
+<script src="global/lib/angular/angular-chart.js" type="text/javascript"></script>
+<script src="global/lib/angular/angular-confirm.js" type="text/javascript"></script>
+<script src="global/lib/bootstrap-checkbox.js"></script>
+<script src="global/lib/bootstrap.min.js" type="text/javascript"></script>
+<script src="global/lib/transition.js" type="text/javascript"></script>
+<script src="global/lib/angular/angular-growl.min.js" type="text/javascript"></script>
+<script src="global/lib/angular/angular-cookies.js" type="text/javascript"></script>
+<script src="global/lib/ngDraggable.js"></script>
+<script src="global/lib/angular/angular.audio.js"></script>
+<script src="global/lib/ngStorage.js"></script>
+<script src="global/lib/angular/angular-filter.min.js"></script>
+<script src="global/lib/angular/angular-clock.js"></script>
+<script src="global/lib/angular/angular-fullscreen.js"></script>
+<script src="global/lib/angular/angular-input-masks.js"></script>
+<script src="global/lib/angular/angular-json-tree.js"></script>
+<script src="global/lib/angular/angular-youtube-embed.min.js"></script>
+<script src="global/lib/mfb-directive.js"></script>
+
+
+
+
+
+<!-- endbuild -->
+
+<!-- build:js js/app.js -->
+
+<!-- stControl -->
+<script src="global/st-app/st-control/controller-module/stControl.js"></script>
+
+<!-- stService -->
+<script src="global/st-app/st-service/factory/stService.js"></script>
+
+<!-- Controllers -->
+<script src="js/controllers/testeController.js"></script>
+
+<!-- Inicio -->
+<script
+	src="global/st-app/app-inicio/controller-route/inicioController.js"></script>
+<script src="global/st-app/app-inicio/inicioConfig.js"></script>
+<!-- FIM inicio -->
+
+<!-- Controle de ponto -->
+<script src="global/st-app/controle-ponto/controller-route/registroPontoController.js"></script>
+<script src="global/st-app/controle-ponto/controller-route/listaPontoController.js"></script>
+<script src="global/st-app/controle-ponto/controlePontoConfig.js"></script>
+<!-- FIM Controle de ponto -->
+
+<!-- appLogin -->
+<script src="global/st-app/app-login/loginConfig.js"></script>
+<script src="global/st-app/app-login/factory/loginUtil.js"></script>
+<script src="global/st-app/app-login/factory/loginService.js"></script>
+<script src="global/st-app/app-login/controller-route/loginController.js"></script>
+<script src="global/st-app/app-login/controller-route/changePasswordController.js"></script>
+<!-- FIM appLogin -->
+
+<!--  appPdv -->
+<script src="global/st-app/app-pdv/pdvConfig.js"></script>
+<script src="global/st-app/app-pdv/factory/pdvUtil.js"></script>
+<script src="global/st-app/app-pdv/controller-route/pdvFichaController.js"></script>
+<script src="global/st-app/app-pdv/controller-route/listaPdvController.js"></script>
+<!-- Fim appPdv -->
+
+<!-- appPedido -->
+<script src="global/st-app/app-pedido/pedidoConfig.js"></script>
+<script src="global/st-app/app-pedido/controller-module/appPedidoController.js"></script>
+<script src="global/st-app/app-pedido/directive/appPedidoDirective.js"></script>
+<script src="global/st-app/app-pedido/factory/appPedidoFactory.js"></script>
+<!-- FIM appPedido -->
+
+<!--appFilial -->
+<script src="global/st-app/app-filial/factory/filialUtilFactory.js"></script>
+<script src="global/st-app/app-filial/controller/filialListController.js"></script>
+<script src="global/st-app/app-filial/directive/appFilialDirective.js"></script>
+<!-- Fim appFilial -->
+
+<!-- stUtil -->
+<script src="global/st-app/st-util/stUtilConfig.js"></script>
+<script src="global/st-app/st-util/factory/stUtilFactory.js"></script>
+<script src="global/st-app/st-util/factory/onlineStatusFactory.js"></script>
+<script src="global/st-app/st-util/factory/dateUtilFactory.js"></script>
+<script src="global/st-app/st-util/directive/stUtilDirective.js"></script>
+<script src="global/st-app/st-util/directive/mobileTabsDirective.js"></script>
+<script src="global/st-app/st-util/directive/stMenuDirective.js"></script>
+<script src="global/st-app/st-util/directive/stSelectDirective.js"></script>
+<script src="global/st-app/st-util/directive/stInputDirective.js"></script>
+<script src="global/st-app/st-util/controller-module/stUtilController.js"></script>
+<!-- Fim stUtil -->
+
+<!-- stSync -->
+<script src="global/st-app/st-sync/factory/cacheGetFactory.js"></script>
+<script src="global/st-app/st-sync/factory/cachePostFactory.js"></script>
+<script src="global/st-app/st-sync/factory/syncCachePostFactory.js"></script>
+<!-- FIM stSync -->
+
+<!-- Cadastros -->
+<script
+	src="global/st-app/cadastros/controller-route/cadastrosController.js"></script>
+<script src="global/st-app/cadastros/cadastrosConfig.js"></script>
+<script src="global/st-app/cadastros/factory/cadastrosUtilFactory.js"></script>
+<!-- Fim Cadastros -->
+
+
+<!-- appMov -->
+<script src="global/st-app/app-mov/movConfig.js"></script>
+<script src="global/st-app/app-mov/controller-module/movListController.js"></script>
+<script src="global/st-app/app-mov/factory-for-controller/movListControllerFactory.js"></script>
+<script src="global/st-app/app-mov/controller-module/alterarBaixaController.js"></script>
+<script src="global/st-app/app-mov/controller-module/deleteMovController.js"></script>
+<script src="global/st-app/app-mov/controller-module/detalheMovController.js"></script>
+<script src="global/st-app/app-mov/controller-module/parcelaMovController.js"></script>
+<script src="global/st-app/app-mov/controller-route/movimentacoesController.js"></script>
+<script src="global/st-app/app-mov/directive/movListDirective.js"></script>
+<script src="global/st-app/app-mov/directive/parcelaMovDirective.js"></script>
+<script src="global/st-app/app-mov/directive/buttonBaixaMovDirective.js"></script>
+<script src="global/st-app/app-mov/directive/movsReadOnlyDirective.js"></script>
+<script src="global/st-app/app-mov/factory/movimentacaoServiceFactory.js"></script>
+<script src="global/st-app/app-mov/factory/movUtilFactory.js"></script>
+<!--/ FIM appMov -->
+
+<!-- appNFe -->
+<script src="global/st-app/app-nfe/nfeConfig.js"></script>
+<script src="global/st-app/app-nfe/factory/nfeUtilFactory.js"></script>
+<script src="global/st-app/app-nfe/directive/appNFeDirective.js"></script>
+<script src="global/st-app/app-nfe/directive/grupoImpostoDirective.js"></script>
+<script src="global/st-app/app-nfe/controller-module/detalheNFeController.js"></script>
+<script src="global/st-app/app-nfe/controller-route/listaNFeController.js"></script>
+<script src="global/st-app/app-nfe/controller-module/criaNFeController.js"></script>
+<!-- / FIM appNFe -->
+
+<!-- appEstoque -->
+<script src="global/st-app/app-estoque/estoqueConfig.js"></script>
+<script src="global/st-app/app-estoque/factory/estoqueUtilFactory.js"></script>
+<script src="global/st-app/app-estoque/directive/appEstoqueDirective.js"></script>
+<script src="global/st-app/app-estoque/directive/modalPrecosCompraProdutoDirective.js"></script>
+<script src="global/st-app/app-estoque/controller-module/editEstoqueController.js"></script>
+<script src="global/st-app/app-estoque/controller-route/listaProdutoController.js"></script>
+<script src="global/st-app/app-estoque/controller-route/entradaMercadoriaController.js"></script>
+<script src="global/st-app/app-estoque/controller-route/listaEntradaMercadoriaController.js"></script>
+<!-- / FIM appNFe -->
+
+<!-- appPessoa -->
+<script src="global/st-app/app-pessoa/pessoaConfig.js"></script>
+<script src="global/st-app/app-pessoa/directive/appPessoaDirective.js"></script>
+<script src="global/st-app/app-pessoa/factory/pessoaUtilFactory.js"></script>
+<!-- / FIM appPessoa -->
+
+
+<!-- Logistica reversa -->
+<script src="global/st-app/logistica-reversa/directive/emprestimoEmbalagemDirective.js"></script>
+<script src="global/st-app/logistica-reversa/controller-module/emprestimoEmbalagemController.js"></script>
+<script src="global/st-app/logistica-reversa/controller-route/listaLRController.js"></script>
+<script src="global/st-app/logistica-reversa/controller-module/baixarLRController.js"></script>
+<script src="global/st-app/logistica-reversa/controller-module/detalheLRController.js"></script>
+<script src="global/st-app/logistica-reversa/controller-module/historicoLRController.js"></script>
+<script src="global/st-app/logistica-reversa/factory/lrUtilFactory.js"></script>
+<script src="global/st-app/logistica-reversa/lrConfig.js"></script>
+<!-- Logistica reversa -->
+
+<!-- appRelatorio -->
+<script src="global/st-app/app-relatorio/relatorioConfig.js"></script>
+<script src="global/st-app/app-relatorio/controller-route/relatorioController.js"></script>
+<script src="global/st-app/app-relatorio/directive/appRelatorioDirective.js"></script>
+<script src="global/st-app/app-relatorio/factory/relatorioUtilFactory.js"></script>
+<!-- /Fim appRelatorio -->
+
+<!-- appConfig -->
+<script src="global/st-app/app-config/factory/configUtilFactory.js"></script>
+<script src="global/st-app/app-config/directive/configDirective.js"></script>
+<!-- FIM config -->
+
+<!-- stFilterMap -->
+<script src="global/st-app/st-filter-map/directive/stFilterMap.js"></script>
+<!-- FIm stFilterMap-->
+
+<!-- stTable -->
+<script src="global/st-app/st-table/directive/stTableDirective.js"></script>
+<!-- FIM stTable -->
+
+<!-- autoComplete -->
+<script src="global/st-app/app-autocomplete/controller-module/buscaAutoCompleteObjectController.js"></script>
+<script src="global/st-app/app-autocomplete/directive/autoCompleteDirective.js"></script>
+<!-- FIM autoComplete -->
+
+<!-- stModal -->
+<script src="global/st-app/st-modal/directive/stModalDirective.js"></script>
+<script src="global/st-app/st-modal/factory/stModalFactory.js"></script>
+<!-- FIM stModal -->
+
+<!-- stNav -->
+<script src="global/st-app/st-nav/directive/stNavDirective.js"></script>
+
+<!-- endbuild -->
+<script src="global/lib/angular/angular-spinner.js"></script>
+
+<!-- stCheckBox -->
+<script src="global/st-app/st-checkbox/directive/stCheckboxDirective.js"></script>
+
+<!-- cardList -->
+<script src="global/st-app/card-list/directive/cardListDirective.js"></script>
+<script src="global/st-app/card-list/controller-module/cardListController.js"></script>
+
+<!-- appPrototype -->
+<script src="global/st-app/app-prototype/protConfig.js"></script>
+
+
+<!-- test-user-->
+<script src="global/st-app/test-user/directive/testUserDirective.js"></script>
+<script src="global/st-app/test-user/testUserConfig.js"></script>
+
+
+<script>
+
+$("#spin_ini").hide();
+</script>
+
+
+<!-- Google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69422102-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!-- Hotjar Tracking Code for http://www.siertech.com.br -->
+<script>
+
+if(window.location.href.indexOf("localhost")==-1 && window.location.href.indexOf("teste.siertech.com.br")==-1){
+
+    (function(h,o,t,j,a,r){
+    	
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:270407,hjsv:5};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+    
+    console.log("Hotjar ATIVADO para "+window.location.href+"!!!");
+    
+}else{
+	
+	console.log("Hotjar DESATIVADO para "+window.location.href+"!!!");
+}
+   
+</script>
+</head>
+<body id="appG">
+	<div growl></div>
+	<script type="text/javascript">
+	 
+	    <!--Esconde o html até que tudo seja carregado -->
+		hide('appG');
+	 </script>
+	<div id="anchor_cima"></div>
+
+	<!-- Spin de carregamento -->
+	<span style="position: fixed; top: 50%; left: 50%; z-index: 9999"
+		us-spinner="{radius:27, width:10, length: 19,shadow: true,zIndex:10001}"
+		spinner-key="spinner-principal"></span>
+
+	<!-- Corpo da página -->
+	<div id="wrapper">
+
+		<!-- Menu mobile e menu desktop -->
+		<st-menu
+			itens="
+                   [
+                    
+                    {path:'inicio', label:'Início', icon:'tachometer'},
+                    {path:'pdv', label:'Vendas', icon:'list-alt'},
+                    {path:'cliente', label:'Clientes', icon:'user'},
+                    {path:'produto', label:'Produtos', icon:'list'},
+                    {path:'logisticareversa', label:'Caixas retornáveis', icon:'archive'},
+                    {path:'relatorio', label:'Relatórios', icon:'pie-chart'},
+                    {path:'fornecedor', label:'Fornecedores', icon:'bars'},
+                    {path:'movimentacao', label:'Lançamentos', icon:'exchange'},
+                    {path:'cadastros', label:'Cadastros', icon:'edit'}
+                    
+                   ]
+                ">
+		</st-menu>
+
+		<!-- Conteudo -->
+		<div
+			id="{{(atualPage!='Login' && atualPage!='Alterar senha')?'page-wrapper':''}}">
+			<div style="margin-top: 62px;" class="printHide"></div>
+
+             <test-user-button ng-show="!testIsOpen || testIsOpen==false"></test-user-button>  
+			<!-- Conteúdo das roas -->
+			<div class="route-view" ng-view>
+			  
+			</div>
+
+			<div ng-show="loadingSpinner==true">
+				<h2 class="text-muted col-lg-12 text-small">
+					Carregando <i class="fa fa-spinner faa-spin animated"
+						aria-hidden="true"></i>
+				</h2>
+			</div>
+		</div>
+	</div>
+
+<script>
+ 
+ 
+  
+</script>
+
+</body>
+
+<script>
+
+/*  Registração do service-worker  */
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('./service-worker.js')
+             .then(function() { console.log('Service Worker Registered'); });
+  }
+
+</script>
+
+<!-- Start of Async Drift Code -->
+<script>
+
+/*
+!function() {
+  var t;
+  if (t = window.driftt = window.drift = window.driftt || [], !t.init) return t.invoked ? void (window.console && console.error && console.error("Drift snippet included twice.")) : (t.invoked = !0, 
+  t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
+  t.factory = function(e) {
+    return function() {
+      var n;
+      return n = Array.prototype.slice.call(arguments), n.unshift(e), t.push(n), t;
+    };
+  }, t.methods.forEach(function(e) {
+    t[e] = t.factory(e);
+  }), t.load = function(t) {
+    var e, n, o, i;
+    e = 3e5, i = Math.ceil(new Date() / e) * e, o = document.createElement("script"), 
+    o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + i + "/" + t + ".js", 
+    n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
+  });
+}();
+drift.SNIPPET_VERSION = '0.3.1';
+drift.load('dz8yf8nu49ag');
+
+*/
+</script>
+<!-- End of Async Drift Code -->
+
+</html>

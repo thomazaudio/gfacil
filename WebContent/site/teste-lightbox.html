@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+  <head>
+  
+  <script type='text/javascript'>var s=document.createElement('script');s.type='text/javascript';var v=parseInt(Math.random()*1000000);s.src='https://sandbox.gerencianet.com.br/v1/cdn/lightbox/914f2bc2a6c3d110babaf945f5dd3d43/'+v;s.async=false;s.id='914f2bc2a6c3d110babaf945f5dd3d43';if(!document.getElementById('914f2bc2a6c3d110babaf945f5dd3d43')){document.getElementsByTagName('head')[0].appendChild(s);};$gn={validForm:true,processed:false,done:{},ready:function(fn){$gn.done=fn;}};</script>
+    <script>
+
+  
+    $gn.ready( function( variable ) {
+
+    	  var payment_forms = [ "credit_card", "banking_billet" ];
+    	  variable.lightbox( payment_forms );
+
+    	  variable.jq( '#button_lightbox' ).click( function( evt ) {
+
+    	    var data = {
+    	      items: [ {
+    	        code: 1,
+    	        name: 'Plano Trimestral Ceasa Plus',
+    	        value: 28900
+    	      } ],
+    	      shippingAddress:false,
+    	      customer:false,
+    	      actionForm: 'backend.php'
+    	    };
+
+    	    variable.show( data );
+
+    	  } );
+
+    	} );
+    </script>
+  </head>
+ 
+  <body>
+    <button  rel="gn_lightbox" id='button_lightbox'>
+      Open Lightbox
+    </button>
+  </body>
+</html>

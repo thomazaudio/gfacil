@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+	<mapping class="produto.Produto" />
+	<mapping class="servicevenda.ServiceVenda" />
+	<mapping class="util.Pessoa" />
+	<mapping class="pdv.Pdv" />
+	<mapping class="logisticareversa.LogisticaReversa" />
+	<mapping class="cliente.Cliente" />
+	<mapping class="funcionario.Funcionario" />
+	<mapping class="admin.Admin" />
+	<mapping class="fornecedor.Fornecedor" />
+	<mapping class="operadorsistema.OperadorSistema" />
+    <mapping class="movimentacao.Movimentacao" />
+	<mapping class="pedido.Pedido" />
+	<mapping class="opcao.Opcao" />
+	<mapping class="config.Config" />
+	<mapping class="usersystem.UserSystem" />
+	<mapping class="registroponto.RP" />
+	<mapping class="estadoscidades.Estado" />
+	<mapping class="estadoscidades.Cidade" />
+	<mapping class="nfe.NFe" />
+	<mapping class="nfe.GrupoImposto" />
+	<mapping class="eventousuario.EventoUsuario" />
+	<mapping class="util.Endereco" />
+	<mapping class="entradamercadoria.EntradaMercadoria" />
+	<mapping class="filial.Filial" />
+	<mapping class="lead.Lead" />
+	<mapping class="teste.TestDefinition" />
+	<mapping class="teste.TestUser" />
+	</session-factory>
+</hibernate-configuration>

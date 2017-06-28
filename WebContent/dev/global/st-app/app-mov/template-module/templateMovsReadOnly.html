@@ -1,0 +1,53 @@
+<meta charset="utf-8">
+<div class="col-lg-12">
+<div id="print-mov">
+<div class="printShow content-mov-print" >
+   <div  class="printShow">
+    <div id="no-more-tables">
+     <table class="st-table table-striped table-bordered table-condensed cf" >
+            <thead class="cf">
+			 <tr>
+				<th>Vencimento</th>
+				<th>Pago em</th>
+				<th>Destinado a</th>
+				<th>Descrição</th>
+				<th>Valor</th>
+			 </tr>
+			</thead>
+            <tbody>
+			<tr class="alert-info text-muted" ng-if="!mov.hideList || mov.hideList==false"  ng-repeat="mov in movs">
+			    <td class="mov-vencimento" data-title="Vencimento" ng-click="openDetalheMov(mov)">
+				 <p><i class="fa fa-calendar-o"> {{mov.data|date:'dd/MM/yyyy'}}</i></p>
+				</td> 
+				
+				<td data-title="Pago em" class="mov-vencimento">
+					<p><i class="fa fa-calendar-o"> {{(mov.dataBaixa|date:'dd/MM/yyyy')||'Não Pago'}}</i></p>
+				</td>
+				
+				<td class="mov-pessoa" data-title="Pessoa" ng-click="openDetalheMov(mov)" ><p class=" text-small"><strong>{{mov.pessoa.nome|uppercase}}</strong></p></td>
+				
+				<td class="mov-descricao" data-title="Descrição" ng-if="!mov.pedidos || mov.pedidos.length==0"><p class="text-center"><strong style="font-size:12px">{{mov.descricao}}</strong></p></td>
+				<td class="mov-descricao" data-title="Descição" ng-if="mov.pedidos.length>0">
+				  <p ng-if="p.quantidade>0" class="text-itens-mov" style="padding-left:3px;" ng-repeat="p in mov.pedidos track by $index"> 
+				   
+				     {{ p.quantidade}}x <strong>{{p.produto.nome}}  {{p.opcao.nomeOpcao}}</Strong> a <strong uib-tooltip="Preço unitário da venda" style="color:green">R$ {{p.valorUnitario|number:2}}</strong>
+				  
+				  </p>
+				</td>
+
+				<td class="mov-valor" data-title="Valor" ng-click="openDetalheMov(mov)">
+				   <strong style="color:green;">
+				   <i ng-show="mov.valor || mov.valor>0">R$ {{mov.valor|number:2}}</i>
+				   </strong>
+				</td>
+					
+                </tr>
+			</tbody>
+		</table>
+	  </div>
+	</div>
+	<div class="row printHide" style="padding:10px;"></div>
+</div>
+</div>
+</div>
+

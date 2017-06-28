@@ -1,0 +1,187 @@
+<meta charset="UTF-8" />
+
+<modal-content icone-titulo="'busines'" modal-instance="this"
+	titulo="filial.xNome|uppercase">
+<div class="detalhe-header">
+	<st-nav active-tab="tab"
+		tabs="[{label:'Informações',icon:'fa-edit'},{label:'Configurações para NFe'}]"></st-nav>
+	<vertical-space></vertical-space>
+	<!-- Tabs -->
+	<!-- Tab Informações-->
+	<div class="text-muted" ng-show="tab==0">
+
+		<div class="form-group col-lg-5">
+			<label>Nome fantasia</label> <input class="form-control"
+				ng-model="filial.xFant" />
+		</div>
+
+		<div class="form-group col-lg-4">
+			<label>Inscrição Estadual</label> <input class="form-control"
+				ng-model="filial.ie" />
+		</div>
+
+		<div class="form-group col-lg-3">
+			<label>IE do Substituto Tributário </label> <input
+				class="form-control" ng-model="filial.iest" />
+		</div>
+
+
+
+		<div class="form-group col-lg-6">
+			<label>Inscrição Municipal do Prestador de Serviço </label> <input
+				class="form-control" ng-model="filial.im" />
+		</div>
+
+
+		<div class="form-group col-lg-6">
+			<label>Código de Regime Tributário </label> <select
+				class="form-control" ng-model="filial.crt">
+				<option value="1">1 Simples Nacional</option>
+				<option value="2">2 Simples Nacional, excesso sublimite de
+					receita bruta</option>
+				<option value="3">3 Regime Normal. (v2.0)</option>
+			</select>
+		</div>
+
+
+		<div class="col-lg-12">
+			<hr></hr>
+		</div>
+
+
+		<detalhe-pessoa pessoa="filial"></detalhe-pessoa>
+
+		<detalhe-pessoa-endereco endereco="filial.endereco"></detalhe-pessoa-endereco>
+
+		<div class="col-lg-12">
+			<hr></hr>
+		</div>
+	</div>
+
+
+	<!-- Tab Configurações de NFe-->
+	<div class="text-muted" ng-show="tab==1">
+	    <!-- Certificado digital -->
+	    <div class="form-group col-lg-3">
+	        <label>Certificado digital A1</label>
+		    <form ng-show="!filial.nomeCertificado"  name="userForm" ng-submit="enviarCertificado(arquivo,senha)" novalidate>
+			     
+			    <input type="password" placeholder="Senha do certificado" ng-model="senha" class="form-control" />
+			    <input type="file" file-model="arquivo"/>
+			 
+			 <button type="btn btn-primary submit" class="btn btn-primary">Enviar</button>
+	       </form>
+	       <div ng-show="filial.nomeCertificado">
+	           <strong>{{filial.nomeCertificado}} <a ng-click="filial.nomeCertificado=null;"><i class="fa fa-edit"></i> Alterar</a></strong>
+	       </div>
+       </div>
+
+
+         <div class="form-group col-lg-4">
+			<label class="text-muted text-small">Natureza da operação</label> <input
+				 class="form-control" ng-model="filial.natOp" />
+		</div>
+
+		<div class="form-group col-lg-4">
+			<label class="text-muted text-small">Modelo</label> <input
+				 class="form-control" ng-model="filial.nfeMod" />
+		</div>
+
+		<div class="form-group col-lg-4">
+			<label class="text-muted text-small">Série</label> <input 
+				class="form-control" ng-model="filial.serie" />
+		</div>
+
+		<div class="form-group col-lg-4">
+			<label class="text-muted text-small">Ultimo número utilizado</label> <input
+				 class="form-control" ng-model="filial.nnf" />
+		</div>
+
+		<div class="col-lg-12">
+			<hr></hr>
+		</div>
+
+		<div class="form-group col-lg-4">
+			<label class="text-muted text-small">Tipo de documento</label> <select
+				class="form-control" ng-model="filial.tpNF">
+				<option value="0">0 - Entrada</option>
+				<option value="1">1 - Saída</option>
+			</select>
+		</div>
+
+		<div class="form-group col-lg-4">
+			<label class="text-muted text-small">Tipo de impressão</label> <select
+				class="form-control" ng-model="filial.tpImp">
+				<option value="1">1 - Retrato</option>
+				<option value="2">2 - Paisagem</option>
+			</select>
+		</div>
+
+
+		<div class="form-group col-lg-4">
+			<label class="text-muted text-small">Forma de pagamento</label> <select
+				class="form-control" ng-model="filial.indPag">
+				<option value="0">0 - A Vista</option>
+				<option value="1">1 - A Prazo</option>
+				<option value="2">2 - Outros</option>
+			</select>
+		</div>
+		
+		<div class="form-group col-lg-8">
+			<label class="text-muted text-small">Tipo de emissão</label> <select
+				class="form-control" ng-model="filial.tpEmis">
+				<option value="1">1 - Emissão normal (não em contingência)</option>
+			</select>
+		</div>
+
+
+		<div class="col-lg-12">
+			<hr></hr>
+		</div>
+
+		<div class="form-group col-lg-8">
+			<label class="text-muted text-small">Presença do comprador no
+				estabelecimento</label> <select class="form-control" ng-model="filial.indPres">
+				<option value="0">0 - Não se aplica (por exemplo, Nota
+					fiscal complementar ou de ajuste)</option>
+				<option value="1">1 - Operação presencial</option>
+				<option value="2">2 - Operação não presencial, pela
+					Internet</option>
+				<option value="3">3 - Operação não presencial,
+					Teleatendimento</option>
+				<option selected="selected" value="9">9 - Operação não
+					presencial</option>
+			</select>
+		</div>
+
+		<div class="form-group col-lg-4">
+			<label class="text-muted text-small">Consumidor final</label> <select
+				class="form-control" ng-model="filial.indFinal">
+				<option value="0">Não</option>
+				<option value="1">Sim</option>
+			</select>
+		</div>
+
+
+	</div><!-- FIM tab configurações de NFe -->
+
+
+		
+
+
+
+	<div class="pull-right">
+		
+		<button ng-click="fechar(this)"  class="btn btn-default"><i class="fa fa-undo"></i> Fechar</button></li>
+		<button ng-click="salvar(filial)"  class="btn btn-primary"><i class="fa fa-floppy-o"></i> Salvar</button>
+		
+	</div>
+	<div class="row"></div>
+
+
+
+
+</div>
+</modal-content>
+
+

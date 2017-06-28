@@ -1,0 +1,20 @@
+<meta charset="UTF-8" />
+<modal-content titulo="cadastro.label" modal-instance="this">
+   <div class="form-group col-lg-12">
+     <label>Opção</label>
+     <input ng-model="cadastro.valor" placeholder="Digite um valor para nova opção." class="form-control"/>
+   </div>
+   <div class="col-lg-6 col-md-6 col-xs-6">
+	   <div class="form-group">
+	     <button class="btn btn-default btn-block" ng-click="fechar(this)"><i class="fa fa-undo"></i> Cancelar</button>
+	   </div>
+   </div>
+   <div class="col-lg-6 col-md-6 col-xs-6">
+	   <div class="form-group">
+	     <button data-dismiss="modal" class="btn btn-block btn-primary" ng-click="salvar(cadastro,this)"><i class="fa fa-floppy-o"></i> Salvar</button>
+	   </div>
+   </div>
+    
+   <div class="row"></div>
+   <br>
+</modal-content>

@@ -1,0 +1,67 @@
+<meta charset="UTF-8" />
+<!-- Informações do Usuário -->
+
+<!--  
+<div class="pull-right">
+		<img class="img-profile-empresa" src="{{config.confs.imgProfile}}" />
+</div>
+-->
+
+<ul class="nav navbar-top-links pull-right item-menu-top"
+	style="height: 36px">
+	
+	<!-- Alerta de estoque baixo -->
+	<li ng-if="config.confs.alertaEstoqueMin=='true'">
+	  <st-alert-button></st-alert-button>
+	</li>
+	
+	
+	
+	
+	<li>
+	  <st-sync></st-sync>
+	</li>
+	
+	
+	<!-- Escolha de filial -->
+	<li>
+	  <filial-list id="filial-list-principal"></filial-list>
+	</li>
+	
+	<li>
+	
+	    <network-button-status></network-button-status>
+		
+	</li>
+  
+    
+	<li>
+		<button id="buttonEntradaMercadoria" ng-click="lancaEntradaMercadoria()" style="background-color: #3276b1;" 
+			class="btn btn-xs btn-default" >
+			<i class="fa fa-truck"></i> Lançar entrada de mercadoria
+		</button>
+	</li>
+
+	<li>
+	 
+	  
+	  <div class="dropdown">
+				<button class="btn btn-xs btn-info"  ng-click="cadastrarMov(1)" style="color: #506479;background: transparent;border:none;"  type="button" data-toggle="dropdown">
+				   <i class="fa fa-plus" aria-hidden="true"></i>
+					Despesa
+				</button>
+		</div>
+	</li>
+	
+	<li>
+		<button ng-click="openConfig()" class="btn btn-xs btn-default">
+			<i class="fa fa-gear"></i>
+		</button>
+	</li>
+	<li>
+		<usuario-sistema></usuario-sistema>
+	</li>
+	
+</ul>
+
+

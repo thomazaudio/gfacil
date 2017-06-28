@@ -1,0 +1,65 @@
+<meta charset="UTF-8" />
+<vertical-space></vertical-space>
+<div ng-controller="listaEntradaMercadoriaController">
+
+<div class="col-lg-6">
+     <label class="text-muted"><i class="fa fa-calendar"></i> Escolha um período para exibição dos dados: </label>
+     <st-period id="st-period-balanco" submit="buscarDados" de="dataDe"  ate="dataAte"></st-period>
+</div> 
+<div class="col-lg-12">
+   <hr></hr>
+</div>
+
+
+<div class="col-lg-12">
+
+<!-- Botão flutuante -->
+<ul mfb-menu position="br" effect="zoomin" 
+     active-icon="fa fa-edit" resting-icon="fa fa-plus"
+     toggling-method="click">
+     <a mfb-button  go-link="'atualiza-simple-estoque'" icon="fa fa-truck" label="Lançar entrada de mercadoria"></a>
+</ul>
+ 	
+<div class="row"></div>
+<div ng-if="objetos.length==0" class="col-lg-12">
+ <st-no-itens label="'Nenhum entrada de mercadoria'"></st-no-itens>
+</div>
+<div  ng-show="objetos.length>0" id="no-more-tables">
+   <table class="modern-table st-table table-bordered table-striped table-condensed cf" >
+       <thead class="cf">
+		<tr>
+			<th>Data</th>
+			<th>Fornecedor</th>
+			<th>Itens</th>
+			<th style="width: 100px;">
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr class="alert-info"  ng-repeat="ob in objetos">
+		
+		<td data-title="Data"><strong class="text-muted"><i class="fa fa-calendar"></i> {{ob.movimentacao.data|date:'dd/MM/yyyy'}}</strong></td>
+		<td data-title="Fornecedor"><strong class="text-muted">{{ob.movimentacao.pessoa.nome|uppercase}}</strong></td>
+		<td data-title="Itens">
+		  <itens-pedido pedidos="ob.movimentacao.pedidos"></itens-pedido> 
+		</td>
+		<td data-title="Opções" >
+             <div class="element-table">
+		    	<div class="pull-center">
+		    	 <label>
+                  <a class="warning" uib-tooltip="Mais detalhes" ng-click="openEntradaMercadoria(ob)"><i class="fa fa-edit fa-2x"></i></a>
+                 </label>
+		    	 <label>
+                   <a class="default btn-delete-em" confirm-title="Deletar Entrada de mercadoria"    confirm="Tem certeza que deseja deletar esta entrada de mercadoria?"  uib-tooltip="Deletar" ng-click="deletarEM($index,objetos)"> <i class="fa fa-trash-o fa-2x"></i></a>
+                 </label>
+                </div>
+		    </div>
+		  </td>
+		   
+		   
+		</tr>
+	  </tbody>
+	</table>
+</div>
+</div>
+</div>

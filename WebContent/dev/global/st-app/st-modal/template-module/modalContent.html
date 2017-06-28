@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <ul class="list-button-action-modal">
+     
+	  <li ng-show="okAction">
+	     <button ng-disabled="disableOkButton" class="btn btn-action-modal ripple" ng-click="okAction(this)">
+	           <i id="btn-ok-action"  ng-show="!loadingOkAction || loadingAction == false"class="fa {{okActionIcon || 'fa-check'}}"></i>
+	           <i ng-show="loadingOkAction==true" class="fa fa-refresh faa-spin animated ng-hide"></i>
+	           <span class="only-desktop" style="font-size:17px;">{{okActionLabel || 'FINALIZAR' |uppercase}}</span>
+	     </button>
+	  </li>
+	  
+	  <li ng-show="deleteAction && item.id">
+	     
+	     <button confirm="Tem certeza que deseja deletar este item?" id="btn-cancel-action" type="button" ng-click="deleteAction()" class="btn btn-action-modal ripple"  style="color:white"data-dismiss="modal">
+	     	 <i class="fa fa-trash"></i>
+	     	 <span class="only-desktop" style="font-size:17px;">DELETAR ITEM</span>
+	      </button>
+	  <li>
+	</ul>
+	<h4  class="modal-title"> 
+	    <a class="ripple"  ng-click="cancelAction(modalInstance)"  style="color: #FBF7F7;font-size:18px;padding:9px;"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+	    <strong>{{titulo}}</strong>
+	</h4>
+</div>
+
+<div class="modal-body"  ng-transclude></div>
+<div class="row"></div>
+
+
+
+
+ 
+
+			

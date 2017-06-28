@@ -1,0 +1,26 @@
+<meta charset="UTF-8" />
+                
+
+	<div class="input-group">
+		<input   ng-model-options="{debounce: 500}"  ng-model="nomeProduto" ng-change="buscaProduto(nomeProduto)" class="form-control input-busca-map input-primary" placeholder="{{attrBuscaProduto=='nome'?'Buscar pelo nome do produto':'Buscar pelo código de barras'}}"/>
+		<span   ng-show="nomeProduto" class="input-group-btn"><button type="button" ng-click="nomeProduto='';buscaProduto('')" class="btn btn-default btn-busca-map-limpa text-muted input-primary">x</button></span>  
+	    <span class="input-group-btn">
+	      <button id="change-attr-busca"  class="btn btn-block btn-default dropdown-toggle" style="width:35px;height:42px;" type="button" data-toggle="dropdown"> 
+	                <span><i  class="fa fa-bars info" aria-hidden="true"></i></span></button>
+		            <ul class="dropdown-menu  list-group pull-right" style="padding:5px">
+		                <li id="change-busca-nome" class="list-group-item" ng-click="changeAttrBuscaProduto('nome')" ><strong>Buscar pelo nome</strong> <i ng-show="attrBuscaProduto=='nome'" class="fa fa-check-circle-o" aria-hidden="true" style="color:var(--secondary-color)"></i></li>
+			            <li id="change-busca-codigo" class="list-group-item" ng-click="changeAttrBuscaProduto('codigoBarras')"><strong>Buscar pelo código de barras</strong> <i ng-show="attrBuscaProduto=='codigoBarras'" class="fa fa-check-circle-o" aria-hidden="true" style="color:var(--secondary-color)" ></i></li>
+		            </ul>
+	     </span>
+	</div>
+
+<vertical-space></vertical-space>
+<p  class="text-muted text-small"><span ng-show="nomeProduto.length>0 && resultadoBusca.length>0"><i class="fa fa-search" aria-hidden="true"></i> Resultado da busca </span><span><a ng-click="cadProduto(nomeProduto)"> Cadastrar produto <i class="fa fa-plus"></i></a></span></p>	
+<p ng-show="nomeProduto.length>0 && resultadoBusca.length==0" class="text-muted text-small"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Não encontrado <strong>'{{nomeProduto}}'</strong></p>	
+				 
+<!-- Apenas para buscas -->
+<app-list-simple-pedido busca="nomeProduto" label-valor-unitario="labelValorUnitario" label-quantidade="labelQuantidade" hide-valor-unitario="hideValorUnitario" add-pedido="addPedido" deletar-pedido="deletarPedido" fator="fator" ng-if="nomeProduto.length>0" itens="resultadoBusca"></app-list-simple-pedido>
+                
+<!-- Produtos efetivos nos pedidos -->
+<app-list-simple-pedido busca="nomeProduto"  label-valor-unitario="labelValorUnitario" label-quantidade="labelQuantidade"  hide-valor-unitario="hideValorUnitario" ng-if="!nomeProduto || nomeProduto.length==0" add-pedido="addPedido" deletar-pedido="deletarPedido" fator="fator"  itens="pedidos"></app-list-simple-pedido>
+     		 

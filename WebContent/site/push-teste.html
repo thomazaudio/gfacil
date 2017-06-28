@@ -1,0 +1,33 @@
+<head>
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+  <script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(["init", {
+      appId: "949a57c0-e8e9-4894-a6e3-10db3828520f",
+      autoRegister: false, /* Set to true to automatically prompt visitors */
+      httpPermissionRequest: {
+        enable: true
+      },
+
+      notifyButton: {
+          "enable": true
+      },
+     
+      promptOptions: {
+          /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
+          /* actionMessage limited to 90 characters */
+          actionMessage: "We'd like to show you notifications for the latest news and updates.",
+          /* acceptButtonText limited to 15 characters */
+          acceptButtonText: "ALLOW",
+          /* cancelButtonText limited to 15 characters */
+          cancelButtonText: "NO THANKS"
+      }
+    }]);
+    OneSignal.push(function() {
+    	  OneSignal.showHttpPrompt();
+    	});
+
+    
+
+  </script>
+</head>

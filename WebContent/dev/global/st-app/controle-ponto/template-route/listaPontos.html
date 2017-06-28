@@ -1,0 +1,53 @@
+<meta charset="UTF-8" />
+<vertical-space></vertical-space>
+<div ng-controller="listaPontoController as vm">
+  <div class="row">
+    <st-filter-map
+		    filter-map-instace="filterMapInstance"
+			busca-especial="{attr:'pessoa.nome',placeHolder:'Digite o nome do funcionário',icon:'fa-user'}"
+			filtros="[
+ 	
+			{attr:'id'}
+			
+			]
+			">
+   </st-filter-map>
+</div>	
+<div class="row"></div>
+<div  id="no-more-tables">
+   <table class="modern-table st-table table-bordered table-striped table-condensed cf" >
+       <thead class="cf">
+			<tr>
+			  <th>Funcionário</th>
+			  <th>Entrada</th>
+			  <th>Saída</th>
+			  <th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="alert-info"  ng-repeat="ob in objetos">
+			<td>{{ob.pessoa.nome}}</td>
+			<td>
+			 {{ob.dataInicio|date:'dd/MM/yyyy' }} as <strong>{{ob.dataInicio|date:'HH:mm'}}</strong>
+  			</td>
+			<td>
+			 {{ob.dataFim|date:'dd/MM/yyyy' }} as <strong>{{ob.dataFim|date:'HH:mm'}}</strong>
+  			</td>
+			<td>
+			  <div class="element-table">
+		    	<div class="pull-center">
+		    	 <label>
+		    	    <a class="default" confirm-title="Deletar Registro de ponto"    confirm="Tem certeza que deseja deletar este registro?"  uib-tooltip="Deletar Registro" ng-click="vm.deletarRP($index,ob,objetos)"> <i class="fa fa-trash-o fa-2x"></i></a>
+		    	 </label>
+		    	 <label>
+		    	    <a class="default" confirm-title="Deletar Registro de ponto"     uib-tooltip="Editar registro" ng-click="vm.editarPonto(ob)"> <i class="fa fa-edit fa-2x"></i></a>
+		    	 </label>
+		    	 </div>
+		       </div>
+			
+			</td>
+			</tr>
+	  </tbody>
+	</table>
+</div>
+</div>

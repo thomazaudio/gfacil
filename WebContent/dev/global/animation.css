@@ -1,0 +1,32 @@
+
+/*Animação para mudança de rota*/
+.route-view.ng-enter{
+  transition: all 0.4s linear;
+  opacity: 0;
+}
+
+.route-view.ng-enter-active {
+  opacity: 1;
+}
+
+/*FIM Animação para mudança de rota*/
+
+.dropdownli ul {
+    position:absolute;
+    left:0;
+    top:36px;
+    z-index:1;
+    visibility:hidden;
+    opacity:0;
+    filter:alpha(opacity=0);
+    -webkit-transition:200ms ease;
+    -moz-transition:200ms ease;
+    -o-transition:200ms ease;
+    transition:200ms ease;
+}
+.dropdown ul > li:hover ul {
+    visibility:visible;
+    opacity:1;
+    filter:alpha(opacity=100);
+}
+

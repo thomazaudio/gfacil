@@ -1,0 +1,90 @@
+<meta charset="UTF-8" />
+<vertical-space></vertical-space>
+<span class="text-muted" ng-if="!pdv.movimentacao.pedidos || pdv.movimentacao.pedidos.length==0"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Adicione pelo menos um item para finalizar a venda.</span>
+<div class="input-group form-group col-lg-3" >
+        <span class="input-group-btn">
+         <a ng-click="cancelar()" confirm="Tem certeza que deseja cancelar esta operação?" confirm-title="Cancelar atualização de estoque" class="btn btn-xs btn-default"  >
+           <i class="fa fa-undo"></i> Cancelar
+         </a>
+        </span>
+        <span ng-if="pdv.id" class="input-group-btn">
+			<a confirm="Tem certeza que deseja excluir esta venda?" confirm-title="Excluir Venda" ng-click="deletarVenda(pdv)" class="btn btn-xs btn-default">Deletar Venda <i class="fa fa-trash-o"></i></a>
+		</span>
+		<span class="input-group-btn">
+		    <a ng-if="pdv.movimentacao.pedidos.length>0" data-toggle="modal" data-target="#modalFinalizarVenda" class="btn btn-xs btn-info">Finalizar Venda <i class="fa fa-check faa-tada animated"></i></a>
+		</span>
+	 </div>
+	<vertical-space></vertical-space> 
+<app-pedido pedidos="pdv.movimentacao.pedidos"></app-pedido>
+<div  style="bottom:0;position:fixed;z-index:1" >
+     <div class="input-group form-group" >
+        <span class="input-group-btn">
+         <a ng-click="cancelar()" confirm="Tem certeza que deseja cancelar esta operação?" confirm-title="Cancelar atualização de estoque" class="btn btn-block btn-default"  >
+           <i class="fa fa-undo"></i> Cancelar
+         </a>
+        </span>
+		<span class="input-group-btn">
+			<a ng-disabled="!pdv.movimentacao.pedidos || pdv.movimentacao.pedidos.length==0" data-toggle="modal" data-target="#modalFinalizarVenda" class="btn btn-primary  btn-block">
+			  <span ng-if="pdv.movimentacao.pedidos.length>0">Finalizar Venda <i class="fa fa-check faa-tada animated"></i></span>
+			  <span ng-if="!pdv.movimentacao.pedidos || pdv.movimentacao.pedidos.length==0">Nenhum item adicionado!</span>
+			</a>
+		</span>
+	 </div>
+</div>
+
+<!-- Modal para Finalizar venda -->
+<st-modal titulo="Finalizar Venda" idmodal="modalFinalizarVenda" size="lg">
+  
+    <div class="col-lg-12">
+       <itens-pedido pedidos="pdv.movimentacao.pedidos"></itens-pedido>
+      <p>Total: <strong>R$ {{getTotalPedidos(pdv.movimentacao.pedidos)|number:2}}</strong></p>
+    </div>
+    <hr></hr>
+    
+     <div class="form-group col-lg-4">
+	  <label>Data da venda:</label>
+	  <input st-input tipo="data" ng-model="pdv.data" class="form-control"/>
+	 </div>
+    
+    <div class="form-group col-lg-4">
+	  <label>Cliente:</label> 
+	  <auto-complete-object  inline="true"  object-op="'cliente'"  place-holder="'Digite o nome do Cliente'" label="'nome'" querys="" ng-model="pdv.movimentacao.pessoa" />
+	</div>
+	
+	<div class="form-group col-lg-4">
+	     <label>Vendedor:</label>
+	     <auto-complete-object inline="true" no-chosen="true" place-holder="'Digite o nome do Vendedor'" object-op="'funcionario'" label="'nome'" querys="" ng-model="pdv.vendedor" />
+	</div>
+	
+	<div class="form-group col-lg-2">
+	 <st-check label="'Pago'"  ng-model="pdv.movimentacao.baixada"></st-check>
+	</div>
+	
+	<div class="row"></div>
+	
+	<div class="col-lg-12">
+	
+  </div>
+    <div class="row"></div>
+    
+    <div ng-show="!pdv.id" class="col-lg-12">
+     <parcela-mov titulo="'Forma de pagamento/Parcelamento'"  movs="movs" original-mov="pdv.movimentacao"  tipo-mov="2"></parcela-mov>
+    </div>
+	
+	<div class="form-group col-lg-6">
+	  <button data-dismiss="modal" class="btn btn-block"><i class="fa fa-undo"></i> Cancelar</button>
+	</div>
+	
+	<div class="form-group col-lg-6">
+	  <button  data-dismiss="modal" ng-click="save(pdv,movs)" class="btn btn-block btn-info">Confirmar <i class="fa fa-check"></i></button>
+	</div>
+  
+   
+	
+<div class="row"></div>
+</st-modal>
+
+
+  
+  
+  

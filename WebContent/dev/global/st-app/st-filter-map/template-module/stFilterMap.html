@@ -1,0 +1,18 @@
+<meta charset="UTF-8" />
+  <!-- Campo de busca principal(Especial) -->
+	   <div  class="filter-map">
+		      <form ng-submit="buscarEspecial(buscaEspecial)">
+				<div class="input-group" style="z-index:1;">
+				   <input id="busca" st-input tipo="{{infoBusca.tipo}}" class="form-control  input-busca-map"  ng-model="infoBusca.value" ng-model-options="{debounce: 500}"  ng-change="buscar(infoBusca)" placeholder="{{infoBusca.placeholder}}">
+				   <span id="span-limpa-busca"  ng-show="infoBusca.value" class="input-group-btn"><button id="btn-limpa-busca" type="button" ng-click="infoBusca.value='';buscar(infoBusca)" class="btn btn-default btn-busca-map-limpa text-muted">x</button></span>  
+				  <span class="input-group-btn">
+				           <button id="btn-change-filtros"  class="btn btn-block btn-default dropdown-toggle" style="width:35px;height:42px;" type="button" data-toggle="dropdown"> 
+				                <span><i  class="fa fa-bars info" aria-hidden="true"></i></span></button>
+					            <ul class="dropdown-menu  list-group pull-right" style="padding:5px">
+					                <li ng-repeat="info in filtros" class="list-group-item" ng-click="changeInfoBusca(info)" ><strong>{{info.placeholder}}</strong> <i ng-show="infoBusca.attr==info.attr" class="fa fa-check-circle-o" aria-hidden="true" style="color:var(--secondary-color)"></i></li>
+					            </ul>
+				    </span>
+		  		</div>
+			  </form> 	
+		</div>
+	

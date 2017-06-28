@@ -1,0 +1,5 @@
+<label class="toggle" uib-tooltip="{{mov.baixada==true && mov.dataBaixa!=null ? 'Paga em: ' + (mov.dataBaixa|date:'dd/MM/yyyy') + ' (' + (mov.dataBaixa|date:'EEEE') + ')' :''}}"> 
+	<input  ng-disabled="mov.disable" type="checkbox" ng-change="alterarBaixa(mov)" ng-model="mov.baixada" />
+	<span id="{{id}}" class="handle"></span>
+</label>
+

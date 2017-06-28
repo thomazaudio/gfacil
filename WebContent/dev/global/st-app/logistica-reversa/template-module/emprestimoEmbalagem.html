@@ -1,0 +1,29 @@
+<meta charset="UTF-8" />
+<div class="col-lg-4 col-xs-12" ng-show="vm.emprestimo.quantidadeReceber>0 || !vm.onlyDevedores==true">
+<div class="panel panel-default" >
+	<div class="panel-heading text-muted">
+	     <p>
+		    <strong class="text-muted pull-left"><i class="fa fa-user"></i>
+			  {{vm.pessoa.nome |uppercase}}
+			</strong>
+		 </p>
+	</div>
+	<div class="panel-body">
+	    <p class="text-muted text-center">
+	      	<strong  ng-class="{'danger':vm.emprestimo.quantidadeReceber>0}" style="font-size:35px;" >{{vm.emprestimo.quantidadeReceber}} <i class="fa fa-archive" style="font-size:12px"></i></strong>
+	     </p>
+		<p class="text-muted text-center text-small">
+		    embalagen(s) a receber 	<a  ng-click="vm.showHistorico(vm.emprestimo)" > Visualizar histórico <i class="fa fa-external-link"></i></a>
+		    
+		    <strong ng-show="vm.carregando==true" class="text-muted">Carregando  <i  class="fa fa-refresh faa-spin animated" aria-hidden="true"></i></strong>
+			<a ng-click="vm.getEmprestimo(vm.pessoa)" ng-show="vm.erro" class="text-small"><i class="fa fa-exclamation-triangle"></i> Clique para tentar novamente</a>
+		</p>
+		
+		<button ng-disabled="!vm.emprestimo.quantidadeReceber>0"
+			ng-click="vm.baixarEmprestimo(vm.pessoa, vm.emprestimo)"
+			class="btn btn-default btn-block" >
+			Receber <i class="fa fa-arrow-down"></i>
+		</button>
+	</div>
+</div>
+</div>

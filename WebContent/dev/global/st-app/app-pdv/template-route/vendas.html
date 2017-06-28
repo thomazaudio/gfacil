@@ -1,0 +1,76 @@
+<meta charset="UTF-8" />
+<vertical-space></vertical-space>
+<div ng-controller="listaPdvController">
+
+<div class="col-lg-6">
+	  <st-period  submit="changePeriodo" de="periodoDe"  ate="periodoAte"></st-period>
+</div>
+<div class="col-lg-6">
+<st-filter-map id="filtro-vendas"
+            querys="querys"
+            order-by="'carregado'"
+            order-type="'ASC'"
+			filtros="[
+			{attr:'movimentacao.pessoa.nome',placeholder:'Buscar pelo cliente'} ,
+ 	        {attr:'movimentacao.id',placeholder:'Buscar pelo Nº da movimentação'},
+			{attr:'vendedor.nome',placeholder:'Buscar pelo  Vendedor'},
+			
+			]
+			"></st-filter-map>
+</div>
+
+<vertical-space></vertical-space>
+<button-add ng-click="goToPdv()"></button-add>
+	
+	
+	<div ng-if="objetos.length==0" class="col-lg-12">
+	 <st-no-itens label="'Nenhuma venda no período selecionado.'"></st-no-itens>
+	</div>
+	
+	 <vertical-space></vertical-space>
+	 <div ng-repeat="ob in objetos" class="col-lg-4">
+	   	 <card-list class="pdv-item" ob="ob" pivo="'movimentacao.pessoa.nome'"  edit-function="goToPdv" delete-function="deletarVenda">
+	   	     <div class="col-lg-12 col-xs-12">
+	   	         <div class="pull-left">
+	   	             <label class="text-muted"><i class="fa fa-calendar"></i> {{ob.movimentacao.data|date:'dd/MM/yyyy'}}</label>   
+	   	         </div>
+	   	         <div class="pull-right">
+		   	         <label class="pdv-item-preco"> {{ob.movimentacao.valor|number:2}}</label>   
+		   	     </div>
+	   	     </div>
+	   	     <vertical-space></vertical-space>
+	   	     <div class="pdv-item-separator"></div>
+	   	     <div class="col-lg-12 col-xs-12">
+	   	       	  <itens-pedido pedidos="ob.movimentacao.pedidos"></itens-pedido>
+	   	     </div>
+	   	     <vertical-space></vertical-space>
+	   	     <div class="pdv-item-separator"></div>
+	   	     <div class="col-lg-12 col-xs-12">
+	   	          <div class="pull-left">
+		   	          <label class="text-small text-muted">Pago:</label>
+		   	          <button-baixa-mov  id="'input-baixa-mov'" mov="ob.movimentacao"></button-baixa-mov>
+	   	          </div>
+	   	          <div class="pull-right">
+		   	          <label class="text-small text-muted">Entregue:</label>
+		   	          <label class="toggle"> 
+						<input   uib-tooltip="Mercadoria entregue?" ng-click="saveRetirada(ob)" ng-model="ob.carregado"  ng-true-value="1" ng-false-value="0" type="checkbox" />
+						<span  class="input-carregou handle"></span>
+					  </label>
+				  </div>
+	   	     </div>
+	   	 </card-list>
+	 </div>
+ 
+<vertical-space></vertical-space>
+<!-- Paginação para mobile -->
+<st-pagination ng-if="objetos.length>0"  querys="querys"></st-pagination>
+
+<st-modal idmodal="modalEscProd">
+  <div class="col-lg-6">
+    <button class="btn btn-primary btn-lg">
+    <h2>Batata Branca</h2>
+    </button>
+  </div>
+  <div class="row"></div>
+</st-modal>
+</div>

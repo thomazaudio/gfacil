@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app="site">
+
+    <head>
+         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Ceasa Plus</title>
+        
+        
+        <!-- Facebook Pixel Code -->
+		<script>
+		!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+		n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+		document,'script','https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '600174280191471'); // Insert your pixel ID here.
+		fbq('track', 'PageView');
+		</script>
+		<noscript><img height="1" width="1" style="display:none"
+		src="https://www.facebook.com/tr?id=600174280191471&ev=PageView&noscript=1"
+		/></noscript>
+		<!-- DO NOT MODIFY -->
+		<!-- End Facebook Pixel Code -->
+        
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="lib/bootstrap.min.css">
+		<link rel="stylesheet" href="lib/form-elements.css">
+        <link rel="stylesheet" href="lib/style.css">
+        
+        
+        <link href="lib/font-awesome-4.5.0/css/font-awesome.css"	rel="stylesheet">
+       <link href="lib/font-awesome-4.5.0/css/awesome-animation.css" rel="stylesheet">
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="lib/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="lib/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="lib/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="lib/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="lib/ico/apple-touch-icon-57-precomposed.png">
+        
+        
+        
+        <!-- Javascript -->
+        <script src="lib/angular/angular.js"></script>
+        <script src="https://www.youtube.com/iframe_api"></script>
+         <script src="lib/angular/ngStorage.js"></script>
+          <script src="lib/angular/angular-youtube-embed.min.js"></script>
+         <script src="lib/jquery-1.11.1.min.js"></script>
+        <script src="lib/bootstrap.min.js"></script>
+        <script src="lib/jquery.backstretch.min.js"></script>
+        <script src="lib/retina-1.1.0.min.js"></script>
+        <script src="lib/scripts.js"></script>
+        <script src="lib/jquery.countdown.min.js"></script>
+        <script src="lib/angular/angular-route.js"></script>
+        <script src="app.js"></script>
+        <script src="siteConfig.js"></script>
+        <script src="stService.js"></script>
+        <script src="googleAdwordsService.js"></script>
+        <script src="config.js"></script>
+        <script src="modulos/compra/compraController.js"></script>
+        <script src="modulos/cadastro/cadastroController.js"></script>
+        <script src="modulos/cadastro-tester/cadastroTesterController.js"></script>
+        <script src="modulos/final/finalController.js"></script>
+        <script src="modulos/cadastro-obrigado/cadastroObrigadoController.js"></script>
+        <script src="modulos/introducao/introducaoController.js"></script>
+        <script src="modulos/guia/guiaController.js"></script>
+        <script type='text/javascript'>var s=document.createElement('script');s.type='text/javascript';var v=parseInt(Math.random()*1000000);s.src='https://sandbox.gerencianet.com.br/v1/cdn/lightbox/914f2bc2a6c3d110babaf945f5dd3d43/'+v;s.async=false;s.id='914f2bc2a6c3d110babaf945f5dd3d43';if(!document.getElementById('914f2bc2a6c3d110babaf945f5dd3d43')){document.getElementsByTagName('head')[0].appendChild(s);};$gn={validForm:true,processed:false,done:{},ready:function(fn){$gn.done=fn;}};</script>
+        <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js"></script>
+ 
+
+    </head>
+
+    <body>
+    
+    <div id="fb-root"></div>
+    <div class="top-content">
+	       <div class="inner-bg">
+				<div class="container">
+				    <div class="row">
+				    	<div class="col-sm-12 form-box">
+								<div style="padding-bottom: 10px"></div>
+									<div class="form-top">
+										<div class="text-center">
+											<h3>
+												<img src="img/logo.png" />
+											</h3>
+										</div>
+									</div>
+									<div class="form-bottom">
+					    
+						            <div ng-view></div>
+					            </div>
+					       </div>
+					    </div>       
+				</div>
+			</div>
+	  </div>
+
+</body>
+
+</html>

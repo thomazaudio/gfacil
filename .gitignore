@@ -1,0 +1,5 @@
+/target/
+
+.elasticbeanstalk/
+/pom.xml
+/.apt_generated/

@@ -1,0 +1,11 @@
+<meta charset="UTF-8" />
+<div ng-show="mostraValor==true" class="form-group">
+<i class="fa fa-{{icon}}" aria-hidden="true"></i> {{label}} <strong ng-if="type=='password'">*********</strong> <strong ng-if="!type || type!='password'">{{ngModel}}</strong>
+<button type="button" ng-click="mostraValor=false" class="btn btn-default btn-xs">Alterar <i class="fa fa-edit"></i></button>
+</div>
+		
+<div ng-show="mostraValor==false" class="form-group">
+	 <label class="text-muted text-small"><i class="fa fa-{{icon}}" aria-hidden="true"></i> {{label}}</label>
+	 <input type="{{type||'text'}}" ng-model="ngModel" type="text"
+				class="form-control" placeholder="{{label}}">
+</div>

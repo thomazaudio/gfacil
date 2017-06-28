@@ -1,0 +1,29 @@
+ :root{
+    /*--primary-color:  #31708f;*/
+    --primary-color: #3F51B5;
+    /*--secondary-color: #28B914*/;
+    
+    --secondary-color:#4ABA58;
+    --danger-color: rgba(255, 12, 0, 0.78);
+    muted-color:  rgba(111, 108, 108, 0.82);
+ }
+ 
+.warning {
+	color: #FF8900;
+}
+
+.danger {
+	 color: var(--danger-color);
+}
+
+
+.text-secondary {
+     color: var(--secondary-color);
+}
+
+.text-muted{
+	
+	 color: var(--muted-color);
+}
+
+

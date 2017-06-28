@@ -1,0 +1,197 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd">
+        
+	<context:component-scan base-package="entrega" />
+	<context:component-scan base-package="produto" />
+	<context:component-scan base-package="servicevenda" />
+	<context:component-scan base-package="pedido" />
+	<context:component-scan base-package="util" />
+	<context:component-scan base-package="teste" />
+	<context:component-scan base-package="movimentacaocaixa" />
+	<context:component-scan base-package="cliente" />
+	<context:component-scan base-package="fornecedor" />
+	<context:component-scan base-package="funcionario" />
+	<context:component-scan base-package="operadorsistema" />
+	<context:component-scan base-package="movimentacao" />
+	<context:component-scan base-package="opcao" />
+	<context:component-scan base-package="relatorio" />
+	<context:component-scan base-package="config" />
+	<context:component-scan base-package="database" />
+	<context:component-scan base-package="usersystem" />
+	<context:component-scan base-package="security" />
+	<context:component-scan base-package="pdv" />
+	<context:component-scan base-package="mercadopago" />
+	<context:component-scan base-package="database" />
+	<context:component-scan base-package="checklist" />
+    <context:component-scan base-package="logisticareversa" />
+    <context:component-scan base-package="registroponto" />
+    <context:component-scan base-package="entradaestoque" />
+    <context:component-scan base-package="estadoscidades" />
+    <context:component-scan base-package="nfe" />
+    <context:component-scan base-package="eventousuario" />
+    <context:component-scan base-package="entradamercadoria" />
+    <context:component-scan base-package="filial" />
+    <context:component-scan base-package="lead" />
+    <context:component-scan base-package="gerencianet" />
+    
+    
+    <bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		 <!-- setting maximum upload size -->
+		<property name="maxUploadSize" value="100000" />
+
+	</bean>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost2222:3306/" />
+		<property name="username" value="root" />
+		<property name="password" value="leghacy123" />
+	</bean>
+	
+	
+    <!-- Session Factory para Mult-Tenant -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+		<property name="hibernateProperties">
+			<props>
+			    <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+			    <prop key="hibernate.hbm2ddl.auto">NONE</prop>
+				<prop key="hibernate.multiTenancy">SCHEMA</prop>
+				<prop key="hibernate.tenant_identifier_resolver">database.CurrentTenantIdentifierResolverImpl</prop>
+				<prop key="hibernate.multi_tenant_connection_provider">database.MultiTenantConnectionProvider</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!--Session Factory para configurações, updates, etc -->
+	<bean id="sessionFactorySchemaManager"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+		<property name="hibernateProperties">
+			<props>
+			    <prop key="hibernate.hbm2ddl.auto">update</prop>
+			    <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+			    <prop key="hibernate.multiTenancy">NONE</prop>
+			  
+		    </props>
+		</property>
+		 
+	</bean>
+
+	<tx:annotation-driven />
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+
+
+	<!-- DAOs -->
+
+	<bean id="produtoDAO" class="produto.ProdutoDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	
+
+	<bean id="serviceVendaDAO" class="servicevenda.ServiceVendaDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	
+
+	<bean id="pedidoDAO" class="pedido.PedidoDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+
+	<bean id="clienteDAO" class="cliente.ClienteDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="userSystemDAO" class="usersystem.UserSystemDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<!-- Services -->
+
+
+	<bean id="produtoService" class="produto.ProdutoService">
+		<property name="dao" ref="produtoDAO" />
+	</bean>
+
+	
+
+
+	<bean id="serviceVendaService" class="servicevenda.ServiceVendaService">
+		<property name="dao" ref="serviceVendaDAO" />
+	</bean>
+
+	<bean id="pedidoService" class="pedido.PedidoService">
+		<property name="dao" ref="pedidoDAO" />
+	</bean>
+
+	
+
+	
+
+	
+	
+	<bean id="userSystemService" class="usersystem.UserSystemService">
+		<property name="dao" ref="userSystemDAO" />
+	</bean>
+	
+	
+	
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	
+	
+	<security:global-method-security secured-annotations="enabled"/>
+	<mvc:resources mapping="/**" location="/" />
+	 <mvc:resources mapping="/resources/**" location="/" />
+    <mvc:resources mapping="/resources/**/**" location="/" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/comanda/**" location="/comanda/" />
+	<mvc:resources mapping="/dist/**" location="/dist/" />
+	<mvc:resources mapping="/adm/**" location="/dev/" />
+	<mvc:resources mapping="/global/**" location="/global/" />
+
+    <mvc:annotation-driven />
+    
+</beans>

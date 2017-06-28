@@ -1,0 +1,15 @@
+<meta charset="UTF-8" />
+<modal-content icone-titulo="'list'"   ok-action="vm.okAction"  ok-action-label="OK"   item="vm.pedido" titulo="'Detalhes do pedido'" modal-instance="this">
+		<div class="panel">
+		   <div class="panel-body">
+		       <div class="form-group">
+		           <label>Quantidade</label>
+		           <input type="tel" ng-model="vm.pedido.quantidade" class="form-control" />
+		       </div>
+		       <div class="form-group">
+		           <label>Valor unitário</label>
+		           <input ui-number-mask="2"  ng-model="vm.pedido.valorUnitario" class="form-control" />
+		       </div>
+		   </div>
+		</div>
+</modal-content>

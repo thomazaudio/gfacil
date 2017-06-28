@@ -1,0 +1,37 @@
+<meta charset="UTF-8" />
+<vertical-space></vertical-space>
+<div class="col-lg-3">
+<div class="panel" style="font-size:14px;">
+	<div class="panel-body">
+		<p class="text-center"><strong>Estoque</strong></p>
+		<p><a ng-click="getOpcoes('categoria_produto','Categorias de Produtos')">Categorias de Produtos</a></p>
+		<p><a ng-click="getOpcoes('marca_produto','Marcas')">Marcas</a></p>
+		<p><a ng-click="getOpcoes('embalagem_produto','Embalagens')">Embalagens</a></p>
+		<hr></hr>
+		<p class="text-center"><strong>Financeiro</strong></p>
+		<p><a ng-click="getOpcoes('forma_pagamento','Formas de Pagamento')">Formas de Pagamento</a></p>
+		<p><a ng-click="getOpcoes('categoria_conta_pagar','Categorias - Conta Pagar')">Categorias - Conta Pagar</a></p>
+		<p><a ng-click="getOpcoes('categoria_conta_receber','Categorias - Conta Receber')">Categorias - Conta Receber</a></p>
+	</div>
+</div>
+</div>
+
+<div class="col-lg-9">
+ <div class="panel" style="font-size:14px;">
+	<div class="panel-body">
+    <h3><strong>{{label}}</strong></h3>
+	<ul class="list-group">
+	   <li class="list-group-item" ng-if="opcoes"><button ng-click="openCadastro({descricao:descricao,label:label})" class="btn btn-xs"><i class="fa fa-plus"></i> Cadastrar</button></li>
+	   <li ng-if="op!=null" class="list-group-item" ng-repeat="op in opcoes track by $index">
+	     {{op.valor|uppercase}}
+		 <div class="pull-right">
+		      <button class="btn btn-xs"  ng-click="apagar(op,$index)"><i class="fa fa-trash-o"></i> Apagar</button>
+		       <button class="btn btn-xs"  ng-click="openCadastro({id:op.id,descricao:op.descricao,label:label,valor:op.valor})"><i class="fa fa-trash-o"></i> Editar</button>
+		   </div>
+	   </li>
+	</ul>
+  </div>
+ </div>
+</div>
+
+

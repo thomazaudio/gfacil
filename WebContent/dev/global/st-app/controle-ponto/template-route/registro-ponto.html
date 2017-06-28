@@ -1,0 +1,49 @@
+<meta charset="UTF-8" />
+<div ng-controller="registroPontoController as vm">
+<vertical-space></vertical-space>
+<div ng-if="!vm.ponto">
+	<p class="text-muted">Digite seu número PIN para dar inicio ao registro de ponto.</p>
+	<div class="input-group col-lg-4">
+	  <input ng-model="pin" class="form-control input-lg" placeholder="Digite o PIN de funcionário"/>
+	  <span class="input-group-btn">
+	    <button ng-click="vm.buscaPonto(pin)" class="btn btn-lg btn-primary">OK</button>
+	  <span>
+	</div>
+</div>
+<vertical-space></vertical-space>
+<div ng-if="vm.ponto">
+
+  <p class="text-small text-muted">Funcionário: <strong>{{vm.pessoa.nome}}</strong></p>
+  
+  <!-- Informações a respeito do ponto aberto -->
+  <div ng-if="vm.ponto.id">
+       <p class="text-small text-muted">Aberto em: <strong>{{vm.ponto.dataInicio|date:'dd/MM/yyyy'}} as {{vm.ponto.dataInicio|date:'HH:mm:ss'}}</strong></p>
+  </div>
+
+  <div class="col-lg-4" ng-if="!vm.ponto.id">
+      <ds-widget-clock theme="light"  show-secs="true" digital-format="'HH:mm:ss'"></ds-widget-clock>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button  ng-click="cancelar()" class="btn btn-lg btn-default">
+	      <i class="fa fa-times fa-2x"></i>
+	      Cancelar
+	      </button>
+        </span>
+        <span class="input-group-btn">
+          <button  ng-click="vm.abrirPonto(descricaoAtividade)" class="btn btn-lg btn-primary">
+	      Abrir Ponto
+	      <i class="fa fa-clock-o fa-2x"></i>
+	      </button>
+        </span>
+      </div>
+	  
+  </div>
+  
+   <button ng-if="vm.ponto.id" ng-click="vm.fecharPonto(vm.ponto)" class="btn btn-default btn-lg">
+      <i class="fa fa-clock-o fa-2x"></i>
+      <p> Fechar Ponto </p>
+  </button>
+  
+</div>
+</div>
+

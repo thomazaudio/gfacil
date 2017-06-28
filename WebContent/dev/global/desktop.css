@@ -1,0 +1,50 @@
+
+.only-desktop {
+	display: none;
+}
+
+@media only screen and (min-width : 1200px) {
+	
+	.sidebar {
+		z-index: 1;
+		position: absolute;
+		width: 215px;
+		margin-top: 51px;
+	}
+	.navbar-top-links .dropdown-messages, .navbar-top-links .dropdown-tasks,
+		.navbar-top-links .dropdown-alerts {
+		margin-left: auto;
+	}
+	
+	
+	#page-wrapper {
+		position: inherit;
+		margin: 0 0 0 209px;
+		padding: 0 9px;
+	}
+
+	.mov-dia-semana {
+		width: 100px;
+	}
+	.tam-quantidade-estoque {
+		max-width: 100px;
+	}
+	
+	.only-desktop {
+		visibility: visible!important;
+		display: inherit!important;
+	}
+	#p-venda {
+		margin-right: 5px;
+		width: 47%;
+	}
+	.panel-pdvsimples .collapse {
+		display: block !important;
+		position: static;
+		float: none;
+	}
+	.panel-pdvsimples .accordion-toggle {
+		cursor: default;
+		pointer-events: none;
+	}
+}

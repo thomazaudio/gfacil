@@ -1,0 +1,192 @@
+<meta charset="UTF-8" />
+<div class="filter-map-top tab-pdv only-mobile">
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" ng-class="{'active':tab==1}"><a  ng-click="alterarTab(1)" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-plus"></i> Add Itens</a></li>
+    <li role="presentation" ng-class="{'active':tab==2}"><a  ng-click="alterarTab(2)" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-list"></i></i> {{pedidos.length}} Itens Adicionados</a></li>
+ </ul>
+</div>
+
+ <div class="space-top-filter"></div>
+   <div id="p-venda" id-panel="painel-venda" class="col-lg-6 panel-simples only-desktop" st-show="tab==1" style="padding:0px" >
+       <div class="panel">
+          <div class="panel-body">
+          <div class="panel-head only-desktop">
+          <i class="fa fa-plus"></i>  <strong>Adicionar Itens</strong>
+          </div> 
+            
+             <hr id="titulo-produto"></hr>
+           
+             <!-- Form de busca de produto -->
+             <form  ng-submit="getProductByCode(codProduto,pedido.produto,pedido.quantidade,pedido.valorUnitario,pedidos)" >
+             <div class="pull-left">
+              <label><strong>Código/Nome do produto</strong></label>
+             </div>
+             <div class="pull-right">
+              <input  ng-model="autoAdd" type="checkbox"/>
+              <span class="text-small">Adicionar item automaticamente</span> 
+             </div>
+             <div class="row"></div>
+             
+	         <div class="input-group form-group">
+		         <input st-input id="codigo-produto" ng-change="codProdutoChange(codProduto)"  ng-keyup="codProdutokeyup($event,codProduto)" uib-tooltip="{{getMessageCodProduto(enter,pedido.produto)}}" class="form-control input-lg" ng-model="codProduto"  placeholder="Busque pelo código ou o nome do produto"  />
+		         <span  class="input-group-btn"><button  class="btn btn-info btn-lg" style="border-radius:0px;height:42px;" >Ok</button></span>
+		        
+		     </div>
+		     </form> 
+		     <label class="text-muted text-small"><i class="fa fa-info-circle"></i> Utilize o leitor de código de barras
+		     ou <a ng-click="buscaPeloNome()">busque pelo nome</a>
+		     </label>
+		     <!-- 
+		     <label class="text-muted text-small">Ou selecione um item abaixo: </label>
+		     <st-item-selection object-op="'produto'" label="'nome'" max-itens="5" ng-model="pedido.produto"></st-item-selection>
+		      -->
+		     
+             <h2  ng-if="pedido.produto" for="form-prod" style="font-size:22px;">
+                  <strong><i style="color:#8ac558" class="fa  fa-arrow-right faa-flash animated"></i> {{pedido.produto.nome}}</strong>
+             </h2>
+		    
+		   
+		     <a ng-show="false" id="busca-pelo-nome"
+		         ng-change="changeValorUnit(pedido.produto.preco)"
+		         get-complete-object="true"
+		         uib-tooltip="Busca Avançada" 
+		         place-holder="'Digite o nome do produto'"
+		         auto-complete-object 
+		         initial-busca="initialBusca"
+		         object-op="'produto'" querys="" label="'nome'" ng-model="pedido.produto"
+		         style="height:46px;" >Buscar Pelo Nome <i class="fa fa-search"></i>
+		     </a>
+		    
+		     
+		     <!-- Se tiver opções --> 
+		     <div ng-if="pedido.produto.opcoes.length>0">
+		     <p class="text-muted text-small"><strong>Escolha as opções do produto que deseja adicionar.</strong></p>
+		      <div  id="no-more-tables">
+			    <table class="table-itens-pedido st-table table-bordered table-striped table-condensed cf table-app-pedido" >
+				    <thead class="cf">
+				    <tr>
+				    <th><strong>Opção</strong></th>
+				    <th><strong>{{labelQuantidade|| 'Quantidade'}}</strong></th>
+				    <th style="min-width: 100px;"><strong>{{labelPrecoUnitario|| 'Preço Unitário'}}</strong></th>
+				    <th></th>
+				    <th style="min-width: 100px;"><strong>Sub-Total</strong></th>
+				    </tr> 
+				    </thead>
+				    <tbody>
+					    <tr ng-submit="addPedido(pedido.produto,ped.quantidade,op.valor,pedidos,op)" ng-repeat="op in pedido.produto.opcoes">
+					       
+					        <!-- Pivô -->
+							<td class="only-mobile" style="padding:0px;">
+							   <div class="panel">
+							     <div class="panel-heading pivo-panel">
+							      <strong class="text-left"><a  ng-click="openDetalhe(ob)"><i class="fa fa-th-large" aria-hidden="true"></i> {{op.nomeOpcao}}</a></strong> 
+							    </div>
+							   </div>
+							</td>
+					       <td class="desc-pedido" data-title="Opçao">
+					       <strong><i class="fa fa-play-circle-o"></i> {{op.nomeOpcao}}</strong>
+					       </td>
+					       <td class="quant-pedido"  data-title="Quantidade">
+					       <input st-input  type="tel" st-initial value="1" ng-model="ped.quantidade" class="form-control"/>
+					       </td>
+					       <td class="preco-unit-pedido"  data-title="Preço Unitário">
+					       <input ui-number-mask="2" ng-model="op.valor" class="form-control"/>
+					       </td>
+					       <td data-title="">
+					       <button type="button" ng-click="addPedido(pedido.produto,ped.quantidade,op.valor,pedidos,op)" class="btn btn-xs btn-info">Adicionar <i class="fa fa-external-link"></i></button>
+					       </td>
+					       <td class="sub-total-pedido"  data-title="Sub-Total">
+						       <strong class="text-small" style="color:green;">
+						       {{op.valor * ped.quantidade ||0 |number:2}}
+						       </strong>
+					       </td>
+					       
+					    </tr>
+				    </tbody>
+				 </table>
+				</div>
+			</div>
+		      
+		      
+		     <!-- Sem sub-opções -->
+		     <div ng-show="pedido.produto && (pedido.produto.opcoes.length==0 || !pedido.produto.opcoes)">
+			     <div  class="form-group col-lg-6" style="padding-left:0px;padding-right:0px;">
+			       <label><strong class="text-muted text-small">{{labelQuantidade|| 'Quantidade'}}</strong></label> 
+			       <input st-input id="quantidade-pedido" ng-keypress="enterPress($event,pedido.produto,pedido.quantidade,pedido.valorUnitario,pedidos)" type="number"  st-initial ng-model="pedido.quantidade" uib-tooltip="Quantidade" placeholder="QT"  class="form-control input-lg"/>
+			     </div>
+			     <div  class="form-group col-lg-6" style="padding-right:0px;padding-left:0px">
+			       <label><strong class="text-muted text-small">{{labelPrecoUnitario|| 'Preço Unitário'}}</strong></label> 
+			       <input ng-keypress="enterPress($event,pedido.produto,pedido.quantidade,pedido.valorUnitario,pedidos)" ui-number-mask="2" type="number"   ng-model="pedido.valorUnitario" uib-tooltip="Valor por unidade" placeholder="Valor Unitário"  class="alert-info form-control input-lg "/>
+			     </div>
+				 <div class="input-group form-group" >
+				    <span class="input-group-btn"><button  class="btn btn-default btn-lg  btn-block" style="">Sub-Total: {{pedido.valorUnitario * pedido.quantidade |number:2}}</button></span>
+				  	<span ng-if="!pedidoAux" class="input-group-btn"><button   ng-disabled="!pedido.produto"  ng-click="addPedido(pedido.produto,pedido.quantidade,pedido.valorUnitario,pedidos)" class="btn btn-lg btn-primary btn-block" style="">Adicionar Item <i class="fa fa-arrow-right"></i></button></span>
+				  	<span ng-if="pedidoAux" class="input-group-btn"><button    ng-click="saveEditPedido()"  class="btn btn-primary btn-lg btn-block" style="border-radius:0px">Salvar <i class="fa fa-floppy-o"></i></button></span>
+				    <span ng-if="pedidoAux"  class="input-group-btn"><button   ng-click="cancelEditPedido()" class="btn btn-lg  btn-block" style="">Cancelar</button></span>
+				  </div>
+			  
+			  </div>
+			  <hr></hr>
+		  </div><!-- Fim do panel-body -->	
+	   </div><!-- Fim do panel -->		  
+	</div>
+   <!-- Itens -->
+<div  class="col-lg-6 panel-simples only-desktop" st-show="tab==2" style="padding:0px">
+ <div class="panel">
+ <div class="panel-body">
+  <div class="panel-head only-desktop">
+    <button class="btn btn-primary btn-xs"> {{pedidos.length}}</button>
+    <strong ng-if="pedidos.length==1">Item Adicionado</strong>  <strong ng-if="pedidos.length>1 || pedidos.length==0">Itens Adicionados</strong>
+  </div> 
+  <hr></hr> 
+  <button  ng-click="tab=1" ng-show="pedidos.length==0" class="btn btn-info btn-block btn-lg only-mobile">Adicionar Item <i class="fa fa-plus"></i></button>
+  <button  ng-show="pedidos.length==0" id="btn-no-item" class="btn btn-default btn-block btn-lg onlyDesktop"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Nenhum Item adicionado.</button>
+  
+  <div ng-show="pedidos.length>0" class="row" style="margin-left: -3px;margin-right: -3px;">
+   Total: <strong  style="color:green;font-size:15px">R$ {{getTotalPedidos(pedidos)|number:2}}</strong></td>
+   <div  id="no-more-tables" >
+    <table  class="table-itens-pedido table st-table table-bordered table-striped table-condensed cf " >
+	    <thead class="cf">
+	    <tr>
+	    <th></th>
+	    <th><strong>Quant</strong></th>
+	    <th><strong>Descrição</strong></th>
+	    <th><strong>Preço unitário</strong></th>
+	    <th><strong>Total</strong></th>
+	    </tr> 
+	    </thead>
+	    <tbody>
+	    <tr  ng-repeat="ped in pedidos" ng-class="{'riscado':ped.quantidade==0}">
+	       <td data-title="Opções">
+	         <div class="element-table">
+		    	<div class="pull-center">
+		    	 <label><a confirm="Tem certeza que deseja deletar este pedido?" confirm-title="Deletar Pedido" ng-click="deletePedido(ped)" uib-tooltip="Remover Item" ><i class="fa fa-trash fa-2x"></i></a></label>
+		    	</div>
+		     </div>
+		    </td>
+	         <td data-title="Quantidade" class="quant-pedido">
+	           <input ng-model="ped.quantidade"  type="number" class="form-control"/>
+	         </td>
+		     <td data-title="Item" class="desc-pedido">
+		     <p  class="text-small" >{{ped.produto.nome}} <strong>{{ped.opcao.nomeOpcao}}</strong></p>
+		     </td>
+		     <td data-title="Preço Unitário" class="preco-unit-pedido">
+		     <input ui-number-mask="2" class="form-control" ng-model="ped.valorUnitario" />
+		     </td>
+		     <td data-title="Sub-Total" class="sub-total-pedido">
+		        <p class="text-small"><strong style="color:green;">R$ {{ped.valorUnitario * ped.quantidade|number:2}}</strong></p>
+		     </td>
+		 </tr>
+		 <tr>
+		 <td colspan="3">Total:</td>
+		 <td colspan="4"><strong  style="color:green;font-size:23px">R$ {{getTotalPedidos(pedidos)|number:2}}</strong></td>
+		 </tr>
+	    </tbody>
+    </table>
+  </div>
+  </div>
+  <hr></hr>
+ </div>
+ </div>
+ </div>
+

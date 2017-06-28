@@ -1,0 +1,15 @@
+<meta charset="UTF-8" />
+<div class="dropdown" ng-show="filiais.length>1">
+		<button class="btn btn-primary dropdown-toggle btn-escolher-filial" style="background-color: #3276b1;" type="button" data-toggle="dropdown">
+		   <i class="fa fa-info-circle" aria-hidden="true"></i>
+		   <i class="text-small">{{config.confs.labelFilial ||'origem'}}: </i>
+		   <strong>{{labelCurrentFilial|uppercase}}</strong>
+		  <span class="caret"></span></button>
+			     <ul class="dropdown-menu list-group" style="padding:5px">
+					 <li ng-click="alterarFilial(filial)" ng-repeat="filial in filiais" class="list-group-item filial-list"  >
+					        <i ng-show="filial.id==currentFilial.id" class="warning fa fa-check-circle-o" aria-hidden="true"></i>
+						    <strong>{{filial.xNome|uppercase}} </strong>
+					 </li>
+				 </ul>
+</div>
+	

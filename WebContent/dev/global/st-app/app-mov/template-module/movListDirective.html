@@ -1,0 +1,232 @@
+<meta charset="UTF-8" />
+<div ng-show="!vm.escolheuPeriodo || vm.escolheuPeriodo==false" class="col-lg-6 printHide" style="padding:0px;">
+     <label class="text-muted"><i class="fa fa-calendar"></i> Escolha um período para exibição
+	      <strong>
+	         {{vm.fixProperties.tipo==1?'das Despesas':'dos Recebimentos'}}
+	      </strong>
+     </label>
+	 <st-period submit="vm.getMovimentacoes" de="vm.periodoDe"  ate="vm.periodoAte"></st-period>
+</div>
+
+<div class="row printHide"></div>
+
+
+<div class="ng-enter" ng-show="vm.escolheuPeriodo==true">
+ <!-- Opções -->
+ <div ng-show="!vm.hideOptions || vm.hideOptions==false" id="{{vm.idImp}}">
+ 
+      
+        <!-- Imprimir e cadastrar -->
+	    <div class="col-lg-3 only-desktop crud-table printHide">
+	           <ul class="nav nav-pills">
+	              <li>
+	                <button id="btn-cadastrar" class="btn btn-info" ng-click="vm.openDetalheMov({pessoa:pessoa})"  style="height:42px;"><i class="fa fa-plus-square"></i> Cadastrar</button>
+	              </li>
+	              <li>
+	                <button id="btn-imprimir" class="btn btn-default" st-print id-print="{{vm.idImp}}"  style="height:42px;">Imprimir <i class="fa fa-print"></i></button>
+	              </li>
+	           </ul>
+         </div>
+          
+          <!-- Data de referencia que será utilizada -->
+		<div class="col-lg-3 printHide">
+	          <div class="input-group">
+	              <span class="input-group-btn">
+	                 <button disabled="" class="btn btn-default">Referência: </button>
+	              </span>
+		          <span>
+			          <select ng-change="vm.getMovimentacoes()"  ng-model="vm.tipoDataBusca" class="form-control">
+			                <option value="data">Data de vencimento</option>
+			                <option value="dataCadastro">Data de cadastro</option>
+			                <option value="dataBaixa">Data de baixa</option>
+			           </select>
+		           </span>
+	           </div>
+	      </div>
+
+		<div class="col-lg-4 printHide" style="padding:0px;">
+			    <st-period submit="vm.getMovimentacoes" de="vm.periodoDe"  ate="vm.periodoAte"></st-period>
+		</div>
+		
+		<vertical-space></vertical-space>
+		
+		<!-- Pagas, não pagas -->      
+		<div class="col-lg-3 printShow" style="padding-left:0px;">
+		    <p class="printOnly" style="padding-left:9px;">Relação de movimentações - {{config.confs.nomeUsuario}}</p>
+		    <br class="printOnly"  style="padding-left:9px;">
+		    <p class="printOnly"  style="padding-left:9px;">Período: de <strong>{{vm.periodoDe}}</strong> até <strong>{{vm.periodoAte}} </strong> - Total: R$ <strong>{{vm.total|number:2}}</strong></p>
+			 
+			 <div class="input-group">
+				 <div class="input-group-btn">
+				    <button class="btn btn-default" style="padding-left:3px; padding-right:3px;"><i  class="fa fa-line-chart info" aria-hidden="true"></i></button>
+				 </div>
+				 <select st-initial value="todas" ng-change="vm.changeTipoBaixa(vm.baixa)" ng-model="vm.baixa" class="form-control">
+					<option value="todas">Todas</option>
+					<option value="a_pagar">Somente Não-Pagas</option>
+					<option value="pagas">Somente Pagas</option>
+				 </select>
+			     <div class="input-group-btn">
+					<button class="btn btn-default">Total <strong style="color:green">R$ {{vm.total|number:2}}</strong></button>
+				 </div>
+			</div>
+		</div>
+		
+		<!-- Agrupamento das movimentações -->
+		<div class="col-lg-3 printHide">
+	          <div class="input-group">
+	              <span class="input-group-btn">
+	                 <button disabled="" class="btn btn-default">Agrup: </button>
+	              </span>
+		          <span>
+			          <select ng-change="vm.getMovimentacoes()"  ng-model="vm.agrupamentoMovs" class="form-control">
+			                <option value="">Nenhum</option>
+			                <option value="pessoa.id">Pessoa</option>
+			           </select>
+		           </span>
+	           </div>
+	     </div>
+		 
+		
+	
+	    <!-- Ordenação -->
+	<div class="col-lg-3 printHide">
+	       <div class="input-group">
+	             <span class="input-group-btn">
+	                 <button disabled="" class="btn btn-default">Ordenar por: </button>
+	             </span>
+		         <span>
+			         <select ng-disabled="!vm.agrupamentoMovs==''" ng-change="vm.getMovimentacoes()"  ng-model="vm.orderMovs" class="form-control" style="width:350px">
+			                <option value="data">Pela data</option>
+			                <option value="id">Nº da movimentação</option>
+			                <option value="pessoa.nome">Pessoa</option>
+			           </select>
+		          </span>
+	        </div>
+	  </div>
+	
+	<div class="col-lg-12 printHide">
+	    <loading ng-show="vm.loadingStatus" label="'Carregando movimentações...'"></loading>
+	    <p ng-show="vm.movs.length==0"><i style="color:red;" class="fa fa-{{iconNoResults||'exclamation-triangle'} fa-2x" aria-hidden="true"></i> Nenhuma movimentação no período selecionado!</p>
+    </div>
+     <hr></hr>
+</div>
+<!-- Fim Opções -->
+
+<div class="row printHide"></div>
+<!--Cabeçalho dos dados que é exibido somente para impressão -->
+<!-- 
+<div class="printOnly">
+	<table class="table table-bordered">
+		<tr>
+			<td class="mov-parcela"><strong>Nº</strong></td>
+			<td class="mov-vencimento"><strong>Vencimento</strong></td>
+			<td class="mov-descricao"><strong>Destinado a</strong></td>
+			<td class="mov-descricao"><strong>Descrição</strong></td>
+			<td class="mov-forma-pagamento"><strong>Forma de pagamento</strong></td>
+			<td class="mov-valor"><strong>Valor</strong></td>
+			<td class="mov-pago"><strong>Pago</strong></td>
+		</tr>
+	</table>
+</div>
+ -->
+
+<div ng-show="vm.noResults==true">
+  <h4 class="text-muted"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{vm.labelNoResults || 'Nenhuma movimentação, tente selecionar outro período.'}}</h4> 
+</div>
+
+<!-- Listagem das movimentações -->
+<div  id="group-{{$index}}" ng-show="movs[0]" class="printShow content-mov-print"  ng-repeat="movs in vm.movsGroup">
+
+   <!-- Pontilhado -->
+    <div  class="scissors">
+	    <div></div>
+	</div>
+	
+   <p ng-hide="vm.groupMovs==false || vm.agrupamentoMovs==''" class="text-muted" ng-class="{'printHide':vm.agrupamentoMovs==''}"><i class="fa fa-user"></i> {{movs[0].pessoa.nome||'Outros' |uppercase}} <strong style="color:green">R$ {{vm.getTotalMovs(movs)|number:2}}</strong></p> 
+   <div  class="">
+    <div id="no-more-tables">
+     <table class="modern-table-title st-table table-striped table-bordered table-condensed cf" >
+            <thead class="cf">
+			 <tr ng-class="{'printHide':vm.agrupamentoMovs=='vm.pessoa.id'}">
+				<th class="printHide"></th>
+				<th ng-hide="vm.hideColumns.indexOf('id')!=-1">Nº</th>
+				<th ng-hide="vm.hideColumns.indexOf('vencimento')!=-1">Vencimento</th>
+				<th ng-hide="vm.hideColumns.indexOf('pessoa')!=-1" >Destinado a</th>
+				<th ng-hide="vm.hideColumns.indexOf('descricao')!=-1" >Descrição</th>
+				<th ng-hide="vm.hideColumns.indexOf('formaPagamento')!=-1" >Forma de pagamento</th>
+				<th ng-hide="vm.hideColumns.indexOf('valor')!=-1" >Valor</th>
+				<th ng-hide="vm.hideColumns.indexOf('pago')!=-1" style="min-width:20px;" >Pago</th>
+				<th ng-hide="vm.hideColumns.indexOf('alert')!=-1" class=""></th>
+			 </tr>
+			</thead>
+            <tbody ng-repeat="mov in movs">
+            
+			 <tr class="alert-info text-muted" ng-if="!mov.hideList || mov.hideList==false"  >
+			     
+			    <!-- Pivô -->
+				<td class="only-mobile printHide" style="padding:0px;">
+				   <div class="panel">
+				     <div class="panel-heading pivo-panel">
+				      <a  class="pull-left">R$ <strong> {{mov.valor|number:2}}</strong></a>
+				      <div class="pull-right">
+				           <span class="text-small">Pago: </span> 
+				           <button-baixa-mov mov="mov"></button-baixa-mov>
+				           <!-- 
+					       <label class="toggle printHide" uib-tooltip="{{mov.baixada==true && mov.dataBaixa!=null ? 'Paga em: ' + (mov.dataBaixa|date:'dd/MM/yyyy') + ' (' + (mov.dataBaixa|date:'EEEE') + ') \n Forma de pagamento: ' + (mov.formaPagamento||'') :''}}"> 
+							<input  ng-disabled="mov.disable" type="checkbox" ng-change="alterarBaixa(mov,'fixa')" ng-model="mov.baixada" />
+							<span class="handle"></span>
+						   </label>
+						    -->
+				      </div>
+				      <div class="row"></div>
+				    </div>
+				   </div>
+				</td>
+					 
+			  	<td class="printHide" style="width:35px">
+				   <a ng-show="mov.id" ng-click="vm.openDetalheMov(mov)" class="default" ><i class="fa fa-edit fa-2x"></i></a>
+	            </td>
+	            <td ng-hide="vm.hideColumns.indexOf('id')!=-1" class=""><strong class="text-center">{{mov.id||'N/D'}}</strong></td>
+	            <td ng-hide="vm.hideColumns.indexOf('vencimento')!=-1" class="mov-vencimento " data-title="Vencimento" >
+				   <strong>{{mov.data|date:'dd/MM/yyyy'}}</strong>
+				   <span class="text-small text-muted" style="font-size:11px;"> {{mov.data|date:'EEEE'}}</span>
+				</td> 
+				
+				<td ng-hide="vm.hideColumns.indexOf('pessoa')!=-1"  class="mov-pessoa " data-title="Destinado a" >
+					<strong class="text-small text-muted">{{mov.pessoa.nome || 'Outros' |uppercase}}</strong>
+					<br>
+					<span class="text-small text-muted printHide">{{mov.categoria|uppercase}}</span>
+				</td>
+				
+				<td ng-hide="vm.hideColumns.indexOf('descricao')!=-1"  class="mov-descricao " data-title="Descição" >
+					 <strong ng-if="!mov.pedidos || mov.pedidos.length==0" style="font-size:12px">{{mov.descricao || mov.originalMov.descricao}}</strong>
+					 <i ng-if="mov.parcela>1" class="text-muted">{{mov.parcela}}ª Parcela referente a: </i>
+					 <itens-pedido ng-if="mov.pedidos.length>0 || mov.originalMov.pedidos>0 " pedidos="mov.pedidos || mov.originalMov.pedidos"></itens-pedido>
+				</td>
+				
+				<td ng-hide="vm.hideColumns.indexOf('formaPagamento')!=-1"  class="mov-forma-pagamento " data-title="Forma de pagamento">{{mov.formaPagamento|uppercase}}</td>
+				<td ng-hide="vm.hideColumns.indexOf('valor')!=-1"  class="mov-valor" data-title="Valor">
+				   <strong>R$ {{mov.valor|number:2}}</strong>
+				   <br>
+				   <span class="text-small text-muted"  ng-if="mov.parcela!=0 && (mov.numeroParcelas>1||mov.originalMov.numeroParcelas>1)">({{mov.parcela}} de {{mov.numeroParcelas||mov.originalMov.numeroParcelas}})</span>
+				</td>
+				<td ng-hide="vm.hideColumns.indexOf('pago')!=-1" class="mov-pago " style="min-width:50px;" data-title="Pago">
+					 <button-baixa-mov class="printHide" mov="mov"></button-baixa-mov>
+					 <input ng-model="mov.baixada" type="checkbox"  class="form-control printOnly" />
+				</td>
+				<td ng-hide="vm.hideColumns.indexOf('alert')!=-1" class="printHide ">
+				   <i uib-tooltip="Movimentação paga."  ng-show="mov.baixada==true"  class="info fa fa-check-circle fa-2x"  aria-hidden="true"></i>
+				   <i uib-tooltip="Movimentação com vencimento hoje!"  ng-show="mov.alertMov==1 && (!mov.baixada || mov.baixada==false)"  class="warning fa fa-exclamation-triangle fa-2x"  aria-hidden="true"></i>
+				   <i uib-tooltip="Movimentação vencida!" ng-show="mov.alertMov==2 && (!mov.baixada || mov.baixada==false)"  class="danger fa fa-exclamation-triangle fa-2x"  aria-hidden="true"></i>
+				</td>
+              </tr>
+			</tbody>
+		</table>
+	  </div>
+	</div>
+	<div ng-if="vm.maxItens" class="pull-right  printHide">
+	    <a ng-click="vm.visualizarTodas()" class="text-muted text-small">Visualizar mais <i class="fa fa-external-link" aria-hidden="true"></i></a>
+	</div>
+	<div class="row printHide" style="padding:10px;"></div>
+</div>
+</div>

@@ -1,0 +1,18 @@
+<meta charset="UTF-8" />
+<div ng-controller="stControl">
+	<st-table
+	     title="'Check List'" cad-label="'Novo'" 
+	     tipo-objeto="'checklist'"
+	     detalhe-link="true"
+	     attr-unique="'nome'"
+	     busca-especial="{attr:'nome',placeHolder:'Digite o nome do CheckList',icon:'fa-user'}"
+	     reqs="['nome']" 
+	     custom-actions="[{call:'openTarefas',icon:'edit'}]"
+		 labels="[
+		 {attr:'id',isId:true,hideList:true},
+		 {attr:'nome',label:'Check - List',tipo:'upper'}
+		 ]" >
+		 
+		 
+	</st-table>
+</div>

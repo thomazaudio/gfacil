@@ -1,0 +1,28 @@
+<meta charset="UTF-8" />
+<st-table title="'Operadores do sistema'" cad-label="'Cadastrar Novo Operador.'" 
+     
+     detalhe-link="false"
+     tipo-objeto="'pessoa'"
+     busca-especial="{attr:'nome',tipo:'nome',placeHolder:'Digite o nome do operador',icon:'fa fa-user'}"
+     attr-unique="'nome'"
+	 reqs="['nome']" 
+	 labels="[
+	 {attr:'id',isId:true,hideList:true},
+	 {attr:'nome',tipo:'upper',label:'Nome'},
+	 {attr:'login',label:'Login'},
+	 {attr:'senha',label:'Senha'},
+	 {attr:'permissoes',label:'Permissões de acesso',tipo:'splitCheck',
+      preValues:'pdv,
+      vendas,
+      estoque,
+      clientes,funcionários,
+      fornecedores,
+      balanço,
+      movimentações,
+      cadastros,
+      registros de ponto,
+      logística reversa
+      '}
+	 ]" >
+	 
+</st-table>

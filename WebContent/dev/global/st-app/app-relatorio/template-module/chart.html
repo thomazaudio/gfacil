@@ -1,0 +1,58 @@
+<meta charset="UTF-8" />
+<meta charset="UTF-8" />
+<!-- Component Genérico para exibição -->
+<p ng-if="proj.data.length==0" class="text-small text-muted"><i class="fa fa-exclamation-circle"></i> Nenhum dado a ser exibido</p>
+
+<p ng-if="proj.dadosExemplo==true" class="text-small text-muted"><i class="fa fa-exclamation-circle"></i> Exibindo dados de exemplo</p>
+<!-- Grafico para valor -->
+
+<div ng-show="proj.data.length>0" class="col-lg-6 col-xs-6">
+  <select ng-change="getDados()" ng-model="maxItens" class="form-control">
+     <option value="3">Max 3 itens</option>
+     <option value="5">Max 5 itens</option>
+     <option value="10">Max 10 itens</option>
+     <option value="30">Max 30 itens</option>
+     <option value="0">Todos</option>
+  </select>
+</div>
+
+<div ng-show="proj.data.length>0" class="col-lg-6 col-xs-6">
+  <select ng-change="getDados()"  ng-model="order" class="form-control">
+     <option value="DESC">Do maior para o menor</option>
+     <option value="ASC">Do menor para o maior</option>
+  </select>
+</div>
+
+<div class="col-lg-12">
+   <st-no-itens ng-show="!proj.data" label="'Nenhuma informação a ser exibida de acordo com o período selecionado'"></st-no-itens>
+  <hr></hr>
+</div>
+
+
+<!-- É exibido chart-bar quando a quantidade itens for >4 -->
+<div  ng-if="proj.data.length>0 && proj.labels.length>4" class="printHide only-desktop">
+	<canvas  class="chart chart-bar"
+	chart-options="chartOptions"
+	chart-data="proj.data" chart-legend="false"
+	chart-labels="proj.labels">
+	 </canvas>
+</div>
+
+<table class="table table-striped table-bordered only-mobile" >
+    <tbody>
+         <tr ng-repeat="d in proj.data[0] track by $index">
+             <td style="font-size:15px!important"><i class="fa fa-list"></i> {{proj.labels[$index]}}</td>
+             <td style="font-size:15px!important"><strong> {{ proj.data[0][$index]}} </strong></td>
+         </tr>
+    </tbody>
+</table>
+
+<!-- Quando a quantidade itens for <=4 -->
+<div  ng-if="proj.data.length>0 && proj.labels.length<=4" class="printHide">
+	<canvas  class="chart chart-doughnut" chart-colours="proj.colours"
+	chart-options="chartOptions"
+	chart-data="proj.data" chart-legend="true"
+	chart-labels="proj.labels">
+	 </canvas>
+</div>
+

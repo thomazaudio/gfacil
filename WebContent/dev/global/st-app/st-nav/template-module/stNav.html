@@ -1,0 +1,8 @@
+<meta charset="UTF-8" />
+<ul class="nav nav-tabs" role="tablist">
+    <li  ng-repeat="tab in tabs" role="presentation" ng-class="{'active':activeTab==$index}"> 
+      <a  ng-click="alterarTab($index)" aria-controls="home" role="tab" data-toggle="tab"><i  ng-if="activeTab==$index"class="fa fa-check"></i>
+         {{tab.label}}
+        </a>
+    </li>
+</ul>  

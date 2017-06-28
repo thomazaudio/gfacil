@@ -1,0 +1,7 @@
+<meta charset="UTF-8" />
+<p class="text-muted"><i class="fa fa-info-circle"></i> Lucro mensal médio: <strong>R$ {{proj.media|number:2}}</strong></p>
+<canvas ng-if="proj.labels" id="bar" class="chart chart-bar" chart-colours="proj.colours"
+  chart-data="proj.data" chart-labels="proj.labels" chart-series="proj.series" chart-options="chartOptions">
+</canvas>
+
+

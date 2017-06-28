@@ -1,0 +1,91 @@
+<meta charset="UTF-8" />
+<br>
+<div class="printHide">
+        <div class="col-lg-6">
+           <label class="text-muted"><i class="fa fa-calendar"></i> Escolha um período para geração do relatório: </label>
+           <st-period id="st-period-balanco"  sync-period="true" submit="atualizarDados" de="dataDe"  ate="dataAte"></st-period>
+        </div>  
+		<div class="col-lg-6">
+		   <br>
+		   <div class="input-group" style="margin-top:5px;">
+	          <span class="input-group-btn">
+	            <button st-print id-print="print-balanco"  class="btn btn-default" style="border-radius:3px!important"><i  class="fa fa-print" aria-hidden="true"></i> Imprimir / Salvar PDF2</button>
+	          </span>
+	          <span class="input-group-btn">
+	              <button-open-config style="height:42px;" active-tab="2" extra-class="'btn-config-relatorio'" label="'Alterar Composição'"></button-open-config>
+	          </span>
+	          
+	       </div>
+		</div>
+		
+		<!-- Botão flutuante -->
+		<nav mfb-menu position="br" effect="zoomin" 
+		     active-icon="fa fa-edit" resting-icon="fa fa-plus"
+		     toggling-method="click">
+		     <a mfb-button   main-action="atualizarDados" icon="fa fa-refresh" label="Atualizar dados"></a>
+		     <a mfb-button id-print="print-balanco"  main-action="imprimirRelatorio" icon="fa fa-print" label="Imprimir / Salvar"></a>
+		</nav>
+</div>
+<p class="printOnly" style="padding-left:9px;">Relatório - {{config.confs.nomeUsuario}}</p>
+<br class="printOnly"  style="padding-left:9px;">
+<p class="printOnly"  style="padding-left:9px;">Período: de <strong>{{dataDe}}</strong> até <strong>{{dataAte}}</strong></p>
+<div class="row printHide"></div>
+<br class="printHide"> 
+
+<div ng-show="escolheuPeriodo==true" class="printShow ng-enter">
+
+<p class="text-muted col-lg-12" ng-show="filiais.length>1">
+ <i class="fa fa-info-circle"></i> 
+ {{config.confs.labelFilial ||'origem'}}: <strong>{{currentFilial.xNome|uppercase}}</strong>
+</p>
+
+<p class="text-muted col-lg-12">
+ <i class="fa fa-info-circle"></i> 
+ Os dados exbibidos são referentes ao período de <strong>{{dataDe|date:'dd/MM/yyyy'}}</strong> a <strong>{{dataAte|date:'dd/MM/yyyy'}}</strong>
+</p>
+
+<!-- Balanço -->
+<st-collapse-panel class="col-lg-12" ng-if="config.confs.itensRelatorio.indexOf('balanco')!=-1"  icone="'balance-scale'" show="true" titulo="'Balanço'">
+			<component-balanco  id="component-balanco"   de="dataDe" ate="dataAte" ></component-balanco>
+</st-collapse-panel>
+	
+
+<!-- Lucro por período mensal -->
+<st-collapse-panel  class="col-lg-6" ng-if="config.confs.itensRelatorio.indexOf('lucro_periodo_mensal')!=-1"  icone="'list'" show="true" titulo="'Lucro por período mensal'">
+  	<component-lucro-periodo  de="dataDe" ate="dataAte"></component-lucro-periodo>
+</st-collapse-panel>
+
+
+<!-- Despesas por categoria -->
+<st-collapse-panel class="col-lg-6"  ng-if="config.confs.itensRelatorio.indexOf('despesas_por_categoria')!=-1" icone="'list'" show="true" titulo="'Gastos por categoria'">
+    <component-projecao de="dataDe" ate="dataAte" info="relatorioGastosCategoria"></component-projecao>
+</st-collapse-panel>
+
+
+<vertical-space></vertical-space>
+
+<!-- Anteriores Baixadas -->
+<st-collapse-panel class="col-lg-12" ng-if="config.confs.itensRelatorio.indexOf('lancamentos_anteriores_baixados')!=-1" icone="'list'" show="true" titulo="'Lançamentos anteriores baixados'">
+  <component-anteriores-baixadas   de="dataDe" ate="dataAte"></component-anteriores-baixadas >
+  <div class="col-lg-12">
+	  <hr></hr>
+  </div>
+</st-collapse-panel>
+
+
+<vertical-space></vertical-space>
+
+<st-collapse-panel class="col-lg-12" icone="'list'" show="true" titulo="'Vendas'">
+  <component-vendas-tabela   de="dataDe" ate="dataAte"></component-vendas-tabela >
+  <div class="col-lg-12">
+	  <hr></hr>
+  </div>
+</st-collapse-panel>
+</div>
+
+<div class="col-lg-12">
+  <p class="printOnly">Balanço emitido em  <strong>{{dataHoje|date:'dd/MM/yyyy'}}</strong> as <strong>{{dataHoje|date:'HH:mm'}}</strong> </p>
+  <hr></hr>
+</div>
+
+

@@ -1,0 +1,105 @@
+<meta charset="UTF-8" />
+
+<!-- Coluna esquerda -->
+<div class="col-lg-6" style="padding-left:0px;">
+
+	<div class="form-group col-lg-4">
+		<label class="text-muted text-small">Modelo</label> <input 
+		 disabled=""	class="form-control" ng-model="nfe.mod" />
+	</div>
+
+	<div class="form-group col-lg-4">
+		<label class="text-muted text-small">Série</label> <input
+		 disabled=""	 class="form-control" ng-model="nfe.serie" />
+	</div>
+
+	<div class="form-group col-lg-4">
+		<label class="text-muted text-small">Número</label> <input
+		 disabled=""	class="form-control" ng-model="nfe.nnf" />
+	</div>
+
+	<div class="col-lg-12">
+		<hr></hr>
+	</div>
+
+	<div class="form-group col-lg-4">
+		<label class="text-muted text-small">Tipo de documento</label> <select
+			class="form-control" ng-model="nfe.tpNF">
+			<option value="0">0 - Entrada</option>
+			<option value="1">1 - Saída</option>
+		</select>
+	</div>
+
+	<div class="form-group col-lg-4">
+		<label class="text-muted text-small">Tipo de impressão</label> <select
+			class="form-control" ng-model="nfe.tpImp">
+			<option value="1">1 - Retrato</option>
+			<option value="2">2 - Paisagem</option>
+		</select>
+	</div>
+
+
+	<div class="form-group col-lg-4">
+		<label class="text-muted text-small">Forma de pagamento</label> <select
+			class="form-control" ng-model="nfe.indPag">
+			<option value="0">0 - A Vista</option>
+			<option value="1">1 - A Prazo</option>
+			<option value="2">2 - Outros</option>
+		</select>
+	</div>
+
+
+</div>
+
+<!-- Coluna direita -->
+<div class="col-lg-6" style="padding-right:0px;">
+	
+	<div class="form-group col-lg-8">
+		<label class="text-muted text-small">Tipo de emissão</label> <select
+			class="form-control" ng-model="nfe.tpEmis">
+			<option value="1">1 - Emissão normal (não em contingência)</option>
+		</select>
+	</div>
+
+	<div class="form-group col-lg-4">
+		<label class="text-muted text-small">Finalidade da emissão</label> <select
+			class="form-control" ng-model="nfe.finNFe">
+			<option value="1">1 - Normal</option>
+			<option value="2">2 - Complementar</option>
+			<option value="3">3 - Ajuste</option>
+			<option value="4">4 - Devolução/Retorno</option>
+		</select>
+	</div>
+	
+	
+	<div class="col-lg-12">
+		<hr></hr>
+	</div>
+
+	<div class="form-group col-lg-8">
+		<label class="text-muted text-small">Presença do comprador no
+			estabelecimento</label> <select class="form-control" ng-model="nfe.indPres">
+			<option value="0">0 - Não se aplica (por exemplo, Nota
+				fiscal complementar ou de ajuste)</option>
+			<option value="1">1 - Operação presencial</option>
+			<option value="2">2 - Operação não presencial, pela Internet</option>
+			<option value="3">3 - Operação não presencial,
+				Teleatendimento</option>
+			<option selected="selected" value="9">9 - Operação não
+				presencial</option>
+		</select>
+	</div>
+
+	<div class="form-group col-lg-4">
+		<label class="text-muted text-small">Consumidor final</label> <select
+			class="form-control" ng-model="nfe.indFinal">
+			<option value="0">Não</option>
+			<option value="1">Sim</option>
+		</select>
+	</div>
+
+
+
+
+
+</div>

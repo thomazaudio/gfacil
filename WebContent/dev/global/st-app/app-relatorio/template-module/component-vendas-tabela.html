@@ -1,0 +1,55 @@
+<meta charset="UTF-8" />
+<div class="col-lg-12">
+
+<div class="form-group col-lg-4 printHide">
+	<div class="input-group">
+			<input   ng-model="nomeProduto" class="form-control input-busca-map input-primary" placeholder="buscar pelo nome do produto"/>
+		    <span class="input-group-btn">
+		     <button ng-click="getDados(nomeProduto,quantItens)" class="btn btn-default">OK</button> 
+		    </span>
+	</div>
+</div>
+
+<div class="col-lg-3 form-group printHide">
+   <select ng-change="getDados(nomeProduto,quantItens)" class="form-control" ng-model="quantItens">
+     <option value="0">Exibir tudo</option>
+     <option value="20">20</option>
+     <option value="30">30</option>
+     <option value="100">100</option>
+     <option value="200">200</option>
+   </select>
+</div>
+
+<div class="col-lg-2">
+  	<label ng-if="carregandoDados==true"   class="text-muted">carregando dados <i class="fa fa-refresh faa-spin animated"></i></label>
+</div>
+
+<div class="col-lg-3">
+ <label class="text-muted text-small">
+   Vendas de <strong>{{de|date:'dd/MM/yyyy'}}</strong> até <strong>{{ate|date:'dd/MM/yyyy'}}</strong>
+ </label>
+</div>
+
+<div class="col-lg-12" id="no-more-tables">
+	<table class="st-table table-striped table-bordered table-condensed cf table-itens-pedido">
+		<thead class="cf">
+			<tr >
+				<th>Produto</th>
+				<th>Quantidade Vendida</th>
+				<th>Menor Preço</th>
+				<th>Maior Preço</th>
+				<th>Preço Médio</th>
+			</tr>
+		</thead>
+		<tbody>
+		    <tr class="alert-info text-muted" ng-repeat="sub in projs">
+		      <td data-title="Produto" class="text-muted"><i class="fa fa-play-circle-o"></i> {{sub[0]|uppercase}}</strong></td>
+			  <td data-title="Quantidade Vendida"><strong>{{sub[1]}} uni</strong></td>
+			  <td data-title="Menor Preço"><strong style="color:green">R$ {{sub[2]|number:2}}</strong></td>
+			  <td data-title="Maior Preço"><strong style="color:green">R$ {{sub[3]|number:2}}</strong></td>
+			  <td data-title="Preço Médio"><strong style="color:green">R$ {{sub[4]|number:2}}</strong></td>
+			</tr>
+		 </tbody>
+	</table>
+</div>
+</div>

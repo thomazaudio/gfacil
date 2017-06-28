@@ -1,0 +1,56 @@
+<meta charset="UTF-8" />
+ <div id="modulo"></div>
+  <div ng-show="vm.activeTab==0">
+    <div class="form-group col-lg-4 col-xs-12" id="buscaPessoa">
+      		   <auto-complete-object place-holder="'Digite o nome do cliente para buscar'" auto-focus="true" use-cache="true" extra-class="'input-lg'" ng-change="vm.getLrs(vm.clienteBusca.nome)" inline="true"  tipo="'select'" label-cad="'Cadastrar novo Cliente'" place-holder="'Digite o nome do Cliente'"  object-op="'cliente'" querys="" label="'nome'" ng-model="vm.clienteBusca" />
+    </div>
+
+	<div class="col-lg-2" ng-show="vm.clienteBusca">
+	   <a ng-click="vm.getLrs();vm.clienteBusca=null">Limpar buscar <i class="fa fa-trash"></i></a>
+	</div>
+	
+	<div class="col-lg-4"  id="onlyDevedores" >
+	   <st-checkbox label="'Exibir somente devedores'" ng-model="vm.onlyDevedores"></st-checkbox>
+     </div>
+     
+     <button-add ng-click="vm.openDetalhe()"></button-add>
+	
+	<vertical-space></vertical-space>
+	<div class="col-lg-12">
+	<p ng-show="carregando==true" class="text-muted text-small">Carregando empréstimos <i  class="fa fa-refresh faa-spin animated" aria-hidden="true"></i>
+    <p ng-show="nenhumEmprestimo==true || emprestimo.quantidadeReceber==0" class="text-muted text-small"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Nenhuma embalagem a receber para o cliente selecionado.</p>
+    
+    </div>
+    <vertical-space></vertical-space>
+   
+     <div  ng-repeat="ob in vm.objetos" >
+		    <emprestimo-embalagem only-devedores="vm.onlyDevedores" pessoa="ob"></emprestimo-embalagem>
+	 </div>
+	
+	</div>
+	 
+  <div ng-if="vm.activeTab==1">
+         <st-collapse-panel class="col-lg-6" icone="'list'" show="true" titulo="vm.labelDevolvidasSemana">
+          <component-projecao de="vm.devolvidasSemanaPeriodo.de" ate="vm.devolvidasSemanaPeriodo.ate" info="vm.devolvidasSemana"></component-projecao>
+	    </st-collapse-panel>
+	    
+	    <div class="col-lg-6">
+	        <div class="panel">
+		        <div class="panel-body">
+		            <h2 class="text-muted text-center">Total de embalagens a receber</h2>
+		            <p class="text-center" ><span  style="color:var(--secondary-color);font-size:45px;"><i class="fa fa-archive"></i> {{vm.totalEmbalagensReceber}}</span><span class="text-muted">/uni</span></p>
+		            
+		        </div>
+	        </div>
+	    </div>
+	    
+  </div>
+  
+   <vertical-space></vertical-space>
+	 
+    <mobile-tabs active-tab="vm.activeTab" tabs="[
+      
+      {label:'Empréstimos', icon:'search', id: 'tabEmprestimos'},
+      {label:'Relatórios', icon:'pie-chart', id: 'tabRelatorios'},
+       
+   ]"></mobile-tabs>

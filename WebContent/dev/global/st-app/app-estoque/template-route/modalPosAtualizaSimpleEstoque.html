@@ -1,0 +1,28 @@
+<meta charset="UTF-8" />
+<modal-content icone-titulo="'check'" titulo="'Estoque atualizado com sucesso!'" modal-instance="this">
+	
+	  <div class="pull-left">
+	    <p><i class="fa fa-person"></i>Fornecedor:  <strong>{{at.movimentacao.pessoa.nome ||'Não informado'}} </strong></p>
+	  </div> 
+	  <div class="row"></div>
+	  
+	  <itens-pedido pedidos="at.movimentacao.pedidos"></itens-pedido> 
+	  <p class="text-small">Custo: <strong> R$ {{at.movimentacao.valor||0|number:2}}</strong></p>
+	  
+	  <div class="col-lg-12">
+	  <hr></hr>
+	  </div>
+	 
+	  
+	  <div class="form-group col-lg-4">
+	  	    <button ng-click="toProdutos(this)" class="btn btn-block btn-default">Visualizar Produtos <i class="fa fa-external-link"></i></button>
+	  </div>
+	  
+	  <div class="form-group col-lg-4">
+	  	    <button ng-click="toNovaVenda(this)" class="btn btn-block btn-primary">Nova Venda <i class="fa fa-cart-plus"></i></button>
+	  </div>
+</modal-content>
+
+
+
+  

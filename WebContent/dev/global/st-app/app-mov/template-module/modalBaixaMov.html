@@ -1,0 +1,18 @@
+<meta charset="UTF-8" />
+<modal-content icone-titulo="'calendar'" modal-instance="this" ok-action="vm.confirmar" titulo="'Baixa de movimentação'">
+  <div class="form-group col-lg-4">
+   <label class="text-small">Data de pagamento da movimentação</label>
+   <input st-input tipo="data"  ng-model="vm.dataPagamento" class="form-control"></select>
+  </div>
+  
+  <div class="form-group col-lg-4">
+   <label class="text-small">Forma de pagamento</label>
+   <auto-complete-object inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova forma de pagamento'" place-holder="'Digite a forma de pagamento'"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'forma_pagamento'}" ng-model="vm.formaPagamento" ></auto-complete-object>
+  </div>
+  
+  <div class="form-group col-lg-4">
+   <label class="text-small">Valor</label>
+   <input ui-number-mask="2"  ng-model="vm.valorMov" class="form-control"></select>
+  </div>
+  
+</modal-content>

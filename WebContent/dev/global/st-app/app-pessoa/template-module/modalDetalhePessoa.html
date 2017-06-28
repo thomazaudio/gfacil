@@ -1,0 +1,37 @@
+<meta charset="UTF-8" />
+<div>
+  <modal-content  ok-action="salvar" icone-titulo="'user'" modal-instance="this" titulo="objeto.nome|uppercase">
+	<div class="detalhe-header">
+	  <st-nav active-tab="tab" tabs="tabs"></st-nav>
+	    <vertical-space></vertical-space>
+        <!-- Tabs -->
+		    <!-- Tab Informações-->
+			<div  class="text-muted" ng-show="tab==0">
+			
+			   <div class="col-lg-12">
+		         <set-all-filials  objeto="objeto"></set-all-filials>
+		         <hr></hr>
+		       </div> 
+			
+			    <detalhe-pessoa pessoa="objeto"></detalhe-pessoa>
+			    
+			    <detalhe-pessoa-endereco ng-if="objeto" endereco="objeto.endereco"></detalhe-pessoa-endereco>
+			     			
+				<div class="col-lg-12">
+				<hr></hr>
+				</div>
+			</div>
+			
+			 <!-- Movimentações-->
+		     <div ng-if="tab==1">
+			  	<mov-list id="mov-list-pessoa" last-days="30" label-cad="'Cadastrar Nova Despesa'" label="'Pagamentos (Despesas)'" mode="'day'" pessoa="objeto" id-imp="'despesas'" fix-properties="{tipo:tipoMov}"></mov-list>
+			 </div>
+			 
+			
+			<div class="row"></div>
+				
+			
+	</div>
+	</modal-content>
+</div>
+

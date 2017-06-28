@@ -1,0 +1,30 @@
+<meta charset="UTF-8" />
+<modal-content icone-titulo="'clock-o'" modal-instance="this" titulo="'Histórico'">
+	 <div  ng-show="vm.emprestimo.lrs.length>0" id="no-more-tables">
+	   <table class="modern-table st-table table-striped  table-bordered cf" >
+	       <thead class="cf">
+			<tr>
+				<th>Data de cadastro no sistema</th>
+				<th>Tipo</th>
+				<th>Quantidade de embalagens</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr class="dropdown-table alert-info"  ng-repeat="lr in vm.emprestimo.lrs">
+				    <td>
+				        <strong class="text-muted"><i class="fa fa-calendar"></i> {{lr.dataCadastro|date:'dd/MM/yyyy'}}</strong>
+				        <br> 
+				        <span class="text-small text-muted" style="font-size:11px;"> {{lr.dataCadastro|date:'EEEE'}}</span>
+				    </td>
+				    <td><span ng-class="{'destaque-item-danger':lr.tipo==2,'destaque-item-secondary':lr.tipo==1}">{{lr.tipo==2?'EMPRÉSTIMO':'DEVOLUÇÃO'}}</span></td>
+				    <td><span class="destaque-item">{{lr.quantidade}}</span></td>
+				</tr>
+				<tr>
+				  <td colspan="2"><h3 class="text-muted">Total a receber: <strong>{{vm.emprestimo.quantidadeReceber}}</strong></h3> </td>
+				</tr>
+			</tbody>
+	  </table>
+	</div>
+</modal-content>
+
+

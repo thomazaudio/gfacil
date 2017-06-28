@@ -1,0 +1,22 @@
+<meta charset="UTF-8" />
+<div class="input-group ">
+      <input placeholder="Início" st-input tipo="data" class="form-control"  ng-model="de" st-input style="border-right:none"  />
+      <span class="input-group-btn"><button class="btn btn-default button-periodo-ate" style="height:42px;" >Até</button></span>
+	  <input placeholder="Fim" style="border-left:none"  st-input tipo="data" class="form-control"  ng-model="ate" st-input  />
+      <span class="input-group-btn">
+      <button  id="btn-open-change-period"  class="btn btn-block btn-default dropdown-toggle" style="width:35px;height:42px;" type="button" data-toggle="dropdown"> 
+                <span><i  class="fa fa-calendar info" aria-hidden="true"></i></span></button>
+	            <ul class="dropdown-menu  list-group pull-right" style="padding:5px">
+	                <li class="list-group-item item-period" ng-click="alterarPeriodo('HOJE');" ><strong>Hoje</strong></li>
+		            <li class="list-group-item item-period" ng-click="alterarPeriodo('SEMANA_ATUAL');"><strong>Semana Atual</strong></li>
+		           	<li class="list-group-item item-period" ng-click="alterarPeriodo('MES_ATUAL');"><strong>Mês atual</strong></li>
+		            <li class="list-group-item item-period" ng-click="alterarPeriodo('SEMANA_PASSADA');"><strong>Semana Passada</strong></li>
+	                <li class="list-group-item item-period" ng-click="alterarPeriodo('DESDE_INICIO_ANO');"><strong>Desde o início do ano</strong></li>
+	            </ul>
+      </span>
+      <span class="input-group-btn">
+      <button  id="btn-ok" ng-disabled="mode=='day'" ng-click="submit()" class="btn btn-primary" style="height:42px;  border-bottom-right-radius: 3px!important; border-top-right-radius: 3px!important;">Ok</button>
+      </span>
+</div>
+
+  

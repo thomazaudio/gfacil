@@ -1,0 +1,31 @@
+<meta charset="UTF-8" />
+<modal-content icone-titulo="'external-link-square'" titulo="'Cadastrar nova despesa'" modal-instance="this">
+    
+    
+    <div class="col-lg-3">
+		<div class="form-group">
+			<label class="text-muted">Categoria da despesa</label>
+			<auto-complete-object inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova categoria'" place-holder="'Digite a categoria'"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'categoria_conta_pagar'}" ng-model="mov.categoria" ></auto-complete-object>
+		</div>
+	</div>
+    
+   
+	<div class="col-lg-5">
+		<div class="form-group">
+		<label class="text-muted">Data</label>
+		<input    st-input tipo="data" ng-model="mov.data" class="form-control"/>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+		<label class="text-muted">Valor</label>
+		<input    ui-number-mask="2" ng-model="mov.valor" class="form-control"/>
+		</div>
+	</div>
+	<div class="col-lg-2">
+		<st-check ng-model="mov.baixada" label="'Pago'"></st-check>
+	</div>
+	<div class="col-lg-2 pull-right">
+	   <button ng-click="cadMov(mov,this)" class="btn btn-primary">OK</button>
+	</div>
+</modal-content>

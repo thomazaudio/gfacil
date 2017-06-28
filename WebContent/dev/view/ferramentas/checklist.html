@@ -1,0 +1,46 @@
+<meta charset="UTF-8" />
+<vertical-space></vertical-space>
+<div  id="no-more-tables">
+   <table class="modern-table st-table table-bordered table-striped table-condensed cf" >
+      <thead class="cf">
+	   <tr class="table-bordered">
+	     <th></th>
+	     <th>Nome</th>
+	     <th>Tarefas</th>
+	   </tr>
+	  </thead>
+	  <tbody>
+	      <tr ng-repeat="ob in objetos">
+	         <td>
+	            <options-table ob="ob"></options-table>
+	         </td>
+	         <td> <input ng-model="ob.nome" class="form-control"/></td>
+	         <td>
+	           <st-accordion>
+	             <st-accordion-panel title="'Tarefas'">
+	              
+		              <div  id="no-more-tables">
+						   <table class="table-sm modern-table st-table table-bordered table-striped table-condensed cf" >
+							      <thead class="cf">
+								   <tr class="table-bordered">
+								     <th>Tarefa</th>
+								     <th>ok</th>
+								   </tr>
+								  </thead>
+								  <tbody>
+								     <tr ng-repeat="t in ob.tarefas">
+								       <td>{{t.descricao}}</td>
+								       <td><st-check ng-model="t.ok"></st-check></td>
+								     </tr>
+								  </tbody>
+							  </table>
+					    </div>
+	              
+	             </st-accordion-panel>
+	           </st-accordion>
+	         </td>
+	      </tr>
+	  </tbody>
+	  </table>
+</div>
+	  

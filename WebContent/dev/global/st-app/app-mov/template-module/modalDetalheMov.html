@@ -1,0 +1,85 @@
+<meta charset="UTF-8" />
+<!-- Movimentações originadas de vendas -->
+ <modal-content item="vm.mov" loading-ok-action="vm.salvando" ok-action="vm.cadMov" delete-action="vm.deleteMov" icone-titulo="'line-chart'" titulo="vm.labelTitleMov" modal-instance="this">
+ <div class="col-lg-12">
+      <filial-list in-modal="true"> </filial-list>
+   <hr></hr>
+ </div>
+ 
+ <alert-filial class="col-lg-12" ng-if="currentFilial.id==0 && !vm.mov.id" label="'Não é possível lançar movimentações para '"></alert-filial>
+ 
+ <div ng-show="currentFilial.id!=0 || vm.mov.id">
+ 
+	       <div class="col-lg-3">
+			    <div class="form-group">
+				    <label  class="text-muted text-small">{{vm.movs.length>1?'Valor da primeira parcela':'Valor'}}</label>
+					<input focus-me="!vm.mov.id" ng-disabled="vm.mov.pedidos && vm.mov.pedidos.length>0"  ui-number-mask="2" required="true" placeholder="R$" ng-model="vm.mov.valor" class="form-control"/>
+				</div>
+			</div>
+       
+		
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label class="text-muted text-small">Categoria (Opcional)</label>
+				<auto-complete-object show-results-on-focus="true" inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova descrição'" place-holder="placeHolderCategoria"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:vm.objetoDescricao}" ng-model="vm.mov.categoria" ></auto-complete-object>
+			</div>
+	    </div>
+	    
+	    <div class="form-group col-lg-4">
+	       <label class="text-muted text-small">Forma de pagamento (Opcional)</label>
+	       <auto-complete-object inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova forma de pagamento'" place-holder="'Digite a forma de pagamento'"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'forma_pagamento'}" ng-model="vm.mov.formaPagamento" ></auto-complete-object>
+	     </div>
+				
+		
+		<div class="col-lg-3">
+			<div class="form-group">
+			<label class="text-muted text-small">Data de Vencimento</label>
+			<input    st-input tipo="data" ng-model="vm.mov.data" class="form-control alert-info "/>
+			</div>
+		</div>
+		
+	
+		<div ng-show="!mov.id && config.confs.movimentacoesShowModoRepeticao=='true'" class="col-lg-3">
+		    <div class="form-group">
+			<label class="text-muted text-small">Repetir</label>
+			<select ng-model="vm.mov.modoRepeticao" class="form-control">
+			  <option value="0">Não</option>
+			  <option value="1">Diário</option>
+			  <option value="2">Semanal</option>
+			  <option value="3">Mensal</option>
+			</select>
+			</div>
+		</div>
+		
+		
+		
+		<div class="col-lg-3">
+			<div class="form-group">
+				<label class="text-muted text-small">Informar mais detalhes (Opcional)</label>
+				<input ng-disabled="vm.originalMov" ng-show="!vm.mov.pedidos || vm.mov.pedidos.length==0"  placeholder="{{vm.exmploDescricao}}" ng-model="vm.mov.descricao" class="form-control"/>
+			</div>
+	    </div>
+	
+	 <div class="col-lg-3">
+		    <label class="text-muted text-small">Pago</label>
+		    <br>
+		    <button-baixa-mov label="'Pago'" mov="vm.mov"></button-baixa-mov>
+	 </div>
+	 <vertical-space></vertical-space>
+	 
+	<!-- Parcelamento da movimentação --> 
+	<div ng-show="!vm.mov.originalMov && (vm.mov.modoRepeticao==0 || !vm.mov.modoRepeticao) && config.confs.movimentacoesShowParcelamento=='true'">
+	 <div class="col-lg-12" ng-show="config.confs.movimentacoesShowParcelamento=='true'">
+	    <hr></hr>
+	    <span class="text-muted">PARCELAS</span>
+	 </div>
+	 
+	 <parcela-mov ng-if="vm.mov"  titulo="'Forma de Pagamento/Parcelamento'" primeiro-vencimento="vm.mov.data"  movs="vm.movs" original-mov="vm.mov" ></parcela-mov>
+  </div> 
+ 
+
+<div class="row"></div>
+
+ </div>
+</modal-content>
+	

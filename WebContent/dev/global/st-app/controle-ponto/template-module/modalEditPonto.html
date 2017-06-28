@@ -1,0 +1,44 @@
+<meta charset="UTF-8" />
+<modal-content icone-titulo="'clock'" titulo="'Editar registro de ponto'" modal-instance="this">
+    
+      
+     <div class="col-lg-12">
+       <p><i class="fa fa-user"></i> {{ponto.pessoa.nome}}</p>
+       <hr>
+     </div>
+   
+     <div class="form-group col-lg-4">
+        <label>Data Entrada</label>
+        <input st-input tipo="data" ng-model="dataIni" class="form-control" />
+     </div> 
+     <div class="form-group col-lg-4">
+        <label>Hora Entrada</label>
+        <input  type="time" ng-model="timeIni" class="form-control" />
+     </div>  
+     <vertical-space></vertical-space>
+     
+     <div class="col-lg-12">
+       <hr></hr>
+     </div>
+     
+     <div class="form-group col-lg-4">
+        <label>Data Saída</label>
+        <input st-input tipo="data" ng-model="dataFim" class="form-control" />
+     </div> 
+     <div class="form-group col-lg-4">
+        <label>Hora Saída</label>
+        <input  type="time" ng-model="timeFim" class="form-control" />
+     </div>  
+     <vertical-space></vertical-space>
+     
+     <div class="col-lg-3 pull-right">
+       <div class="input-group">
+         <span class="input-group-btn">
+             <button  ng-click="this.$dismiss('cancel')" class="btn btn-default"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</button>
+         </span>
+         <span class="input-group-btn">
+             <button  ng-click="salvar(dataIni,dataFim,timeIni,timeFim,this)" class="btn btn-primary">Salvar <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+         </span>
+       </div>
+     </div>
+</modal-content>

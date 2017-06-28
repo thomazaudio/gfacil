@@ -1,0 +1,168 @@
+<meta charset="UTF-8" />
+<vertical-space></vertical-space>
+
+<div class="col-lg-12">
+  <span class="text-muted"><strng>CERTIFICADO DIGITAL</strng></span>
+</div>
+
+<!-- Certificado digital  incluido -->
+<div class="col-lg-12">
+  <span class="text-muted">certificadodigital.pfx <a>Remover</a></span>
+  <br>
+  <span style="color:var(--secondary-color)">
+  Expira em <i>21/12/2017 18:01:00</i>
+  <br>
+  Emitido por <i>AC SERASA RFB v2</i>
+  </span>
+</div>
+
+<!-- Certificado digital não incluido -->
+<div>
+	<div class="col-lg-12 form-group">
+		<div class="fileinput fileinput-new" data-provides="fileinput">
+		    <span class="btn btn-default btn-file"><span>Selecine um certificado digital do tipo A1</span><input type="file" /></span>
+		    <span class="fileinput-filename"></span><span class="fileinput-new"></span>
+		</div>
+	</div>
+	
+	<div class="col-lg-3">
+	   <div class="form-group">
+	      <label>Senha do certificado</label>
+	      <input class="form-control"/>
+	   </div>
+	</div>
+	
+	<div class="col-lg-3">
+	   <div class="form-group">
+	      <label>Confirme a senha do certificado</label>
+	      <input class="form-control"/>
+	   </div>
+	</div>
+	
+	
+	<div class="col-lg-3">
+	   <div class="form-group">
+	      <br>
+	      <button class="btn btn-primary"><i class="fa fa-plus"></i> Incluir</button>
+	   </div>
+	</div>
+</div>
+
+<div class="col-lg-12">
+  	<hr></hr>
+</div>
+
+<div class="col-lg-12">
+  <span class="text-muted"><strng>PARAMETROS DE EMISSÃO</strng></span>
+</div>
+
+    <div class="form-group col-lg-4">
+		<label class="text-muted text-small">Tipo de ambiente</label> <select
+			class="form-control" ng-model="config.tpAmb">
+			<option value="1">1 - Produção (Com valor fiscal)</option>
+			<option value="2">2 - Homologação (para testes)</option>
+		</select>
+	</div>
+	
+<div class="col-lg-12">
+  <span class="text-muted"><strng>PREENCHIMENTO PADRÃO</strng></span>
+</div>  
+  
+   <div class="form-group col-lg-3">
+		<label class="text-muted text-small">Destinatário</label> <select
+			class="form-control" ng-model="config.tpAmb">
+			<option value="1">Pessoa física</option>
+			<option value="2">Pessoa jurídica</option>
+		</select>
+	</div>
+	
+	<div class="form-group col-lg-3">
+		<label class="text-muted text-small">Consumidor final</label> <select
+			class="form-control" ng-model="config.indFinal">
+			<option value="0">Não</option>
+			<option value="1">Sim</option>
+		</select>
+	</div>
+	
+	
+	<div class="form-group col-lg-3">
+		<label class="text-muted text-small">Presença do comprador no
+			estabelecimento</label> <select class="form-control" ng-model="config.indPress">
+			<option value="0">0 - Não se aplica (por exemplo, Nota
+				fiscal complementar ou de ajuste)</option>
+			<option value="1">1 - Operação presencial</option>
+			<option value="2">2 - Operação não presencial, pela Internet</option>
+			<option value="3">3 - Operação não presencial,
+				Teleatendimento</option>
+			<option selected="selected" value="9">9 - Operação não
+				presencial</option>
+		</select>
+	</div>
+	
+	
+	
+	<div class="form-group col-lg-4">
+		<label class="text-muted text-small">Tipo de impressão padrão</label> <select
+			class="form-control" ng-model="config.tpImp">
+			<option value="1">1 - Retrato</option>
+			<option value="2">2 - Paisagem</option>
+		</select>
+	</div>
+	
+<div class="col-lg-12">
+  <span class="text-muted"><strng>CFOP Padrão</strng></span>
+</div>	
+  <div class="form-group col-lg-12">
+		<label class="text-muted text-small">CFOP quer será selecionado automaticamente</label> <select
+			class="form-control" ng-model="config.cfopPadrao">
+			<option value="">:: selecione o cfop padrão</option>
+			<option value="5101">5101 - Venda de produção do
+				estabelecimento</option>
+			<option selected="selected" value="5102">5102 - Venda de
+				mercadoria</option>
+			<option value="5202">5202 - Devolução de compra</option>
+			<option value="5401">5401 - Venda de produção do
+				estabelecimento ST</option>
+			<option value="5405">5405 - Venda de Mercadorias ST
+				(Interna)</option>
+			<option value="5551">5551 - Venda de bem do ativo
+				imobilizado</option>
+			<option value="5901">5901 - Remessa para industrialização
+				por encomenda</option>
+			<option value="5908">5908 - Remessa por comodato</option>
+			<option value="5912">5912 - Remessa p/ demonstração</option>
+			<option value="5915">5915 - Remessa p/ conserto</option>
+			<option value="5922">5922 - Venda para entrega futura</option>
+			<option value="5929">5929 - Ref a ECF</option>
+			<option value="5933">5933 - Prestação de serviço tributado
+				pelo ISSQN</option>
+			<option value="5949">5949 - Outra saída de mercadoria</option>
+			<option value="6101">6101 - Venda de produção do
+				estabelecimento</option>
+			<option value="6102">6102 - Venda de mercadoria</option>
+			<option value="6202">6202 - Devolução de compra</option>
+		</select>
+	</div>
+
+<div class="col-lg-12">
+  <span class="text-muted"><strng>INFORMAÇÕES ADICIONAIS</strng></span>
+</div>
+
+<div class="form-group col-lg-6">
+		<label class="text-muted text-small">Informações Adicionais de Interesse do Contribuinte (Apresentado na DANFE)</label>
+	    <textarea ng-model="config.infCpl" class="form-control" rows="5" ></textarea>
+</div>
+
+
+<div class="col-lg-12">
+  <hr></hr>
+</div>
+<div class="col-lg-3 pull-right">
+		<button class="btn btn-primary">
+			<i class="fa fa-floppy-o"></i> Salvar configurações
+		</button>
+</div>
+	
+
+
+

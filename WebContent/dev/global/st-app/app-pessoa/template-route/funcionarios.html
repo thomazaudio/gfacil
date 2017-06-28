@@ -1,0 +1,21 @@
+<meta charset="UTF-8" />
+<st-table url-detalhe="'view/funcionario/detalheFuncionario.html'" title="'Funcionários'" cad-label="'Cadastrar Novo Funcionário.'" 
+     
+     detalhe-link="true"
+     tipo-objeto="'pessoa'"
+     filtros="[{attr:'nome',tipo:'nome',placeholder:'Digite o nome do funcionário',icon:'fa fa-user'}]"
+     attr-unique="'nome'"
+	 reqs="['nome']" 
+	 labels="[
+	 {attr:'id',isId:true,hideList:true},
+	 {attr:'dataAdmissao',tipo:'data',classe:'alert-info',label:'Data de Admissão'},
+	 {attr:'dataCadastro',tipo:'data',classe:'alert-info',label:'Data de Cadastro',noForm:true},
+	 {attr:'nome',tipo:'upper',label:'Nome'},
+	 {attr:'doc',label:'Documento'},
+	 {attr:'fone',tipo:'tel',label:'Telefone'},
+	 {attr:'login',label:'Login'},
+	 {attr:'senha',label:'Senha'},
+	 {attr:'pin',label:'Nº PIN'},
+	 ]" >
+	 
+</st-table>

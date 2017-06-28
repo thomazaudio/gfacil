@@ -1,0 +1,18 @@
+<meta charset="UTF-8" />
+<st-table url-detalhe="'view/fornecedor/detalheFornecedor.html'" title="'Fornecedores'" cad-label="'Cadastrar Novo Fornecedor.'" 
+     
+     detalhe-link="true"
+     tipo-objeto="'pessoa'"
+     filtros="[{attr:'nome',placeholder:'Buscar pelo nome do fornecedor'}]"
+     attr-unique="'nome'"
+	 reqs="['nome']" 
+	 labels="[
+	 {attr:'id',isId:true,hideList:true},
+	 {attr:'dataCadastro',tipo:'data',classe:'alert-info',label:'Data de Cadastro',noForm:true},
+	 {attr:'nome',tipo:'upper',label:'Nome'},
+	 {attr:'doc',label:'Documento'},
+	 {attr:'fone',tipo:'tel',label:'Telefone'},
+	 {attr:'diasEntrega',label:'Dias para Entregar'}
+	 ]" >
+	 
+</st-table>

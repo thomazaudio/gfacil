@@ -1,0 +1,13 @@
+.pdv-item-separator{
+	
+	width:95%;
+	margin-top: 12px;
+    margin-bottom: 12px;
+    border: 0;
+    border-top: 1px solid #eee;
+	
+}
+
+.pdv-item-preco{
+	font-weight:bold!important;
+}

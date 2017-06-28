@@ -1,0 +1,12 @@
+<meta charset="UTF-8" />
+<modal-content icone-titulo="'list'" modal-instance="this" titulo="'Detalhamento'" modal-instance="this">
+   <p class="text-itens-mov" ng-class="{'riscado':p.quantidade==0}"
+		style="padding-left: 3px;" ng-repeat="ped in pedidos">
+		    {{ ped.quantidade || ped.quantAnt }}x <strong>{{ped.produto.nome}}</strong> 
+		    <i
+			ng-show="ped.valorUnitario && p.valorUnitario!=0"> a <strong
+			uib-tooltip="Preço unitário do Pedido"
+			style="color: green; border-bottom-style: dashed; border-bottom-width: 1px; border-bottom-color: #828486;">R$
+			{{ped.valorUnitario|number:2}}</strong></i>
+	</p>
+</modal-content>

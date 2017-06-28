@@ -1,0 +1,295 @@
+/* tablet e mobile */
+
+
+.only-mobile {
+	display: none;
+}
+
+.pivo-panel  a, .pivo-panel strong {
+	color: #888585;
+}
+
+.pivo-panel  .panel-body {
+	padding: 10px 15px;
+}
+
+.pivo-panel-footer{
+	height:59px;
+	padding: 10px 15px 15px 5px;
+}
+
+.pivo-panel-footer ul{
+	
+	margin-bottom:20px;
+	list-style-type: none;
+	padding-left:0px;
+}
+
+.pivo-panel-footer ul>li{
+	float: left;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.pivo-panel-footer ul>li>a{
+	font-size:19px;
+}
+
+.pivo-panel-separator{
+	border: solid 1px rgba(223, 222, 222, 0.42);
+}
+
+
+@media only screen and (max-width : 1199px) {
+	
+	.st-pagination {
+	
+	  font-size:15px;
+	}
+	.navbar-toggle {
+       visibility: visible;
+	   display: inherit;
+     }
+	
+	.mfb-component--br {
+		visibility: visible;
+		display: inherit;
+	}
+	.col-lg-3,.col-lg-4, .col-lg-6,.col-lg-8, .col-lg-12 {
+		padding: 3px;
+	}
+	.modal-header {
+		font-size: 12px!important;
+		position: fixed;
+		background-color: var(- -primary-color) !important;
+		top: 0;
+		width: 100%;
+	    z-index: 1000;
+	}
+	.modal-title{
+	   font-size:15px;
+	}
+	.modal-header, .modal-footer {
+		padding: 20px 5px 15px 5px;
+	}
+	div[class*="col-xs"] {
+		padding: 2px;
+	}
+	st-nav>ul>li>a {
+		font-size: 12px !important;
+	}
+	.responsive-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		z-index: 2000;
+		float: left;
+		min-width: 160px;
+		padding: 5px 0;
+		margin: -1px 0 0;
+		font-size: 14px;
+		text-align: left;
+		list-style: none;
+		background-color: #fff;
+		-webkit-background-clip: padding-box;
+		background-clip: padding-box;
+		border: 1px solid #ccc;
+		border: 1px solid rgba(0, 0, 0, .15);
+		border-radius: 4px;
+		-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+		box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+		width: 100%;
+	}
+	.zopim {
+		display: none !important;
+	}
+	.row {
+		margin: 0px;
+	}
+	.modal {
+		overflow-x: hidden;
+		height:100%;
+	}
+	.modal-dialog {
+		width: 100%;
+		top: -10px;
+	}
+	
+	.text-itens-mov {
+		margin: 0px;
+		font-size: 8px;
+	}
+	.mov-pessoa, .mov-valor, .mov-pago {
+		width: auto;
+	}
+	.mov-vencimento {
+		width: auto;
+	}
+	.mov-descricao {
+		width: auto;
+	}
+	.mov-forma-pagamento {
+		width: auto;
+	}
+	.mov-html {
+		width: auto;
+	}
+	.text-itens-mov {
+		font-size: auto !important;
+	}
+	.crud-table {
+		padding: 3px 6px 3px 3px;
+	}
+	.filter-map {
+		padding: 3px 6px 3px 3px;
+	}
+	.footer {
+		width: 100%;
+	}
+	.panel-pdvsimples {
+		padding: 0px;
+	}
+	.tab-pdv {
+		padding: 0px;
+		width: 100%;
+	}
+	.btn-filter-map {
+		padding: 1px 5px;
+		font-size: 15px;
+		line-height: 1.5;
+		border-radius: 3px;
+		display: block;
+		width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.space-top {
+		margin-top: 5px;
+	}
+	.space-top-filter {
+		margin-top: 45px;
+	}
+	.space-top-step {
+		margin-top: 85px;
+	}
+	.filter-map-top {
+		position: fixed;
+		top: 50px;
+		z-index: 100;
+		background-color: #F8F8F8;
+		padding-top: 3px;
+	}
+	.step-cad-top {
+		position: fixed;
+		top: 51px;
+		z-index: 100;
+	}
+	.modal-body {
+		padding: 5px;
+		margin-top:75px;
+		max-height: 575px;
+        overflow-y: auto;
+	}
+	
+	.only-mobile {
+		visibility: visible!important;
+		display: inherit!important;
+	}
+	
+	#elementoMenu {
+		margin-top: 75px;
+	}
+	.navbar-header {
+		width: 100%;
+		z-index: 999;
+		padding-top: 9px;
+	}
+	.cadastro-popover {
+		display: none;
+	}
+	
+	
+	/*no-more-tables*/
+	
+		/* Force table to not be like tables anymore */
+	#no-more-tables table, #no-more-tables thead, #no-more-tables tbody,
+		#no-more-tables th, #no-more-tables td, #no-more-tables tr {
+		display: block;
+		border: none;
+		background-color: #F8F8F8;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	#no-more-tables thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	#no-more-tables tr {
+	
+		box-shadow: 3px 5px 3px #E1E5E6;
+	}
+	#no-more-tables td {
+		/* Behave  like a "row" */
+		border: none;
+		/*border-bottom: 1px solid #eee;*/
+		position: relative;
+		padding-left: 50%;
+		white-space: normal;
+		text-align: left;
+		font-size: 12px;
+		min-height: 29px;
+		background-color: #F8F8F8;
+	}
+	#no-more-tables td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+		text-align: left;
+		font-weight: bold;
+	}
+
+	/*
+	Label the data
+	*/
+	#no-more-tables td:before {
+		font-size: attr(data-font-size);
+		color: #6F6C6C;
+		font-family: FontAwesome;
+		content: attr(data-icon) " " attr(data-title);
+	}
+	.pdv-header label, select {
+		font-size: 15px;
+	}
+	.ui-datepicker {
+		z-index: 9999 !important
+	}
+	;
+	.content-horiontal-collapse {
+		width: 400px;
+	}
+	.collapsing-width {
+		position: relative;
+		overflow: hidden;
+		-webkit-transition: width 0.35s ease;
+		-moz-transition: width 0.35s ease;
+		-o-transition: width 0.35s ease;
+		transition: width 0.35s ease;
+	}
+	
+	/* Override na tabela responsiva */
+	#no-more-tables td {
+    padding: 10px 10px 10px 50%;
+	}
+
+	
+	/*FIM no-more-tables*/
+	
+	
+	
+}

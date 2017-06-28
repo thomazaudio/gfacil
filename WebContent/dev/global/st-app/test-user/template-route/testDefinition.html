@@ -1,0 +1,30 @@
+<meta charset="UTF-8" />
+<vertical-space></vertical-space>
+<div ng-controller="stControl">
+<div class="col-lg-6">
+    <st-filter-map
+		    filter-map-instace="filterMapInstance"
+			busca-especial="buscaEspecial"
+			filtros="[
+ 	        
+ 	        {attr:'titulo',placeholder:'Buscar pelo título do teste]'},
+			{attr:'descricao',placeholder:'Buscar pela descrição do teste'}
+			
+			]
+			">
+   </st-filter-map>
+</div>
+<button-add ng-click="openDetalhe()"></button-add>
+<vertical-space></vertical-space>
+<vertical-space></vertical-space>
+ <div ng-repeat="ob in objetos" class="col-lg-4">
+	   	 <card-list ob="ob" pivo="'titulo'"  edit-function="openDetalhe" delete-function="deletar">
+	   	 </card-list>
+</div>
+<vertical-space></vertical-space>
+<vertical-space></vertical-space>
+<st-pagination  filter-map-instance="filterMapInstance"></st-pagination>
+</div>
+
+
+

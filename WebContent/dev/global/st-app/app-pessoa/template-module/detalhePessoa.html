@@ -1,0 +1,49 @@
+<meta charset="UTF-8" />
+
+<div class="col-lg-4">
+	<div class="form-group">
+		<label class="text-muted">Nome/Razão social</label> <input 
+			 ng-model="pessoa.nome" class="form-control" /> 
+			 
+			 <label ng-show="false" ng-bind="pessoa.xNome=pessoa.nome"></label>
+	</div>
+</div>
+
+<div class="col-lg-2">
+	<div class="form-group">
+		<label class="text-muted">Tipo</label> 
+		<select class="form-control" ng-model="pessoa.tipoPessoaFiscal">
+		  <option value="1">Pessoa física</option>
+		  <option value="2">Pessoa jurídica</option>
+		  <option value="3">Pessoa estrangeira</option>
+		</select>
+	</div>
+</div>
+
+<div class="col-lg-2" ng-show="pessoa.tipoPessoaFiscal=='2'">
+	<div class="form-group">
+		<strong><label class="text-muted">CNPJ</label></strong>
+		 <input st-input ng-model="pessoa.cnpj" class="form-control" />
+	</div>
+</div>
+
+<div class="col-lg-2" ng-show="!pessoa.tipoPessoaFiscal || pessoa.tipoPessoaFiscal=='1'">
+	<div class="form-group">
+		 <strong><label class="text-muted">CPF</label></strong>
+		 <input st-input ng-model="pessoa.cpf" class="form-control" />
+	</div>
+</div>
+
+<div class="col-lg-2">
+	<div class="form-group">
+		<label class="text-muted">Email</label> <input ng-model="pessoa.email"
+			class="form-control" />
+	</div>
+</div>
+
+<div class="col-lg-2">
+	<div class="form-group">
+		<label class="text-muted">Telefone</label> <input ng-model="pessoa.fone"
+			class="form-control" />
+	</div>
+</div>

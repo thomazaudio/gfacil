@@ -1,0 +1,18 @@
+<meta charset="UTF-8" />
+	<st-table
+	     id="filtro-clientes"
+	     title="'Clientes'" cad-label="'Cadastrar Novo Cliente.'" 
+	     tipo-objeto="'pessoa'"
+	     detalhe-link="true"
+	     attr-unique="'nome'"
+	     filtros="[{attr:'nome',placeholder:'Buscar pelo nome'},{attr:'telefone',placeholder:'Buscar pelo Telefone'},{attr:'endereco',placeholder:'Buscar pelo Endereço'}]"
+	     reqs="['nome']" 
+		 labels="[
+		 {attr:'id',isId:true,hideList:true},
+		 {attr:'dataCadastro',tipo:'data',classe:'alert-info',label:'Data de Cadastro',noForm:true,hideList:true},
+		 {attr:'nome',label:'Nome do Cliente',tipo:'upper'},
+		 {attr:'fone',tipo:'tel',label:'Telefone'},
+		 {attr:'observacoes',label:'Observações'}
+		 ]" >
+		 
+	</st-table>

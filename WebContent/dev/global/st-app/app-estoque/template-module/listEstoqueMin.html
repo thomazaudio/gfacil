@@ -1,0 +1,7 @@
+<meta charset="UTF-8" />
+<ul class="list-group" style="padding-left:0px;">
+	<li  ng-repeat="i in itens" class="list-group-item" ng-click="toProduct(i[0],this)" >
+	<i class="info fa  fa-exclamation-circle" aria-hidden="true"></i><strong> "{{i[1]}} {{i[2]}} "</strong>  está com estoque baixo ( <strong>{{i[3]}}</strong> uni)
+	</li>
+</ul>
+<p class="text-muted text-small" ng-if="itens.length==0"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Nenhum produto com estoque baixo.</p>

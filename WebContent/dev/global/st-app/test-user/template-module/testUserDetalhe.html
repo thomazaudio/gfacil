@@ -1,0 +1,64 @@
+<meta charset="UTF-8" />
+
+<modal-content item="definition" titulo="'Execução de Teste'" modal-instance="this" cancel-action="voltar">
+   <div ng-show="definition">
+   
+    <div class="col-lg-6">
+        <table class="table st-table modern-table table-striped table-bordered">
+            <thead>
+               <tr>
+                  <th>TOTAL DE TESTES EXECUTADOS</th>
+                  <th>SALDO</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td><span class="destaque-item">{{quantTests}} testes</span></td>
+                  <td><strong class="text-muted">R$ {{saldoTestes|number:2}}</strong></td>
+               </tr>
+            </tbody>
+        </table>
+   </div>
+   
+   	<st-collapse-panel  class="col-lg-12" icone="'info-circle'" show="true" titulo="definition.titulo">
+       
+       <div class="col-lg-12">
+		       <p ng-show="carregandoTest!=false" class="text-muted"><i class="fa fa-refresh faa-spin animated" aria-hidden="true"></i> Carregando próximo teste.</p>
+		       <p class="text-muted">Valor a ser pago pela execução do teste: <strong>R$ {{definition.precoTeste|number:2}} </strong></p>
+			   <div id="descricao-teste">
+			   </div>
+	    </div>
+	   
+	   <div class="col-lg-4" ng-show="executandoTeste==true">
+	       <label><strong>Comentários/Sugestões</strong></label>
+	       <br>
+	       <textarea rows="3" cols="29" ng-model="comentario">
+	            
+	       </textarea>
+	   </div>
+	   
+	   <div class="col-lg-4" ng-show="executandoTeste==true">
+	      <label><input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="erroSistema"></input> Não foi possível executar o teste</label>
+	   </div>
+	   
+	 
+	   <vertical-space></vertical-space>
+	   <vertical-space></vertical-space>
+	   
+	   
+	   <div class="col-lg-4 col-xs-4"  ng-show="executandoTeste==false || !executandoTeste ">
+	       <button ng-click="iniciarTeste()" class="btn btn-secondary"><i class="fa fa-play"></i> Iniciar teste</button>
+	   </div>
+	   
+	   <div class="col-lg-4 col-xs-4" ng-show="executandoTeste==true">
+	       <button ng-click="finalizarTeste(comentario, erroSistema)" class="btn btn-primary"><i class="fa fa-check"></i> Finalizar teste</button>
+	   </div>
+	   </st-collapse-panel>
+   </div>
+   
+   <div ng-show="!definition">
+       <h3>Não há mais testes para serem executados no momento, por favor, aguarde a inserção de novos testes.</h3>
+   </div>
+   
+  
+</modal-content>

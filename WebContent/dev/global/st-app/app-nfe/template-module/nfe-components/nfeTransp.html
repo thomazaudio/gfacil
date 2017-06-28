@@ -1,0 +1,105 @@
+<meta charset="UTF-8" />
+
+<div class="form-group col-lg-4">
+		<label class="text-muted text-small">Modalidade de frete</label>
+	    <select class="form-control" ng-model="transp.modFrete">
+			<option value="0">0 - Por conta do emitente</option>
+			<option value="1">1 - Por conta do destinatário</option>
+			<option value="2">2 - Por conta de terceiros</option>
+			<option selected="selected" value="9">9 - Sem frete</option>
+		</select>
+</div>
+
+<div class="col-lg-12">
+  <hr></hr> 
+  <span class="text-muted">TRANSPORTADORA</span>
+</div>
+
+<div class="form-group col-lg-4">
+  <label>CNPJ</label>
+  <input class="form-control" ng-model="transp.transporta.cnpj"/>
+</div>
+
+<div class="form-group col-lg-4">
+  <label>Nome</label>
+  <input class="form-control" ng-model="transp.transporta.xNome"/>
+</div>
+
+<div class="form-group col-lg-4">
+  <label>IE</label>
+  <input class="form-control" ng-model="transp.transporta.ie"/>
+</div>
+
+
+<div class="form-group col-lg-2">
+  <label>UF</label>
+  <input class="form-control" ng-model="transp.transporta.uf"/>
+</div>
+
+
+<div class="form-group col-lg-4">
+  <label>Município</label>
+  <input class="form-control" ng-model="transp.transporta.xMun"/>
+</div>
+
+
+<div class="form-group col-lg-4">
+  <label>Endereço completo</label>
+  <input class="form-control" ng-model="transp.transporta.xEnder"/>
+</div>
+
+
+<div class="col-lg-12">
+  <hr></hr> 
+  <span class="text-muted">VEÍCULO</span>
+</div>
+
+<div class="form-group col-lg-3">
+  <label>UF</label>
+  <input class="form-control" ng-model="transp.veicTransp.uf"/>
+</div>
+
+<div class="form-group col-lg-4">
+  <label>Placa</label>
+  <input class="form-control" ng-model="transp.veicTransp.placa"/>
+</div>
+
+<div class="form-group col-lg-4">
+  <label>Registro nacional de transportador de cargas</label>
+  <input class="form-control" ng-model="transp.veicTransp.rntc"/>
+</div>
+
+<div class="col-lg-12">
+  <hr></hr> 
+  <span class="text-muted">VOLUMES</span>
+</div>
+
+<div  class="col-lg-12"  id="no-more-tables">
+   <table class="modern-table st-table table-bordered table-striped table-condensed cf" >
+       <thead class="cf">
+		<tr>
+			<th>Quantidade</th>
+			<th>Espécie</th>
+			<th>Marca</th>
+			<th>Numeração</th>
+			<th>Peso Bruto</th>
+			<th>Peso Líquido</th>
+		</tr>
+		</thead>
+		<tbody>
+			<tr class="alert-info" ng-repeat="v in transp.vol">
+			   <td>{{v.qVol}}</td>
+			   <td>{{v.esp}}</td>
+			   <td>{{v.marca}}</td>
+			   <td>{{v.nVol}}</td>
+			   <td>{{v.pesoB}}</td>
+			   <td>{{v.pesoL}}</td>
+			</tr>
+		</tbody>
+    </table>
+</div>
+		
+
+
+
+	

@@ -1,0 +1,58 @@
+<meta charset="UTF-8" />
+
+
+<div class="form-group col-lg-4">
+  <button class="btn btn-primary"><i class="fa fa-edit"></i> Editar itens</button>
+</div>
+<div  class="col-lg-12"  id="no-more-tables">
+   <table class="modern-table st-table table-bordered table-striped table-condensed cf" >
+       <thead class="cf">
+		<tr>
+			
+			<th>Item</th>
+			<th >Descrição/Código</th>
+			<th>UN/NCM</th>
+			<th>cfop</th>
+			<th>Quant.</th>
+			<th>Valor unitário</th>
+			<th>Valor total bruto</th>
+			<th style="width: 42px;">
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr class="alert-info" ng-repeat="det in dets">
+		
+		    <td data-title="Item" class="text-center">
+		      <span class="destaque-item">{{det.nItem}}</span>
+		    </td>
+		 
+		    <td data-title="Descricao/Código">
+		       <strong>{{det.prod.xProd|uppercase}}</strong>
+		       <br>
+		       <span class="text-small text-muted">{{det.prod.cProd}}</span> 
+		    </td>
+		    <td data-title="UN/NCM">
+		        <strong>{{det.prod.uCom}}</strong> 
+		        <br>
+		        <span class="text-small text-muted">{{det.prod.ncm}}</span> 
+		    </td>
+		    <td data-title="CFOP" class="text-center"><span class="destaque-item">{{det.prod.cfop}}</span></td>
+			<td data-title="Quantidade">{{det.prod.qCom}}</td>
+			<td data-title="Valor unitário">R$ {{det.prod.vUnCom|number:2}}</td>
+			<td data-title="Valor total bruto">R$ {{det.prod.vProd|number:2}}</td>
+			
+			<td data-title="Opções" >
+	           <div class="element-table">
+			    	<div class="pull-center">
+			    	 <label>
+	                   <a class="default btn-delete-produto" confirm-title="Deletar Produto"    confirm="Tem certeza que deseja deletar este produto?"   ng-click="deletarProduto($index,objetos)"> <i class="fa fa-trash-o fa-2x"></i></a>
+	                 </label>
+	                </div>
+			    </div>
+			  </td>
+			
+		</tr>
+	  </tbody>
+	</table>
+</div>

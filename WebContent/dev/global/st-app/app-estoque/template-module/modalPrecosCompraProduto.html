@@ -1,0 +1,31 @@
+<meta charset="UTF-8" />
+<modal-content titulo="'Preços do compra do produto'"
+	modal-instance="this" icone="'fa-list'">
+
+<div ng-show="results.length>0" id="no-more-tables">
+	<table class="modern-table st-table table-striped  table-bordered cf">
+		<thead class="cf">
+			<tr>
+				<th>Data</th>
+				<th>Fornecedor</th>
+				<th>Preço de compra</th>
+				<th>Quantidade</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="dropdown-table alert-info" ng-repeat="r in results">
+			   <td>{{r[0] | date:'dd/MM/yyyy'}}</td>
+			   <td>{{r[1] | uppercase}}</td>
+			   <td>{{r[2] | number:2}}</td>
+			   <td>{{r[3] | number:2}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div ng-show="!results || results.length==0">
+   <st-no-itens label="'Nenhuma compra encontrada para  o produto'"></st-no-itens>
+</div>
+
+</modal-content>

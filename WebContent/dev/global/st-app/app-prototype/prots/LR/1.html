@@ -1,0 +1,56 @@
+<!-- Protótipo para novo módulo de logística reversa -->
+<meta charset="UTF-8" />
+<div class="col-lg-12" ng-controller="listaLRController as vm">
+
+    <div id="modulo"></div>
+    <div class="form-group col-lg-4 col-xs-12" id="buscaPessoa">
+      		   <auto-complete-object place-holder="'Digite o nome do cliente para buscar'" auto-focus="true" use-cache="true" extra-class="'input-lg'" ng-change="vm.getLrs(vm.clienteBusca.nome)" inline="true"  tipo="'select'" label-cad="'Cadastrar novo Cliente'" place-holder="'Digite o nome do Cliente'"  object-op="'cliente'" querys="" label="'nome'" ng-model="vm.clienteBusca" />
+    </div>
+
+	<div class="col-lg-2" ng-show="vm.clienteBusca">
+	   <a ng-click="vm.getLrs();vm.clienteBusca=null">Limpar buscar <i class="fa fa-trash"></i></a>
+	</div>
+	
+	<div class="col-lg-4"  id="onlyDevedores" >
+	   <st-checkbox label="'Exibir somente devedores'" ng-model="vm.onlyDevedores"></st-checkbox>
+     </div>
+	
+	<!-- Botão flutuante -->
+	<ul  mfb-menu position="br" effect="zoomin"  ng-click="vm.openDetalhe()"
+	     active-icon="fa fa-plus" resting-icon="fa fa-plus"
+	     toggling-method="click" id="btnAdd">
+	     
+	     <div id="btn-add" style="margin-left:-90px;"></div>
+	</ul>
+	
+	<vertical-space></vertical-space>
+	<div class="col-lg-12">
+	<p ng-show="carregando==true" class="text-muted text-small">Carregando empréstimos <i  class="fa fa-refresh faa-spin animated" aria-hidden="true"></i>
+    <p ng-show="nenhumEmprestimo==true || emprestimo.quantidadeReceber==0" class="text-muted text-small"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Nenhuma embalagem a receber para o cliente selecionado.</p>
+    
+    </div>
+    <vertical-space></vertical-space>
+    
+     <!-- Exemplo de empréstimo -->
+     <div id="exemploEmprestimo">
+        <emprestimo-embalagem-exemplo></emprestimo-embalagem-exemplo>
+     </div>
+    
+
+     <div  ng-repeat="ob in vm.objetos" >
+		    <emprestimo-embalagem only-devedores="vm.onlyDevedores" pessoa="ob"></emprestimo-embalagem>
+	 </div>
+	
+
+    <mobile-tabs tabs="[
+      
+      {label:'Empréstimos', icon:'search', id: 'tabEmprestimos'},
+      {label:'Relatórios', icon:'pie-chart', id: 'tabRelatorios'},
+       
+   ]"></mobile-tabs>
+   
+</div>
+
+
+
+

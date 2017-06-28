@@ -1,0 +1,11 @@
+<meta charset="UTF-8" />
+<div      class="only-desktop step-cad-top col-lg-12">
+		   <div class="stepwizard text-center">
+		    <div class="stepwizard-row setup-panel">
+		      <div class="stepwizard-step" ng-repeat="s in steps">
+		        <a ng-click="changeStep($index)" type="button"  ng-class="{'btn-primary':step==$index}" class="btn btn-default  btn-circle">{{$index+1}}</a>
+		        <p class="text-center text-muted"><i>{{s.label}}</i></p>
+		      </div>
+		    </div>
+		   </div>
+</div>

@@ -1,0 +1,136 @@
+<meta charset="UTF-8" />
+<modal-content loading-ok-action="salvando" ok-action="salvar" icone-titulo="'list'" titulo="'Cadastro de produto'"
+	modal-instance="this">
+
+	<vertical-space></vertical-space>
+
+	<!-- Infrmações básicas -->
+	<div ng-show="activeTab==0">
+	   
+	   <div class="col-lg-3" ng-show="produto.id">
+	      <a modal-precos-compra-produto produto="produto">Visualizar preços de compra <i class="fa fa-external-link"></i></a>
+	   </div>
+	   
+	   
+	    <div class="col-lg-12">
+	       <set-all-filials default-value="config.confs.defaultCadProdutoAllFiliais" objeto="produto"></set-all-filials>
+	    </div> 
+	
+		<div class="col-lg-3 form-group">
+			<label>Descrição do
+				produto/Serviço</label> <input ng-required="true" name="nome"
+				ng-model="produto.nome" class="form-control input-lg" />
+		</div>
+		
+		<div class="col-lg-3 form-group">
+			<label class="text-muted"> Preço de
+				venda</label> <input ui-number-mask="2" placeholder="R$" name="nome"
+				ng-model="produto.vUnCom" class="form-control input-lg" />
+		</div>
+		
+		<div class="col-lg-3 form-group">
+		    <nfe-unidade-medida label="'Unidade comercial'" ng-model="produto.uCom"></nfe-unidade-medida>
+		</div>
+		<div ng-show="produto.id" class="col-lg-2 form-group">
+			<label class="text-muted">
+				Quantidade em estoque</label> 
+				<br>
+				<strong>{{produto.quantidade}}</strong>
+				<label style="font-size:19px"><button-estoque  produto="produto"></button-estoque></label>
+				
+		</div>
+		
+		<div class="col-lg-12">
+			<hr></hr>
+		</div>
+		
+		<div class="col-lg-3 form-group">
+			<label class="text-muted">
+				Localização</label> <input placeholder="Ex: Prateleira A"
+				name="nome" ng-model="produto.localizacaoEstoque"
+				class="form-control input-lg" />
+		</div>
+		
+	</div>
+
+	<!-- Infrmações de tributação -->
+	<div ng-show="activeTab==1">
+	
+	
+	    <div class="col-lg-3">
+		   <grupo-imposto ng-model="produto.grupoImposto"></grupo-imposto>
+		</div>
+
+		<div class="col-lg-3 form-group">
+			<label class="text-muted">Código personalizado</label> <input
+				ng-model="produto.cProd" class="form-control" />
+		</div>
+
+		<div class="col-lg-3 form-group">
+			<label class="text-muted">GTIN ou EAN</label> <input
+				ng-model="produto.cEAN" class="form-control" />
+		</div>
+
+		<div class="col-lg-3 form-group">
+			<label class="text-muted">NCM</label> <input ng-model="produto.ncm"
+				class="form-control input-lg" />
+		</div>
+
+
+		<div class="col-lg-3 form-group">
+			<label class="text-muted">Exceção tab IPI</label> <input
+				ng-model="produto.EXTIPI" class="form-control input-lg" />
+		</div>
+		
+		<div class="col-lg-3 form-group">
+			<label class="text-muted">Peso Líquido (KG)</label> <input ui-number-mask="3" 
+				ng-model="produto.pesoLiquido" class="form-control input-lg" />
+		</div>
+		
+		
+		<div class="col-lg-3 form-group">
+			<label class="text-muted">Peso Bruto (KG)</label> <input ui-number-mask="3" 
+				ng-model="produto.pesoBruto" class="form-control input-lg" />
+		</div>
+
+
+		<div class="col-lg-3 form-group">
+			 <nfe-unidade-medida label="'Unidade comercial'" ng-model="produto.uCom"></nfe-unidade-medida>		
+		</div>
+		
+		<div class="col-lg-3">
+			<nfe-unidade-medida label="'Unidade tributada'" ng-model="produto.uTrib"></nfe-unidade-medida>
+		</div>
+		
+		<div class="col-lg-3 form-group">
+			<label class="text-muted">Valor unitário comercial</label> 
+			<input ui-number-mask="2" ng-model="produto.vUnCom"  class="form-control input-lg" />
+		</div>
+
+		
+
+		<div class="col-lg-3 form-group">
+			<label class="text-muted">Valor unitário trib.</label>
+			 <input ui-number-mask="2" ng-model="produto.vUnTrib" class="form-control input-lg" />
+		</div>
+		
+		
+		<div class="col-lg-3 form-group">
+			<label class="text-muted">Informações adicionais para NFe</label>
+			 <input ng-model="produto.infAdProduto" class="form-control input-lg" />
+		</div>
+	
+	</div>
+
+<div class="col-lg-12">
+   <lr></lr>
+</div>
+</modal-content>
+
+<mobile-tabs active-tab="activeTab" tabs="[
+      
+      {label:'Dados do produto', icon:'info-circle'},
+      {label:'Dados fiscais', icon:'list'},
+       
+   ]"></mobile-tabs>
+

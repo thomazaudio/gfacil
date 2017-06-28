@@ -1,0 +1,19 @@
+<meta charset="utf-8">
+
+<div ng-show="step==1" >
+	<youtube-video player-vars="playerVars" player-width="'100%'" video-url="'https://www.youtube.com/watch?v=WcIHw4ihcY8&feature=youtu.be'" player="videoIntro"></youtube-video>
+	<div class="form-group">
+				<button ng-click="step=2" ng-show="showButtonProx" type="button" class="btn btn-primary btn-lg btn-block">		
+				 Próximo</button>
+	</div>
+</div>
+
+<div ng-show="step==2">
+  <div class="row">
+	    <div class="form-group">
+	          <label>Informe seu número de telefone com DDD (Este será seu login no sistema)</label> 
+	          <input ng-model="tel" class="form-control"  type="tel"/>
+	    </div>
+	    <a  href="http://teste.ceasaplus.com.br:8080/Albar/index.html#/usuario/{{tel}}" class="btn btn-primary">Pronto</a>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<meta charset="UTF-8" />
+
+<div class="col-lg-12">
+   <span class="text-muted">COBRANÇA</span>
+</div>
+
+
+
+<div class="form-group col-lg-3">
+	<label class="text-muted text-small">Número da fatura</label> 
+	<input	class="form-control" ng-model="cobr.fat.nFat" />
+</div>
+
+<div class="form-group col-lg-3">
+	<label class="text-muted text-small">Valor original</label> 
+	<input ui-number-mask="2"	class="form-control" ng-model="cobr.fat.vOrig" />
+</div>
+
+<div class="form-group col-lg-3">
+	<label class="text-muted text-small">Valor do desconto</label> 
+	<input ui-number-mask="2"	class="form-control" ng-model="cobr.fat.vDesc" />
+</div>
+
+<div class="form-group col-lg-3">
+	<label class="text-muted text-small">Valor líquido</label> 
+	<input ui-number-mask="2"	class="form-control" ng-model="cobr.fat.vLiq" />
+</div>
+
+<div class="col-lg-12">
+   <hr></hr>
+   <span class="text-muted">DUPLICATAS</span>
+</div>
+<parcela-mov is-modal="false" id="parcelas-venda" original-mov="pdv.movimentacao"  movs="pdv.parcelas"></parcela-mov>
+
+
+
+
+	

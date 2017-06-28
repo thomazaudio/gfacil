@@ -1,0 +1,52 @@
+<meta charset="utf-8">
+<div class="row">
+        <div class="col-sm-6 col-xs-6 form-box">
+			<div class="form-top">
+				<p class="text-small text-center"
+							style="font-size: 15px; margin: 0 0 5px">Vagas restantes</p>
+						<div class="count-restante">91</div>
+			</div>
+		</div>
+		<div class="col-sm-6 col-xs-6 form-box">
+					<div class="form-top">
+						<p class="text-small text-center"
+							style="font-size: 15px; margin: 0 0 5px">Total de inscritos</p>
+						<div class="count-inscritos">9</div>
+					</div>
+		</div>
+</div>
+<div class="col-lg-12">
+		<hr></hr>
+</div>
+
+<form id="formulario-cadastro" role="form" class="registration-form">
+		<div class="form-group col-lg-6">
+			<label for="form-email">Nome</label> 
+			<input type="text" 	class="form-email form-control" id="email" ng-model="lead.nome">
+		</div>
+		<div class="form-group col-lg-6">
+			<label for="form-email">Email</label>
+			 <input type="text"
+						name="email" placeholder="Informe seu melhor email :-)"
+						class="form-email form-control" id="email" ng-model="lead.email" />
+		</div>
+
+		<div class="form-group  col-lg-6">
+					<label for="form-last-name">Telefone</label> 
+					<input ng-model="lead.phone_number"
+						id="phone_number" type="text" name="form-last-name"
+						placeholder="Informe seu número com DDD"
+						class="form-last-name form-control" />
+	    </div>
+
+		<div class="form-group  col-lg-6">
+				<label for="form-last-name">Seu perfil</label> <select 
+						class="form-control form-email">
+						<option>Produtor</option>
+						<option>Comerciante</option>
+						<option>Produtor e Comerciante</option>
+				</select>
+		</div>
+		<button ng-click="cadastrarLead(lead)" class="btn btn-block">Pronto :-)</button>
+</form>
+

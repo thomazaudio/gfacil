@@ -1,0 +1,55 @@
+<meta charset="UTF-8" />
+
+
+<div class="col-lg-2">
+	<div class="form-group">
+		<label class="text-muted">CEP <a>Buscar endereço</a></label> <input
+			ng-model="endereco.cep" class="form-control" />
+	</div>
+</div>
+
+<div class="col-lg-4">
+	<div class="form-group">
+		<label class="text-muted">Logradouro</label> <input
+			ng-model="endereco.xLgr" class="form-control" />
+	</div>
+</div>
+
+<div class="col-lg-2">
+	<div class="form-group">
+		<label class="text-muted">Número</label> <input
+			ng-model="endereco.nro" class="form-control" />
+	</div>
+</div>
+
+<div class="col-lg-4">
+	<div class="form-group">
+		<label class="text-muted">Complemento</label> <input
+			ng-model="endereco.xCpl" class="form-control" />
+	</div>
+</div>
+
+
+<div class="col-lg-4">
+	<div class="form-group">
+		<label class="text-muted">Bairro</label> <input
+			ng-model="endereco.xBairro" class="form-control" />
+	</div>
+</div>
+
+
+<div class="col-lg-8">
+	<estados-cidades uf="endereco.uf"
+	   
+	    codigo-uf="endereco.codigoUf"
+		codigo-municipio="endereco.cMun"
+		nome-municipio="endereco.xMun">
+		
+		</estados-cidades>
+</div>
+
+
+
+
+
+

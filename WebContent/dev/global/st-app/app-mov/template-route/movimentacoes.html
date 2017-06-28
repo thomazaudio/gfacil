@@ -1,0 +1,12 @@
+<meta charset="UTF-8" />
+<div class="col-lg-12">
+  <div class="row printHide"></div>		    
+  <mov-list id="mov-list-despesas" label-cad="'Cadastrar Nova'" ng-if="activeTab==0" label="'Pagamentos (Despesas)'" mode="'day'" id-imp="'despesas'" fix-properties="{tipo:1}"></mov-list>
+  <mov-list id="mov-list-receitas"  label-cad="'Cadastrar Novo'"  ng-if="activeTab==1"  label="'Recebimentos (Receitas)'" mode="'year'" id-imp="'receitas'" fix-properties="{tipo:2}"></mov-list>
+  <mobile-tabs active-tab="activeTab" tabs="[{label:'Despesas',icon:'sign-out'},{label:'Recebimentos', icon:'sign-in'}]"></mobile-tabs>
+</div>	
+	
+	
+			
+		
+		

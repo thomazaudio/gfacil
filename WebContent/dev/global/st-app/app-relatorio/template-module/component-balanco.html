@@ -1,0 +1,44 @@
+<meta charset="UTF-8" />
+<!-- Despesas Pagas -->
+<div class="col-lg-4">
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <strong><span class="text-muted"><i class="fa fa-sign-in" aria-hidden="true"></i> Recebimentos (Entradas)</span></strong>
+	  </div>
+	  <div class="panel-body text-center">
+	      <p class="text-muted">Recebimentos lançados: <strong id="receitas-previstas"  value="{{receitasPrevistas}}" class="text-valor-balanco-previsto">R$ {{receitasPrevistas|number:2}}</strong></p>
+	      <p class="text-muted">Falta receber: <strong class="text-valor-balanco-falta warning">R$ {{faltaReceber|number:2}}</strong></p>
+	      <hr></hr>
+	      <label class="text-muted">Total Recebido: <strong id="receitas-realizadas"  value="{{receitasRealizadas}}" class="text-valor-balanco">R$ {{receitasRealizadas|number:2}}</strong></label>
+	  </div>
+	</div>
+</div>
+
+<!-- Despesas Pagas -->
+<div class="col-lg-4">
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	      <strong><span class="text-muted"><i class="fa fa-sign-out" aria-hidden="true"></i> Pagamentos (Saídas)</span></strong>
+	  </div>
+	  <div class="panel-body text-center">
+	      <p class="text-muted">Pagamentos lançados: <strong id="despesas-previstas"  value="{{despesasPrevistas}}" class="text-valor-balanco-previsto">R$ {{despesasPrevistas|number:2}}</strong></p>
+	      <p class="text-muted">Falta pagar: <strong class="text-valor-balanco-falta warning">R$ {{faltaPagar|number:2}}</strong></p>
+	      <hr></hr>
+	      <label class="text-muted">Total Pago: <strong id="despesas-realizadas"  value="{{despesasRealizadas}}" class="text-valor-balanco">R$ {{despesasRealizadas|number:2}}</strong></label>
+	  </div>
+	</div>
+</div>
+<!-- liquido -->
+<div class="col-lg-4">
+ <div class="panel panel-default">
+  <div class="panel-heading">
+    <strong><span class="text-muted"><i class="fa fa-balance-scale"></i> Lucro Operacional</span></strong>
+  </div>
+     <div class="panel-body text-center">
+	     <p><i ng-class="{'fa fa-exclamation-circle fa-3x danger':lucroRealizado<0}"></i></p>
+	     <p><i ng-class="{'fa fa-check-circle fa-3x text-secondary':lucroRealizado>=0}"></i></p>
+	     <p> <strong ng-class="{'text-secondary':lucroRealizado>=0,'danger':lucroRealizado<0}" style="font-size:39px;">R$ {{(lucroRealizado)|number:2}}</strong></p>
+	  </div>
+
+ </div>
+</div>

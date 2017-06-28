@@ -1,0 +1,63 @@
+<div class="busca-auto-complete">
+<div class="modal-header">
+   <div class="col-lg-11 col-xs-11" style="padding-left:0px;padding-right:5px;width:89%">
+        <div class="input-group">
+	        <input id="{{idInput}}" ng-change="buscarItem(labelValue)" ng-model-options="{debounce: 500}"  ng-model="labelValue"  autocomplete="off"   placeholder="{{placeHolder}}" class="form-control"  focus-me="true"/>
+	   		<span   ng-show="labelValue" class="input-group-btn"><button type="button" ng-click="labelValue='';buscarItem('')" class="btn btn-default btn-busca-map-limpa text-muted input-primary" style="height:42px;"><i class="fa fa-trash-o"></i></button></span>  
+        </div>
+   </div>
+   <div class="col-lg-1 col-xs-1" style="padding-left:3px;padding-right:3px">
+			<ul class="list-button-action-modal">
+			      <li>
+				     <button type="button" ng-click="fecharModal(this)" class="btn btn-action-modal"  style="color:white"data-dismiss="modal"><i class="fa fa-times"></i></button>
+				  </li>  
+		    </ul>
+	 </div>
+</div>
+
+<div class="modal-body">
+<div class="row"></div>
+	    <div ng-show="aba=='cadastro'" class="col-lg-12 auto-complete-inline" >
+	          <div class="list-autocomplete list-group" style="padding:5px">
+	              <input  ng-model="labelValue"  placeholder="{{placeholder}}" class="form-control"/>
+				   <div class="col-lg-12">
+					    <set-all-filials default-value="config.confs.defaultCadAutoCompleteAllFiliais" objeto="auxItemFilial"></set-all-filials>
+					</div>
+					<div class="input-group">
+					   <span class="input-group-btn">
+					   	 <button type="submit" ng-disabled="!labelValue" ng-click="cadItem(labelValue, auxItemFilial.allFilials, this)" class="btn btn-xs btn-block btn-info">
+					   	  <i ng-if="!salvandoItem || salvandoItem==false" class="fa fa-floppy-o"></i>
+					   	  <i ng-if="salvandoItem==true"  class="fa fa-refresh faa-spin animated"></i>
+					   	  
+					   	  Salvar
+					   	 </button>
+					   </span>
+					   <span class="input-group-btn">
+					   	<button   ng-click="alterarAba('resultados')" class="btn btn-xs btn-default btn-block"><i class="fa fa-times"></i> Cancelar</button>
+					   </span>
+					</div>
+	             </div>
+	      </div>
+	       
+	 <!-- aba de resultados -->
+	<div ng-show="aba=='resultados' ||!aba" class="col-lg-12 auto-complete-inline" >
+		 <div ng-show="obs.length==0" class="pull-left">
+				 <a ng-click="cadItem(labelValue, auxItemFilial.allFilials, this)"> cadastrar "{{labelValue}}"</a>
+		 </div>
+	   
+	<!-- Resultados --> 
+	<ul ng-show="obs.length>0 &&(!hideResults || hideResults==false)" class="list-group" style="padding:5px">
+	     
+		  <div class="row"></div>
+		  <li ng-repeat="item in obs" class="list-group-item" ng-click="selecionarItem(item)" style="height:55px">
+			  <strong>{{item[1]}}</strong>
+			  <br>
+			  <span ng-show="subLabel" class="text-small text-muted">{{subLabel.label}}: {{item[2]}} </span>
+		  </li>
+	 </ul>
+</div>
+</div>
+</div>
+
+
+

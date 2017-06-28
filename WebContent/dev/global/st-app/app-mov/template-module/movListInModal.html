@@ -1,0 +1,16 @@
+<meta charset="UTF-8" />
+
+<modal-content titulo="'Movimentações'" modal-instance="this">
+	<vertical-space></vertical-space>
+	<div class="col-lg-6" style="padding-left:2px;">
+	 <st-nav active-tab="activeTab" tabs="[{label:'Despesas'},{label:'Recebimentos'}]"></st-nav>
+	 <vertical-space></vertical-space>
+	</div>
+	<div class="row printHide"></div>		    
+	<mov-list label-cad="'Cadastrar Nova'" ng-if="activeTab==0" label="'Pagamentos (Despesas)'" mode="'day'" id-imp="'despesas'" fix-properties="{tipo:1}"></mov-list>
+	<mov-list label-cad="'Cadastrar Novo'"  ng-if="activeTab==1"  label="'Recebimentos (Receitas)'" mode="'year'" id-imp="'receitas'" fix-properties="{tipo:2}"></mov-list>
+</modal-content>
+
+			
+		
+		

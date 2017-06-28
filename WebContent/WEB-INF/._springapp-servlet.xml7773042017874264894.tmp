@@ -1,0 +1,229 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd">
+        
+	<context:component-scan base-package="mesa" />
+	<context:component-scan base-package="entrega" />
+	<context:component-scan base-package="produto" />
+	<context:component-scan base-package="servicevenda" />
+	<context:component-scan base-package="registrovenda" />
+	<context:component-scan base-package="pedido" />
+	<context:component-scan base-package="caixa" />
+	<context:component-scan base-package="util" />
+	<context:component-scan base-package="teste" />
+	<context:component-scan base-package="movimentacaocaixa" />
+	<context:component-scan base-package="cliente" />
+	<context:component-scan base-package="fornecedor" />
+	<context:component-scan base-package="funcionario" />
+	<context:component-scan base-package="movimentacao" />
+	<context:component-scan base-package="opcao" />
+	<context:component-scan base-package="relatorio" />
+	<context:component-scan base-package="config" />
+	<context:component-scan base-package="database" />
+	<context:component-scan base-package="usersystem" />
+	<context:component-scan base-package="security" />
+	<context:component-scan base-package="pdvceasa" />
+	<context:component-scan base-package="pdvficha" />
+
+
+
+
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/albar" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+	
+	
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+		<property name="hibernateProperties">
+			<props>
+			
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				
+				
+				<prop key="hibernate.multiTenancy">DATABASE</prop>
+				<prop key="hibernate.tenant_identifier_resolver">database.CurrentTenantIdentifierResolverImpl</prop>
+				<prop key="hibernate.multi_tenant_connection_provider">database.MultiTenantConnectionProvider</prop>
+				
+				
+			</props>
+		</property>
+	</bean>
+
+	<tx:annotation-driven />
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+
+
+	<!-- DAOs -->
+
+	<bean id="produtoDAO" class="produto.ProdutoDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="mesaDAO" class="mesa.MesaDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="serviceVendaDAO" class="servicevenda.ServiceVendaDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="caixaDAO" class="caixa.CaixaDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="registroCaixaDAO" class="caixa.RegistroCaixaDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="pedidoDAO" class="pedido.PedidoDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<bean id="registroVendaDAO" class="registrovenda.RegistroVendaDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<bean id="produtoCategoriaDAO" class="produto.ProdutoCategoriaDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<bean id="grupoOpDAO" class="produto.GrupoOpDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="entregaDAO" class="entrega.EntregaDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="movimentacaoCaixaDAO" class="movimentacaocaixa.MovimentacaoCaixaDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<bean id="clienteDAO" class="cliente.ClienteDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="userSystemDAO" class="usersystem.UserSystemDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+
+
+
+	<!-- Services -->
+
+
+	<bean id="produtoService" class="produto.ProdutoService">
+		<property name="dao" ref="produtoDAO" />
+	</bean>
+
+	<bean id="mesaService" class="mesa.MesaService">
+		<property name="dao" ref="mesaDAO" />
+	</bean>
+
+	<bean id="caixaService" class="caixa.CaixaService">
+		<property name="dao" ref="caixaDAO" />
+	</bean>
+
+	<bean id="registroCaixaService" class="caixa.RegistroCaixaService">
+		<property name="dao" ref="registroCaixaDAO" />
+	</bean>
+
+	<bean id="serviceVendaService" class="servicevenda.ServiceVendaService">
+		<property name="dao" ref="serviceVendaDAO" />
+	</bean>
+
+	<bean id="pedidoService" class="pedido.PedidoService">
+		<property name="dao" ref="pedidoDAO" />
+	</bean>
+
+	<bean id="registroVendaService" class="registrovenda.RegistroVendaService">
+		<property name="dao" ref="registroVendaDAO" />
+	</bean>
+
+	<bean id="produtoCategoriaService" class="produto.ProdutoCategoriaService">
+		<property name="dao" ref="produtoCategoriaDAO" />
+	</bean>
+
+	<bean id="grupoOpService" class="produto.GrupoOpService">
+		<property name="dao" ref="grupoOpDAO" />
+	</bean>
+
+	<bean id="entregaService" class="entrega.EntregaService">
+		<property name="dao" ref="entregaDAO" />
+	</bean>
+
+	<bean id="movimentacaoCaixaService" class="movimentacaocaixa.MovimentacaoCaixaService">
+		<property name="dao" ref="movimentacaoCaixaDAO" />
+	</bean>
+
+
+	<bean id="clienteService" class="cliente.ClienteService">
+		<property name="dao" ref="clienteDAO" />
+	</bean>
+	
+	<bean id="userSystemService" class="usersystem.UserSystemService">
+		<property name="dao" ref="userSystemDAO" />
+	</bean>
+	
+	
+	
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	
+	
+	<security:global-method-security secured-annotations="enabled"/>
+    <mvc:resources mapping="/resources/**" location="/" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/comanda/**" location="/comanda/" />
+	<mvc:resources mapping="/adm/**" location="/adm/" />
+	<mvc:resources mapping="/global/**" location="/global/" />
+
+    <mvc:annotation-driven />
+    
+</beans>

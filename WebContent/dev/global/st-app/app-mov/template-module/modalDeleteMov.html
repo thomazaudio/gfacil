@@ -1,0 +1,56 @@
+<meta charset="UTF-8" />
+<div class="modal-content">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3>O que você deseja Fazer com esta movimentação?</h3>
+</div>
+</div>
+
+<ul class="list-group">
+     <li  confirm-title="Deletar Movimentação"    confirm="Tem certeza que deseja deletar esta movimentação?" ng-click="vm.deletar(vm.mov,'onlyPeriod',this)" class="list-group-item">
+	     <a data-dismiss="modal" 
+	    
+	     uib-tooltip="Apaga somente a movimentação para o período {{vm.mov.data|date:'dd/MM/yyyy'}}." 
+	     href="" 
+	     >Excluir <strong>APENAS ESTE</strong> item.
+	     </a>
+	     <br>
+	     <i class="text-small">As Parcelas passadas e as próximas serão mantidas.</i>
+     </li>
+     
+     <!-- 
+     
+     <li class="list-group-item" >
+	     <a ng-click="confirmDeleteMov(mov,'fromPeriod',this)"
+	     confirm-title="Deletar Movimentação"    confirm="Tem certeza que deseja deletar esta movimentação?"
+	     uib-tooltip="Ao selecionar esta opção, todos os vencimentos a partir de {{mov.dataAux}} serão excluidos." 
+	     href="" 
+	     >Excluir todos a partir do período ({{mov.dataAux}})
+	    </a>
+	     <br>
+	     <i class="text-small">As Parcelas passadas serão mantidas.</i>
+     </li>
+      -->
+     
+      <li  confirm-title="Deletar Movimentação"   confirm="Tem certeza que deseja deletar esta movimentação?" ng-click="vm.deletar(vm.mov,'all',this)" class="list-group-item">
+	     <a 
+	    
+	     uib-tooltip="Ao selecionar esta opção, todos os vencimentos desta movimentação serão excluidos." 
+	     href="" 
+	     >Excluir todos
+	    </a>
+	     <br>
+	     <i class="text-small">Todas as parcelas  serão deletadas.</i>
+      </li>
+      
+      <li class="list-group-item">
+         <button  ng-click="vm.fecharModal(this)" class="btn"><i class="fa fa-undo"></i> Cancelar</button>
+      </li>
+
+
+</ul>
+
+		
+
+
+</div>

@@ -1,0 +1,22 @@
+<meta charset="UTF-8" />
+<meta charset="UTF-8" />
+<modal-content ok-action="vm.salvar" icone-titulo="'list'" modal-instance="this" titulo="'Cadastrar empréstimo'">
+    
+    <div class="form-group col-lg-4" id="lr-data-cadastro">
+	  <label>Data:</label> 
+	  <input  st-input tipo="data" class="form-control" ng-model="vm.lr.dataCadastro"></input>
+	</div>
+	
+    <div class="form-group col-lg-4" id="lr-cliente">
+	  <label>Cliente:</label> 
+	  <auto-complete-object  inline="true"  object-op="'cliente'"  place-holder="'Digite o nome do Cliente'" label="'nome'" querys="" ng-model="vm.lr.pessoa" />
+	</div>
+    
+   <div class="form-group col-lg-4" id="lr-cquantidade">
+      <label>Quantidade de embalagens</label>
+      <input ng-model="vm.lr.quantidade" class="form-control" />
+   </div>
+   <div class="col-lg-12">
+     <hr></hr>
+   </div>
+</modal-content>

@@ -1,0 +1,7 @@
+
+<label class="{{labelClass}}">{{label}}</label>
+<br ng-if="label">
+<label class="toggle printHide"> 
+	<input ng-checked="ngModel=='true' || ngModel==true || ngModel==1"  ng-model="ngModel" ng-change="changeModel(model)"  ng-disabled="ngDisabled" type="checkbox" />
+	<span class="handle"></span>
+</label>

@@ -1,0 +1,16 @@
+<meta charset="UTF-8" />
+<modal-content icone-titulo="'check'" titulo="'Parcelas'" modal-instance="this">
+originalMov: {{$parent.originalMov}}
+<div class="form-group col-lg-4">
+		<label class="text-small">Parcelas</label>
+		<input type="number" ng-disabled="originalMov.parcela && originalMov.parcela!=0" ng-change="$parent.changeParcelas(originalMov)" placeholder="Número de parcelas" ng-model="$parent.originalMov.numeroParcelas" class="form-control"></input>
+</div>
+<div class="form-group col-lg-4">
+		<label class="text-small">Primeiro Vencimento</label>
+		<input ng-change="$parent.hangeParcelas(originalMov)" class="form-control" st-input tipo="data" ng-model="$parent.originalMov.data" />
+</div>
+<div class="form-group col-lg-4">
+		<label class="text-small">Valor</label>
+		<input disabled="" class="form-control" ui-number-mask="2" ng-model="$parent.originalMov.valor" />
+</div>
+</modal-content>

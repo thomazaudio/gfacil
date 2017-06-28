@@ -1,0 +1,16 @@
+<meta charset="UTF-8" />
+
+<div style="margin-bottom:90px;display:block" class="printHide"></div>
+<div class="mobile-tabs">
+          <ul class="mobile-tabs-content" >
+	          <li id="{{tab.id}}" ng-click="vm.alterarTab($index)" class="mobile-tabs-item" ng-repeat="tab in vm.tabs" ng-class="{'active' : vm.activeTab==$index}">
+		            <label class="mobile-tabs-icon">
+		                   <i class="fa fa-{{tab.icon}}  fa-1.5x"></i>
+		            </label>
+		            <div class="row"></div>
+		            <label class="mobile-tabs-label">
+		                    {{tab.label}}
+		             </label>
+	           </li>   
+          </ul>
+</div>

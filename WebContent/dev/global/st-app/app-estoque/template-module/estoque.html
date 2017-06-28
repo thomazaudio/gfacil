@@ -1,0 +1,194 @@
+<meta charset="UTF-8" />
+<div class="row" style="margin-left: -12px;margin-right: -7px;">
+<div class="col-lg-6" style="padding-bottom:2px">
+<div class="input-group" >
+  <div ng-if="produto.opcoes && produto.opcoes.length>0" class="input-group-btn">
+   <button data-toggle="modal" class="btn btn-info btn-block"
+    uib-tooltip="Salvar esta lista de opções para ser utilizada em outros produtos"
+    data-target="#modalSalvarGrupo"><i class="fa fa-floppy-o"></i> Salvar Grupo
+    </button>
+  </div>
+  <div class="input-group-btn">
+   <button data-target="#modalSelecionaGrupo"
+    uib-tooltip="Selecione um grupo de opções já cadastrado"
+    class="btn btn-default btn-block" 
+    data-toggle="modal">Selecionar Grupo <i class="fa fa-external-link"></i>
+    </button>
+  </div>
+</div>
+</div>
+<!-- Cadastro de nova opção -->
+<div class="col-lg-12" style="padding-top:5px;">
+<label><strong>Cadastrar nova opção</strong></label>
+<form>
+	<div class="input-group form-group">
+		<span class="input-group-addon input-ficha">
+		  <input style="min-width:75px;" ng-model="opcao.nomeOpcao" uib-tooltip="Nome da Opção" placeholder="Nome da Opção" class="form-control">
+		</span>
+		
+		<span class="input-group-addon input-ficha">
+		  <input style="min-width:75px;" ui-number-mask="2" uib-tooltip="R$ Preço da Opção" placeholder="R$ Preço da Opção" ng-model="opcao.valor" class="form-control">
+		</span>
+		
+		<span class="input-group-btn">
+		  <button type="submit" uib-tooltip="Salvar Opção" ng-click="addOpProduto(opcao,produto)" data-dismiss="modal" class="btn btn-block btn-primary"><i class="fa fa-check"></i></button>
+		</span>
+		
+	</div>	
+</form>
+</div>
+</div>
+
+
+<!-- Salvar um grupo de opções -->
+<st-modal idmodal="modalSalvarGrupo" titulo="Salvar grupo de opções">
+<form>
+	<div class="form-group">
+	    <label>Nome do Grupo (Ex: Cores, embalagens, tamanhos)</label>
+		<input class="form-control" placeholder="Nome Do Grupo"
+			ng-model="grupoOp.nomeGrupo" />
+	</div>
+	
+	<div class="form-group">
+		<button ng-disabled="!grupoOp.nomeGrupo" ng-click="salvarGrupoOpcoes(grupoOp,produto.opcoes)"
+			data-dismiss="modal" class="btn btn-block btn-primary">Salvar
+			Grupo <i class="fa fa-floppy-o "></i></button>
+	</div>
+</form>
+</st-modal>
+
+<!-- Modal para Selecionar um grupo de opções -->
+<st-modal idmodal="modalSelecionaGrupo" titulo="Selecionar grupo de opções">
+
+<div ng-show="gruposOpcoes.length>0" class="form-group">
+    <label>Selecione um grupo:</label> 
+    <div class="input-group">
+        <select class="form-control" ng-model="grupoOp"
+	    ng-options="grupo as grupo.nomeGrupo for grupo in gruposOpcoes">
+	    </select>
+	    <span ng-if="grupoOp" class="input-group-btn">
+	      <button ng-click="deleteGrupoOp(grupoOp)" confirm-title="Deletar grupo de opções" confirm="Tem certeza que deseja deletar este grupo de opções?" uib-tooltip="Deletar Grupo" class="btn"><i class="fa fa-times"></i></button>
+	    </span>
+	    <span ng-if="grupoOp" class="input-group-btn">
+	      <button class="btn btn-default" ng-click="atualizaGruposOp()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+	    </span>
+    </div>
+ 
+</div>
+
+<h3  ng-show="!gruposOpcoes ||gruposOpcoes.length==0" >Não há nenhum grupo de opções cadastrado.
+ <a ng-click="atualizaGruposOp()">Atualizar <i class="fa fa-refresh" aria-hidden="true"></i></a>
+</h3>
+
+<div ng-if="grupoOp">
+	<table class="table">
+		<tr>
+			<th>Opção</th>
+			<th>Valor</th>
+		</tr>
+		<tr ng-repeat="op in grupoOp.opcoes">
+			<td><input class="form-control"  ng-value="op" ng-model="op.nomeOpcao" /></td>
+			<td><input ui-number-mask="2" placeholder="R$ valor da opção" ng-model="op.valor" class="form-control"></td>
+		    <td><button uib-tooltip="Adicionar esta opção" ng-click="addOpOfGroup(op,produto)" class="btn"><i class="fa fa-plus"></i></button></td>
+		</tr>
+
+	</table>
+	
+</div>
+</st-modal>
+
+<!-- Somente se houver opções -->
+<div ng-show="produto.opcoes && produto.opcoes.length>0">
+	<div  id="no-more-tables">
+	   <table class="table-bordered table-striped table-condensed cf">
+	       <thead class="cf">
+			<tr>
+				<th>
+					Opções
+				</th>
+				<th>Nome da Opção</th>
+				<th>Valor</th>
+				<th>Quantidade</th>
+				<th>Quantidade Mínima</th>
+				<th>Unidade de Medida</th>
+				
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="op in produto.opcoes">
+				<td data-title="Opções">
+				
+			   <div class="element-table">
+		    	<div class="pull-center">
+		    	 <label>
+                   <a ng-click="addOpProduto(op,produto)"  class="warning"><i class=" fa fa-floppy-o fa-2x"></i></a>
+                 </label>
+		    	 <label>
+                   <a confirm="Tem certeza que deseja deletar '{{op.nomeOpcao}}' ?" ng-click="deleteOp($index,produto)" > <i class="danger fa fa-trash fa-2x"></i> </a>
+                 </label>
+                </div>
+		       </div> 
+				
+				</td>
+				<td data-title="Nome da Opção">
+				 <input ng-model="op.nomeOpcao" class="form-control"/>
+				</td>
+				<td data-title="Preço">
+				 <input ng-model="op.valor" class="form-control"/>
+				</td>
+				<td data-title="Quantidade" style="max-width:200px"> 
+				  <button-estoque produto="produto" opcao="op"></button-estoque>
+				</td>
+				<td data-title="Quantidade Mínima">
+				 <input ng-model="op.minQuant" class="form-control"/>
+				</td>
+				
+				<td data-title="Unidade de Medida">
+				 <input ng-model="op.unidadeMedida" class="form-control"/>
+				</td>
+					
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+
+<!-- Acrescentar Quantidade -->
+<st-modal idmodal="modalAddQuantidade" titulo="Acrescentar">
+
+   <div class="form-group  col-lg-6">
+	 <label>Quantidade a ser acresentada</label>
+	 <input ng-model="info.quantidade" type="number"  class="form-control"/>
+   </div>
+
+    <div class="form-group  col-lg-6">
+     Lançar Movimentação
+	 <label class="toggle">
+		 <input  ng-disabled="mov.disable" type="checkbox" ng-change="alterarBaixa(mov,'fixa')" ng-model="info.lancarMov" />
+		 <span class="handle"></span>
+	 </label>
+    </div>
+    
+     <div ng-show="info.lancarMov">
+	     <div class="form-group  col-lg-6">
+			 <label>Preço de compra</label>
+			 <input ng-model="info.precoCompra" ui-number-mask="2" class="form-control"/>
+	     </div>
+	     
+	     <div class="form-group col-lg-6">
+	          <label>Fornecedor:</label>
+	          <auto-complete-object tipo="'select'" label-cad="'Cadastrar novo Fornecedor'" place-holder="'Digite o nome do Fornecedor'"  object-op="'fornecedor'" querys="" label="'nome'" ng-model="info.fornecedor" />
+	     </div>
+      </div>
+      
+      <div class="pull-right">
+        <div class="form-group col-lg-6">
+         <button class="btn btn-info">Confirmar <i class="fa fa-check"></i></button>
+        </div>
+      </div>
+      
+    <div class="row"></div>
+</st-modal>

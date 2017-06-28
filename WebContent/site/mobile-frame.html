@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="X-Frame-Options" content="sameorigin">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap Registration Form Template</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="lib/bootstrap.min.css">
+        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="lib/form-elements.css">
+        <link rel="stylesheet" href="lib/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="lib/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="lib/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="lib/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="lib/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="lib/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+
+    <body>
+
+		
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                  
+                    <div class="row">
+                    	
+                    	<div class="col-sm-2"></div>
+                        <div class="col-sm-8 form-box">
+                            
+                           <iframe src="https://teste.siertech.com.br" frame-border="0" allowfullscreen></iframe>
+		                   
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+
+        <!-- Javascript -->
+        <script src="lib/jquery-1.11.1.min.js"></script>
+        <script src="lib/bootstrap.min.js"></script>
+        <script src="lib/jquery.backstretch.min.js"></script>
+        <script src="lib/retina-1.1.0.min.js"></script>
+        <script src="lib/scripts.js"></script>
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+        <script>
+            function cadastrarLead(){
+
+            	var email = $("#email").val();
+            	var telefone = $("#telefone").val();
+            	
+            	$.ajax({
+            		  type: "GET",
+            		  url: getUrlBase()+"lead/add?email="+email+"&telefone="+telefone,
+            		  success: function(){},
+            		  dataType: "json",
+            		  contentType : "application/json"
+            		});
+                 
+              }
+
+
+            function getUrlBase(){
+
+            	var href = window.location.href;
+            	var hostName = window.location.hostname;
+
+            	console.log("href: "+href);
+        		
+        		//Servidor de teste local (Utilizado para deploy do .war gerado pelo jenkins)
+        		if(href.indexOf("7070/Albar")!=-1)
+        			 return "http://"+hostName+":7070/Albar/";
+        			
+        		else if(href.indexOf("8080/Albar")!=-1)
+        		  return "http://"+hostName+":8080/Albar/";
+        		
+        		else if(href.indexOf("8080")!=-1)
+        			  return "http://"+hostName+":8080/";
+        		
+                //SSL
+        		else if(href.indexOf("https")!=-1)
+        			return "https://"+hostName+"/";
+                        else
+                          return "http://"+hostName+"/";
+        		
+        	}
+        	
+        </script>
+
+    </body>
+
+</html>

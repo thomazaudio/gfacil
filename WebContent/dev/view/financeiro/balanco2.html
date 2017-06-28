@@ -1,0 +1,111 @@
+<meta charset="UTF-8" />
+
+<div class="row balanco text-muted">
+
+ <h2 class="success">FEVEREIRO/2016</h2>
+ 
+ <div class="col-lg-6">
+ 
+     <!-- Previsão de fechamentos -->
+     <div class="panel">
+	     <div class="panel-body">
+			 <h4>PARA O <strong>MÊS ATUAL</strong> ,O FECHAMENTO ATÉ O MOMENTO É DE:</h4>
+			 <br>
+			 <abbr class="text-center" style="font-size:35px;">R$ 12.500,00</abbr>
+			 
+			 <br>
+			 <br>
+			 <h4>PARA O <strong>MÊS ANTERIOR</strong> ,O FECHAMENTO FOI DE:</h4>
+			 <br>
+			 <abbr class="text-center" style="font-size:35px;">R$ 22.000,00</abbr>
+		 </div>
+	 </div>
+	 
+	 <!-- Gráfico comparando com ultimos três meses -->
+	 <canvas  class="chart chart-bar"  
+		  chart-data="[[7250,10000,7200]]"  chart-series="['venda1','venda2','Cas']" chart-labels="['Janeiro','Fevereiro','Março']"> 
+	 </canvas>
+	
+	 
+ </div>
+ 
+ <div class="col-lg-6">
+ 
+     <div class="panel">
+	 <div class="panel-body">
+	     <div class="total-saidas">
+	         
+	         <blockquote class="info"> 
+				 <div class="pull-left">
+				 <h3>SAÍDAS TOTAIS</h3> 
+				 </div>
+				 <div class="pull-right">
+				 <i> realizado: <strong class="text-success">R$ 3.000,00</strong></i>
+				 <br>
+				 <i> previsto: <strong class="text-muted">R$ 3.000,00</strong></i>
+				 </div>
+			 </blockquote>
+			 <div class="row"></div>
+			 <div class="progress">
+			     <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="40"
+			      aria-valuemin="0" aria-valuemax="100" style="width:100%">
+			    
+			     </div>
+		     </div>
+		  </div>
+	  
+		   <div class="total-entradas">
+			 <div class="pull-left">
+			 <h3>ENTRADAS</h3> 
+			 </div>
+			 <div class="pull-right">
+			 <i> realizado: <strong class="text-success">R$ 30.000,00</strong></i>
+			 <br>
+			 <i> previsto: <strong class="text-muted">R$ 25.000,00</strong></i>
+			 </div>
+			 <div class="row"></div>
+			 <div class="progress">
+			     <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40"
+			      aria-valuemin="0" aria-valuemax="100" style="width:80%">
+			    
+			     </div>
+		     </div>
+		  </div>
+	  </div>
+	</div>
+	
+	 <div class="panel">
+	 
+	    <div class="panel-heading">
+	      <h3>Ultimos Balanços</h3>
+	     </div>
+		 <div class="panel-body">
+		 
+		 <div class="pull-left">
+		 <h4>JANEIRO<Strong>/2016</Strong></h4>
+		 </div>
+		 <div class="pull-right">
+		 <i> faturamento: <strong class="text-success">R$ 35.000,00</strong></i>
+		 <br>
+		 <i> lucro: <strong class="text-muted">R$ 22.000,00</strong></i>
+		 </div>
+		 
+		 <div class="row" ></div>
+		 <br>
+		 <hr></hr>
+		 
+		 <div class="pull-left">
+		 <h4>FEVEREIRO<Strong>/2016</Strong></h4>
+		 </div>
+		 <div class="pull-right">
+		 <i> faturamento: <strong class="text-success">R$ 20.000,00</strong></i>
+		 <br>
+		 <i> lucro: <strong class="text-muted">R$ 12.500,00</strong></i>
+		 </div>
+	     <div>
+	    </div>
+	
+     </div>
+</div>
+</div>
+</div>

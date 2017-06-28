@@ -1,0 +1,351 @@
+<meta charset="UTF-8" />
+<modal-content titulo="'configurações'" modal-instance="this">
+<vertical-space></vertical-space> <st-nav active-tab="activeTab"
+	tabs="[{label:'NFe'},{label:'Operação'},{label:'Relatórios'},{label:'PDV'},{label:'Ent mercadoria'},{label:'Podutos/Serviços'},{label:'Dashboard'},{label:'Movimentações'}]"></st-nav>
+<vertical-space></vertical-space> <!-- Sessão de informações básicas -->
+<div ng-show="activeTab==0">
+	 
+</div>
+<!-- FIM Sessão de informações básicas --> <!-- Sessão de Operação -->
+<div ng-show="activeTab==1">
+
+   <div class="form-group col-lg-4">
+		<label class="text-muted"><input type="checkbox"
+			ng-true-value="'true'" ng-false-value="'false'"
+			ng-model="config.confs.defaultCadAutoCompleteAllFiliais" /> Salvar cadastros para todas as filiais no auto-complete</label>
+	</div>
+
+	<div class="col-lg-4">
+		<div class="form-group">
+			<label class="text-muted">Modo</label> <select
+				ng-model="config.confs.modoOperacao"
+				class="form-control input-lg  " convert-to-number>
+				<option value="1">Comanda Eletronica</option>
+				<option value="2">PDV Ceasa</option>
+				<option value="3">Simples ERP</option>
+			</select>
+		</div>
+	</div>
+
+
+	<div class="col-lg-4">
+		<div class="form-group">
+			<label class="text-muted">Tema do layout</label> <select
+				ng-model="config.confs.temaLayout"
+				class="form-control input-lg  ">
+				<option value="default">Default</option>
+				<option value="light">Light</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="col-lg-4">
+		<div class="form-group">
+			<label class="text-muted">Itens máximo por página</label> <select
+				ng-model="config.confs.maxItensPage"
+				class="form-control input-lg  ">
+				<option value="5">5</option>
+				<option value="7">7</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="20">20</option>
+				<option value="30">30</option>
+				<option value="40">40</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+				<option value="150">150</option>
+				<option value="200">200</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="col-lg-4">
+		<div class="form-group">
+			<label class="text-muted">Início da semana</label> <select
+				ng-model="config.confs.inicio_semana"
+				class="form-control input-lg  ">
+				<option value="1">Segunda</option>
+				<option value="2">Terça</option>
+				<option value="3">Quarta</option>
+				<option value="4">Quinta</option>
+				<option value="5">Sexta</option>
+				<option value="6">Sábado</option>
+				<option value="0">Domingo</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="col-lg-4">
+		<div class="form-group">
+			<label class="text-muted">Forma de Pagamento Padrão</label>
+			<auto-complete-object inline="true" value-only="true"
+				extra-class="''" label-cad="'Cadastrar nova forma de pagamento'"
+				place-holder="'Digite a forma de pagamento'" object-op="'opcao'"
+				label="'valor'" fix-properties="{descricao:'forma_pagamento'}"
+				ng-model="config.confs.formaPagamentoPadrao"></auto-complete-object>
+		</div>
+	</div>
+
+	<div class="col-lg-4">
+		<div class="form-group">
+			<ul class="group-list">Módulos
+			</ul>
+			<li class="group-list-item" ng-repeat="m in modulos"><input
+				ng-click="salvar(config)" type="checkbox" ng-model="m.selecionado" />
+				{{m.nome}}</li>
+		</div>
+	</div>
+	
+	<div class="col-lg-4">
+		<div class="form-group">
+			<label class="text-muted">Style impressão movimentações</label> 
+			<input ng-model="config.confs.stylePrint" class="form-control input-lg  " />
+		</div>
+	</div>
+	
+	<div class="col-lg-4">
+		<div class="form-group">
+			<label class="text-muted">Label para filiais</label> 
+			<input ng-model="config.confs.labelFilial" class="form-control input-lg  " />
+		</div>
+	</div>
+	
+	<div class="col-lg-4">
+		<div class="form-group">
+			<label class="text-muted">Url da Impressora de Cupom</label> <input
+				ng-model="config.confs.urlImpressoraCupom"
+				class="form-control input-lg  " />
+		</div>
+	</div>
+</div>
+<!-- Fim Sesão Operação -->
+ <!-- Sessão Relatório -->
+<div ng-show="activeTab==2">
+	<div class="col-lg-6">
+		<div class="form-group">
+			<ul class="group-list">Itens do Relatório
+			</ul>
+			<li class="group-list-item" ng-repeat="i in itensRelatorio"><input
+				ng-click="salvar(config)" type="checkbox" ng-model="i.selecionado" />
+				{{i.label}}</li>
+		</div>
+	</div>
+</div>
+
+<!-- Sessão PDV -->
+<div ng-show="activeTab==3">
+	<div class="col-lg-4">
+		<div class="form-group">
+			<label class="text-muted">PDV Padrão</label> <select
+				ng-model="config.confs.tipoPdv"
+				class="form-control input-lg  ">
+				<option value="pdvsimples">PDV Simples</option>
+				<option value="pdvficha">PDV Ficha</option>
+			</select>
+		</div>
+	</div>
+	
+	<div class="col-lg-4">
+		<div class="form-group">
+			<label class="text-muted">Sugestão de Produtos</label> <select
+				ng-model="config.confs.sugestaoProdutosPDV"
+				class="form-control input-lg  ">
+				<option value="allProdutos">Todos os Produtos</option>
+				<option value="maisVendidos">Produtos mais vendidos</option>
+			</select>
+		</div>
+	</div>
+	
+	<div class="col-lg-3">
+		<div class="form-group">
+			<label>Quantidade máxima de produtos sugeridos no PDV</label>
+			 <input  ng-model="config.confs.maxSugestaoProdutosPDV" 
+				class="form-control" />
+		</div>
+	</div>
+	
+	<div class="col-lg-3">
+		<div class="form-group">
+			<label class="text-muted">Tornar obrigatório definição do valor unitário de um pedido</label> 
+			<input
+				ng-true-value="'true'" ng-false-value="'false'"
+				ng-model="config.confs.requireValorUnitarioPedidoPdv" type="checkbox"
+				class="form-control" />
+		</div>
+	</div>
+	
+	
+	
+	<div class="col-lg-3">
+		<div class="form-group">
+			<label class="text-muted">Beep de Pdv</label> <select
+				ng-model="config.confs.beepPdv"
+				class="form-control input-lg  ">
+				<option value="nenhum">Nenhum</option>
+				<option value="beep1.wav">Beep 1</option>
+			</select>
+		</div>
+	</div>
+	
+	<div class="col-lg-3">
+		<div class="form-group">
+			<label>Tornar obrigatório escolha do cliente</label> <input
+				ng-true-value="'true'" ng-false-value="'false'"
+				ng-model="config.confs.escolhaClientePdv" type="checkbox"
+				class="form-control" />
+		</div>
+	</div>
+
+	<div class="col-lg-3">
+		<div class="form-group">
+			<label>Exibir campo forma de pagamento</label> <input
+				ng-true-value="'true'" ng-false-value="'false'"
+				ng-model="config.confs.showFormaPagamentoPdv" type="checkbox"
+				class="form-control" />
+		</div>
+	</div>
+	
+	
+	<div class="col-lg-3">
+		<div class="form-group">
+			<label>Exibir campo data de emissão</label> <input
+				ng-true-value="'true'" ng-false-value="'false'"
+				ng-model="config.confs.showDataEmissaoPdv" type="checkbox"
+				class="form-control" />
+		</div>
+	</div>
+	
+	
+	<div class="col-lg-4">
+		<div class="form-group">
+			<label>Mostrar campo 'Empréstimo de embalagens'</label> <input
+				ng-true-value="'true'" ng-false-value="'false'"
+				ng-model="config.confs.showEmpEmbalagensPdv" type="checkbox"
+				class="form-control" />
+		</div>
+	</div>
+
+	<div class="col-lg-4">
+		<div class="form-group">
+			<label>Exibir campo data de vencimento</label> <input
+				ng-true-value="'true'" ng-false-value="'false'"
+				ng-model="config.confs.showDataVencimentoPdv" type="checkbox"
+				class="form-control" />
+		</div>
+	</div>
+</div>
+
+<!-- Sessão entrada de mercadoria -->
+<div ng-show="activeTab==4">
+	<ul class="group-list">Campos a serem exibidos na entrada de
+		mercadoria
+	</ul>
+	<li class="group-list-item"><input ng-true-value="'true'"
+		ng-false-value="'false'"
+		ng-model="config.confs.showEntMercadoriaFormaPagamento"
+		type="checkbox" /> Forma de pagamento <input ng-true-value="'true'"
+		ng-false-value="'false'"
+		ng-model="config.confs.showEntMercadoriaDataVencimento"
+		type="checkbox" /> Data de vencimento</li>
+</div>
+
+<!-- Sessão Produtos/Serviços -->
+<div ng-show="activeTab==5">
+
+  
+
+   <div class="col-lg-4">
+		<div class="form-group">
+			<label>Mostrar quantidade total de unidades em estoque</label> <input
+				ng-true-value="'true'" ng-false-value="'false'"
+				ng-model="config.confs.showTotalQuantEstoque" type="checkbox"
+				class="form-control" />
+		</div>
+	</div>
+
+
+	<div class="form-group col-lg-4">
+		<label class="text-muted">Atalho de Busca</label> <select
+			ng-model="config.confs.atalhoBuscaProduto"
+			class="form-control input-lg  ">
+			<option value="codigoBarras">Por código de barras</option>
+			<option value="nome">Por nome do produto</option>
+		</select>
+	</div>
+	
+	<div class="form-group col-lg-4">
+		<label class="text-muted"><input type="checkbox"
+			ng-true-value="'true'" ng-false-value="'false'"
+			ng-model="config.confs.defaultCadProdutoAllFiliais" /> Produtos cadastrados para todas as filiais como padrão</label>
+	</div>
+	
+
+	<div class="form-group col-lg-4">
+		<label class="text-muted"><input type="checkbox"
+			ng-true-value="'true'" ng-false-value="'false'"
+			ng-model="config.confs.alertaEstoqueMin" /> Alertar estoque baixo</label>
+	</div>
+</div>
+<!-- Sessão Dashboard -->
+<div ng-show="activeTab==6">
+	<st-split-check ng-model="config.confs.itensDashboard"
+		pre-values="'Despesas em atraso,Recebimentos em atraso,Produtos com estoque baixo,Produtos mais vendidos'"></st-split-check>
+</div>
+
+
+<!-- Sessão Movimentações-->
+<div ng-show="activeTab==7">
+      <li class="group-list-item">
+	     <input  ng-true-value="'true'" ng-false-value="'false'"  type="checkbox" ng-model="config.confs.movimentacoesShowModoRepeticao"/> Permitir movimentação recorrente
+	  </li>
+	  
+	  <li class="group-list-item">
+	     <input  ng-true-value="'true'" ng-false-value="'false'"  type="checkbox" ng-model="config.confs.movimentacoesShowParcelamento"/> Permitir parcelamento
+	  </li>
+	  
+	  <div class="col-lg-3">
+		<div class="form-group">
+			<label class="text-muted">Atributo de agrupamento na listagem</label> <select
+				ng-model="config.confs.attrAgrupaMovList"
+				class="form-control input-lg  ">
+				<option value="">Nenhum</option>
+				<option value="pessoa.id">Pessoa</option>
+			</select>
+		</div>
+	  </div>
+	  
+	  <div class="col-lg-3">
+		<div class="form-group">
+			<label class="text-muted">Data de referencia na listagem</label> <select
+				ng-model="config.confs.attrDataReferenciaMovList"
+				class="form-control input-lg  ">
+				<option value="dataCadastro">Data de cadastro</option>
+				<option value="data">Data de vencimento</option>
+				<option value="dataBaixa">Data de baixa</option>
+			</select>
+		</div>
+	  </div>
+	  
+	   <div class="col-lg-3">
+		<div class="form-group">
+			<label class="text-muted">Ordenação na listagem</label> <select
+				ng-model="config.confs.attrOrderByMovList"
+				class="form-control input-lg  ">
+				<option value="pessoa.nome">Pessoa</option>
+				<option value="id">Nº da movimentação</option>
+				<option value="data">Data de vencimento</option>
+				<option value="dataCadastro">Data de cadastro</option>
+				<option value="dataBaixa">Data de baixa</option>
+			</select>
+		</div>
+	  </div>
+	  
+	  
+</div>
+
+<div class="row"></div>
+<br>
+<div class="pull-right">
+	<button ng-click="salvar(config)" class="btn btn-primary">Salvar</button>
+</div>
+</modal-content>

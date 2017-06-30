@@ -29,7 +29,7 @@
 			   </div>
 	    </div>
 	   
-	   <div class="col-lg-4" ng-show="executandoTeste==true">
+	   <div ng-show="false" class="col-lg-4" ng-show="executandoTeste==true">
 	       <label><strong>Comentários/Sugestões</strong></label>
 	       <br>
 	       <textarea rows="3" cols="29" ng-model="comentario">
@@ -46,16 +46,16 @@
 	   <vertical-space></vertical-space>
 	   
 	   
-	   <div class="col-lg-4 col-xs-4"  ng-show="executandoTeste==false || !executandoTeste ">
+	   <div class="col-lg-4 col-xs-6"  ng-show="executandoTeste==false || !executandoTeste ">
 	       <button ng-click="iniciarTeste()" class="btn btn-secondary"><i class="fa fa-play"></i> Iniciar teste</button>
 	   </div>
 	   
-	   <div class="col-lg-4 col-xs-4" ng-show="executandoTeste==true">
+	   <div class="col-lg-4 col-xs-6" ng-show="executandoTeste==true">
 	       <button ng-click="finalizarTeste(comentario, erroSistema)" class="btn btn-primary"><i class="fa fa-check"></i> Finalizar teste</button>
 	   </div>
 	   
-	   <div class="col-lg-4 col-xs-4" ng-show="executandoTeste==true">
-	       <button ng-click="voltar()" class="btn btn-secondary"><i class="fa fa-play"></i> Fechar e continuar execução</button>
+	   <div class="col-lg-4 col-xs-6" ng-show="executandoTeste==true">
+	       <button ng-click="voltar()" class="btn btn-secondary"><i class="fa fa-play"></i> Fechar e continuar</button>
 	   </div>
 	   
 	   </st-collapse-panel>
@@ -64,6 +64,4 @@
    <div ng-show="!definition">
        <h3>Não há mais testes para serem executados no momento, por favor, aguarde a inserção de novos testes.</h3>
    </div>
-   
-  
 </modal-content>

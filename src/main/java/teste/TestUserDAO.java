@@ -28,7 +28,7 @@ public class TestUserDAO extends GenericDAO<TestUser> {
 		
 		UserSystem user = SystemUtil.getCurrentUserDetails().getAccount();
 		
-		String query = "insert into testuser(comentario, usuario, id_definition, tempoGasto, disable, status, valorPago, erroSistema) values(?,?,?,?,?,?,?, ?)";
+		String query = "insert into testuser(comentario, usuario, id_definition, tempoGasto, disable, status, valorPago, erroSistema, nivelDificuldadeFromUser) values(?,?,?,?,?,?,?, ?, ?)";
 
 		try {
             //Os eventos sempre serão salvos em db_shared
@@ -42,7 +42,7 @@ public class TestUserDAO extends GenericDAO<TestUser> {
 			stm.setInt(6,0);
 			stm.setDouble(7, test.getDefinition().getPrecoTeste());
 			stm.setInt(8, test.getErroSistema());
-			
+			stm.setInt(9, test.getNivelDificuldadeFromUser());
 			stm.execute();
 			
 

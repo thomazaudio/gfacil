@@ -12,7 +12,7 @@
 <div class="col-lg-2 only-desktop"></div>
 <div class="ng-enter col-lg-8 panel" ng-if="currentFilial.id!=0 || pdv.id" ng-show="(!config.confs.escolhaClientePdv || config.confs.escolhaClientePdv=='false') || pdv.movimentacao.pessoa">
 	   
-	   <div class="row only-desktop col-lg-12">
+	   <div class="row only-desktop col-lg-12" ng-show="false">
 	         <div class="pull-left">
 	            <button class="btn btn-default" ng-click="cancelAction()"><i class="fa fa-arrow-left"></i> Voltar</button>
 	        </div>
@@ -20,8 +20,11 @@
 	            <button class="btn btn-secondary" ng-click="lancarVenda()"><i class="fa {{infoModal.okActionIcon}}"></i> {{infoModal.okActionLabel}}</button>
 	        </div>
 	        <vertical-space></vertical-space>
-	         <label class="text-muted">Total: R$  <strong style="color:var(--secondary-color);font-size:22px">{{totalPdv||0|number:2}}</strong></label>
+	        
 	   </div>
+	   <div class="row only-desktop col-lg-12">
+	         <p class="text-muted">Total: R$  <strong style="color:var(--secondary-color);font-size:22px">{{totalPdv||0|number:2}}</strong></p>
+	    </div>
 	  
 	  
 	   

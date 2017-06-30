@@ -134,7 +134,8 @@
 		return{
 
 			restrict:"E",
-			templateUrl:"global/st-app/st-util/template-module/buttonAdd.html",
+			templateUrl:"global/st-app/st-util/template-module/buttonAdd.html"
+			
 			
 		}
 	})

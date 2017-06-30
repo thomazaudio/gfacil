@@ -10,9 +10,7 @@
 			link:function($rootScope, element, attrs){
 
 
-
 				var _openDetalhe = function(){
-
 
 					$rootScope.testIsOpen=true;
 
@@ -131,18 +129,48 @@
 
 							var _saveTeste = function(teste, callback){
 
-								stService.executePost("testuser/add/", teste).success(function(){
+								stService.executePost("testuser/add/", teste).success(function(data){
 
 									$rootScope.executandoTeste=false;
 
 									$rootScope.testIsOpen = false;
 
-									stUtil.showMessage("","Teste executado com sucesso!","info");
-
 									_getProxTest();
+									
+									_openDetalheFeedBack(data.item);
 
 								});
 
+							}
+							
+							var _openDetalheFeedBack = function(test){
+								
+								 $uibModal.open({
+										animation: true,
+										templateUrl:"global/st-app/test-user/template-module/testeUserFeedBack.html",
+										size:'lg',
+										controller: function($scope, $modalInstance){
+											  
+												$scope.test = test;	
+												$scope.salvar  = function(){
+													
+													if(!$scope.test.nivelDificuldadeFromUser){
+														stUtil.showMessage("","Escolha uma opção","danger");
+														
+														return;
+											   }
+		
+													stService.executePost("testuser/add/", $scope.test).success(function(){
+		
+														stUtil.showMessage("","Teste executado com sucesso!","info");
+														$modalInstance.close();
+		
+													});
+													
+												}
+									}
+								}); 
+											
 							}
 
 

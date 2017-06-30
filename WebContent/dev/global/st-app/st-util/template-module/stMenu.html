@@ -13,34 +13,34 @@
 				
 				    <!-- Menu mobile -->
 				<div class="dropdown-menu menu-mobile  pull-right ">
-		              
-		               <div class="colg-lg-12">
-		                  <filial-list></filial-list>
-		               </div>
-		               
-		                <div class="col-xs-4" >
-			                 <a class="btn btn-mobile-menu ripple" style="width:100%;"  ng-click="atualizarEstoque()">
-				                  <i class="fa fa-truck fa-2x info" aria-hidden="true"></i>
-								 <br>Entrada de merc.
-							 </a>
-		                </div>
-		                
-		                <div class="col-xs-4" >
-			                 <a class="btn btn-mobile-menu ripple" style="width:100%;" ng-click="novaVenda()">
-				                  <i class="fa fa-truck fa-2x info" aria-hidden="true"></i>
-								 <br>Nova Venda
-							 </a>
-		                </div>
-		                <verticals-space></verticals-space>
-		               <div class="col-lg-12">
-		                  <hr></hr>
-		               </div>
-		          
+				
 		               <div class="col-xs-4"  ng-repeat="item in itens" style="padding-bottom:19px;">
 		                 <a class="btn btn-mobile-menu ripple" style="width:100%;" ng-click="clickItemMenu(item.path)"nav-click>
 		                 <i class="fa fa-{{item.icon}} fa-2x info" aria-hidden="true"></i>
 						 <br>{{item.label}}</a>
 					   </div>
+					   
+					   <div class="row col-lg-12">
+		                </div>
+		               <div class="col-lg-12">
+		                  <hr></hr>
+		               </div>
+					   
+		                 <div class="col-xs-4" >
+			                 <a class="btn btn-mobile-menu ripple" style="width:100%;color: var(--secondary-color);"  ng-click="novaVenda()">
+				                  <i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
+								 <br>Nova Venda
+							 </a>
+		                </div>
+		                
+		                <div class="col-xs-4" >
+			                 <a class="btn btn-mobile-menu ripple" style="width:100%;color: var(--secondary-color);"  ng-click="atualizarEstoque()">
+				                  <i class="fa fa-truck fa-2x" aria-hidden="true"></i>
+								 <br>Entrada de merc.
+							 </a>
+		                </div>
+		                
+					   
 						
 						<div class="col-xs-12"><hr></hr></div>
 						

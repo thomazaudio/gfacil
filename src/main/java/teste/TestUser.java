@@ -46,4 +46,7 @@ public class TestUser extends CrudClass {
 	@JsonView(util.Views.Public.class)
 	private double valorPago;
 	
+	@JsonView(util.Views.Public.class)
+	private int nivelDificuldadeFromUser;
+	
 }

@@ -16,8 +16,6 @@
 
 			controller:function($scope, $rootScope, $route, anchorScroll, loginUtil, $location, Fullscreen, $localStorage, stUtil, pdvUtil, estoqueUtil){
 
-				
-		
 				 $rootScope.$on('$routeChangeSuccess', function() {
 					   
 						var path;
@@ -97,6 +95,8 @@
 				$scope.novaVenda = function(){
 
 					pdvUtil.openVendaInModal();
+					
+					console.log("Nova venda!!!");
 				}
 
 				//anchor

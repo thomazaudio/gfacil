@@ -10,8 +10,14 @@ angular.module("adm").controller("pdvFichaController",function(anchorScroll,cach
 		
 		var _infoModal = {};
 		
+		 if(step==0){
+			_infoModal.titulo = "Defina um cliente";
+			_infoModal.okActionLabel = "Avançar";
+			_infoModal.okActionIcon = "fa-angle-double-right";
+		}
+		
 		//Escolha de produtos
-		if(step==1){
+		else if(step==1){
 			_infoModal.titulo = "Definição dos produtos";
 			_infoModal.okActionLabel = "Avançar";
 			_infoModal.okActionIcon = "fa-angle-double-right";
@@ -26,10 +32,12 @@ angular.module("adm").controller("pdvFichaController",function(anchorScroll,cach
 		
 	}
 	
+	$scope.changeStep(0);
+	
 	$scope.cancelAction = function(){
 		
-		if($scope.step==2){
-			$scope.changeStep(1);
+		if($scope.step>=1){
+			$scope.changeStep($scope.step-1);
 		}
 		else {
 			//TODO confirmação
@@ -96,8 +104,8 @@ angular.module("adm").controller("pdvFichaController",function(anchorScroll,cach
 	//Lançamento da venda
 	$scope.lancarVenda = function(){
 		
-		if($scope.step==1){
-			$scope.changeStep(2);
+		if($scope.step<2){
+			$scope.changeStep($scope.step+1);
 			return;
 		}
 		

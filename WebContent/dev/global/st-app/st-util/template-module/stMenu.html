@@ -19,14 +19,14 @@
 		               </div>
 		               
 		                <div class="col-xs-4" >
-			                 <a class="btn btn-mobile-menu ripple" style="width:100%;" ng-click="clickItemMenu(item)" ng-click="atualizarEstoque()">
+			                 <a class="btn btn-mobile-menu ripple" style="width:100%;"  ng-click="atualizarEstoque()">
 				                  <i class="fa fa-truck fa-2x info" aria-hidden="true"></i>
 								 <br>Entrada de merc.
 							 </a>
 		                </div>
 		                
 		                <div class="col-xs-4" >
-			                 <a class="btn btn-mobile-menu ripple" style="width:100%;" ng-click="clickItemMenu()">
+			                 <a class="btn btn-mobile-menu ripple" style="width:100%;" ng-click="novaVenda()">
 				                  <i class="fa fa-truck fa-2x info" aria-hidden="true"></i>
 								 <br>Nova Venda
 							 </a>
@@ -37,7 +37,7 @@
 		               </div>
 		          
 		               <div class="col-xs-4"  ng-repeat="item in itens" style="padding-bottom:19px;">
-		                 <a class="btn btn-mobile-menu ripple" style="width:100%;" ng-click="clickItemMenu(item)"nav-click>
+		                 <a class="btn btn-mobile-menu ripple" style="width:100%;" ng-click="clickItemMenu(item.path)"nav-click>
 		                 <i class="fa fa-{{item.icon}} fa-2x info" aria-hidden="true"></i>
 						 <br>{{item.label}}</a>
 					   </div>
@@ -97,7 +97,7 @@
 <div class="navbar-default sidebar only-desktop" role="navigation">
 	<div id="elementoMenu" class="sidebar-nav navbar-collapse">
 	
-	     <button  class="btn-destaque-menu" id="menu-novavenda"
+	     <button  class="btn-destaque-menu ripple" id="menu-novavenda"
 					ng-click="novaVenda()" 
 					btn-detalhe-pdv nav-click style="color:white"><i class="fa fa-cart-plus fa-m"
 						aria-hidden="true"></i> <strong
@@ -107,9 +107,9 @@
 			<!-- PDV Ficha -->
 				
 	
-				<li id="menu-{{item.path}}" ng-repeat="item in itens" ng-click="clickItemMenu(item)"
+				<li id="menu-{{item.path}}" ng-repeat="item in itens" ng-click="clickItemMenu(item.path)"
 					ng-class="{'active-menu':currentPath==item.path}"
-					ng-show="usuarioSistema.permissoes.indexOf('vendas')!=-1"><a 
+					ng-show="usuarioSistema.permissoes.indexOf('vendas')!=-1" class="ripple"><a 
 					 nav-click><i class="fa fa-{{item.icon}} fa-m"
 						aria-hidden="true"></i> {{item.label}}</a></li>
 					

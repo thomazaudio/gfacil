@@ -17,27 +17,7 @@
 
 <div class="modal-body">
 <div class="row"></div>
-	    <div ng-show="aba=='cadastro'" class="col-lg-12 auto-complete-inline" >
-	          <div class="list-autocomplete list-group" style="padding:5px">
-	              <input  ng-model="labelValue"  placeholder="{{placeholder}}" class="form-control"/>
-				   <div class="col-lg-12">
-					    <set-all-filials default-value="config.confs.defaultCadAutoCompleteAllFiliais" objeto="auxItemFilial"></set-all-filials>
-					</div>
-					<div class="input-group">
-					   <span class="input-group-btn">
-					   	 <button type="submit" ng-disabled="!labelValue" ng-click="cadItem(labelValue, auxItemFilial.allFilials, this)" class="btn btn-xs btn-block btn-info">
-					   	  <i ng-if="!salvandoItem || salvandoItem==false" class="fa fa-floppy-o"></i>
-					   	  <i ng-if="salvandoItem==true"  class="fa fa-refresh faa-spin animated"></i>
-					   	  
-					   	  Salvar
-					   	 </button>
-					   </span>
-					   <span class="input-group-btn">
-					   	<button   ng-click="alterarAba('resultados')" class="btn btn-xs btn-default btn-block"><i class="fa fa-times"></i> Cancelar</button>
-					   </span>
-					</div>
-	             </div>
-	      </div>
+	    
 	       
 	 <!-- aba de resultados -->
 	<div ng-show="aba=='resultados' ||!aba" class="col-lg-12 auto-complete-inline" >

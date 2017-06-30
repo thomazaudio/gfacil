@@ -17,20 +17,34 @@
 			controller:function($scope, $rootScope, $route, anchorScroll, loginUtil, $location, Fullscreen, $localStorage, stUtil, pdvUtil, estoqueUtil){
 
 				
-				$scope.currentPath =  $route.current.$$route.originalPath;
-				
+		
 				 $rootScope.$on('$routeChangeSuccess', function() {
-					 
-						var path =  $route.current.$$route.originalPath;
+					   
+						var path;
+							
+						if($route.current.$$route)
+						   path = 	$route.current.$$route.originalPath;
+						
+						else {
+							$location.path("login");
+							return;
+						}
 					   
 						if(path=='/login')
 							$scope.showMenu = false;
 						else
 							$scope.showMenu = true;
+						
+						$scope.clickItemMenu(path);
 							    
 				    });
 
-				$scope.clickItemMenu  = function(item){
+				$scope.clickItemMenu  = function(path){
+					
+					path = path.replace("/","");
+					
+					var indexItem = stUtil.buscaOb( $scope.itens, path,"path");
+					var item = $scope.itens[indexItem];
 
 					$scope.atualPage  = item.label;
 					$scope.currentPath = item.path;

@@ -109,10 +109,7 @@
 
 										if(data.itens.length>0 || erroSistema==1){
 
-											_saveTeste(teste, function(){
-
-
-											});
+											_saveTeste(teste);
 										}
 
 										else{
@@ -142,9 +139,7 @@
 
 									stUtil.showMessage("","Teste executado com sucesso!","info");
 
-									$modalInstance.close();
-
-									callback();
+									_getProxTest();
 
 								});
 

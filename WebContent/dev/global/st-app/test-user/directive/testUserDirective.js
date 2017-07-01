@@ -131,7 +131,7 @@
 								
 								 $uibModal.open({
 										animation: true,
-										templateUrl:"global/st-app/test-user/template-module/testeUserFeedBack.html",
+										templateUrl:"global/st-app/test-user/template-module/testeUserResposta.html",
 										size:'lg',
 										controller: function($scope, $modalInstance){
 											  

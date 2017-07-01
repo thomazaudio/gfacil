@@ -13,8 +13,7 @@
 				itens: "="
 			},
 
-
-			controller:function($scope, $rootScope, $route, anchorScroll, loginUtil, $location, Fullscreen, $localStorage, stUtil, pdvUtil, estoqueUtil){
+			controller:function($scope, $rootScope, $route, $filter, anchorScroll, loginUtil, $location, Fullscreen, $localStorage, stUtil, pdvUtil, estoqueUtil, movUtil){
 
 				 $rootScope.$on('$routeChangeSuccess', function() {
 					   
@@ -36,6 +35,20 @@
 						$scope.clickItemMenu(path);
 							    
 				    });
+				 
+				 
+				 $scope.cadDespesa = function(){
+
+						movUtil.openMov({tipo:1},null,function(mov){
+
+							var mensagem = "Despesa no valor de R$ "+$filter("number")(mov.valor,2)+" cadastrada com sucesso!";
+
+							stUtil.showMessage("",mensagem,"info");
+
+							$route.reload();
+
+						});
+					}
 
 				$scope.clickItemMenu  = function(path){
 					

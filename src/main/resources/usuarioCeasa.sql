@@ -65,7 +65,7 @@ CREATE TABLE `config_confs` (
 
 LOCK TABLES `config_confs` WRITE;
 /*!40000 ALTER TABLE `config_confs` DISABLE KEYS */;
-INSERT INTO `config_confs` VALUES (1,'beep1.wav','beepPdv'),(1,'Belo Vale','endereco'),(1,'true','escolhaClientePdv'),(1,'dinheiro','formaPagamentoPadrao'),(1,'logo-sier.png','imgProfile'),(1,'1','inicio_semana'),(1,',Despesas em atraso,Recebimentos em atraso,Produtos com estoque baixo,Produtos mais vendidos','itensDashboard'),(1,'balanco,lancamentos_anteriores_baixados,vendas_tabela,entrada_dia_semana,','itensRelatorio'),(1,'20','maxItensPage'),(1,'2','modoOperacao'),(1,'Pessoas,Logística Reversa,Estoque,Financeiro,Relatorios,','modulos'),(1,'SierTech','nomeUsuario'),(1,'pdvficha','tipoPdv'),(1,'http://192.168.43.82:1220','urlImpressoraCupom');
+INSERT INTO `config_confs` VALUES (1,'maisVendidos','sugestaoProdutosPDV'),(1,'beep1.wav','beepPdv'),(1,'Belo Vale','endereco'),(1,'true','escolhaClientePdv'),(1,'dinheiro','formaPagamentoPadrao'),(1,'logo-sier.png','imgProfile'),(1,'1','inicio_semana'),(1,',Despesas em atraso,Recebimentos em atraso,Produtos com estoque baixo,Produtos mais vendidos','itensDashboard'),(1,'balanco,lancamentos_anteriores_baixados,vendas_tabela,entrada_dia_semana,','itensRelatorio'),(1,'20','maxItensPage'),(1,'2','modoOperacao'),(1,'Pessoas,Logística Reversa,Estoque,Financeiro,Relatorios,','modulos'),(1,'SierTech','nomeUsuario'),(1,'pdvficha','tipoPdv'),(1,'http://192.168.43.82:1220','urlImpressoraCupom');
 /*!40000 ALTER TABLE `config_confs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +115,7 @@ CREATE TABLE `opcao` (
 
 LOCK TABLES `opcao` WRITE;
 /*!40000 ALTER TABLE `opcao` DISABLE KEYS */;
-INSERT INTO `opcao` VALUES (1,'categoria_conta_pagar','Higienização caixa plástica'),(2,'categoria_conta_pagar','Aluguel caixa plástica'),(3,'categoria_conta_pagar','Lanches');
+INSERT INTO `opcao` VALUES (1,'categoria_conta_pagar','Higienização caixa plástica'),(2,'categoria_conta_pagar','Aluguel caixa plástica'),(3,'categoria_conta_pagar','Lanches'), (4,'categoria_conta_pagar','Gastos com Combustível');
 /*!40000 ALTER TABLE `opcao` ENABLE KEYS */;
 UNLOCK TABLES;
 

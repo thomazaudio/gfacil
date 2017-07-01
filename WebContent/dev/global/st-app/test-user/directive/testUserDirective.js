@@ -35,8 +35,22 @@
 
 									
 									$rootScope.definition = data.item;
-									$("#descricao-teste").html(data.item.descricao);
+									if(data.item!=null)
+									   $("#descricao-teste").html(data.item.descricao);
 									$scope.carregandoTest = false;
+									
+									stService.executeGet("/testuser/saldo-for-user").success(function(data){
+
+										$rootScope.saldoTestes = data.item || 0;
+
+										stService.executeGet("/testuser/total-tests-for-user").success(function(data){
+
+											$rootScope.quantTests = data.item || 0;
+
+										});
+
+									});
+
 
 
 								}).error(function(){
@@ -52,18 +66,7 @@
 							
 							$timeout(_getProxTest, 300);
 
-							stService.executeGet("/testuser/saldo-for-user").success(function(data){
-
-								$rootScope.saldoTestes = data.item || 0;
-
-								stService.executeGet("/testuser/total-tests-for-user").success(function(data){
-
-									$rootScope.quantTests = data.item || 0;
-
-								});
-
-							});
-
+							
 
 
 							$rootScope.voltar = function(){
@@ -91,23 +94,18 @@
 								teste.tempoGasto =  new Date().getTime() - $rootScope.iniTeste || 0;
 								teste.erroSistema = erroSistema;
 
-								console.log("Definition em rootScope: ");
-								console.log($rootScope.definition);
+							
 
 								if($rootScope.definition.queryVerification && $rootScope.definition.queryVerification!=null)
 								{
 
 									stService.executeGet("projecao/execute-query", {query:$rootScope.definition.queryVerification}).success(function(data){
 
-										console.log("Resultado da execução da query: ");
-										console.log(data);
-										
-										console.log("erroSistema: ");
-										console.log($scope.erroSistema);
+									
 
 										if(data.itens.length>0 || erroSistema==1){
 
-											_saveTeste(teste);
+											_openDetalheFeedBack(teste);
 										}
 
 										else{
@@ -122,26 +120,12 @@
 								}
 
 								else{
-									_saveTeste(teste);
+									_openDetalheFeedBack(teste);
 								}
 
 							}
 
-							var _saveTeste = function(teste, callback){
-
-								stService.executePost("testuser/add/", teste).success(function(data){
-
-									$rootScope.executandoTeste=false;
-
-									$rootScope.testIsOpen = false;
-
-									_getProxTest();
-									
-									_openDetalheFeedBack(data.item);
-
-								});
-
-							}
+							
 							
 							var _openDetalheFeedBack = function(test){
 								
@@ -164,6 +148,13 @@
 		
 														stUtil.showMessage("","Teste executado com sucesso!","info");
 														$modalInstance.close();
+
+														$rootScope.executandoTeste=false;
+
+														$rootScope.testIsOpen = false;
+
+														_getProxTest();
+														
 		
 													});
 													

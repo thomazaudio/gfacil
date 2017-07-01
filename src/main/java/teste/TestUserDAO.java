@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.springframework.stereotype.Repository;
 
@@ -33,7 +34,7 @@ public class TestUserDAO extends GenericDAO<TestUser> {
 		try {
             //Os eventos sempre serão salvos em db_shared
 			con.createStatement().execute("use db_shared");			
-			stm = con.prepareStatement(query);
+			stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			stm.setString(1,test.getComentario());
 			stm.setString(2, user.getLogin());
 			stm.setLong(3, test.getDefinition().getId());
@@ -43,7 +44,15 @@ public class TestUserDAO extends GenericDAO<TestUser> {
 			stm.setDouble(7, test.getDefinition().getPrecoTeste());
 			stm.setInt(8, test.getErroSistema());
 			stm.setInt(9, test.getNivelDificuldadeFromUser());
-			stm.execute();
+			stm.executeUpdate();
+			
+			ResultSet rs = stm.getGeneratedKeys();
+
+			if (rs.next()) {
+			    long id = rs.getLong(1);
+			    test.setId(id);
+			    System.out.println("Inserted ID -" + id); // display inserted record
+			}
 			
 
 		} catch (SQLException e) {

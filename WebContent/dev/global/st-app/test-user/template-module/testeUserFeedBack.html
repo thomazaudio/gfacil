@@ -1,0 +1,23 @@
+<meta charset="UTF-8" />
+<modal-content ok-action="salvar"  item="test" titulo="'Execução de Teste'" modal-instance="this">
+       <div class="col-lg-2 only-desktop"></div>
+          <div class="col-lg-8">
+		       <div class="form-group col-lg-12">
+		           <label>Como foi realizar esta tarefa?</label>
+		           <select ng-model="test.nivelDificuldadeFromUser" class="form-control">
+		               <option value="4">Muito Difícil</option>
+		               <option value="3">Difícil</option>
+		               <option value="2">Nem fácil nem difícil</option>
+		               <option value="1">Muito Fácil</option>
+		           </select>
+		       </div>
+		        <div class="form-group col-lg-12">
+		            <button class="btn btn-secondary" ng-click="salvar()">Pronto</button>
+       		    </div>
+		    </div>
+      
+       <div class="col-lg-2 only-desktop"></div>
+</modal-content>
+
+
+

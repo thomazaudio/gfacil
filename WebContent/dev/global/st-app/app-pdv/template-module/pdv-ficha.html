@@ -1,13 +1,10 @@
 <meta charset="UTF-8" />
 <modal-content icone-titulo="'list'" loading-ok-action="carregandoFinalizarVenda" cancel-action="cancelAction" ok-action="lancarVenda"  ok-action-label="infoModal.okActionLabel" ok-action-icon="infoModal.okActionIcon"   delete-action="deletarVenda" item="pdv" titulo="infoModal.titulo" modal-instance="this">
 
-	<div ng-show="currentFilial.id==0 && !pdv.id" >
+<div ng-show="currentFilial.id==0 && !pdv.id" >
 		<alert-filial class="col-lg-12" label="'Não é possível lançar vendas para '"></alert-filial>
 		<filial-list in-modal="true"> </filial-list>
-	</div>
-
-
-	
+</div>
 
 <div class="col-lg-2 only-desktop"></div>
 <div class="ng-enter col-lg-8 panel" ng-if="currentFilial.id!=0 || pdv.id" ng-show="(!config.confs.escolhaClientePdv || config.confs.escolhaClientePdv=='false') || pdv.movimentacao.pessoa">
@@ -32,7 +29,7 @@
 	   
 	         <div ng-show="step==0">
 			   <label class="text-muted"><i class="fa fa-user"></i> Cliente</label>
-			   <auto-complete-object id-input="'cliente-venda'" auto-show-busca="!pdv.id" auto-focus="true" use-cache="true" extra-class="'input-lg'" ng-change="getProdutosSugeridosByCliente(pdv.movimentacao.pessoa)" inline="true"  tipo="'select'" label-cad="'Cadastrar novo Cliente'" place-holder="'Primeiro, digite o nome do cliente'"  object-op="'cliente'" querys="" label="'nome'" ng-model="pdv.movimentacao.pessoa" />
+			   <auto-complete-object id-input="'cliente-venda'" auto-show-busca="!pdv.id" use-cache="true" extra-class="'input-lg'" ng-change="getProdutosSugeridosByCliente(pdv.movimentacao.pessoa)" inline="true"  tipo="'select'" label-cad="'Cadastrar novo Cliente'" place-holder="'Primeiro, digite o nome do cliente'"  object-op="'cliente'" querys="" label="'nome'" ng-model="pdv.movimentacao.pessoa" />
 	        </div>
 	   
 		 <div  ng-show="step==1">

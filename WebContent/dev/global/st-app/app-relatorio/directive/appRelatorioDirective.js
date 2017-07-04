@@ -304,6 +304,10 @@
 			controller:function($scope,movUtil){
 
 				$scope.$on("changePeriod",getBalanco);
+				
+				//Período
+				$scope.de = $scope.de || "1900-10-05";
+				$scope.ate = $scope.ate || "3000-10-05";
 
 				function getBalanco(){
 

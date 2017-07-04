@@ -16,10 +16,16 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 		$rootScope.usuarioSistema = $cookieStore.get("usuarioSistema");
 
 	$scope.logar = function(login,lembrarSenha){
+		
+		/*
 	
 		///Se não for informado login.empresa, login.empresa assume o valor de login.usuario
 		if($scope.showEmpresa==false)
 			login.empresa = login.usuario;
+			
+			*/
+		
+		login.empresa = login.usuario;
 
 		$scope.carregando=true;
 		loginUtil.logar(login,lembrarSenha,function(){

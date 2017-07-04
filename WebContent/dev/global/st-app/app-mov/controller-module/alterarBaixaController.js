@@ -17,8 +17,8 @@
 
 		vm.confirmar = function(){
 			
-			var data = vm.data;
-			var valor = vm.valor;
+			var data = vm.dataPagamento;
+			var valor = vm.valorMov;
 			var formaPagamento = vm.formaPagamento;
 
 			var dataBaixa = dateUtil.getDate(data);

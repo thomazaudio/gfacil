@@ -1,9 +1,6 @@
 <meta charset="UTF-8" />
 <br>
-
-<p class="only-mobile col-lg-12">Olá <strong>{{usuarioSistema.nome}}!</strong></p>
-
-<div class="col-lg-9 col-xs-12">
+<div class="col-lg-12 col-xs-12">
 	<div class="panel panel-default">
 	    <div class="panel-heading ">
 	     <h3 class="text-muted panel-title"> <strong><i class="fa fa-lightbulb-o" aria-hidden="true"></i>  O que você deseja fazer?</strong></h3>
@@ -11,21 +8,35 @@
 	    <div class="panel-body" style="min-height:139px">
 	    
 	        <div class="col-lg-4 col-xs-12"  style="padding:12px;">
-				<a href="#/produto" class="btn btn-block btn-default btn-lg" style="border-color:#4aba58">
-					<i class="fa fa-list fa-2x" style="font-size: 3em;"></i><br>  Verificar Estoque  
+				<a href="#/produto" class="btn btn-block btn-default btn-lg" style="color:rgba(86, 85, 85, 0.85);">
+					<i class="fa fa-list fa-2x" style="font-size: 3em;color:#4aba58;"></i><br>  Verificar Estoque  
+					<br>
+					<label class="text-muted" style="font-size:12px;"><i class="fa fa-info-circle"></i>
+					   Verifique  seu estoque real
+					</label>
 				</a>
+				
 			</div>
 				
 	    
 	        <div class="col-lg-4 col-xs-12"  style="padding:12px;">
-				<a ng-click="atualizarEstoque()" class="btn btn-block btn-default btn-lg"  style="border-color:#4aba58">
-					<i class="fa fa-truck fa-2x" style="font-size: 3em;"></i><br> Entrada de mercadoria  
+				<a ng-click="atualizarEstoque()" class="btn btn-block btn-default btn-lg"  style="color:rgba(86, 85, 85, 0.85);">
+					<i class="fa fa-truck fa-2x" style="font-size: 3em;color:#4aba58;"></i><br> Entrada de mercadoria  
+					<br>
+					<label class="text-muted" style="font-size:12px;"><i class="fa fa-info-circle"></i>
+					   Lance a carga do dia
+					</label>
 				</a>
+				
 			</div>
 			
 			<div class="col-lg-4 col-xs-12"  style="padding:12px;">
-				<a ng-click="novaVenda()" class="btn btn-block btn-default btn-lg"   style="border-color:#4aba58">
-					 <i class="fa fa-plus fa-2x"  style="font-size: 3em;" ></i><br>Efetuar Nova Venda
+				<a ng-click="novaVenda()" class="btn btn-block btn-default btn-lg"   style="color:rgba(86, 85, 85, 0.85);">
+					 <i class="fa fa-cart-plus fa-2x"  style="font-size: 3em;color:#4aba58;" ></i><br>Efetuar Nova Venda
+					 <br>
+					 <label class="text-muted" style="font-size:12px;"><i class="fa fa-info-circle"></i>
+					   Comece a vender!
+					</label>
 				</a>
 			</div>
 	    
@@ -34,20 +45,11 @@
 	</div>
 </div>
 
-<div class="col-lg-3 col-xs-12">
-	<div class="panel panel-default" >
-	    <div class="panel-heading">
-	      <h3 class="text-muted panel-title"> <strong><i class="fa fa-balance-scale" aria-hidden="true"></i> Saldo hoje</strong></h3>
-	    </div>
-	    <div class="panel-body text-center" style="height:139px">
-	      <label ng-show="false" id="saldo-geral" value="{{(receitas-despesas)}}"></label>
-	      <label ng-model="saldoGeral" style="font-size:32px;color:var(--secondary-color);margin-bottom:0px;" ng-style="(receitas-despesas)<0?{'color':'red'}:{}"><strong class="text-muted" style="font-size:22px;">R$</strong> {{receitas-despesas|number:2}}</label>
-	      <br>
-	      <label class="text-muted">Recebimentos: <strong class="text-muted" >R$</strong> <strong style="color:var(--secondary-color);"> {{receitas|number:2}}</strong></label>
-	      <label class="text-muted">Pagamentos: <strong class="text-muted" >R$</strong> <strong style="color:red;"> {{despesas|number:2}}</strong></label>
-	      <button ng-click="atualizar()" class="btn btn-default btn-block" style="height:32px;">Atualizar <i class="fa fa-refresh" ng-class="{'faa-spin animated':carregandoSaldo==true}"></i></button>
-	    </div>
-	</div>
-</div>
+<!-- Balanço -->
+<st-collapse-panel class="col-lg-12" ng-if="config.confs.itensRelatorio.indexOf('balanco')!=-1"  icone="'balance-scale'" show="true" titulo="'Balanço'">
+			<component-balanco  id="component-balanco-inicio"   ></component-balanco>
+</st-collapse-panel>
+
+
 
 

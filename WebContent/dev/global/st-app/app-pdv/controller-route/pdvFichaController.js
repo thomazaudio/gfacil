@@ -47,6 +47,12 @@ angular.module("adm").controller("pdvFichaController",function(anchorScroll,cach
 	
 	$scope.$watch("pdv.movimentacao.pessoa", function(){
 		
+		
+		console.log("Mudou pessoa!!!");
+		
+		if(!$scope.pdv.movimentacao.pessoa)
+			return;
+		
 		lrUtil.getInfoEmprestimos($scope.pdv.movimentacao.pessoa, function(emprestimo){
 			
 			$scope.quantidadeEmbalagemReceber = emprestimo.quantidadeReceber;
@@ -109,8 +115,7 @@ angular.module("adm").controller("pdvFichaController",function(anchorScroll,cach
 			return;
 		}
 		
-		
-		
+
 		
 		var pdv = $scope.pdv;
 

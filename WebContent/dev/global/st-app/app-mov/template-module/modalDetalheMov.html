@@ -21,44 +21,12 @@
 		<div class="col-lg-4">
 			<div class="form-group">
 				<label class="text-muted text-small">Categoria (Opcional)</label>
-				<auto-complete-object show-results-on-focus="true" inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova descrição'" place-holder="placeHolderCategoria"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:vm.objetoDescricao}" ng-model="vm.mov.categoria" ></auto-complete-object>
+				<auto-complete-object  place-holder="'Ex: DESPESAS COM COMBUSTÍVEL'" show-results-on-focus="true" inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova descrição'" place-holder="placeHolderCategoria"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:vm.objetoDescricao}" ng-model="vm.mov.categoria" ></auto-complete-object>
 			</div>
 	    </div>
 	    
-	    <div class="form-group col-lg-4">
-	       <label class="text-muted text-small">Forma de pagamento (Opcional)</label>
-	       <auto-complete-object inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova forma de pagamento'" place-holder="'Digite a forma de pagamento'"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'forma_pagamento'}" ng-model="vm.mov.formaPagamento" ></auto-complete-object>
-	     </div>
-				
+	  
 		
-		<div class="col-lg-3">
-			<div class="form-group">
-			<label class="text-muted text-small">Data de Vencimento</label>
-			<input    st-input tipo="data" ng-model="vm.mov.data" class="form-control alert-info "/>
-			</div>
-		</div>
-		
-	
-		<div ng-show="!mov.id && config.confs.movimentacoesShowModoRepeticao=='true'" class="col-lg-3">
-		    <div class="form-group">
-			<label class="text-muted text-small">Repetir</label>
-			<select ng-model="vm.mov.modoRepeticao" class="form-control">
-			  <option value="0">Não</option>
-			  <option value="1">Diário</option>
-			  <option value="2">Semanal</option>
-			  <option value="3">Mensal</option>
-			</select>
-			</div>
-		</div>
-		
-		
-		
-		<div class="col-lg-3">
-			<div class="form-group">
-				<label class="text-muted text-small">Informar mais detalhes (Opcional)</label>
-				<input ng-disabled="vm.originalMov" ng-show="!vm.mov.pedidos || vm.mov.pedidos.length==0"  placeholder="{{vm.exmploDescricao}}" ng-model="vm.mov.descricao" class="form-control"/>
-			</div>
-	    </div>
 	
 	 <div class="col-lg-3">
 		    <label class="text-muted text-small">Pago</label>
@@ -66,6 +34,42 @@
 		    <button-baixa-mov label="'Pago'" mov="vm.mov"></button-baixa-mov>
 	 </div>
 	 <vertical-space></vertical-space>
+	 
+	 
+	 <st-collapse-panel class="col-lg-12" icone="'list'" show="false" titulo="'Outras opções'">
+	 
+		 <div class="col-lg-3">
+				<div class="form-group">
+				<label class="text-muted text-small">Data de Vencimento</label>
+				<input    st-input tipo="data" ng-model="vm.mov.data" class="form-control alert-info "/>
+				</div>
+		  </div>
+		
+		  <div class="col-lg-3">
+				<div class="form-group">
+					<label class="text-muted text-small">Informar mais detalhes (Opcional)</label>
+					<input ng-disabled="vm.originalMov" ng-show="!vm.mov.pedidos || vm.mov.pedidos.length==0"  placeholder="{{vm.exmploDescricao}}" ng-model="vm.mov.descricao" class="form-control"/>
+				</div>
+		    </div>
+		    
+		    <div ng-show="!mov.id && config.confs.movimentacoesShowModoRepeticao=='true'" class="col-lg-3">
+			    <div class="form-group">
+				<label class="text-muted text-small">Repetir</label>
+				<select ng-model="vm.mov.modoRepeticao" class="form-control">
+				  <option value="0">Não</option>
+				  <option value="1">Diário</option>
+				  <option value="2">Semanal</option>
+				  <option value="3">Mensal</option>
+				</select>
+				</div>
+			</div>
+			
+		<div class="form-group col-lg-4">
+	       <label class="text-muted text-small">Forma de pagamento (Opcional)</label>
+	       <auto-complete-object inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova forma de pagamento'" place-holder="'Digite a forma de pagamento'"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'forma_pagamento'}" ng-model="vm.mov.formaPagamento" ></auto-complete-object>
+	     </div>
+	 </st-collapse-panel>
+	 
 	 
 	<!-- Parcelamento da movimentação --> 
 	<div ng-show="!vm.mov.originalMov && (vm.mov.modoRepeticao==0 || !vm.mov.modoRepeticao) && config.confs.movimentacoesShowParcelamento=='true'">

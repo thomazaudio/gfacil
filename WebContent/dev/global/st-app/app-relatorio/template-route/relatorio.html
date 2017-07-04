@@ -5,12 +5,9 @@
            <label class="text-muted"><i class="fa fa-calendar"></i> Escolha um período para geração do relatório: </label>
            <st-period id="st-period-balanco"  sync-period="true" submit="atualizarDados" de="dataDe"  ate="dataAte"></st-period>
         </div>  
-		<div class="col-lg-6">
+		<div class="col-lg-6" ng-show="false" >
 		   <br>
 		   <div class="input-group" style="margin-top:5px;">
-	          <span class="input-group-btn">
-	            <button st-print id-print="print-balanco"  class="btn btn-default" style="border-radius:3px!important"><i  class="fa fa-print" aria-hidden="true"></i> Imprimir / Salvar PDF2</button>
-	          </span>
 	          <span class="input-group-btn">
 	              <button-open-config style="height:42px;" active-tab="2" extra-class="'btn-config-relatorio'" label="'Alterar Composição'"></button-open-config>
 	          </span>
@@ -22,7 +19,7 @@
 		<nav mfb-menu position="br" effect="zoomin" 
 		     active-icon="fa fa-edit" resting-icon="fa fa-plus"
 		     toggling-method="click">
-		     <a mfb-button   main-action="atualizarDados" icon="fa fa-refresh" label="Atualizar dados"></a>
+		     <a mfb-button   button-open-config icon="fa fa-refresh" label="Alterar composição"></a>
 		     <a mfb-button id-print="print-balanco"  main-action="imprimirRelatorio" icon="fa fa-print" label="Imprimir / Salvar"></a>
 		</nav>
 </div>

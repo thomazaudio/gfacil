@@ -64,10 +64,9 @@
 
 							}
 							
-							$timeout(_getProxTest, 300);
-
+							$scope.getProxTest =  _getProxTest;
 							
-
+							$timeout(_getProxTest, 300);
 
 							$rootScope.voltar = function(){
 

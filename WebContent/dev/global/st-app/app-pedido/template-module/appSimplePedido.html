@@ -1,7 +1,5 @@
 <meta charset="UTF-8" />
-                
-
-	<div class="input-group">
+    <div class="input-group">
 		<input   ng-model-options="{debounce: 500}"  ng-model="nomeProduto" ng-change="buscaProduto(nomeProduto)" class="form-control input-busca-map input-primary" placeholder="{{attrBuscaProduto=='nome'?'Buscar pelo nome do produto':'Buscar pelo código de barras'}}"/>
 		<span   ng-show="nomeProduto" class="input-group-btn"><button type="button" ng-click="nomeProduto='';buscaProduto('')" class="btn btn-default btn-busca-map-limpa text-muted input-primary">x</button></span>  
 	    <span class="input-group-btn">

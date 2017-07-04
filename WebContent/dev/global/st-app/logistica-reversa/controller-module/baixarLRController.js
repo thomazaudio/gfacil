@@ -7,7 +7,7 @@
 		var vm = this;
 		vm.pessoa = pessoa;
 		vm.emprestimo = emprestimo;
-		vm.quantidadeBaixar = emprestimo.quantidadeReceber;
+	
 
 		vm.salvarEmp= function(){
 			
@@ -16,6 +16,11 @@
 
 			if(quantidadeBaixar > (vm.emprestimo.quantidadeReceber)){
 				stUtil.showMessage("","A quantidade não deve ser maior do que o restante a receber!","danger");
+				return;
+			}
+			
+			if(!quantidadeBaixar || quantidadeBaixar==0){
+				stUtil.showMessage("","Informe uma quantidade válida","danger");
 				return;
 			}
 

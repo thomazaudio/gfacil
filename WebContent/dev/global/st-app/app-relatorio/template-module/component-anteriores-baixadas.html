@@ -1,6 +1,12 @@
 <meta charset="UTF-8" />
 <div ng-if="lancamentosAnteriores">
-	<div class="col-lg-12"><label class="text-muted"><i class="fa fa-exchange"></i> Lançamentos anteriores baixados: <strong>R$ {{totalLancamentosAnteriores|number:2}}</strong> </label></div>
+	<div class="col-lg-12"><label class="text-muted"><i class="fa fa-exchange"></i> 
+	
+	Recebimentos lançados antes de <strong>{{de|date:'dd/MM/yyyy'}}</strong> que foram pagos entre <strong>{{de|date:'dd/MM/yyyy'}}</strong> e 
+	<strong>{{ate|date:'dd/MM/yyyy'}}</strong>
+	<strong>
+	
+	 - R$ {{totalLancamentosAnteriores|number:2}}</strong> </label></div>
 	   <movs-read-only  movs="lancamentosAnteriores" titulo="'Receitas'" sub-titulo="'Receitas'" ></movs-read-only>
 </div>
 <div class="col-lg-12" ng-show="!lancamentosAnteriores">

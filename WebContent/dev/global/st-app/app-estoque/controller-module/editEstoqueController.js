@@ -14,6 +14,12 @@
 			modal.$dismiss("");
 
 		}
+		
+		vm.novaEntradaMercadoria = function(){
+			
+			$modalInstance.close();
+			estoqueUtil.openEntradaMercadoria();
+		}
 
 		vm.confirmar = function(){
 

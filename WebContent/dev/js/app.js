@@ -5,14 +5,8 @@ var app  = angular.module("adm",["angular-growl","angularSpinner","ngRoute","ds.
 app.run(['$rootScope', '$route','$modalStack','syncCachePost','$localStorage','$http','config','$location','$cookieStore','st','$filter','filialUtil',"stUtil","$templateCache", function($rootScope, $route,$modalStack, syncCachePost,$localStorage,$http,config,$location,$cookieStore,st,$filter,filialUtil,stUtil,$templateCache) {
 	
 	
-	$http.get("global/st-app/st-modal/template-module/modalContent.html").success(function(data){
-		$templateCache.put("modalContent.html", data);
-	});
 	
-
-	$http.get("global/st-app/app-autocomplete/template-module/buscaAutoCompleteObject.html").success(function(data){
-		$templateCache.put("buscaAutoCompleteObject.html", data);
-	});
+	config.cacheTemplates();
 	
 	
 	$rootScope.$on("modal.closing", function(){
@@ -21,9 +15,7 @@ app.run(['$rootScope', '$route','$modalStack','syncCachePost','$localStorage','$
 		
 	});
 	
-	//Sincronização de cachePost
-	syncCachePost.start();
-	
+
 	
 	Chart.moneyFormat= function(value) {
 		return $filter('number')(value,2);

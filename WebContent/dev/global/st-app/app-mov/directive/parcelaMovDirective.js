@@ -7,7 +7,7 @@
 
 		return{
 
-			templateUrl:'global/st-app/app-mov/template-module/parcelaMov.html',
+			templateUrl:'parcelaMov.html',
 			scope:{
 
 				originalMov:"=",//Movimentação de origem

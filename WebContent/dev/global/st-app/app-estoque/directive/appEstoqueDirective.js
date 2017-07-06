@@ -7,7 +7,7 @@
 	.directive('buttonEstoque', function (movUtil,stUtil,stService,$filter,$uibModal,estoqueUtil) {
 		return {
 			restrict: 'E',
-			templateUrl:'global/st-app/app-estoque/template-module/buttonEstoque.html',
+			templateUrl:'buttonEstoque.html',
 			scope:{
 
 				produto:"=",
@@ -27,9 +27,14 @@
 
 					estoqueUtil.getEstoqueProduto(produto,function(prod){
 
+						if(prod){
 						produto = prod;
-						$scope.carregandoEstoque = false;
+					
+						}else{
+							stUtil.showMessage("","Verifique sua conexão com a internet!","danger");
+						}
 
+						$scope.carregandoEstoque = false;
 					});
 				}
 

@@ -318,8 +318,6 @@
 
 		}
 
-	
-		
 		return {
 
 			getCountObs: _getCountObs,

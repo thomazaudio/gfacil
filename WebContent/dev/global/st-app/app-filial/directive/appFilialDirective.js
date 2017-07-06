@@ -19,7 +19,7 @@
 	.directive("alertFilial",function(filialUtil){
 
 		return{
-			templateUrl:'global/st-app/app-filial/template/alertFilial.html',
+			templateUrl:'alertFilial.html',
 			scope:{
 				label:"="
 			},

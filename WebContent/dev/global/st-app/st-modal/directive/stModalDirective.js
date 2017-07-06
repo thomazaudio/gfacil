@@ -57,7 +57,7 @@
 
 		return {
 
-			templateUrl:'global/st-app/st-modal/template-module/stModal.html',
+			templateUrl:'stModal.html',
 			restrict:"AE",
 			transclude:true,
 			scope:{

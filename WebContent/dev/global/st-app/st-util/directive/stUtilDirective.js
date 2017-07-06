@@ -1013,7 +1013,7 @@
 
 		return{
 			restrict:"E",
-			templateUrl:"global/st-app/st-util/template-module/stToggle.html",
+			templateUrl:"stToggle.html",
 			scope:{
 
 				ngModel:"=",

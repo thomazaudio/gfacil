@@ -126,7 +126,7 @@
 
 			}).error(function(){
 
-				callback(null);
+				callback();
 				
 				
 			});

@@ -17,7 +17,6 @@
 	      <label><label class="text-muted"><i class="fa fa-list"></i> Pedidos: </label> 
 		  <itens-pedido pedidos="pdv.movimentacao.pedidos"></itens-pedido> 
 		  <p class="text-small">Total: <strong>R$ {{getTotalPedidos(pdv.movimentacao.pedidos)|number:2}}</strong></p>
-	      <a ng-click="editarVenda(pdv,this)" ><i ng-if="carregaEdit==true" class="fa fa-spinner faa-spin animated" aria-hidden="true"></i> Editar <i class="fa fa-edit"></i></a>
 	  </div>
 	  
 	  <div class="col-lg-12">

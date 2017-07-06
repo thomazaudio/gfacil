@@ -49,24 +49,6 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1493901351096</id>
-			<name>WebContent/dist</name>
-			<type>14</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-*</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1493901351176</id>
-			<name>WebContent/dist</name>
-			<type>14</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-*</arguments>
-			</matcher>
-		</filter>
-		<filter>
 			<id>1489410248172</id>
 			<name>WebContent/node_modules</name>
 			<type>14</type>

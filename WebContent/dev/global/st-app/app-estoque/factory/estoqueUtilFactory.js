@@ -239,8 +239,14 @@
 						callback(balanco);
 					}
 
+				}).error(function(){
+					
+					callback();
 				})
 
+			}).error(function(){
+				
+				callback();
 			});
 
 		}

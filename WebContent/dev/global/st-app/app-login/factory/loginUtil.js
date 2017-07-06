@@ -3,7 +3,7 @@
 
 	angular.module("adm") 
 
-	.factory("loginUtil",function($location,cachePost,cacheGet,stUtil,$localStorage,$rootScope,$cookieStore,stService,$route,loginService,$timeout,st,configUtil,filialUtil){
+	.factory("loginUtil",function($location,cachePost,cacheGet,stUtil,$localStorage,$rootScope,$cookieStore,stService,$route,loginService,$timeout,st,configUtil,filialUtil, syncCachePost){
 
 		var _logOut = function() {
 			delete $rootScope.user;
@@ -83,8 +83,13 @@
 						}
 
 				});
+				
+				
+				//Sincronização de cachePost
+				syncCachePost.start();
 
 				callback(data);
+				
 
 
 			}).error(function(data,erro){

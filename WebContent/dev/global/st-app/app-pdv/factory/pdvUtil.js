@@ -12,7 +12,7 @@
 
 			$uibModal.open({
 				animation: true,
-				templateUrl:'global/st-app/app-pdv/template-module/pdv-ficha.html',
+				templateUrl:'pdv-ficha.html',
 				controller:"pdvFichaController",
 				size:"lg",
 				resolve: {

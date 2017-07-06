@@ -3,7 +3,7 @@
 
 	angular.module("adm") 
 
-	.factory("syncCachePost",function($localStorage,$interval,stService,$rootScope,$cookieStore,stUtil){
+	.factory("syncCachePost",function($localStorage, $interval, stService, $rootScope, $cookieStore, stUtil, onlineStatus){
 
 		var _start = function(){
 
@@ -20,11 +20,14 @@
 
 					faltaExecutar--;
 
+					/*
 					if(data){
 
 						var item = data.item;
 						$localStorage.cachePost[i].id = item.id;
 					}
+					
+					*/
 
 					delete $localStorage.cachePost[i].objeto;
 
@@ -51,6 +54,11 @@
 			}
 
 			function sync(){
+				
+				console.log("online_status = "+onlineStatus.isOnline());
+				
+				if(onlineStatus.isOnline()==false)
+					return;
 
 				//Verifica se existe cache em execução
 				if(faltaExecutar<=0){
@@ -75,7 +83,6 @@
 					for(var i in $localStorage.cachePost){
 
 						if($localStorage.cachePost[i]  && originalLogin && $localStorage.cachePost[i].objeto && originalLogin==$localStorage.cachePost[i].login){
-
 
 							execute(i);
 						}

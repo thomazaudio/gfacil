@@ -35,7 +35,7 @@
 				autoShowBusca:"="//Mostra a busca automaticamente
 			},
 
-			templateUrl:'global/st-app/app-autocomplete/template-module/autoCompleteObject.html',
+			templateUrl:'autoCompleteObject.html',
 
 			link: function($scope, element, attrs,ctrl){
 
@@ -121,7 +121,7 @@
 
 					//Sem Cache (Busca remota)	
 					//!$scope.useCache || $scope.useCache==false
-					if(true)	{
+					if(!$scope.useCache || $scope.useCache==false)	{
 
 						var query = label+" like '%"+valueLabel+"%'";
 						var qs = [];

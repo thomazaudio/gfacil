@@ -50,6 +50,11 @@
 						  $modalInstance.close();
 						   callback(vm.pedido);
 					}
+					
+					vm.cancelAction = function(){
+						  $modalInstance.close();
+						   callback();
+					}
 				}
 			});	
 			

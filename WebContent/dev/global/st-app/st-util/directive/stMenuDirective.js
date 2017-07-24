@@ -12,48 +12,46 @@
 
 				itens: "="
 			},
-
 			controller:function($scope, $rootScope, $route, $filter, anchorScroll, loginUtil, $location, Fullscreen, $localStorage, stUtil, pdvUtil, estoqueUtil, movUtil){
 
-				 $rootScope.$on('$routeChangeSuccess', function() {
-					   
-						var path;
-							
-						if($route.current.$$route)
-						   path = 	$route.current.$$route.originalPath;
-						
-						else {
-							$location.path("login");
-							return;
-						}
-					   
-						if(path=='/login')
-							$scope.showMenu = false;
-						else
-							$scope.showMenu = true;
-						
-						$scope.clickItemMenu(path);
-							    
-				    });
-				 
-				 
-				 $scope.cadDespesa = function(){
+				$rootScope.$on('$routeChangeSuccess', function() {
 
-						movUtil.openMov({tipo:1},null,function(mov){
+					var path;
 
-							var mensagem = "Despesa no valor de R$ "+$filter("number")(mov.valor,2)+" cadastrada com sucesso!";
+					if($route.current.$$route)
+						path = 	$route.current.$$route.originalPath;
 
-							stUtil.showMessage("",mensagem,"info");
-
-							$route.reload();
-
-						});
+					else {
+						$location.path("login");
+						return;
 					}
 
+					if(path=='/login')
+						$scope.showMenu = false;
+					else
+						$scope.showMenu = true;
+
+					$scope.clickItemMenu(path);
+
+				});
+
+				$scope.cadDespesa = function(){
+
+					movUtil.openMov({tipo:1},null,function(mov){
+
+						var mensagem = "Despesa no valor de R$ "+$filter("number")(mov.valor,2)+" cadastrada com sucesso!";
+
+						stUtil.showMessage("",mensagem,"info");
+
+						$route.reload();
+
+					});
+				}
+
 				$scope.clickItemMenu  = function(path){
-					
+
 					path = path.replace("/","");
-					
+
 					var indexItem = stUtil.buscaOb( $scope.itens, path,"path");
 					var item = $scope.itens[indexItem];
 
@@ -77,7 +75,6 @@
 
 				}
 
-
 				$rootScope.absUrl = $location.$$absUrl;
 
 				$scope.enableFullScreen=function(){
@@ -94,22 +91,20 @@
 					$rootScope.menuCollapsed = ! $rootScope.menuCollapsed;
 				}
 
-
 				if(!$rootScope.usuarioSistema){
 
 					$rootScope.usuarioSistema = $localStorage.usuarioSistema;
 				}
 
 				$scope.atualizarEstoque = function(){
-					
+
 					estoqueUtil.openEntradaMercadoria();
 				}
 
 				$scope.novaVenda = function(){
 
 					pdvUtil.openVendaInModal();
-					
-					console.log("Nova venda!!!");
+
 				}
 
 				//anchor
@@ -130,7 +125,6 @@
 					loginUtil.logOut();
 
 				}
-
 
 			}	
 		}

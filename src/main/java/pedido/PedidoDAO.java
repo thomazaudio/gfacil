@@ -9,10 +9,7 @@ public class PedidoDAO  extends GenericDAO<Pedido>{
 
 	@Override
 	public Pedido addOrUpdate(Pedido item) {
-		
-		
-		System.out.println("----Chamou DAO de Pedidos.");
-		
+	
 		// TODO Auto-generated method stub
 		return super.addOrUpdate(item);
 	}

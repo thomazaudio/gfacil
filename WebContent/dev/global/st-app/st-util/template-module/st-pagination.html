@@ -1,7 +1,5 @@
 <meta charset="UTF-8" />
-
 <footer ng-hide="$parent.objetos.length==0 && pagina==0" class="st-pagination">
- 
 <!-- Paginação -->
 		<div  class="col-lg-6 filter-map filter-map-pagination">
 			<div class="st-pagination">
@@ -12,7 +10,7 @@
 				   <span class="text-muted-2"><a  ng-disabled="pagina==0" ng-click="setPagina(pagina -1)"  class="btn"><i class="text-muted-2 fa fa-angle-left fa-2x" aria-hidden="true"></i></a></span>
 				   <strong><span class="text-muted-2">Página {{pagina +1}}</span></strong>
 				   <span class="text-muted-2"><a  ng-disabled="! ( ($parent.objetos.length > 0 ) && ( ((pagina+1) * max) < $parent.countAll ))" ng-click="setPagina(pagina +1)" class="btn"><i class="text-muted-2 fa fa-angle-right fa-2x" aria-hidden="true"></i></a></span>
-				   <span class="text-muted-2"><a ng-click="atualizar()" class="text-muted-2"><i class="fa fa-refresh"></i></a></span>
+				   <span class="text-muted-2"><a ng-click="setPagina(pagina)"  class="text-muted-2"><i class="fa fa-refresh"></i></a></span>
 				   </p>
 			   </div>
 			 </div>

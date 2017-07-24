@@ -11,6 +11,7 @@
 			scope:{
 
 				produto:"=",
+				hideButtons:"=",
 				classLabel:"=",
 				autoLoad:"=",//carregamento automatico da quantidade, padrão = true
 

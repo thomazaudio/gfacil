@@ -2,6 +2,13 @@ angular.module("site").controller("cadastroController", function($scope, stServi
 	
 	
 	$scope.lead =  $localStorage.lead || {};
+	$scope.step=0;
+	
+	$scope.responder = function(){
+		
+		$scope.step++;
+		
+	}
 	
 	 $scope.cadastrarLead = function(lead){
 		 

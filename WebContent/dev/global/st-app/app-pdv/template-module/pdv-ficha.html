@@ -19,21 +19,18 @@
 	        <vertical-space></vertical-space>
 	        
 	   </div>
-	   <div class="row only-desktop col-lg-12">
+	   <div class="row col-lg-12">
 	         <p class="text-muted">Total: R$  <strong style="color:var(--secondary-color);font-size:22px">{{totalPdv||0|number:2}}</strong></p>
 	    </div>
 	  
-	  
-	   
 	   <div class="panel-body">
 	   
 	         <div ng-show="step==0">
 			   <label class="text-muted"><i class="fa fa-user"></i> Cliente</label>
-			   <auto-complete-object id-input="'cliente-venda'" auto-show-busca="!pdv.id" use-cache="true" extra-class="'input-lg'" ng-change="getProdutosSugeridosByCliente(pdv.movimentacao.pessoa)" inline="true"  tipo="'select'" label-cad="'Cadastrar novo Cliente'" place-holder="'Primeiro, digite o nome do cliente'"  object-op="'cliente'" querys="" label="'nome'" ng-model="pdv.movimentacao.pessoa" />
+			   <auto-complete-object id-input="'cliente-venda'" auto-show-busca="!pdv.id" use-cache="true" extra-class="'input-lg'" inline="true"  tipo="'select'" label-cad="'Cadastrar novo Cliente'" place-holder="'Primeiro, digite o nome do cliente'"  object-op="'cliente'" querys="" label="'nome'" ng-model="pdv.movimentacao.pessoa" />
 	        </div>
 	   
 		 <div  ng-show="step==1">
-		 		<p class="text-muted">Agora, defina os produtos a serem incluídos na venda</p>
 		        <app-simple-pedido pedidos="pdv.movimentacao.pedidos"></app-simple-pedido> 
 		 </div>
 	
@@ -109,8 +106,5 @@
 	
 <div class="col-lg-2 only-desktop"></div>	
 </modal-content>
-	
-
-
 
 	

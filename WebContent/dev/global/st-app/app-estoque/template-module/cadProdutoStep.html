@@ -15,11 +15,18 @@
 	   <div ng-show="step==1">
 		     <div class="form-group">
 		         <label>Informe o nome do produto</label>
-		         <input ng-model="produto.nome" placeholder="Ex: BATATA DOCE PREMIUM" class="form-control"/>
+		         <input ng-model="produto.nome" placeholder="Ex: BATATA DOCE ROXA SACO" class="form-control"/>
 		     </div>
 	   </div>
 	   
 	   <div ng-show="step==2">
+		     <div class="form-group">
+		         <label>Informe um atalho para o produto</label>
+		         <input  ng-model="produto.tag" placeholder="Ex: ROXA SC"  class="form-control"/>
+		     </div>
+	   </div>
+	   
+	   <div ng-show="step==3">
 		     <div class="form-group">
 		         <label>Qual é a quantidade em estoque do produto <strong>{{produto.nome}}?</strong></label>
 		         <input type="tel" ng-model="produto.quantidade"  class="form-control"/>

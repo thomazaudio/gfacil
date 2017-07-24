@@ -33,9 +33,10 @@
 				
 				$scope.openDetalhePedido = function(pedido){
 					
-					pedidoUtil.openDetalhePedido(pedido, function(){
+					pedidoUtil.openDetalhePedido(pedido, function(res){
 						
-						
+						$scope.addPedido(res);
+					
 					});
 				}
 

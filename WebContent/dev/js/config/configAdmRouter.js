@@ -259,9 +259,6 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 		return {
 			'request': function(config) {
 			
-				 console.log("Nova requisição: ");
-				 console.log(config);
-
 				if(config.url.indexOf("projecao/execute-query")==-1 && config.url.indexOf("projecao/get-projecoes")==-1)
 					$rootScope.loadingSpinner=true;
 

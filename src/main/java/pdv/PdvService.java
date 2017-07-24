@@ -1,9 +1,13 @@
 package pdv;
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import cliente.Cliente;
+import cliente.ClienteService;
 import logisticareversa.LogisticaReversa;
 import logisticareversa.LogisticaReversaService;
 import model.GenericService;
@@ -25,6 +29,9 @@ public class PdvService extends GenericService<Pdv>{
 
 	@Autowired
 	private PdvDAO pdvFichaDAO;
+	
+	@Autowired
+	private ClienteService clienteService;
 
 
 
@@ -90,6 +97,9 @@ public class PdvService extends GenericService<Pdv>{
 			p.setIdFilial(idFilial);
 
 		}
+		
+		//Atualiza os produtos sugeridos para o cliente
+	    clienteService.atualizarProdutosSugeridos(item.getMovimentacao().getPessoa().getId(), new Cliente().montaSugestoesProdutos(pds));
 
 		super.addOrUpdate(item);
 

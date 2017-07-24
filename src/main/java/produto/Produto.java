@@ -28,6 +28,9 @@ public  class Produto extends CrudClass {
 
 	@JsonView(util.Views.Public.class)
 	private int naoImprimir;
+	
+	@JsonView(util.Views.Public.class)
+	private String tag;
 
 	@JsonView(util.Views.Public.class)
 	private String nome;

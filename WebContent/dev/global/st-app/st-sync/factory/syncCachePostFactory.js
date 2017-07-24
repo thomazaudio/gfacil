@@ -29,7 +29,7 @@
 					
 					*/
 
-					delete $localStorage.cachePost[i].objeto;
+					 $localStorage.cachePost[i] = undefined;
 
 
 				}).error(function(){
@@ -52,10 +52,13 @@
 				return count;
 
 			}
+			
+			
 
 			function sync(){
 				
-				console.log("online_status = "+onlineStatus.isOnline());
+				console.log("cachePost: ");
+				console.log($localStorage.cachePost);
 				
 				if(onlineStatus.isOnline()==false)
 					return;

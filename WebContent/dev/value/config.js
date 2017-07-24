@@ -47,7 +47,8 @@ angular.module('adm').factory('config',function($location, $rootScope, $http, $t
 		     {key: "buttonBaixaMov.html", url:"global/st-app/app-mov/template-module/buttonBaixaMov.html"},
 		     {key: "stModal.html", url: "global/st-app/st-modal/template-module/stModal.html"},
 		     {key: "vendas.html", url: "global/st-app/app-pdv/template-route/vendas.html"},
-		     {key: "stModal.html", url:"global/st-app/st-modal/template-module/stModal.html"}
+		     {key: "stModal.html", url:"global/st-app/st-modal/template-module/stModal.html"},
+		     {key:"filialList.html", url:"global/st-app/app-filial/template/filialList.html"}
 		              
 		];
 		

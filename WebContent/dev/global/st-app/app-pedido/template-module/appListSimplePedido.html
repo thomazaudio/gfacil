@@ -16,22 +16,24 @@
 
  <div   ng-repeat="r in itens" class="panel" ng-class="r.quantidade==0||!r.quantidade ? 'panel-disable' : 'panel-secondary'" >
 	<div  class="panel-heading" style="padding: 2px 2px 0px 2px;">
-		 <label  class="pull-left">
-		     <destaque-texto  texto="r.produto.nome|uppercase" busca="busca"></destaque-texto>
+		<label  class="pull-left">
+		     <destaque-texto  style="font-size:17px;" texto="r.produto.nome|uppercase" busca="busca"></destaque-texto>
 		    <br class="only-mobile">
 		   <label class="text-small" ng-show="r.produto.quantidade!=null">(Estoque atual: {{r.produto.quantidade}} {{r.produto.uCom || 'uni'|lowercase}})</label>
-           <button-estoque auto-load="false" produto="r.produto"></button-estoque> 		   
-		   <br>
-		   <span class="text-small" ng-if="r.produto.codigoBarras">cód: <strong>{{r.produto.codigoBarras}}</strong></span>
-		   <span  class="text-small" ng-if="r.produto.historicoPrecoCompra.length>1" >preço de compra: R$ <strong>{{r.produto.historicoPrecoCompra.split(',')[r.produto.historicoPrecoCompra.split(',').length-1].split('@')[1]}}</strong></span>
-		   
-		 </label>
-		<label class="pull-right">
-		  <a ng-if="r.quantidade>0" ng-click="deletarPedido(r)" class="default" style="color:white;font-size:1.5em;"><i class="fa fa-trash-o"></i></a>
+           <button-estoque auto-load="false"  produto="r.produto"></button-estoque> 		   
+		</label>
+		<label class="pull-right"> 
+		  <a ng-click="openDetalhePedido(r)" class="btn-option-pedido"  ng-show="r.quantidade && r.quantidade>0" ><i class="fa fa-edit"></i></a>
+		  <a ng-click="openDetalhePedido(r)" class="btn-option-pedido" ng-show="!r.quantidade || r.quantidade==0" ><i class="fa fa-plus"></i></a>
+		  <a class="btn-option-pedido" ng-if="r.quantidade>0" ng-click="deletarPedido(r)" ><i class="fa fa-trash-o"></i></a>
 		</label>
 		<div class="row"></div>
+		<div ng-show="r.quantidade>0" class="row only-mobile">
+		     <label class="pull-left">Quantidade: <strong>{{r.quantidade}}</strong></label>
+		    <label class="pull-right">Valor unit: <strong>R$ {{r.valorUnitario |number:2}}</strong></label>
+		</div>
 	</div>
-	<div class="panel-body" style="padding: 0px 5px 0px 5px;">
+	<div class="panel-body only-desktop" style="padding: 0px 5px 0px 5px;">
 	    <vertical-space></vertical-space>
 		<div class="form-group" ng-class="{'col-xs-12':hideValorUnitario==true,'col-xs-6':!hideValorUnitario}">
 			<strong><label class="text-small text-muted">{{labelQuantidade||'Quantidade'}}</label></strong>

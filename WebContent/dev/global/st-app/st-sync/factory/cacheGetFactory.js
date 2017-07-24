@@ -97,6 +97,7 @@
 			//Limpa cache
 			_cleanAll("cliente");
 			_cleanAll("produto");
+			_cleanAll("tagsProduto");
 
 			//Cache de clientes e produtos para otimizar vendas
 			stService.getLikeMap("cliente",["disable=0"],0,0,'').success(function(clientes){
@@ -105,8 +106,20 @@
 
 				stService.getLikeMap("produto",["disable=0"],0,0,'').success(function(produtos){
 
-					_add("produto",produtos.itens);
-
+					var prods = produtos.itens;
+					_add("produto",prods);
+					
+				
+					//Cache de tags
+					var tags = [];
+					for(var i in prods){ 
+						
+						  if(prods[i].tag && tags.indexOf(prods[i].tag)==-1)
+						    tags.push(prods[i].tag);
+					}
+					
+					_add("tagsProduto",tags);
+					
 
 				});
 

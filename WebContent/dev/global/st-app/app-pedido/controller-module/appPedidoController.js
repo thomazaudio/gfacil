@@ -6,6 +6,8 @@
 	.controller("appSimplePedidoController",function($scope,stUtil,$rootScope,cacheGet,pedidoUtil,estoqueUtil,configUtil){
 
 		$scope.attrBuscaProduto = $scope.attrBuscaProduto || $rootScope.config.confs.attrBuscaProdutoInPdv ||'nome';
+		
+		$scope.tagsProduto = cacheGet.get("tagsProduto"); 
 
 		if($scope.modoAtEstoque==1){
 			$scope.fator = -1;
@@ -24,22 +26,28 @@
 			$scope.buscaProduto($scope.nomeProduto);
 		}
 
-		$scope.buscaProduto = function(nome){
+		$scope.buscaProduto = function(attrBuscaProduto, nome){
+			
+			$scope.resultadoBusca=null;
 
 			var ini = new Date().getTime();
 
-			var prods = cacheGet.get("produto",$scope.attrBuscaProduto,nome); 
+			var prods = cacheGet.get("produto",attrBuscaProduto, nome); 
 
 			var pedidos = 	pedidoUtil.mergeProdutoInPedidos(prods,$scope.pedidos);
 			pedidos = jlinq.from(pedidos)
 			// para ser case sensitive
-			.contains('produto.'+$scope.attrBuscaProduto, nome)
+			.contains('produto.'+attrBuscaProduto, nome)
 			.select();
-
+			
+		
 			if(pedidos.length>5)
 				pedidos.length=5;
 
 			$scope.resultadoBusca = pedidos;
+			
+			console.log("resultadoBusca: ");
+			console.log($scope.resultadoBusca);
 
 			var pedidosLast = angular.copy($scope.pedidos);
 
@@ -50,6 +58,10 @@
 		}
 
 		$scope.addPedido = function(pedido){
+			
+			console.log("Adicionar o pedido: ");
+			console.log(pedido);
+			
 			var pedidos = $scope.pedidos;
 
 			var posPedido = stUtil.buscaOb(pedidos,pedido.produto.id,"produto.id");

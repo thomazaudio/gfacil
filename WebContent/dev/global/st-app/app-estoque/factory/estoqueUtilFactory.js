@@ -28,9 +28,9 @@
 			});
 
 		}
-		
-		
-		
+
+
+
 		var _cadProdutoStep = function(produto, callback){
 
 			var _modalInstance =   $uibModal.open({
@@ -38,68 +38,83 @@
 				templateUrl:"global/st-app/app-estoque/template-module/cadProdutoStep.html",
 				size:'lg',
 				controller:function($scope, $modalInstance){
-					
+
 					$scope.produto = produto || {};
-					
+
+
+					$scope.cancelAction = function(){
+
+						if($scope.step==1){
+							$modalInstance.close();
+						}
+						else{
+							$scope.changeStep($scope.step-1);
+						}
+
+					}
+
 					$scope.cadastrarProduto = function(){
-						
-					
+
 						var produto = $scope.produto;
-						
-						console.log("Produto: ");
-						console.log(produto);
-						
-						if($scope.step==1 && (produto.setQuantidade!=false)){
-							$scope.changeStep(2);
+
+						if($scope.step!=3 && (produto.setQuantidade!=false)){
+							$scope.changeStep($scope.step+1);
 							return;
 						}
-						
+
 						$scope.salvando = true;
-						
+
 						stService.executePost("produto/add/", produto).success(function(data){
-							
+
 							var pedidoEntrada = {};
 							pedidoEntrada.produto = data.item;
 							pedidoEntrada.tipoEntrada=1;
 							pedidoEntrada.quantidade = $scope.produto.quantidade;
-							
+
 							stService.executePost("pedido/add/", pedidoEntrada).success(function(data){
-								
+
 								$scope.salvando = true;
 								$modalInstance.close();
 								callback(data.item.produto);
-								
+
 							});
-							
+
 						});
-						
-						
+
+
 					}
-                        
+
 					$scope.changeStep = function(step){
-						
+
 						$scope.step=step;
-						
+
 						var _infoModal = {};
-						
+
 						//Escolha de produtos
 						if(step==1){
 							_infoModal.titulo = "Nome do produto";
 							_infoModal.okActionLabel = "Avançar";
 							_infoModal.okActionIcon = "fa-angle-double-right";
 						}
+						
 						else if(step==2){
+							_infoModal.titulo = "Atalho";
+							_infoModal.okActionLabel  = "Avançar";
+							_infoModal.okActionIcon = "fa-angle-double-right";
+						}
+						
+						else if(step==3){
 							_infoModal.titulo = "Quantidade em estoque";
 							_infoModal.okActionLabel  = "Finalizar";
 							_infoModal.okActionIcon = "fa-check";
 						}
-						
+
 						$scope.infoModal = _infoModal;
-						
+
 					}
-					
+
 					$scope.changeStep(1);
-					
+
 
 				}
 
@@ -160,7 +175,7 @@
 		}
 
 		var _openProdutoInModal = function(produto,callback){
-			
+
 			//Cadastro de novo produto
 			if(!produto || !produto.id){
 				_cadProdutoStep(produto, callback);
@@ -172,10 +187,10 @@
 				templateUrl:'global/st-app/app-estoque/template-module/cadProdutoModal.html',
 				size:'lg',
 				controller:function($scope, nfeUtil, $modalInstance){
-					
+
 					$scope.produto = produto || {};
 					$scope.salvar = function(){
-						
+
 						$scope.salvando = true;
 						stService.save("produto",$scope.produto).success(function(data){
 
@@ -240,12 +255,12 @@
 					}
 
 				}).error(function(){
-					
+
 					callback();
 				})
 
 			}).error(function(){
-				
+
 				callback();
 			});
 

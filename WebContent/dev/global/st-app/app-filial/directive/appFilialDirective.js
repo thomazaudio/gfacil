@@ -6,7 +6,7 @@
 	.directive("filialList",function(filialUtil){
 
 		return{
-			templateUrl:'global/st-app/app-filial/template/filialList.html',
+			templateUrl:'filialList.html',
 			scope:{
 				inModal:"=",//Indica se está setada dentro de um modal (Para não charmar $route.reload())
 			},

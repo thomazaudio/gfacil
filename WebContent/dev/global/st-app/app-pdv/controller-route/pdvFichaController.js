@@ -1,8 +1,9 @@
 
 "use strict";
 (function(){
-	angular.module("adm").controller("pdvFichaController",function(anchorScroll,cacheGet,$location,$timeout,cachePost,$uibModal,pdvUtil,pedidoUtil,$rootScope,$scope,stService,pdv,stUtil,estoqueUtil,movUtil,$route,$filter,$anchorScroll,st,nfeUtil, $modalInstance, lrUtil){
-
+	angular.module("adm").controller("pdvFichaController",function(cacheGet, $location ,cachePost, $uibModal, pdvUtil, pedidoUtil, $rootScope, $scope, stService ,pdv, stUtil ,movUtil,$route, $filter, st, nfeUtil, $modalInstance, lrUtil){
+       
+		var ini = new Date().getTime(); 
 
 		$scope.changeStep = function(step){
 
@@ -49,6 +50,10 @@
 
 			if(!$scope.pdv.movimentacao.pessoa)
 				return;
+			
+			$scope.pdv.movimentacao.pessoa = cacheGet.getObjectById("cliente",$scope.pdv.movimentacao.pessoa.id);
+			
+			$scope.getProdutosSugeridosByCliente($scope.pdv.movimentacao.pessoa);
 
 			lrUtil.getInfoEmprestimos($scope.pdv.movimentacao.pessoa, function(emprestimo){
 
@@ -274,25 +279,14 @@
 
 		//Sugestão de produtos para o cliente selecionado
 		$scope.getProdutosSugeridosByCliente = function(cliente){
-
-			var qs = [];
-			qs.push("movimentacao.pessoa.id="+cliente.id);
-			qs.push("quantidade>0");
-			qs.push("produto.disable=0");
-			var ops = {
-					qs:qs,
-					columns:"produto.id,produto.nome,quantidade",
-					groupBy:"produto.id",
-					objeto:"Pedido",
-					max:3
-			};
-
-			stService.getProjecoes(ops).success(function(data){
-
-				var prods = data.itens;
+               
+			   if(!cliente.sugestoesProdutos || cliente.sugestoesProdutos==null)
+				   return;
+			  
+				var prods = cliente.sugestoesProdutos.split(",");
 				var produtos = [];
 				for(var i in prods){
-					produtos.push(cacheGet.getObjectById("produto",prods[i][0]));
+					produtos.push(cacheGet.getObjectById("produto",Number(prods[i])));
 				}
 
 				$scope.pdv.movimentacao.pedidos = $scope.pdv.movimentacao.pedidos.filter(function(ped){
@@ -303,7 +297,7 @@
 
 				$scope.pdv.movimentacao.pedidos = pedidoUtil.mergeProdutoInPedidos(produtos,$scope.pdv.movimentacao.pedidos);
 
-			});
+			
 
 		}
 
@@ -390,6 +384,8 @@
 			$scope.pdv.data =  new Date();
 			$scope.pdv.movimentacao = {};
 			$scope.pdv.movimentacao.pedidos=[];
+			
+			console.log("Tempo gasto: "+ (new Date().getTime() - ini));
 
 			//Recupera os produtos mais vendidos
 			//$scope.sugestaoProdutos();

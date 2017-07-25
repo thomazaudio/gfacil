@@ -3,66 +3,69 @@
 
 	angular.module("adm") 
 
-	.controller("appSimplePedidoController",function($scope,stUtil,$rootScope,cacheGet,pedidoUtil,estoqueUtil,configUtil){
+	.controller("appSimplePedidoController",function(stUtil, $rootScope, cacheGet, pedidoUtil, estoqueUtil, configUtil){
 
-		$scope.attrBuscaProduto = $scope.attrBuscaProduto || $rootScope.config.confs.attrBuscaProdutoInPdv ||'nome';
 		
-		$scope.tagsProduto = cacheGet.get("tagsProduto"); 
+		var vm = this;
+		
+		var _init = function(){
 
-		if($scope.modoAtEstoque==1){
-			$scope.fator = -1;
-		}
-		else{
-			$scope.fator=1;
-		}
+			vm.attrBuscaProduto = vm.attrBuscaProduto || $rootScope.config.confs.attrBuscaProdutoInPdv ||'nome';
 
-		if(!$scope.pedidos)
-			$scope.pedidos=[];
+			vm.tagsProduto = cacheGet.get("tagsProduto"); 
+
+			if(vm.modoAtEstoque==1){
+				vm.fator = -1;
+			}
+			else{
+				vm.fator=1;
+			}
+
+			if(!vm.pedidos)
+				vm.pedidos=[];
+		}
+		_init();
 
 		//Mudar attr de busca de produto
-		$scope.changeAttrBuscaProduto = function(attr){
-			$scope.attrBuscaProduto  = attr;
+		vm.changeAttrBuscaProduto = function(attr){
+			vm.attrBuscaProduto  = attr;
 			configUtil.setConfig("attrBuscaProdutoInPdv",attr);
-			$scope.buscaProduto($scope.nomeProduto);
+			vm.buscaProduto(vm.nomeProduto);
 		}
 
-		$scope.buscaProduto = function(attrBuscaProduto, nome){
-			
-			$scope.resultadoBusca=null;
+		vm.buscaProduto = function(attrBuscaProduto, nome){
+
+			vm.resultadoBusca=null;
 
 			var ini = new Date().getTime();
 
 			var prods = cacheGet.get("produto",attrBuscaProduto, nome); 
 
-			var pedidos = 	pedidoUtil.mergeProdutoInPedidos(prods,$scope.pedidos);
+			var pedidos = 	pedidoUtil.mergeProdutoInPedidos(prods,vm.pedidos);
 			pedidos = jlinq.from(pedidos)
 			// para ser case sensitive
 			.contains('produto.'+attrBuscaProduto, nome)
 			.select();
-			
-		
+
 			if(pedidos.length>5)
 				pedidos.length=5;
 
-			$scope.resultadoBusca = pedidos;
+			vm.resultadoBusca = pedidos;
+
+			var pedidosLast = angular.copy(vm.pedidos);
+
+			vm.pedidos = null;
+
+			vm.pedidos =	pedidosLast;	
 			
 			console.log("resultadoBusca: ");
-			console.log($scope.resultadoBusca);
-
-			var pedidosLast = angular.copy($scope.pedidos);
-
-			$scope.pedidos = null;
-
-			$scope.pedidos =	pedidosLast;	
+			console.log(vm.resultadoBusca);
 
 		}
 
-		$scope.addPedido = function(pedido){
-			
-			console.log("Adicionar o pedido: ");
-			console.log(pedido);
-			
-			var pedidos = $scope.pedidos;
+		vm.addPedido = function(pedido){
+
+			var pedidos = vm.pedidos;
 
 			var posPedido = stUtil.buscaOb(pedidos,pedido.produto.id,"produto.id");
 
@@ -73,31 +76,31 @@
 				pedidos[posPedido] = pedido;
 			}
 
-			$scope.pedidos = pedidos;
+			vm.pedidos = pedidos;
 		}
 
-		$scope.cadProduto = function(nome){
+		vm.cadProduto = function(nome){
 
 			estoqueUtil.openProdutoInModal({nome:nome, setQuantidade:false},function(produto){
-				
+
 				console.log("Produto retornado!!!!: ");
 				console.log(produto);
 
 				//Garante que o produto seja buscado pelo nome cadastrado
-				$scope.attrBuscaProduto = "nome";
-				$scope.nomeProduto= produto.nome;
-				$scope.buscaProduto(produto.nome);
+				vm.attrBuscaProduto = "nome";
+				vm.nomeProduto= produto.nome;
+				vm.buscaProduto(produto.nome);
 			});
 
 		}
 
-		$scope.deletarPedido = function(pedido){
+		vm.deletarPedido = function(pedido){
 
-			var pos = stUtil.buscaOb($scope.pedidos,pedido.produto.id,"produto.id");
+			var pos = stUtil.buscaOb(vm.pedidos,pedido.produto.id,"produto.id");
 			delete pedido.quantidade;
 			//delete pedido.valorUnitario;
 			if(pos!=-1){
-				delete $scope.pedidos[pos].quantidade;
+				delete vm.pedidos[pos].quantidade;
 				//delete $scope.pedidos[pos].valorUnitario;
 			}
 		}

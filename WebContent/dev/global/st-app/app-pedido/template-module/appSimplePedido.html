@@ -1,32 +1,33 @@
 <meta charset="UTF-8" />
     <div class="input-group">
-		<input   ng-model-options="{debounce: 500}"  ng-model="nomeProduto" ng-change="buscaProduto(attrBuscaProduto,nomeProduto)" class="form-control input-busca-map input-primary" placeholder="{{attrBuscaProduto=='nome'?'Buscar pelo nome do produto':'Buscar pelo código de barras'}}"/>
-		<span   ng-show="nomeProduto" class="input-group-btn"><button type="button" ng-click="nomeProduto='';buscaProduto('')" class="btn btn-default btn-busca-map-limpa text-muted input-primary">x</button></span>  
+		<input   ng-model-options="{debounce: 500}"  ng-model="vm.nomeProduto" ng-change="vm.buscaProduto(attrBuscaProduto,nomeProduto)" class="form-control input-busca-map input-primary" placeholder="{{vm.attrBuscaProduto=='nome'?'Buscar pelo nome do produto':'Buscar pelo código de barras'}}"/>
+		<span   ng-show="vm.nomeProduto" class="input-group-btn"><button type="button" ng-click="vm.nomeProduto='';vm.buscaProduto('')" class="btn btn-default btn-busca-map-limpa text-muted input-primary">x</button></span>  
 	    <span class="input-group-btn">
 	      <button id="change-attr-busca"  class="btn btn-block btn-default dropdown-toggle" style="width:35px;height:42px;" type="button" data-toggle="dropdown"> 
 	                <span><i  class="fa fa-bars info" aria-hidden="true"></i></span></button>
 		            <ul class="dropdown-menu  list-group pull-right" style="padding:5px">
-		                <li id="change-busca-nome" class="list-group-item" ng-click="changeAttrBuscaProduto('nome')" ><strong>Buscar pelo nome</strong> <i ng-show="attrBuscaProduto=='nome'" class="fa fa-check-circle-o" aria-hidden="true" style="color:var(--secondary-color)"></i></li>
-			            <li id="change-busca-codigo" class="list-group-item" ng-click="changeAttrBuscaProduto('codigoBarras')"><strong>Buscar pelo código de barras</strong> <i ng-show="attrBuscaProduto=='codigoBarras'" class="fa fa-check-circle-o" aria-hidden="true" style="color:var(--secondary-color)" ></i></li>
+		                <li id="change-busca-nome" class="list-group-item" ng-click="vm.changeAttrBuscaProduto('nome')" ><strong>Buscar pelo nome</strong> <i ng-show="attrBuscaProduto=='nome'" class="fa fa-check-circle-o" aria-hidden="true" style="color:var(--secondary-color)"></i></li>
+			            <li id="change-busca-codigo" class="list-group-item" ng-click="vm.changeAttrBuscaProduto('codigoBarras')"><strong>Buscar pelo código de barras</strong> <i ng-show="vm.attrBuscaProduto=='codigoBarras'" class="fa fa-check-circle-o" aria-hidden="true" style="color:var(--secondary-color)" ></i></li>
 		            </ul>
 	     </span>
 	</div>
 	<vertical-space></vertical-space>
-	<button style="margin-right:3px;" ng-click="buscaProduto('tag', tag)"  class="btn btn-secondary btn-xs" ng-repeat="tag in tagsProduto"><i class="fa fa-tag"></i> {{tag |uppercase}}</button>
+	<button style="margin-right:3px;" ng-click="vm.buscaProduto('tag', tag)"  class="btn btn-secondary btn-xs" ng-repeat="tag in vm.tagsProduto"><i class="fa fa-tag"></i> {{tag |uppercase}}</button>
 	
 	
 
 <vertical-space></vertical-space>
-<p  class="text-muted text-small"><span ng-show="nomeProduto.length>0 && resultadoBusca.length>0"><i class="fa fa-search" aria-hidden="true"></i> Resultado da busca </span><span><a ng-click="cadProduto(nomeProduto)"> Cadastrar produto <i class="fa fa-plus"></i></a></span></p>
-<p ng-show="nomeProduto.length>0 && resultadoBusca.length==0" class="text-muted text-small"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Não encontrado <strong>'{{nomeProduto}}'</strong></p>	
+<p  class="text-muted text-small"><span ng-show="vm.nomeProduto.length>0 && vm.resultadoBusca.length>0"><i class="fa fa-search" aria-hidden="true"></i> Resultado da busca </span><span><a ng-click="vm.cadProduto(vm.nomeProduto)"> Cadastrar produto <i class="fa fa-plus"></i></a></span></p>
+<p ng-show="vm.nomeProduto.length>0 && vm.resultadoBusca.length==0" class="text-muted text-small"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Não encontrado <strong>'{{vm.nomeProduto}}'</strong></p>	
 				 
 <!-- Apenas para buscas -->
 
-<app-list-simple-pedido busca="nomeProduto" label-valor-unitario="labelValorUnitario" label-quantidade="labelQuantidade" hide-valor-unitario="hideValorUnitario" add-pedido="addPedido" deletar-pedido="deletarPedido" fator="fator" ng-show="resultadoBusca.length>0" itens="resultadoBusca"></app-list-simple-pedido>
+<app-list-simple-pedido busca="vm.nomeProduto" label-valor-unitario="vm.labelValorUnitario" label-quantidade="vm.labelQuantidade" hide-valor-unitario="hideValorUnitario" add-pedido="vm.addPedido" deletar-pedido="vm.deletarPedido" fator="fator" ng-show="vm.resultadoBusca.length>0" itens="vm.resultadoBusca"></app-list-simple-pedido>
   
                
 <!-- Produtos efetivos nos pedidos -->
+<!-- 
 <app-list-simple-pedido busca="nomeProduto"  label-valor-unitario="labelValorUnitario" label-quantidade="labelQuantidade"  hide-valor-unitario="hideValorUnitario" ng-show="!resultadoBusca || resultadoBusca.length==0" add-pedido="addPedido" deletar-pedido="deletarPedido" fator="fator"  itens="pedidos"></app-list-simple-pedido>
-
+ -->
 
  		 

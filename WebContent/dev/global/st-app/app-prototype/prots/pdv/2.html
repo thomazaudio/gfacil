@@ -1,0 +1,62 @@
+<!-- Protótipo para novo módulo de logística reversa -->
+<meta charset="UTF-8" />
+
+<div class="panel">	
+	   <div class="panel-body">
+				<div class="pull-left">
+						    <label class="text-muted text-small">Pago (<a id="btn-change-parcelas" data-toggle="modal" data-target="#modalParcelas">Parcelas</a>)</label>
+						    <br>
+						    <button-baixa-mov class="printHide" mov="pdv.movimentacao"></button-baixa-mov>
+				 </div>
+						
+				<div class="pull-right">
+						    <label class="text-muted text-small" style="margin-bottom:12px">Entregue</label>
+						    <br>
+						    <label class="toggle"> 
+								<input  uib-tooltip="Carregou?"  ng-model="pdv.carregado"  ng-true-value="1" ng-false-value="0" type="checkbox" />
+								<span class="handle" style="top:-65%"></span>
+							</label>
+				  </div>	
+		</div> 
+</div>
+
+<div class="panel">
+		<div class="panel panel-body"	>
+			     <div class="col-lg-6">
+					   <label class="text-muted text-small"><i class="fa fa-archive"></i> Empréstimo de embalagens (Embalagens a receber <strong class="danger">{{quantidadeEmbalagemReceber}}</strong>)</label>
+					   <input type="number" ng-model="pdv.lr.quantidade" class="form-control ng-enter" placeholder="Quantidade de embalagens emprestadas"/>
+				  </div>
+			  
+			
+			    <div ng-show="config.confs.showFormaPagamentoPdv=='true'" class="form-group col-lg-6">
+							<label class="text-muted"><i class="fa fa-bars"></i> Forma de pagamento</label>
+					       <auto-complete-object inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova forma de pagamento'" place-holder="'Digite a forma de pagamento'"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'forma_pagamento'}" ng-model="pdv.movimentacao.formaPagamento" ></auto-complete-object>
+				</div>
+			
+				<div ng-show="config.confs.showDataEmissaoPdv=='true'" class="form-group col-lg-6">
+						<label class="text-muted"><i class="fa fa-calendar"></i> Data Emissão</label>
+						<input st-input tipo="data" placeholder="Data da venda" ng-model="pdv.data" class="form-control" />
+				</div>
+				
+				<div class="col-lg-6">
+				  <div class="form-group">
+				     <label><i class="fa fa-list"></i> Produtos</label>
+				     <itens-pedido pedidos="pdv.movimentacao.pedidos"></itens-pedido>
+				     <a ng-click="changeStep(1)">alterar</a>
+				  </div>
+				</div>
+				
+				<div class="col-lg-6">
+				     <label class="text-small text-muted"><i class="fa fa-user"></i> Cliente: <strong>{{pdv.movimentacao.pessoa.nome|uppercase}}</strong></label>
+				     <a ng-click="changeStep(0)">alterar</a>
+				 </div>
+			
+				<div class="col-lg-12">
+				    <hr></hr>
+				</div>
+		</div>
+</div>
+	   
+
+
+

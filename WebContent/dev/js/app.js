@@ -47,7 +47,7 @@ app.run(['$rootScope', '$route','$modalStack','syncCachePost','$localStorage','$
     		console.log("Original path: ");
     		console.log(next.$$route);
     		
-    		if(!$rootScope.config && next.$$route.originalPath.indexOf("/usuario/:login")==-1){
+    		if(!$rootScope.config && next.$$route.originalPath.indexOf("/usuario/:login")==-1 && next.$$route.originalPath.indexOf("/prot")==-1){
     			
     		   $location.path("login");
     			

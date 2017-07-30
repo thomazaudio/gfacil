@@ -85,6 +85,37 @@
 			controller:"appSimplePedidoController"
 		}
 	})
+	
+	.directive("itensPedido", function(){
+
+		return{
+
+			scope:{
+
+				pedidos:"=",
+				hideButtonTodos:"="
+			},
+			templateUrl:'itensPedido.html',
+			controller:function($scope,$uibModal){
+
+				//Abre os detalhes dos pedidos
+				$scope.openDetalhe = function(pedidos){
+
+					$uibModal.open({
+						animation: true,
+						templateUrl:"global/st-app/app-pedido/template-module/modalDetalhePedidos.html",
+						size:'lg',
+						controller:function($scope){
+
+							$scope.pedidos = pedidos;
+						}
+					});	
+
+				}
+			}
+
+		}
+	})
 
 
 })();

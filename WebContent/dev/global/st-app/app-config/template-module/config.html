@@ -1,5 +1,5 @@
 <meta charset="UTF-8" />
-<modal-content titulo="'configurações'" modal-instance="this">
+<modal-content titulo="'configurações'"  modal-instance="this" ok-action="salvar">
 <vertical-space></vertical-space> <st-nav active-tab="activeTab"
 	tabs="[{label:'NFe'},{label:'Operação'},{label:'Relatórios'},{label:'PDV'},{label:'Ent mercadoria'},{label:'Podutos/Serviços'},{label:'Dashboard'},{label:'Movimentações'}]"></st-nav>
 <vertical-space></vertical-space> <!-- Sessão de informações básicas -->
@@ -8,6 +8,14 @@
 </div>
 <!-- FIM Sessão de informações básicas --> <!-- Sessão de Operação -->
 <div ng-show="activeTab==1">
+
+
+    <div class="form-group col-lg-4">
+		<label class="text-muted">Parametro personalizado</label>
+		<input class="form-control" ng-model="key" placeholder="Parametro" />
+		<input class="form-control" ng-model="config.confs[key]" placeholder="Valor" />
+		 
+	</div>
 
    <div class="form-group col-lg-4">
 		<label class="text-muted"><input type="checkbox"

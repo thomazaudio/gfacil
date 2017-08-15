@@ -16,7 +16,7 @@ app.run(['$rootScope', '$route', 'stService', '$localStorage', '$location', func
 		else{
 			
 			if($route.current.$$route.originalPath.indexOf("tester")==-1)
-			   $location.path("cadastro");
+			   $location.path("introducao");
 		}
 			    
     });

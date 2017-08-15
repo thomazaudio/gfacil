@@ -3,3 +3,15 @@
 	font-size:25px;
 	padding: 0px 5px 0px 5px;
 }
+
+
+.panel-list-pedido{
+	
+	margin-bottom:15px;
+	
+}
+
+.panel-secondary >.panel-body{
+	
+	border: 1px solid var(--secondary-color);
+}

@@ -297,6 +297,14 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 						cacheGet.delObjectById("produto",produto.id);
 					else{
 						cacheGet.updateObject("produto",produto);
+						
+						if(produto.tag){
+							var tags = cacheGet.get("tagsProduto");
+							if(tags.indexOf(produto.tag)==-1){
+								cacheGet.add("tagsProduto",[produto.tag]);
+							}
+						}
+						
 					}
 
 				}

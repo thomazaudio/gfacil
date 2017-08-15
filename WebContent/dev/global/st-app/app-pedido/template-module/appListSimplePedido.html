@@ -1,13 +1,11 @@
 <meta charset="UTF-8" />
-
-
- <div   ng-repeat="r in vm.itens" class="panel" ng-class="r.quantidade==0||!r.quantidade ? 'panel-disable' : 'panel-secondary'" >
-	<div  class="panel-heading" style="padding: 2px 2px 0px 2px;">
+ <div   ng-repeat="r in vm.itens" class="panel-list-pedido" ng-class="r.quantidade==0||!r.quantidade ? 'panel-disable' : 'panel-secondary'" >
+	<div  class="panel-heading" style="padding: 7px 7px 0px 7px;">
 		<label  class="pull-left">
 		     <destaque-texto  style="font-size:17px;" texto="r.produto.nome|uppercase" busca="busca"></destaque-texto>
 		    <br class="only-mobile">
 		   <label class="text-small" ng-show="r.produto.quantidade!=null">(Estoque atual: <strong> {{r.produto.quantidade}}</strong> {{r.produto.uCom || 'uni'|lowercase}})</label>
-           <button-estoque auto-load="false"  produto="r.produto"></button-estoque> 		   
+           <button-estoque hide-buttons="true" auto-load="false"  produto="r.produto"></button-estoque> 		   
 		</label>
 		<label class="pull-right"> 
 		  <a ng-click="vm.openDetalhePedido(r)" class="btn-option-pedido"  ng-show="r.quantidade && r.quantidade>0" ><i class="fa fa-edit"></i></a>
@@ -16,8 +14,9 @@
 		</label>
 		<div class="row"></div>
 		<div ng-show="r.quantidade>0" class="row only-mobile">
-		     <label class="pull-left">Quantidade: <strong>{{r.quantidade}}</strong></label>
-		    <label class="pull-right">Valor unit: <strong>R$ {{r.valorUnitario |number:2}}</strong></label>
+		     <hr></hr>
+		     <label class="pull-left text-small">quantidade: <strong>{{r.quantidade}}</strong></label>
+		    <label class="pull-right text-small">valor unitário: <strong>R$ {{r.valorUnitario |number:2}}</strong></label>
 		</div>
 	</div>
 	<div class="panel-body only-desktop" style="padding: 0px 5px 0px 5px;">

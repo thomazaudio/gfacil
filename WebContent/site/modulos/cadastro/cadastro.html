@@ -1,39 +1,19 @@
 <meta charset="utf-8">
 
-<div ng-show="step==0" class="row">
-   <h3 class="col-lg-12 text-center">Gostaria de economizar tempo de trabalho utilizando um software simples e fácil de utilizar?</h3>
-   <div class="col-lg-6">
-       <button ng-click="responder()" class="btn btn-nao btn-block">NÃO</button>
-   </div>
-    <div class="col-lg-6">
-         <button ng-click="responder()" class="btn btn-block">SIM</button>
-   </div>
-</div>
 
-<div ng-show="step==1" class="row">
-   <h3 class="col-lg-12 text-center">Gostaria de evitar prejuízos organizando melhor suas vendas?</h3>
-   <div class="col-lg-6">
-       <button ng-click="responder()" class="btn btn-nao btn-block">NÃO</button>
-   </div>
-    <div class="col-lg-6">
-         <button ng-click="responder()" class="btn btn-block">SIM</button>
-   </div>
-</div>
-
-<div ng-show="step==2">
 	<div class="row">
 	        <div class="col-sm-6 col-xs-6 form-box">
 				<div class="form-top">
 					<p class="text-small text-center"
 								style="font-size: 15px; margin: 0 0 5px">Vagas restantes</p>
-							<div class="count-restante">91</div>
+							<div class="count-restante">{{vagasRestantes}}</div>
 				</div>
 			</div>
 			<div class="col-sm-6 col-xs-6 form-box">
 						<div class="form-top">
 							<p class="text-small text-center"
 								style="font-size: 15px; margin: 0 0 5px">Total de inscritos</p>
-							<div class="count-inscritos">9</div>
+							<div class="count-inscritos">{{totalInscritos}}</div>
 						</div>
 			</div>
 	</div>
@@ -71,5 +51,5 @@
 			</div>
 			<button ng-click="cadastrarLead(lead)" class="btn btn-block">Pronto :-)</button>
 	</form>
-</div>
+
 

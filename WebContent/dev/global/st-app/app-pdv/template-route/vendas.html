@@ -2,10 +2,10 @@
 <vertical-space></vertical-space>
 <div ng-controller="listaPdvController">
 
-<div class="col-lg-6">
+<div class="col-lg-4">
 	  <st-period  submit="changePeriodo" de="periodoDe"  ate="periodoAte"></st-period>
 </div>
-<div class="col-lg-6">
+<div class="col-lg-5">
 <st-filter-map id="filtro-vendas"
             querys="querys"
             order-by="'carregado'"
@@ -20,6 +20,9 @@
 </div>
 
 <vertical-space></vertical-space>
+
+
+
 <button-add ng-click="goToPdv()"></button-add>
 	
 	

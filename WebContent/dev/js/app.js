@@ -4,18 +4,13 @@ var app  = angular.module("adm",["angular-growl","angularSpinner","ngRoute","ds.
 
 app.run(['$rootScope', '$route','$modalStack','syncCachePost','$localStorage','$http','config','$location','$cookieStore','st','$filter','filialUtil',"stUtil","$templateCache", function($rootScope, $route,$modalStack, syncCachePost,$localStorage,$http,config,$location,$cookieStore,st,$filter,filialUtil,stUtil,$templateCache) {
 	
-	
-	
 	config.cacheTemplates();
-	
 	
 	$rootScope.$on("modal.closing", function(){
 		
 		console.log("Modal fechou");
 		
 	});
-	
-
 	
 	Chart.moneyFormat= function(value) {
 		return $filter('number')(value,2);
@@ -25,8 +20,11 @@ app.run(['$rootScope', '$route','$modalStack','syncCachePost','$localStorage','$
     var tempoCarregamento = (new Date().getTime()-window.inicioCarregamento)/1000;
 	st.evt({evento:"tempo_carregamento_sistema",descricao:tempoCarregamento});
 	
-    
-    $rootScope.$on('$routeChangeStart', function(event,next, current) { 
+    $rootScope.$on('$routeChangeStart', function(event, next, current) { 
+    	
+    	//syncCachePost.start();
+    	
+    	console.log("faltaExecutarCachePost: "+$rootScope.faltaExecutarCachePost);
     	
     	
     	//Filiais
@@ -114,13 +112,9 @@ app.run(['$rootScope', '$route','$modalStack','syncCachePost','$localStorage','$
          
          if(preventDefault==true)
             event.preventDefault();
-         
-         
-            
+               
 	
      });
 }]);
-
-
 
 })();

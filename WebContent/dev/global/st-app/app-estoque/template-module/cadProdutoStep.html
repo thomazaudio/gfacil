@@ -21,9 +21,9 @@
 	   
 	   <div ng-show="step==2">
 		     <div class="form-group">
-		         <label>Informe um atalho para o produto</label>
-		         <input  ng-model="produto.tag" placeholder="Ex: ROXA SC"  class="form-control"/>
-		     </div>
+		         <label>Informe a categoria do produto</label>
+		         <auto-complete-object  place-holder="'Ex: Batatas Roxas'" show-results-on-focus="true" inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova descrição'" place-holder="placeHolderCategoria"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'categoria_produto'}" ng-model="produto.tag" ></auto-complete-object>
+		      </div>
 	   </div>
 	   
 	   <div ng-show="step==3">

@@ -17,7 +17,7 @@ module.exports = function (grunt) {
 			},
 			shims: {
 				expand: true,
-				cwd: 'dev/global/font-awesome-4.5.0/fonts/',
+				cwd: 'dev/global/font-awesome-4.7.0/fonts/',
 				src: ['**'],
 				dest: 'dist/fonts'
 			}
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
 
 		rev: {
 			files: {
-				src: ['dist/**/*.{js,css}', '!dev/global/font-awesome-4.5.0/fonts/**']
+				src: ['dist/**/*.{js,css}', '!dev/global/font-awesome-4.7.0/fonts/**']
 			}
 		},
 

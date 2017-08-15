@@ -1,5 +1,14 @@
 angular.module("site").controller("cadastroController", function($scope, stService, $localStorage, $location, googleAdWordsService){
 	
+	stService.executeGet("config").success(function(data){
+		
+		var config = data.itens[0].confs;
+		var totalVagas = parseInt( config.vagas_lead);
+		var cadastros = parseInt(config.cadastros_lead);
+		$scope.totalInscritos = cadastros;
+		$scope.vagasRestantes = totalVagas  - cadastros;
+	    console.log("Vagas restantes: "+$scope.vagasRestantes);
+	});
 	
 	$scope.lead =  $localStorage.lead || {};
 	$scope.step=0;

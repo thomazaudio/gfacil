@@ -35,6 +35,7 @@
 
 		vm.buscaProduto = function(attrBuscaProduto, nome){
 
+			vm.showResultadoBusca = false;
 			vm.resultadoBusca=null;
 
 			var ini = new Date().getTime();
@@ -42,6 +43,7 @@
 			var prods = cacheGet.get("produto",attrBuscaProduto, nome); 
 
 			var pedidos = 	pedidoUtil.mergeProdutoInPedidos(prods,vm.pedidos);
+			
 			pedidos = jlinq.from(pedidos)
 			// para ser case sensitive
 			.contains('produto.'+attrBuscaProduto, nome)
@@ -49,7 +51,7 @@
 
 			if(pedidos.length>5)
 				pedidos.length=5;
-
+			
 			vm.resultadoBusca = pedidos;
 
 			var pedidosLast = angular.copy(vm.pedidos);
@@ -58,8 +60,10 @@
 
 			vm.pedidos =	pedidosLast;	
 			
-			console.log("resultadoBusca: ");
-			console.log(vm.resultadoBusca);
+			console.log("Tempo gasto: "+(new Date().getTime()-ini));
+		   
+			vm.showResultadoBusca = true;
+		
 
 		}
 

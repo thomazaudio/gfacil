@@ -1,8 +1,16 @@
 "use strict";
 (function(){
-	angular.module("adm").controller("entradaMercadoriaController",function($filter,movUtil,$location,st,$uibModal,$rootScope,estoqueUtil,cacheGet,$stModal,$scope, stUtil,stService,$route,entradaMercadoria,callback, $modalInstance){
+	angular.module("adm").controller("entradaMercadoriaController",function($filter, movUtil, $location, st, $uibModal, $rootScope, estoqueUtil, pedidoUtil, cacheGet, $stModal, $scope, stUtil, stService, $route, entradaMercadoria, callback, $modalInstance){
 
+		$scope.alterarLancarDespesa = function(lancar){
 
+			if(lancar==true){
+				$scope.em.movimentacao.valor = pedidoUtil.getTotalPedidos($scope.em.movimentacao.pedidos);
+			}
+			else{
+				$scope.em.movimentacao.valor = 0;
+			}
+		}
 
 		$scope.changeStep = function(step){
 
@@ -25,11 +33,9 @@
 			$scope.infoModal = _infoModal;
 
 		}
-		
-		
+
+
 		$scope.changeStep(1);
-
-
 
 		//Métrica para análise do tempo de atalização do estoque
 		var ini = new Date().getTime();
@@ -65,7 +71,7 @@
 				$scope.changeStep(1);
 				return;
 			}
-			
+
 			$modalInstance.close();
 		}
 
@@ -129,6 +135,3 @@
 
 	});
 })();
-
-
-

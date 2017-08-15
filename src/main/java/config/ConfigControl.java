@@ -15,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import config.Config;
 
 @Controller
-@Secured("IS_AUTHENTICATED_FULLY")
 public class ConfigControl extends GenericControl<Config> {
 
 	

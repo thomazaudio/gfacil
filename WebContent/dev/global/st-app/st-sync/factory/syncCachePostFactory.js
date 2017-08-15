@@ -3,105 +3,55 @@
 
 	angular.module("adm") 
 
-	.factory("syncCachePost",function($localStorage, $interval, stService, $rootScope, $cookieStore, stUtil, onlineStatus){
+	.factory("syncCachePost",function($localStorage, $interval, stService, $rootScope, $cookieStore, stUtil, onlineStatus, $route){
 
 		var _start = function(){
-
-			var faltaExecutar=0;
-
+			
+			
 			if(!$localStorage.cachePost)
 				$localStorage.cachePost = [];
-
-			function execute(i){
-
-				$localStorage.cachePost[i].objeto.id = $localStorage.cachePost[i].objeto.id ||  $localStorage.cachePost[i].id;
-
-				stService.executePost($localStorage.cachePost[i].url,$localStorage.cachePost[i].objeto).success(function(data){
-
-					faltaExecutar--;
-
-					/*
-					if(data){
-
-						var item = data.item;
-						$localStorage.cachePost[i].id = item.id;
-					}
+			
+			var executando = false;
+			
+			var executar = function(){
+				
+				console.log("executar()");
+				console.log("executando: "+executando);
+				
+				if(executando==true || onlineStatus.isOnline()==false)
+					return;
+				
+				executando = true;
+				
+				executePosts(0, function(){
 					
-					*/
-
-					 $localStorage.cachePost[i] = undefined;
-
-
-				}).error(function(){
-					faltaExecutar--;
+					executando = false;
+					
 				});
 			}
 
-			function countCachePost(){
-
-				var count = 0;
-
-				var cache = $localStorage.cachePost;
-
-				for(var key in cache){
-
-					if(cache[key] && cache[key].objeto)
-						count++;
-				}
-
-				return count;
-
-			}
-			
-			
-
-			function sync(){
+	
+			function executePosts(index, callback){
 				
-				console.log("cachePost: ");
-				console.log($localStorage.cachePost);
-				
-				if(onlineStatus.isOnline()==false)
+				if(!$localStorage.cachePost[index]){
+					callback();
 					return;
-
-				//Verifica se existe cache em execução
-				if(faltaExecutar<=0){
-
-					if(!$localStorage.cachePost){
-						faltaExecutar=0;
-					}
-
-					else {
-
-						faltaExecutar = countCachePost();
-
-					}
-
-					var originalLogin = null;
-
-					if($cookieStore.get("usuarioSistema"))
-						originalLogin = $cookieStore.get("usuarioSistema").originalLogin;
-					else
-						originalLogin = "shared@shared";
-
-					for(var i in $localStorage.cachePost){
-
-						if($localStorage.cachePost[i]  && originalLogin && $localStorage.cachePost[i].objeto && originalLogin==$localStorage.cachePost[i].login){
-
-							execute(i);
-						}
-						else {
-
-							//faltaExecutar--;
-						}
-
-					}
-
 				}
 
+				stService.executePost($localStorage.cachePost[index].url, $localStorage.cachePost[index].objeto).success(function(data){
+
+					$localStorage.cachePost.splice(index,1);
+					executePosts(index+1, callback)
+					
+				}).error(function(){
+					
+					callback();
+					
+				});
 			}
 
-			$interval(sync,2000);
-
+		  $interval(executar, 30000);
+			
 		}
 
 		return{

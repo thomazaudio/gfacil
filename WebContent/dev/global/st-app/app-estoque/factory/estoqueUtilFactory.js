@@ -54,9 +54,16 @@
 					}
 
 					$scope.cadastrarProduto = function(){
-
+						
 						var produto = $scope.produto;
-
+						
+						if(!produto.nome){
+							
+							stUtil.showMessage("","Informe um nome para o produto","danger");
+							$scope.changeStep(1);
+							return;
+						}
+						
 						if($scope.step!=3 && (produto.setQuantidade!=false)){
 							$scope.changeStep($scope.step+1);
 							return;

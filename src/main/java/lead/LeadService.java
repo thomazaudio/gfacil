@@ -1,5 +1,6 @@
 package lead;
 import java.io.IOException;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -11,7 +12,10 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.google.gson.Gson;
+
 import model.GenericService;
 
 @Service
@@ -19,6 +23,7 @@ public class  LeadService extends GenericService<Lead>   {
 
 	private String listId = "32180";
 	private String apiKey = "Basic dGhvbWF6YXVkaW86bGVnaGFjeTEyMw==";
+
 
 	@Autowired
 	private LeadDAO dao;
@@ -106,13 +111,7 @@ public class  LeadService extends GenericService<Lead>   {
 		return  dao.addOrUpdate(lead);
 
 	}
-
-
-
-
-
-
-
-
+	
+	
 
 }

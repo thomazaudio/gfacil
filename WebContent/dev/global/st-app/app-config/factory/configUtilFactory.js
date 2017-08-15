@@ -105,8 +105,10 @@
 					$scope.modulos = mds;
 					$scope.itensRelatorio = itensRelatorioScope;
 
-					$scope.salvar = function(conf){
+					$scope.salvar = function(){
 
+						var conf = $scope.config;
+						
 						//Itens do relatório
 						var its = $scope.itensRelatorio;
 						var itensRelatorio = "";

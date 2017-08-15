@@ -163,7 +163,6 @@
 
 						var ini = new Date();
 						var itens = cacheGet.get($scope.objectOp,label,valueLabel);
-						
 						itens = jlinq.from(itens)
 						.starts(label,valueLabel)
 						.select();
@@ -181,7 +180,7 @@
 
 				}
 
-				function cadItem (value,allFilials){
+				function cadItem (value, allFilials, callback){
 
 					$scope.salvandoItem = true;
 
@@ -215,9 +214,9 @@
 								var objeto=[data.item.id,data.item[label]];
 								selecionarItem(objeto);
 								value="";
-
-								$scope.salvandoItem = true;
-
+								$scope.salvandoItem = false;
+								stUtil.showMessage("","'"+ob[label]+"' cadastrado com sucesso!","info");
+								callback(objeto);
 
 							}).error(function(){
 
@@ -339,7 +338,7 @@
 						animation: true,
 						templateUrl:"buscaAutoCompleteObject.html",
 						size:"lg",
-						controller:function($scope,$uibModalInstance){
+						controller:function($scope, $modalInstance){
 
 							$scope.label = label;
 							$scope.labelCad = labelCad;
@@ -359,16 +358,18 @@
 
 								selecionarItem(item);
 								
-							
-								$uibModalInstance.dismiss("cancel");
+								$modalInstance.close();
 
 							}
 
-							$scope.cadItem = function(value, allFilials, modal){
+							$scope.cadItem = function(value, allFilials){
 
-								cadItem(value,allFilials);
-								modal.$dismiss("cancel");
-
+								cadItem(value,allFilials, function(){
+									
+									$modalInstance.close();
+									
+								});
+							
 							}
 
 							$scope.alterarAba =function(aba){

@@ -12,12 +12,10 @@
 		}
 
 		//Adiciona ou edita um objeto ao cache
-		var _add = function(url,objeto,callback){
+		var _add = function(url, objeto, callback){
 
 			//Filial corrente
 			objeto.idFilial = $rootScope.currentFilial.id; 
-
-			//O atributo idsAttr indica quais atributos devem ser setados ao reuperar o novo objeto ao salvar
 
 			var icrementaId = false;
 
@@ -26,7 +24,7 @@
 				icrementaId=true;
 
 			if(!$localStorage.cachePost)
-				$localStorage.cachePost = {};
+				$localStorage.cachePost = [];
 
 			//idBase é definido no controller de login a cada login no sistema
 			var idBase = $localStorage.baseIdCachePost;
@@ -46,32 +44,18 @@
 
 			objeto.idCache = idCache;
 
-			var obCache = $localStorage.cachePost[idCache];
-
-			//Caso não exista cache para idCache
-			if(!obCache){
-
-				obCache = {url:url,
+			var obCache = {
+					    url:url,
 						objeto:objeto,
 						login:login,
 						idCache:idCache
-
-				}
+	
 			}
-			//Caso já exista em cache o objeto é apenas atualizado
-			else{
-
-				objeto.id  = $localStorage.cachePost[idCache].id;
-				obCache.objeto = objeto;
-			}
-
-			//Atualiza o cache para o id
-			$localStorage.cachePost[idCache] = obCache;
+			
+			$localStorage.cachePost.push(obCache);
 
 			if(icrementaId==true)
 				$localStorage.baseIdCachePost = (idBase+1);
-
-
 
 			//Retorna o objeto com 'idCachePost' para futuras referencias
 			callback(objeto);

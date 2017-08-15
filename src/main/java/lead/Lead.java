@@ -37,7 +37,7 @@ public class Lead extends CrudClass {
 
 	//Ações do usuário, ex: comentou, etc
 	@JsonView(util.Views.Public.class)
-	private String lastAction;
+	private String actions;
 
 	//Id do contato na lista externa
 	@JsonView(util.Views.Public.class)

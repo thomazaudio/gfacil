@@ -21,13 +21,13 @@
 
 .btn-action-modal {
 	color:white;
-	background-color:transparent;
-	height: 40px;
+	background-color:#4aba58;
+	height: 44px;
 	text-align: center;
-	font-size: 19px;
-	line-height: 1.428571429;
-	border-radius: 20px;
-	border: 1px solid white!important;
+	font-size: 22px;
+	line-height: 1;
+	border-radius: 22px;
+	border: 2px solid white!important;
 }
 
 
@@ -35,7 +35,7 @@
 	
 	.btn-action-modal {
 	    padding: 6px 0;
-	    width:40px;
+	    width:44px;
 	}
 }
 

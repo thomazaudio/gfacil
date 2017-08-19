@@ -2,12 +2,14 @@
 "use strict";
 (function(){
 	angular.module("adm").controller("pdvFichaController",function(cacheGet, $location ,cachePost, $uibModal, pdvUtil, pedidoUtil, $rootScope, $scope, stService ,pdv, stUtil ,movUtil,$route, $filter, st, nfeUtil, $modalInstance, lrUtil){
-       
+
 		var ini = new Date().getTime(); 
 
-		$scope.changeStep = function(step){
+		var vm = this;
 
-			$scope.step=step;
+		vm.changeStep = function(step){
+
+			vm.step=step;
 
 			var _infoModal = {};
 
@@ -29,16 +31,16 @@
 				_infoModal.okActionIcon = "fa-check";
 			}
 
-			$scope.infoModal = _infoModal;
+			vm.infoModal = _infoModal;
 
 		}
 
-		$scope.changeStep(0);
+		vm.changeStep(0);
 
-		$scope.cancelAction = function(){
+		vm.cancelAction = function(){
 
-			if($scope.step>=1){
-				$scope.changeStep($scope.step-1);
+			if(vm.step>=1){
+				vm.changeStep(vm.step-1);
 			}
 			else {
 				//TODO confirmação
@@ -46,22 +48,19 @@
 			}
 		}
 
-		$scope.$watch("pdv.movimentacao.pessoa", function(){
+		$scope.$watch("vm.pdv.movimentacao.pessoa", function(){
 
-			if(!$scope.pdv.movimentacao.pessoa)
+			if(!vm.pdv.movimentacao.pessoa)
 				return;
-			
-			$scope.pdv.movimentacao.pessoa = cacheGet.getObjectById("cliente",$scope.pdv.movimentacao.pessoa.id);
-			
-			$scope.getProdutosSugeridosByCliente($scope.pdv.movimentacao.pessoa);
 
-			lrUtil.getInfoEmprestimos($scope.pdv.movimentacao.pessoa, function(emprestimo){
+			vm.pdv.movimentacao.pessoa = cacheGet.getObjectById("cliente",vm.pdv.movimentacao.pessoa.id);
+
+			getProdutosSugeridosByCliente(vm.pdv.movimentacao.pessoa);
+
+			lrUtil.getInfoEmprestimos(vm.pdv.movimentacao.pessoa, function(emprestimo){
 
 				if(emprestimo)
-				    $scope.quantidadeEmbalagemReceber = emprestimo.quantidadeReceber;
-				
-				
-				$scope.changeStep(1);
+					vm.quantidadeEmbalagemReceber = emprestimo.quantidadeReceber;
 
 			});
 
@@ -70,23 +69,9 @@
 		//Para cálculo da métrica "tempo_finalizar_venda"
 		var ini = new Date().getTime();
 
-		$scope.cancelarVenda = function(){
-			$modalInstance.close();
-		} 
+		vm.deletarVenda = function(){
 
-		$scope.openPedidosInModal = function(pedidos){
-
-			pedidoUtil.openPedidosInModal(pedidos, function(pedidos){
-
-				$scope.pdv.movimentacao.pedidos = pedidos;
-				$scope.$apply();
-			});
-
-		}
-
-		$scope.deletarVenda = function(){
-
-			pdvUtil.deletarVenda($scope.pdv,function(data){
+			pdvUtil.deletarVenda(vm.pdv,function(data){
 
 				stUtil.showMessage("","Venda deletada com sucesso!");
 				$modalInstance.close();
@@ -97,46 +82,56 @@
 		}
 
 		//A cada mudança nos pedidos o valor total é atualizado
-		$scope.$watch('pdv.movimentacao.pedidos',function(pedidos){
+		$scope.$watch('vm.pdv.movimentacao.pedidos',function(pedidos){
 
-			$scope.totalPdv = pedidoUtil.getTotalPedidos(pedidos);
-
-			//if(pedidos.length==0)
-				//$scope.sugestaoProdutos();
+			vm.totalPdv = pedidoUtil.getTotalPedidos(pedidos);
 
 		},true);
 
 		//NFe a partir da movimentacao da venda
-		$scope.toNFe = function(pdv,modal){
+		vm.toNFe = function(pdv, modal){
 
 			nfeUtil.openNFe(null,pdv.movimentacao.id);
 		}
 
 		//Lançamento da venda
-		$scope.lancarVenda = function(){
+		vm.lancarVenda = function(){
 
-			if($scope.step<2){
-				$scope.changeStep($scope.step+1);
-				return;
-			}
-
-
-
-			var pdv = $scope.pdv;
-
+			var pdv = vm.pdv;
+			
 			if(!pdv.movimentacao.pessoa && $rootScope.config.confs.escolhaClientePdv=='true'){
 
-				stUtil.showMessage("","Selecione um Cliente!","danger");
+				stUtil.showMessage("","Selecione um cliente para continuar.","danger");
+				vm.changeStep(0);
 				return;
 			}
 
+			if(vm.step==1){
+				
+				//Somente pedidos com quantidade>0
+				pdv.movimentacao.pedidos = pdv.movimentacao.pedidos.filter(function(pedido){
 
-			if(pdv.movimentacao.pedidos.length==0){
+					//Contabilidade de empréstimo de caixas plásticas
+					pedido.lancaEmprestimo=true;
 
-				stUtil.showMessage("","Adicione pelo menos um produto!","danger");
+					//O pedido deve ter a quantidade>0 ou já ter sido salvo na venda
+					if(pedido.quantidade>0 || pedido.id)
+						return pedido;
+				});
+				
+				if(pdv.movimentacao.pedidos.length==0){
+					stUtil.showMessage("","Adicione pelo menos um produto!","danger");
+				   return;
+				}
+			}
+
+
+			if(vm.step<2){
+				vm.changeStep(vm.step+1);
 				return;
 			}
 
+			
 
 			var msg = "";
 
@@ -150,17 +145,7 @@
 
 			pdv.tipoPdvLancamento="pdvficha";//Tipo de pdv em que a venda foi lançada
 
-			//Somente pedidos com quantidade>0
-			pdv.movimentacao.pedidos = pdv.movimentacao.pedidos.filter(function(pedido){
-
-				//Contabilidade de empréstimo de caixas plásticas
-				pedido.lancaEmprestimo=true;
-
-				//O pedido deve ter a quantidade>0 ou já ter sido salvo na venda
-				if(pedido.quantidade>0 || pedido.id)
-					return pedido;
-			});
-
+			
 
 			//Nome do evento
 			var nomeEvento = "";
@@ -174,11 +159,11 @@
 			//Tempo de resposta do servidor
 			var iniTempoResposta = new Date().getTime();
 
-			$scope.carregandoFinalizarVenda =true;
-			
+			vm.carregandoFinalizarVenda =true;
+
 			stService.executePost("pdv/add/", pdv).success(function(){
-				
-				$scope.carregandoFinalizarVenda =false;
+
+				vm.carregandoFinalizarVenda =false;
 
 				//Evento tempo de resposta do servidor ao finalizar venda
 				st.evt({evento:nomeEvento,descricao:((new Date().getTime()-ini)/1000)+""});
@@ -198,24 +183,6 @@
 						$scope.getTotalPedidos = function(pedidos){
 
 							return pedidoUtil.getTotalPedidos(pedidos);
-						}
-
-						//Alteração de quantidade de emprestimos de embalagens
-						$scope.saveEmprestimoEmbalagem = function(pdv, quantidade){
-
-							$scope.carregaSave = true;
-
-							stService.executeGet("pdv/save-emprestimoembalagem",{idPdv:idPdv,quantidade:quantidade}).success(function(){
-
-								stUtil.showMessage("Empréstimo salvo com sucesso!"); 
-								$scope.carregaSave = false;
-
-							}).error(function(){
-
-								$scope.carregaSave = false;
-							});
-
-
 						}
 
 						$scope.novaVenda = function(modal){
@@ -261,17 +228,17 @@
 					}
 				});
 
-				
+
 			}).error(function(){
-				
+
 				stUtil.showMessage("","Não foi possivel salvar a venda, verifique sua conexão.","danger");
 			});
 
-			
+
 
 		}
 
-		$scope.imprimirCupom = function(idMov){
+		vm.imprimirCupom = function(idMov){
 
 			var ids = [];
 			ids.push(idMov);
@@ -281,32 +248,29 @@
 		}
 
 		//Sugestão de produtos para o cliente selecionado
-		$scope.getProdutosSugeridosByCliente = function(cliente){
-               
-			   if(!cliente.sugestoesProdutos || cliente.sugestoesProdutos==null)
-				   return;
-			  
-				var prods = cliente.sugestoesProdutos.split(",");
-				var produtos = [];
-				for(var i in prods){
-					produtos.push(cacheGet.getObjectById("produto",Number(prods[i])));
-				}
+		var getProdutosSugeridosByCliente = function(cliente){
 
-				$scope.pdv.movimentacao.pedidos = $scope.pdv.movimentacao.pedidos.filter(function(ped){
+			if(!cliente.sugestoesProdutos || cliente.sugestoesProdutos==null)
+				return;
 
-					if(ped.quantidade && ped.quantidade>0)
-						return ped;
-				});
+			var prods = cliente.sugestoesProdutos.split(",");
+			var produtos = [];
+			for(var i in prods){
+				produtos.push(cacheGet.getObjectById("produto",Number(prods[i])));
+			}
 
-				$scope.pdv.movimentacao.pedidos = pedidoUtil.mergeProdutoInPedidos(produtos,$scope.pdv.movimentacao.pedidos);
+			vm.pdv.movimentacao.pedidos = vm.pdv.movimentacao.pedidos.filter(function(ped){
 
-			
+				if(ped.quantidade && ped.quantidade>0)
+					return ped;
+			});
+
+			vm.pdv.movimentacao.pedidos = pedidoUtil.mergeProdutoInPedidos(produtos, vm.pdv.movimentacao.pedidos);
 
 		}
 
 		//Sugestão de produtos mais vendidos
-		$scope.sugestaoProdutos=function(){
-
+		var sugestaoProdutos=function(){
 
 			var proj = null;
 
@@ -373,38 +337,34 @@
 
 			pdv.movimentacao.pedidos = peds;
 
-			$scope.pdv = pdv;
+			vm.pdv = pdv;
 		}
-		$scope.configureEditPdv = configureEditPdv;
 
 
 		//Configura um pdv vazio no escopo
 		function configurePdvVazio(){
 
-			$scope.resultadoBusca = [];
-			$scope.nomeProduto = "";
-			$scope.pdv = {};
-			$scope.pdv.data =  new Date();
-			$scope.pdv.movimentacao = {};
-			$scope.pdv.movimentacao.pedidos=[];
-			
+			vm.pdv = {};
+			vm.pdv.data =  new Date();
+			vm.pdv.movimentacao = {};
+			vm.pdv.movimentacao.pedidos=[];
+
 			console.log("Tempo gasto: "+ (new Date().getTime() - ini));
 
 			//Recupera os produtos mais vendidos
 			//$scope.sugestaoProdutos();
 		}
-		$scope.configurePdvVazio = configurePdvVazio;
 		if(pdv.data){
 
 			configureEditPdv(pdv.data.item);
-			$scope.titulo = "Editar venda";
+			vm.titulo = "Editar venda";
 
 		}
 
 		else{
 
 			configurePdvVazio();
-			$scope.titulo = "Nova venda";
+			vm.titulo = "Nova venda";
 
 		}
 

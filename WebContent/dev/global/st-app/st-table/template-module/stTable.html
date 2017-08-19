@@ -5,9 +5,14 @@
 	<div class="col-lg-6">
 	     <st-filter-map id="filtros-table" busca-especial="buscaEspecial" filtros="filtros"></st-filter-map>
 	</div>
+	<vertical-space class="only-desktop"></vertical-space>
+	
+	<div class="col-lg-4 only-desktop" >
+	    <button style="margin-top:15px;" ng-click="cadItem()" class="btn btn-secondary"><i class="fa fa-plus"></i> {{cadLabel}}</button>
+	</div>
 	 
 	<vertical-space></vertical-space>
-	
+   
 	<button-add ng-click="cadItem()"></button-add>
 	
 	<vertical-space></vertical-space>

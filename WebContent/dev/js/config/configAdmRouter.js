@@ -47,8 +47,6 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 				if(template.indexOf("view")==-1)
 					template = "view/"+template;
 				
-				
-				
 				if(template.indexOf(".html")==-1)
 					template +=".html";
 				
@@ -61,14 +59,10 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 		
 	});
 
-
-
 	$routeProvider.when("/checklist",{
 
 		templateUrl:"view/ferramentas/checklist.html",
 		controller:"stControl"
-
-
 	}); 
 
 	$routeProvider.when("/pdvsimples/add",{
@@ -98,10 +92,6 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	}); 
 
-
-
-
-
 	$routeProvider.when("/teste",{
 
 		templateUrl:"view/teste.html",
@@ -110,25 +100,11 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	}); 
 
-	
-
-	
-
-
-
-
-
 	$routeProvider.when("/financeiro/nota-promissoria",{
 
 		templateUrl:"view/financeiro/nota-promissoria/template.html",
 
-
 	}); 
-
-
-
-
-	
 
 	$routeProvider.when("/formaPagamento",{
 
@@ -136,7 +112,6 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 		controller: "genericController",	
 
 	}); 
-
 
 	$routeProvider.when("/caixa",{
 
@@ -169,8 +144,6 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 	});
 
 
-	
-
 	/* ATUALIZAÇÃO DE ESTOQUE ANTIGA
    $routeProvider.when("/atualiza-estoque",{
 
@@ -180,24 +153,11 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 	});
 	 */
 
-	
-	
-	
-
-
-
-
-
-	
-	
 	$routeProvider.otherwise({
 		templateUrl:"global/st-app/app-inicio/template-route/inicio.html",
 		controller:"inicioController"	
      });
 	
-
-
-
 	//Intercepta um erro de resposta
 	$httpProvider.interceptors.push(function ($q, $rootScope, $location, stUtil, st) {
 		return {
@@ -213,8 +173,6 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 				console.log("Objeto rejection: ");
 				console.log(rejection);
 				
-			
-				
 				if(url.indexOf("usuariosistema/add-event")==-1){
 				
 					//Envia evento para o backend
@@ -227,15 +185,14 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 					});
 				}
 				
-				
-				
 				if(status==-1){
 					
 					stUtil.showMessage("Sem conexão com a internet!");
 				}
 
 				if (status == 401) {
-
+                    
+					/*
 					if($location.$$path!='/login' && $location.$$path!='/login/demo' )
 						$rootScope.pathPos = $location.$$path;
 
@@ -243,6 +200,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 					if($rootScope.atualPage!='Login' && rejection.config.url.indexOf("config?")==-1)
 						$location.path("/login");
 
+                    */
 
 				} else {
 					//stUtil.showMessage("","Ocorreu um erro ao processar a soicitação.","danger");
@@ -322,9 +280,6 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 					}
 
 				}
-
-
-
 
 
 				$rootScope.loadingSpinner=false;

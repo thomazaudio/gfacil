@@ -12,8 +12,10 @@
 				templateUrl:"global/st-app/app-pessoa/template-module/modalDetalhePessoa.html",
 				size:'lg',
 				controller:function($scope, $modalInstance){
-
+					
+					
 					//config.confs.defaultCadProdutoAllFiliais || false
+					var nomeOriginal = pessoa.nome;
 
 					$scope.cadAllFiliais = false;
 
@@ -53,18 +55,34 @@
 						var pessoa = $scope.objeto;
 						
 						$scope.salvando = true;
+						
+						var classe = tipoPessoa.charAt(0).toUpperCase() + tipoPessoa.slice(1);
 
-						stService.save(tipoPessoa,pessoa).success(function(data){
+						stService.executeGet("/projecao/execute-query",{query:  "from "+classe+" where nome like '%"+pessoa.nome+"%' and disable=0"}).success(function(data){
 							
-							$scope.salvando = false;
+                                 if(data.itens.length==0 || nomeOriginal==pessoa.nome){
+                                	 
+                                	 stService.save(tipoPessoa, pessoa).success(function(data){
+             							
+             							$scope.salvando = false;
 
-							stUtil.showMessage("","Salvo com sucesso","info");	
+             							stUtil.showMessage("","Salvo com sucesso","info");	
 
-							$modalInstance.close();
+             							$modalInstance.close();
 
-							if(callback)
-								callback(data.item);
+             							if(callback)
+             								callback(data.item);
+             						});
+                                	 
+                                 }
+                                 else {
+                                	 $scope.salvando = false;
+                                	 stUtil.showMessage("","Já existe um registro com '"+pessoa.nome+"' cadastrado no sistema","danger");	
+                                 }
+
 						});
+						
+						
 
 					}
 

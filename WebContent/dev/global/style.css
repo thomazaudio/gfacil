@@ -203,16 +203,6 @@ a:hover, a:focus {
 
 
 
-/*Alteração para  o modal ocupar a tela toda*/
-.modal-lg {
-	width: 100%!important;
-	height: 100%!important;
-	margin: 0px!important;
-}
- 
-/* ------------------- */
-
-
 /* Pontilhado e icone de tesoura */
 .scissors {
     height: 43px; /* image height */
@@ -672,7 +662,7 @@ td  .input-group {
 
 .nav>li>a {
 	font-size: 15px;
-	color: rgb(86, 85, 85);
+	color: rgb(69, 67, 67);
 }
 
 .nav>li {
@@ -1274,9 +1264,7 @@ td>input {
 	border: solid 1px var(--primary-color);
 
 }
-.modal-dialog{
-	position:fixed;
-}
+
 
 .modal-content {
 	

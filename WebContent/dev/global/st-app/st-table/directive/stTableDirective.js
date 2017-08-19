@@ -32,7 +32,7 @@
 					htmlActionsPos:"=",
 					detalheLink:"=",
 					labelPivo:"=",
-					tipoObjeto:"="//Tipo de movimentação padrão no sistema 1 = Despesas, 2 = Receitas
+					tipoObjeto:"=",//Tipo de movimentação padrão no sistema 1 = Despesas, 2 = Receitas
 				},
 
 

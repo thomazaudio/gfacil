@@ -14,6 +14,8 @@
 				animation: true,
 				templateUrl:'pdv-ficha.html',
 				controller:"pdvFichaController",
+				bindToController:true,
+				controllerAs: "vm",
 				size:"lg",
 				resolve: {
 					callback:callback,

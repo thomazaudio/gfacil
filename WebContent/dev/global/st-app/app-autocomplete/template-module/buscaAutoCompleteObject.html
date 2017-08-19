@@ -21,8 +21,8 @@
 	       
 	 <!-- aba de resultados -->
 	<div ng-show="aba=='resultados' ||!aba" class="col-lg-12 auto-complete-inline" >
-		 <div ng-show="labelValue.length>0" class="pull-left" style="margin-left:5px;padding:5px 0px 5px 0px">
-				 <a ng-click="cadItem(labelValue, auxItemFilial.allFilials, this)" class="text-muted"><i class="fa fa-plus-square-o" aria-hidden="true"></i> cadastrar <strong>"{{labelValue}}"</strong></a>
+		 <div ng-show="labelValue.length>0 && obs.length==0" class="pull-left" style="margin-left:5px;padding:5px 0px 5px 0px">
+				 <a ng-click="cadItem(labelValue, auxItemFilial.allFilials, this)" class="text-muted" style="font-size:17px"><i class="fa fa-plus-square-o" aria-hidden="true"></i> cadastrar <strong>"{{labelValue}}"</strong></a>
 		 </div>
 	   
 	<!-- Resultados --> 

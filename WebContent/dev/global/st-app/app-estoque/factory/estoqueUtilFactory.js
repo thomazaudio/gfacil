@@ -40,7 +40,8 @@
 				controller:function($scope, $modalInstance){
 
 					$scope.produto = produto || {};
-
+					
+					var nomeOriginal =  $scope.produto.nome;
 
 					$scope.cancelAction = function(){
 
@@ -56,6 +57,17 @@
 					$scope.cadastrarProduto = function(){
 						
 						var produto = $scope.produto;
+						
+						console.log("Resultado: ");
+						console.log(cacheGet.get("produto","nome",produto.nome));
+						
+						//Evitar cadastro duplicado
+						if( cacheGet.get("produto","nome",produto.nome).length>0 && produto.nome != nomeOriginal)
+						{
+							stUtil.showMessage("","Já existe um registro com '"+produto.nome.toUpperCase()+"' cadastrado no sistema","danger");
+							$scope.changeStep(1);
+							return;
+						}
 						
 						if(!produto.nome){
 							

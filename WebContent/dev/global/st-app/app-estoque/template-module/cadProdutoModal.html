@@ -28,18 +28,11 @@
 				ng-model="produto.vUnCom" class="form-control input-lg" />
 		</div>
 		
-		<div class="col-lg-3 form-group">
+		<div class="col-lg-2 form-group">
 		    <nfe-unidade-medida label="'Unidade comercial'" ng-model="produto.uCom"></nfe-unidade-medida>
 		</div>
-		<div ng-show="produto.id" class="col-lg-2 form-group">
-			<label class="text-muted">
-				Quantidade em estoque</label> 
-				<br>
-				<div style="font-size:22px;">
-				<strong>{{produto.quantidade}}</strong>
-				   <button-estoque  produto="produto"></button-estoque>
-				</div>
-				
+		<div class="col-lg-3" style="font-size:17px;">
+		   	  <label class="text-muted">em estoque:  <strong>{{produto.quantidade}}</strong></label><button-estoque id="button-estoque" produto="produto"></button-estoque> 
 		</div>
 		
 		<div class="col-lg-12">

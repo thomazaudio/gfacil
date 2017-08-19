@@ -1,54 +1,51 @@
 <meta charset="UTF-8" />
-<modal-content icone-titulo="'list'" loading-ok-action="carregandoFinalizarVenda" cancel-action="cancelAction" ok-action="lancarVenda"  ok-action-label="infoModal.okActionLabel" ok-action-icon="infoModal.okActionIcon"   delete-action="deletarVenda" item="pdv" titulo="infoModal.titulo" modal-instance="this">
-
-<div ng-show="currentFilial.id==0 && !pdv.id" >
+<modal-content icone-titulo="'list'" loading-ok-action="vm.carregandoFinalizarVenda" cancel-action="vm.cancelAction" ok-action="vm.lancarVenda"  ok-action-label="vm.infoModal.okActionLabel" ok-action-icon="vm.infoModal.okActionIcon"   delete-action="vm.deletarVenda" item="vm.pdv" titulo="vm.infoModal.titulo" modal-instance="this">
+<div ng-show="currentFilial.id==0 && !vm.pdv.id" >
 		<alert-filial class="col-lg-12" label="'Não é possível lançar vendas para '"></alert-filial>
 		<filial-list in-modal="true"> </filial-list>
 </div>
-
-<div class="col-lg-2 only-desktop"></div>
-<div class="ng-enter col-lg-8 panel" ng-if="currentFilial.id!=0 || pdv.id" ng-show="(!config.confs.escolhaClientePdv || config.confs.escolhaClientePdv=='false') || pdv.movimentacao.pessoa">
+<div class="ng-enter col-lg-12 panel" ng-if="currentFilial.id!=0 || vm.pdv.id">
 	   
 	   <div class="row only-desktop col-lg-12" ng-show="false">
 	         <div class="pull-left">
-	            <button class="btn btn-default" ng-click="cancelAction()"><i class="fa fa-arrow-left"></i> Voltar</button>
+	            <button class="btn btn-default" ng-click="vm.cancelAction()"><i class="fa fa-arrow-left"></i> Voltar</button>
 	        </div>
 	        <div class="pull-right">
-	            <button class="btn btn-secondary" ng-click="lancarVenda()"><i class="fa {{infoModal.okActionIcon}}"></i> {{infoModal.okActionLabel}}</button>
+	            <button class="btn btn-secondary" ng-click="vm.lancarVenda()"><i class="fa {{vm.infoModal.okActionIcon}}"></i> {{vm.infoModal.okActionLabel}}</button>
 	        </div>
 	        <vertical-space></vertical-space>
 	        
 	   </div>
-	    <div class="row col-lg-12">
-	         <p class="text-muted" style="margin-left: 10px;">Total: R$  <strong style="color:var(--secondary-color);font-size:22px">{{totalPdv||0|number:2}}</strong></p>
+	   <div class="row col-lg-12">
+	         <p class="text-muted" style="margin-left: 10px;">Total: R$  <strong style="color:var(--secondary-color);font-size:22px">{{vm.totalPdv||0|number:2}}</strong></p>
 	    </div>
 	  
-	   <div class="panel-body">
+	<div class="panel-body">
 	   
-	       <div ng-show="step==0">
+	     <div ng-show="vm.step==0">
 			   <label class="text-muted"><i class="fa fa-user"></i> Cliente</label>
-			   <auto-complete-object id-input="'cliente-venda'" auto-show-busca="!pdv.id" use-cache="true" extra-class="'input-lg'" inline="true"  tipo="'select'" label-cad="'Cadastrar novo Cliente'" place-holder="'Primeiro, digite o nome do cliente'"  object-op="'cliente'" querys="" label="'nome'" ng-model="pdv.movimentacao.pessoa" />
-	        </div>
+			  <auto-complete-object auto-show-busca="!vm.pdv.id" id-input="'cliente-venda'"  use-cache="true" extra-class="'input-lg'" inline="true"  tipo="'select'" label-cad="'Cadastrar novo Cliente'" place-holder="'Primeiro, digite o nome do cliente'"  object-op="'cliente'" querys="" label="'nome'" ng-model="vm.pdv.movimentacao.pessoa" />
+	     </div>
 	   
-		 <div  ng-show="step==1">
-		        <app-simple-pedido pedidos="pdv.movimentacao.pedidos"></app-simple-pedido> 
+		 <div  ng-show="vm.step==1">
+		        <app-simple-pedido pedidos="vm.pdv.movimentacao.pedidos"></app-simple-pedido> 
 		 </div>
 	
-        <div  ng-show="step==2">
+        <div  ng-show="vm.step==2">
 			  <div class="panel">	
 				   <div class="panel-body">
 				        <div class="col-lg-4">
 								<div class="pull-left">
-										    <label class="text-muted text-small">Pago (<a id="btn-change-parcelas" data-toggle="modal" data-target="#modalParcelas">Parcelas</a>)</label>
+										    <label class="text-muted text-small">Pago <!--  (<a id="btn-change-parcelas" data-toggle="modal" data-target="#modalParcelas">Parcelas</a>) --></label>
 										    <br>
-										    <button-baixa-mov class="printHide" mov="pdv.movimentacao"></button-baixa-mov>
+										    <button-baixa-mov class="printHide" mov="vm.pdv.movimentacao"></button-baixa-mov>
 								 </div>
 										
 								<div class="pull-right">
 										    <label class="text-muted text-small" style="margin-bottom:12px">Entregue</label>
 										    <br>
 										    <label class="toggle"> 
-												<input  uib-tooltip="Carregou?"  ng-model="pdv.carregado"  ng-true-value="1" ng-false-value="0" type="checkbox" />
+												<input  uib-tooltip="Carregou?"  ng-model="vm.pdv.carregado"  ng-true-value="1" ng-false-value="0" type="checkbox" />
 												<span class="handle" style="top:-65%"></span>
 											</label>
 								  </div>	
@@ -60,8 +57,8 @@
 			  <div class="panel">	
 				   <div class="panel-body">
 				           <label class="text-muted text-small"><i class="fa fa-archive"></i> Empréstimo de embalagens </label>
-						   <input type="number" ng-model="pdv.lr.quantidade" class="form-control ng-enter" placeholder="Quantidade de embalagens emprestadas nesta venda"/>
-						   <labe class="text-muted text-small"  ng-show="quantidadeEmbalagemReceber>0">(<strong>{{pdv.movimentacao.pessoa.nome|uppercase}}</strong> está devendo  <strong class="danger">{{quantidadeEmbalagemReceber}}</strong> embalagens)</label>
+						   <input type="number" ng-model="vm.pdv.lr.quantidade" class="form-control ng-enter" placeholder="Quantidade de embalagens emprestadas nesta venda"/>
+						   <labe class="text-muted text-small"  ng-show="vm.quantidadeEmbalagemReceber>0">(<strong>{{vm.pdv.movimentacao.pessoa.nome|uppercase}}</strong> está devendo  <strong class="danger">{{vm.quantidadeEmbalagemReceber}}</strong> embalagens)</label>
 				   </div>
 		      </div>
 			 
@@ -69,50 +66,37 @@
 				  <div class="panel panel-body"	>
 					     <div ng-show="config.confs.showFormaPagamentoPdv=='true'" class="form-group col-lg-6">
 									<label class="text-muted"><i class="fa fa-bars"></i> Forma de pagamento</label>
-							       <auto-complete-object inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova forma de pagamento'" place-holder="'Digite a forma de pagamento'"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'forma_pagamento'}" ng-model="pdv.movimentacao.formaPagamento" ></auto-complete-object>
+							       <auto-complete-object inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova forma de pagamento'" place-holder="'Digite a forma de pagamento'"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'forma_pagamento'}" ng-model="vm.pdv.movimentacao.formaPagamento" ></auto-complete-object>
 						 </div>
 					
 						 <div ng-show="config.confs.showDataEmissaoPdv=='true'" class="form-group col-lg-6">
 								<label class="text-muted"><i class="fa fa-calendar"></i> Data Emissão</label>
-								<input st-input tipo="data" placeholder="Data da venda" ng-model="pdv.data" class="form-control" />
+								<input st-input tipo="data" placeholder="Data da venda" ng-model="vm.pdv.data" class="form-control" />
 						 </div>
 						
 						 <div class="col-lg-6">
 							  <div class="form-group">
 							     <label><i class="fa fa-list"></i> Produtos</label>
-							     <itens-pedido pedidos="pdv.movimentacao.pedidos"></itens-pedido>
-							     <a ng-click="changeStep(1)">alterar</a>
+							     <itens-pedido pedidos="vm.pdv.movimentacao.pedidos"></itens-pedido>
+							     <a ng-click="vm.changeStep(1)">alterar</a>
 							  </div>
 						 </div>
 						
 						<div class="col-lg-6">
-						     <label class="text-small text-muted"><i class="fa fa-user"></i> Cliente: <strong>{{pdv.movimentacao.pessoa.nome|uppercase}}</strong></label>
-						     <a ng-click="changeStep(0)">alterar</a>
+						     <label class="text-small text-muted"><i class="fa fa-user"></i> Cliente: <strong>{{vm.pdv.movimentacao.pessoa.nome|uppercase}}</strong></label>
+						     <a ng-click="vm.changeStep(0)">alterar</a>
 						 </div>
 					
-						<div class="col-lg-12">
-						    <hr></hr>
-						</div>
 				</div>
              </div>
 		</div>
 	
 	<div class="row"></div>
 	
-	<div class="col-lg-12"><hr></hr></div>
-	
 		<!-- Modal parcelamento -->
-	
 		<st-modal titulo="Parcelamento" idmodal="modalParcelas"  size="lg">
-		  <parcela-mov is-modal="true" id="parcelas-venda" original-mov="pdv.movimentacao"  movs="pdv.parcelas"></parcela-mov>
+		  <parcela-mov is-modal="true" id="parcelas-venda" original-mov="vm.pdv.movimentacao"  movs="vm.pdv.parcelas"></parcela-mov>
 		</st-modal>
-		</div>
-		
-		
+	</div>
 </div>
-	
-<div class="col-lg-2 only-desktop"></div>	
-</modal-content>
-
-
-	
+</modal-content>	

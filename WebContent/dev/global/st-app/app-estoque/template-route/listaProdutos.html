@@ -13,11 +13,15 @@
 			">
    </st-filter-map>
 </div>
+
+<vertical-space class="only-desktop"></vertical-space>
+<vertical-space class="only-desktop"></vertical-space>
+<div class="col-lg-4 only-desktop" >
+    <button ng-click="openDetalhe()" class="btn btn-secondary"><i class="fa fa-plus"></i> Cadastrar Produto</button>
+</div>
   
  <button-add ng-click="openDetalhe()"></button-add>
   
-
-
 <vertical-space></vertical-space>
 <vertical-space></vertical-space>
  <div ng-repeat="ob in objetos" class="col-lg-4">
@@ -26,8 +30,8 @@
 	   	         <div class="pull-left">
 	   	             <span class="destaque-item">R$ {{ob.preco|number:2}}</span> 
 	   	         </div>
-	   	         <div class="pull-right" style="font-size:15px;">
-		   	         <label class="text-muted">Estoque:  <strong>{{ob.quantidade}}</strong></label><button-estoque id="button-estoque" produto="ob"></button-estoque> 
+	   	         <div class="pull-right" style="font-size:17px;">
+		   	         <label class="text-muted">em estoque:  <strong>{{ob.quantidade}}</strong></label><button-estoque id="button-estoque" produto="ob"></button-estoque> 
 		   	     </div>
 	   	     </div>
 	   	 </card-list>

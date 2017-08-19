@@ -42,6 +42,18 @@
 
 @media only screen and (max-width : 1199px) {
 	
+	
+	/*Alteração para  o modal ocupar a tela toda*/
+.modal-lg {
+	width: 100%!important;
+	height: 100%!important;
+	margin: 0px!important;
+}
+ 
+ .modal-dialog{
+	position:fixed;
+}
+	
 	.st-pagination {
 	
 	  font-size:15px;
@@ -228,6 +240,8 @@
 	#no-more-tables tr {
 	
 		box-shadow: 3px 5px 3px #E1E5E6;
+		margin-bottom: 15px;
+        border-bottom: 1px solid;
 	}
 	#no-more-tables td {
 		/* Behave  like a "row" */

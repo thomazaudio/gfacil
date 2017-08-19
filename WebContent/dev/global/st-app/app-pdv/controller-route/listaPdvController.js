@@ -1,6 +1,6 @@
 "use strict";
 (function(){
-angular.module("adm").controller("listaPdvController",function($scope,$rootScope,printUtil,estoqueUtil,stService,$location,$route,$filter,stUtil,movUtil,pdvUtil,$timeout){
+angular.module("adm").controller("listaPdvController",function($scope, $rootScope, printUtil, estoqueUtil, stService, $location, $route, $filter, stUtil, movUtil, pdvUtil, $timeout){
 
 	$scope.hoje = new Date();
 

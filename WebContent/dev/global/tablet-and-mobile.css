@@ -80,6 +80,10 @@
 	}
 	.modal-title{
 	   font-size:15px;
+	   white-space: nowrap;
+	   width: 19.5em;
+	   overflow: hidden;
+	   text-overflow: ellipsis;
 	}
 	.modal-header, .modal-footer {
 		padding: 20px 5px 15px 5px;

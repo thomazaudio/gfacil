@@ -61,7 +61,7 @@
 					qs: qs,
 					pagina: 0,
 					max: vm.maxItens||0,
-					extra: " order by "+oderMovs
+					extra: " order by ( "+oderMovs+" || id)"
 			}
 
 			stService.executeGet("/movimentacao/busca/map",params).success(function(data){

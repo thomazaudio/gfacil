@@ -6,6 +6,8 @@
 	.factory("movListControllerFactory", function($rootScope, dateUtil, movUtil){
 
 		var _init = function(scope){
+			
+			scope.orderMovs = "data";
 
 			if(scope.allPeriod==true){
 
@@ -45,7 +47,7 @@
 			//Data de referência
 			scope.tipoDataBusca  = $rootScope.config.confs.attrDataReferenciaMovList || "data";
 
-			scope.orderMovs = $rootScope.config.confs.attrOrderByMovList || "(pessoa.nome || id)";
+			scope.orderMovs = $rootScope.config.confs.attrOrderByMovList || "data";
 
 		}
 

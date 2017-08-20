@@ -1,0 +1,13 @@
+.btn-option-card-list {
+	color:#938a8a!important;
+	font-size:25px;
+	padding: 0px 5px 0px 5px;
+	
+}
+
+.card-list-label-pivo{
+	white-space: nowrap;
+    width: 14.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

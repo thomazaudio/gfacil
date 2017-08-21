@@ -81,7 +81,7 @@
 	.modal-title{
 	   font-size:15px;
 	   white-space: nowrap;
-	   width: 19.5em;
+	   width: 62%;
 	   overflow: hidden;
 	   text-overflow: ellipsis;
 	}
@@ -129,6 +129,7 @@
 	.modal-dialog {
 		width: 100%;
 		top: -10px;
+		margin:0px;
 	}
 	
 	.text-itens-mov {
@@ -232,7 +233,7 @@
 		#no-more-tables th, #no-more-tables td, #no-more-tables tr {
 		display: block;
 		border: none;
-		background-color: #F8F8F8;
+		background-color: #ffffff;
 	}
 
 	/* Hide table headers (but not display: none;, for accessibility) */
@@ -257,7 +258,6 @@
 		text-align: left;
 		font-size: 12px;
 		min-height: 29px;
-		background-color: #F8F8F8;
 	}
 	#no-more-tables td:before {
 		/* Now like a table header */

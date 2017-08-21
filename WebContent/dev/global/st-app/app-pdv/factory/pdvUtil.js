@@ -5,7 +5,7 @@
 	.factory("pdvUtil",function($uibModal,$location,stUtil,stService,estoqueUtil,$rootScope,$route,movUtil,$filter){
 
 		//abre uma venda utilizando um modal
-		var _openVendaInModal = function(pdv,callback){
+		var _openVendaInModal = function(pdv, callback){
 
 			if(pdv)
 				var pdv = {data:{item:pdv}};

@@ -1,47 +1,38 @@
 <meta charset="UTF-8" />
 
-<div  ng-show="step!=2" class="stepwizard col-md-offset-3">
-    <div class="stepwizard-row setup-panel">
-      <div class="stepwizard-step">
-        <a href="#step-1" type="button" class="btn btn-default btn-circle" ng-class="{'btn-primary': step==0}">1</a>
-      </div>
-      <div class="stepwizard-step">
-        <a href="#step-2" type="button" class="btn btn-default btn-circle" ng-class="{'btn-primary': step==1}">2</a>
-      </div>
-    </div>
-  </div>
+<div  ng-show="step!=2">
+     <h2 class="text-center"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i></h2>
+</div>
 
 <div ng-show="step==0" class="row">
-   <h3 class="col-lg-12 text-center">Gostaria de modernizar seu negócio na Ceasa e se tornar um vendedor mais profissional?</h3>
+   <h3 class="col-lg-12 text-center">Quer economizar tempo de trabalho, evitar prejuizos e modernizar seu negócio na <strong>Ceasa?</strong></h3>
    <div class="vertical-space"></div>
    <div class="col-lg-6">
          <button ng-click="responder()" class="btn btn-resposta btn-block">SIM</button>
    </div>
    <div class="col-lg-6">
-       <button ng-click="responder()" class="btn btn-nao btn-resposta btn-block">NÃO</button>
+       <button  class="btn btn-nao btn-resposta btn-block">NÃO</button>
    </div>
 </div>
 
 <div ng-show="step==1" class="row">
-   <h3 class="col-lg-12 text-center">Deseja utilizar um sistema que irá  ajudar a organizar melhor suas vendas na Ceasa?</h3>
-   
+   <h3 class="col-lg-12 text-center">Deseja utilizar uma ferramenta que irá ajudar a organizar melhor suas vendas na <strong>Ceasa?</strong></h3>
+   <div class="vertical-space"></div>
    <div class="col-lg-6">
-         <button ng-click="responder()" class="btn btn-resposta btn-block" >SIM</button>
+         <button ng-click="responder()" class="btn btn-resposta btn-block">SIM</button>
    </div>
    <div class="col-lg-6">
-       <button  ng-click="responder()" class="btn btn-resposta btn-nao btn-block" >NÃO</button>
+       <button class="btn btn-nao btn-resposta btn-block">NÃO</button>
    </div>
 </div>
 
-
-
  <div ng-show="step==2" class="row">
-     <p>Assista ao vídeo para saber como a ferramenta Ceasa Plus pode transformar seu negócio na Ceasa!</p>
+     <p>Assista ao vídeo e saiba como a ferramenta <strong>Ceasa Plus</strong> pode transformar sua vida de vendedor na Ceasa!</p>
 	<youtube-video player-vars="playerVars" player-width="'100%'" video-url="'https://www.youtube.com/watch?v=WcIHw4ihcY8&feature=youtu.be'" player="videoIntro"></youtube-video>
 	<div class="form-group">
 	            <label ng-show="!showButtonProx || showButtonProx==false"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Por favor,  assista o vídeo para se cadastrar.</label>
 				
-				<a href="#/cadastro" ng-show="showButtonProx" type="button" class="btn btn-primary btn-lg btn-block">Efetuar cadastro (91 vagas restantes)</a>
+				<a href="#/cadastro" ng-show="showButtonProx" type="button" class="btn btn-primary btn-lg btn-block">Efetuar cadastro ({{vagasRestantes}} vagas restantes)</a>
 				 
 	</div>
 </div>

@@ -69,7 +69,7 @@ angular.module("site").config(function($routeProvider){
 	
 
 	
-	$routeProvider.otherwise({redirectTo: "/cadastro"});
+	$routeProvider.otherwise({redirectTo: "/introducao"});
 
 });
 

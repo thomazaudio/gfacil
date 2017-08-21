@@ -1,7 +1,7 @@
 
 /*Animação para mudança de rota*/
 .route-view.ng-enter{
-  transition: all 0.4s linear;
+  transition: all 0.7s linear;
   opacity: 0;
 }
 

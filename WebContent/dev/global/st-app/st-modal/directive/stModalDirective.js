@@ -63,6 +63,7 @@
 			scope:{
 
 				titulo:"@",
+				icon:"@",
 				idmodal:"@",
 				size:"@"
 

@@ -1,6 +1,6 @@
 <meta charset="UTF-8" />
  <div id="modulo"></div>
-  <div ng-show="vm.activeTab==0">
+  <div ng-show="vm.activeTab==1">
     <div class="form-group col-lg-4" id="buscaPessoa">
       		   <auto-complete-object place-holder="'Digite o nome do cliente para buscar'" use-cache="true" extra-class="'input-lg'" ng-change="vm.getLrs(vm.clienteBusca.nome)" inline="true"  tipo="'select'" label-cad="'Cadastrar novo Cliente'" place-holder="'Digite o nome do Cliente'"  object-op="'cliente'" querys="" label="'nome'" ng-model="vm.clienteBusca" />
     </div>
@@ -29,7 +29,7 @@
 	
 	</div>
 	 
-  <div ng-if="vm.activeTab==1">
+  <div ng-if="vm.activeTab==2">
          <st-collapse-panel class="col-lg-6" icone="'calendar'" show="true" titulo="vm.labelDevolvidasSemana">
           <component-projecao de="vm.devolvidasSemanaPeriodo.de" ate="vm.devolvidasSemanaPeriodo.ate" info="vm.devolvidasSemana"></component-projecao>
 	    </st-collapse-panel>

@@ -180,59 +180,7 @@
 
 				}
 
-				function cadItem (value, allFilials, callback){
-
-					$scope.salvandoItem = true;
-
-					var ob = {};
-					ob[label]= value;
-
-					//Atributos pre-definidos
-					for(var k in fix){
-						ob[k] = fix[k];	
-					}
-
-					//auxItemFilial
-					ob["allFilials"]=allFilials;
-
-					var query = label+" = '"+ob[label]+"'";
-					var qs = [];
-					qs.push(query);
-					qs = qs.concat(querys);
-
-					stService.getLikeMap(nomeObjeto,qs,0,0,"").success(function(data){
-
-						if(data.itens.length>0){
-							stUtil.showMessage("","Já existe um registro com '"+ob[label]+"' cadastrado no sistema","danger");
-							$scope.salvandoItem = false;
-							return;
-						}
-						else {
-
-							stService.save(nomeObjeto,ob).success(function(data){
-
-								var objeto=[data.item.id,data.item[label]];
-								selecionarItem(objeto);
-								value="";
-								$scope.salvandoItem = false;
-								stUtil.showMessage("","'"+ob[label]+"' cadastrado com sucesso!","info");
-								callback(objeto);
-
-							}).error(function(){
-
-								stUtil.showMessage("","Ocorreu um erro, verifique sua conexão com a internet.","danger");
-								$scope.salvandoItem = false;
-							});
-						}
-
-					}).error(function(){
-
-						stUtil.showMessage("","Ocorreu um erro, verifique sua conexão com a internet.","danger");
-						$scope.salvandoItem = false;
-					});
-
-				}
-
+			
 				function selecionarItem (item){
 
 					if($scope.getCompleteObject==true){
@@ -319,7 +267,7 @@
 
 				}
 
-				$scope.cadItem = function(value,allFilials){
+				$scope.cadItem = function(value, allFilials){
 
 					cadItem(value,allFilials);
 
@@ -363,12 +311,60 @@
 							}
 
 							$scope.cadItem = function(value, allFilials){
+								
+								
+								$scope.salvandoItem = true;
 
-								cadItem(value,allFilials, function(){
-									
-									$modalInstance.close();
-									
+								var ob = {};
+								ob[label]= value;
+
+								//Atributos pre-definidos
+								for(var k in fix){
+									ob[k] = fix[k];	
+								}
+
+								//auxItemFilial
+								ob["allFilials"]=allFilials;
+
+								var query = label+" = '"+ob[label]+"'";
+								var qs = [];
+								qs.push(query);
+								qs = qs.concat(querys);
+								
+								console.log("salvandoItem: "+$scope.salvandoItem);
+
+								stService.getLikeMap(nomeObjeto,qs,0,0,"").success(function(data){
+
+									if(data.itens.length>0){
+										stUtil.showMessage("","Já existe um registro com '"+ob[label]+"' cadastrado no sistema","danger");
+										$scope.salvandoItem = false;
+										return;
+									}
+									else {
+
+										stService.save(nomeObjeto,ob).success(function(data){
+
+											var objeto=[data.item.id,data.item[label]];
+											selecionarItem(objeto);
+											value="";
+											$scope.salvandoItem = false;
+											stUtil.showMessage("","'"+ob[label]+"' cadastrado com sucesso!","info");
+											$modalInstance.close();
+										}).error(function(){
+
+											stUtil.showMessage("","Ocorreu um erro, verifique sua conexão com a internet.","danger");
+											$scope.salvandoItem = false;
+											$modalInstance.close();
+										});
+									}
+
+								}).error(function(){
+
+									stUtil.showMessage("","Ocorreu um erro, verifique sua conexão com a internet.","danger");
+									$scope.salvandoItem = false;
 								});
+
+							
 							
 							}
 

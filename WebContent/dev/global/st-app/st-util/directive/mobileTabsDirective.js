@@ -18,7 +18,9 @@
 			controller: function() {
 				
 				var vm = this;
-				vm.activeTab = 	vm.activeTab || 0;
+				
+				if( vm.activeTab!=0)
+				vm.activeTab = 	vm.activeTab || 1;
 				
 				vm.alterarTab =function (tab){
 

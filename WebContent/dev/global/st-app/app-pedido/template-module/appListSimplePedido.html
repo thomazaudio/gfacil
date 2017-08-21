@@ -8,8 +8,8 @@
            <button-estoque hide-buttons="true" auto-load="true"  produto="r.produto"></button-estoque> 		   
 		</label>
 		<label class="pull-right"> 
-		  <a ng-click="vm.openDetalhePedido(r)" class="btn-option-pedido"  ng-show="r.quantidade && r.quantidade>0" ><i class="fa fa-edit"></i></a>
-		  <a ng-click="vm.openDetalhePedido(r)" class="btn-option-pedido" ng-show="!r.quantidade || r.quantidade==0" ><i class="fa fa-plus"></i></a>
+		  <a ng-click="vm.openDetalhePedido(r)" class="btn-option-pedido only-mobile"  ng-show="r.quantidade && r.quantidade>0" ><i class="fa fa-edit"></i></a>
+		  <a ng-click="vm.openDetalhePedido(r)" class="btn-option-pedido only-mobile" ng-show="!r.quantidade || r.quantidade==0" ><i class="fa fa-plus"></i></a>
 		  <a class="btn-option-pedido" ng-if="r.quantidade>0" ng-click="vm.deletarPedido(r)" ><i class="fa fa-trash-o"></i></a>
 		</label>
 		<div class="row"></div>

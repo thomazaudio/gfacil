@@ -75,7 +75,6 @@ public class TestUserDAO extends GenericDAO<TestUser> {
 		
 		TestDefinition testDefinition = null;
 		
-		
 		Connection con = DataBaseUtil.getConnection();
 
 		PreparedStatement stm =null;
@@ -204,8 +203,4 @@ public Double getSaldoForUser(){
 	
 }
 
-	
-
 }
-
-

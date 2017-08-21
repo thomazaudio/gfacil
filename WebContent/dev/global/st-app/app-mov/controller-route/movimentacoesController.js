@@ -1,6 +1,12 @@
 angular.module("adm").controller("movimentacoesController",function($scope){
-	//Receitas
-	$scope.activeTab = 1;
+	
+	$scope.activeTab = 0;
+	
+	$scope.changeTab = function(tab){
+		
+		$scope.activeTab = tab;
+		
+	}
 	
 
 });

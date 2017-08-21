@@ -3,6 +3,9 @@
 (function(){
 	angular.module("adm").controller("pdvFichaController",function(cacheGet, $location ,cachePost, $uibModal, pdvUtil, pedidoUtil, $rootScope, $scope, stService ,pdv, stUtil ,movUtil,$route, $filter, st, nfeUtil, $modalInstance, lrUtil){
 
+		console.log("pdv aqui: ");
+		console.log(pdv);
+		
 		var ini = new Date().getTime(); 
 
 		var vm = this;
@@ -131,8 +134,6 @@
 				return;
 			}
 
-			
-
 			var msg = "";
 
 			if(!pdv.id)
@@ -144,8 +145,6 @@
 				pdv.movimentacao.data = $filter("date")(new Date(),"dd/MM/yyyy");
 
 			pdv.tipoPdvLancamento="pdvficha";//Tipo de pdv em que a venda foi lançada
-
-			
 
 			//Nome do evento
 			var nomeEvento = "";

@@ -32,6 +32,7 @@
 		 </div>
 	
         <div  ng-show="vm.step==2">
+              <vertical-space></vertical-space>
 			  <div class="panel">	
 				   <div class="panel-body">
 				        <div class="col-lg-4">
@@ -56,14 +57,16 @@
 			  
 			  <div class="panel">	
 				   <div class="panel-body">
-				           <label class="text-muted text-small"><i class="fa fa-archive"></i> Empréstimo de embalagens </label>
-						   <input type="number" ng-model="vm.pdv.lr.quantidade" class="form-control ng-enter" placeholder="Quantidade de embalagens emprestadas nesta venda"/>
-						   <labe class="text-muted text-small"  ng-show="vm.quantidadeEmbalagemReceber>0">(<strong>{{vm.pdv.movimentacao.pessoa.nome|uppercase}}</strong> está devendo  <strong class="danger">{{vm.quantidadeEmbalagemReceber}}</strong> embalagens)</label>
+				            <div class="form-group col-lg-12">
+					           <label class="text-muted text-small"><i class="fa fa-archive" style="color:#5bc068; font-size:22px"></i> Empréstimo de embalagens </label>
+							   <input type="number" ng-model="vm.pdv.lr.quantidade" class="form-control ng-enter" placeholder="Quantidade de embalagens emprestadas nesta venda"/>
+							   <label class="text-muted text-small"  ng-show="vm.quantidadeEmbalagemReceber>0">(<strong>{{vm.pdv.movimentacao.pessoa.nome|uppercase}}</strong> já está devendo  <strong class="danger">{{vm.quantidadeEmbalagemReceber}}</strong> embalagens)</label>
+				           </div>
 				   </div>
 		      </div>
 			 
 		      <div class="panel">
-				  <div class="panel panel-body"	>
+				  <div class="panel-body"	>
 					     <div ng-show="config.confs.showFormaPagamentoPdv=='true'" class="form-group col-lg-6">
 									<label class="text-muted"><i class="fa fa-bars"></i> Forma de pagamento</label>
 							       <auto-complete-object inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova forma de pagamento'" place-holder="'Digite a forma de pagamento'"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'forma_pagamento'}" ng-model="vm.pdv.movimentacao.formaPagamento" ></auto-complete-object>

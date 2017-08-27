@@ -159,9 +159,10 @@
 			var iniTempoResposta = new Date().getTime();
 
 			vm.carregandoFinalizarVenda =true;
-
-			stService.executePost("pdv/add/", pdv).success(function(){
-
+			
+			cachePost.add("pdv/add/", pdv, function(){
+				
+				
 				vm.carregandoFinalizarVenda =false;
 
 				//Evento tempo de resposta do servidor ao finalizar venda
@@ -226,13 +227,8 @@
 
 					}
 				});
-
-
-			}).error(function(){
-
-				stUtil.showMessage("","Não foi possivel salvar a venda, verifique sua conexão.","danger");
+				
 			});
-
 
 
 		}

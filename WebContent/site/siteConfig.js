@@ -1,10 +1,18 @@
 angular.module("site").config(function($routeProvider){
 
 	
-	$routeProvider.when("/introducao",{
+	$routeProvider.when("/intro/:origem",{
 
 	    templateUrl:"modulos/introducao/introducao.html",
-		controller:"introducaoController"
+		controller:"introducaoController",
+		resolve: {
+			
+			origem: function($route){
+				
+				return $route.current.params.origem;
+			}
+			
+		}
 
 	})
 	
@@ -67,9 +75,6 @@ angular.module("site").config(function($routeProvider){
 	})
 	
 	
-
-	
-	$routeProvider.otherwise({redirectTo: "/introducao"});
 
 });
 

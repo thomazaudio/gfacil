@@ -21,26 +21,26 @@
 			<hr></hr>
 	</div>
 	
-	<form id="formulario-cadastro" role="form" class="registration-form">
+	<form ng-submit="cadastrarLead(lead)" id="formulario-cadastro" role="form" class="registration-form">
 			<div class="form-group col-lg-6">
 				<label for="form-email">Nome</label> 
-				<input type="text" 	class="form-email form-control" id="email" ng-model="lead.nome">
+				<input type="text" required="true" 	class="form-email form-control" id="email" ng-model="lead.nome">
 			</div>
 			<div class="form-group col-lg-6">
-				<label for="form-email">Email</label>
-				 <input type="text"
+				<label for="form-email">Email (Opcional)</label>
+				 <input type="email" required="true"
 							name="email" placeholder="Informe seu melhor email :-)"
 							class="form-email form-control" id="email" ng-model="lead.email" />
 			</div>
 	
 			<div class="form-group  col-lg-6">
 						<label for="form-last-name">Telefone</label> 
-						<input ng-model="lead.phone_number"
-							id="phone_number" type="text" name="form-last-name"
+						<input ng-model="lead.telefone"
+							id="phone_number" type="tel" name="form-last-name"
 							placeholder="Informe seu número com DDD"
-							class="form-last-name form-control" />
+							class="form-last-name form-control"  required="true"/>
 		    </div>
-	
+	        <!-- 
 			<div class="form-group  col-lg-6">
 					<label for="form-last-name">Seu perfil</label> <select 
 							class="form-control form-email">
@@ -49,7 +49,8 @@
 							<option>Produtor e Comerciante</option>
 					</select>
 			</div>
-			<button ng-click="cadastrarLead(lead)" class="btn btn-block">Pronto :-)</button>
+			 --> 
+			<button class="btn btn-block">Pronto :-)</button>
 	</form>
 
 

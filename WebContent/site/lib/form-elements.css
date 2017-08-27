@@ -41,7 +41,6 @@ input[type="text"]::-webkit-input-placeholder, textarea::-webkit-input-placehold
 
 
 button.btn {
-	height: 50px;
     margin: 0;
     padding: 0 20px;
     vertical-align: middle;

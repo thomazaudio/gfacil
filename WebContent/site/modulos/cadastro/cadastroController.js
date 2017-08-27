@@ -1,4 +1,4 @@
-angular.module("site").controller("cadastroController", function($scope, stService, $localStorage, $location, googleAdWordsService){
+angular.module("site").controller("cadastroController", function($scope, stService, $localStorage, $location, googleAdWordsService, leadUtil){
 	
 	stService.executeGet("config").success(function(data){
 		
@@ -27,14 +27,17 @@ angular.module("site").controller("cadastroController", function($scope, stServi
 		 currency: 'USD'
 		 });
 		
-		 stService.executePost("lead/add/", lead).success(function(data){
+		 
+		 leadUtil.saveLead(lead, function(res){
 			 
 			 googleAdWordsService.registerLeadConversion();
-			 $localStorage.lead = data.item;
-			 $scope.lead = data.item;
+			 $localStorage.lead = res;
+			 $scope.lead = res;
+			 leadUtil.setAction("finalizou_cadastro");
 			 $location.path("cadastro-sucesso");
 			 
-		 });
+		 })
+		
 	 }
 	
 });

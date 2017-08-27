@@ -2,7 +2,7 @@
     <ul class="list-button-action-modal">
      
 	  <li ng-show="okAction">
-	     <button ng-disabled="disableOkButton" class="btn btn-action-modal ripple" ng-click="okAction(this)">
+	     <button ng-disabled="disableOkButton || loadingOkAction==true" class="btn btn-action-modal ripple" ng-click="okAction(this)">
 	           <i id="btn-ok-action"  ng-show="!loadingOkAction || loadingAction == false"class="fa {{okActionIcon || 'fa-check'}}"></i>
 	           <i ng-show="loadingOkAction==true" class="fa fa-refresh faa-spin animated ng-hide"></i>
 	           <span class="only-desktop" style="font-size:17px;">{{okActionLabel || 'FINALIZAR' |uppercase}}</span>

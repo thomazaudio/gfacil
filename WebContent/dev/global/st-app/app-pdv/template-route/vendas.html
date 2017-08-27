@@ -27,10 +27,7 @@
 
 <vertical-space></vertical-space>
 
-
-
 <button-add ng-click="goToPdv()"></button-add>
-	
 	
 	<div ng-if="objetos.length==0" class="col-lg-12">
 	 <st-no-itens label="'Nenhuma venda no período selecionado.'"></st-no-itens>
@@ -44,7 +41,7 @@
 	   	             <label class="text-muted"><i class="fa fa-calendar"></i> {{ob.movimentacao.data|date:'dd/MM/yyyy'}}</label>   
 	   	         </div>
 	   	         <div class="pull-right">
-		   	         <label class="pdv-item-preco">R$ {{ob.movimentacao.valor|number:2}}</label>   
+		   	         <label class="pdv-item-preco">R$ <strong class="pdv-item-preco" style="font-size:19px;">{{ob.movimentacao.valor|number:2}}</strong></label>   
 		   	     </div>
 	   	     </div>
 	   	     <vertical-space></vertical-space>
@@ -74,12 +71,4 @@
 <!-- Paginação para mobile -->
 <st-pagination ng-if="objetos.length>0"  querys="querys"></st-pagination>
 
-<st-modal idmodal="modalEscProd">
-  <div class="col-lg-6">
-    <button class="btn btn-primary btn-lg">
-    <h2>Batata Branca</h2>
-    </button>
-  </div>
-  <div class="row"></div>
-</st-modal>
 </div>

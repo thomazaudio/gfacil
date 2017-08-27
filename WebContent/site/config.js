@@ -26,11 +26,18 @@ angular.module('site').factory('config',function($location,$rootScope){
 		return $location.path();
 	}
 	
+	function getVersaoLandingPage(){
+		
+		return "1.0";
+	}
+	
+	
 	
 	return {
 
 		baseUrl: getUrlBase(),
-		path: getPath()
+		path: getPath(),
+		versaoLandingPage: getVersaoLandingPage()
 	};
 
 

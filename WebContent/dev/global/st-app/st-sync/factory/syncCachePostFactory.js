@@ -15,42 +15,42 @@
 			
 			var executar = function(){
 				
-				console.log("executar()");
-				console.log("executando: "+executando);
+				console.log("cachePost: ");
+				console.log($localStorage.cachePost);
 				
 				if(executando==true || onlineStatus.isOnline()==false)
 					return;
 				
 				executando = true;
 				
-				executePosts(0, function(){
-					
-					executando = false;
-					
-				});
+				executePosts();
 			}
 
 	
-			function executePosts(index, callback){
+			function executePosts(){
 				
-				if(!$localStorage.cachePost[index]){
-					callback();
+				console.log("cachePost[0]");
+				console.log($localStorage.cachePost[0]);
+				
+				if(!$localStorage.cachePost[0]){
+					
+					executando = false;
 					return;
 				}
 
-				stService.executePost($localStorage.cachePost[index].url, $localStorage.cachePost[index].objeto).success(function(data){
+				stService.executePost($localStorage.cachePost[0].url, $localStorage.cachePost[0].objeto).success(function(data){
 
-					$localStorage.cachePost.splice(index,1);
-					executePosts(index+1, callback)
+					$localStorage.cachePost.splice(0,1);
+					executePosts();
 					
 				}).error(function(){
 					
-					callback();
+					executePosts();
 					
 				});
 			}
 
-		  $interval(executar, 30000);
+		  $interval(executar, 10000);
 			
 		}
 

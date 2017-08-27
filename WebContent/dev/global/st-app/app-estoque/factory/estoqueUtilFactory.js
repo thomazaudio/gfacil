@@ -159,7 +159,7 @@
 
 			var _modalInstance =   $uibModal.open({
 				animation: true,
-				templateUrl:"global/st-app/app-estoque/template-route/entradaMercadoria.html",
+				templateUrl:"entradaMercadoria.html",
 				size:'lg',
 				controller:"entradaMercadoriaController",
 				resolve:{

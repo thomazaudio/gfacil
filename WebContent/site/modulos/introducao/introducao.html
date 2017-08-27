@@ -1,8 +1,15 @@
 <meta charset="UTF-8" />
 
-<div  ng-show="step!=2">
-     <h2 class="text-center"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i></h2>
-</div>
+<div  ng-show="step!=2" class="stepwizard col-md-offset-3">
+    <div class="stepwizard-row setup-panel">
+      <div class="stepwizard-step">
+        <a href="#step-1" type="button" class="btn btn-default btn-circle" ng-class="{'btn-primary': step==0}">1</a>
+      </div>
+      <div class="stepwizard-step">
+        <a href="#step-2" type="button" class="btn btn-default btn-circle" ng-class="{'btn-primary': step==1}">2</a>
+      </div>
+    </div>
+  </div>
 
 <div ng-show="step==0" class="row">
    <h3 class="col-lg-12 text-center">Quer economizar tempo de trabalho, evitar prejuizos e modernizar seu negócio na <strong>Ceasa?</strong></h3>
@@ -31,9 +38,10 @@
 	<youtube-video player-vars="playerVars" player-width="'100%'" video-url="'https://www.youtube.com/watch?v=WcIHw4ihcY8&feature=youtu.be'" player="videoIntro"></youtube-video>
 	<div class="form-group">
 	            <label ng-show="!showButtonProx || showButtonProx==false"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Por favor,  assista o vídeo para se cadastrar.</label>
-				
-				<a href="#/cadastro" ng-show="showButtonProx" type="button" class="btn btn-primary btn-lg btn-block">Efetuar cadastro ({{vagasRestantes}} vagas restantes)</a>
-				 
+				<button ng-click="cadastrar()" ng-show="showButtonProx" type="button" class="btn btn-primary btn-lg btn-block">
+				     <h2 style="color: white;line-height:15px;font-size:25px">Efetuar cadastro</h2>
+				     <h4>({{vagasRestantes}} vagas restantes)</h4>
+				</button>
 	</div>
 </div>
 	

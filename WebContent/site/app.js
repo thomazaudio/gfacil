@@ -1,7 +1,48 @@
 
 var app  = angular.module("site",["ngRoute","ngStorage","youtube-embed"]);
 
+
+app.factory("leadUtil", function(stService, $localStorage, $rootScope, config){
+	
+	var _saveLead = function(lead, callback){
+	
+	
+		lead = lead || {};
+		
+		lead.versaoLandingPage = config.versaoLandingPage;
+		lead.alturaTela = $(window).height()+"";
+		lead.larguraTela = $(window).width()+"";
+		
+		stService.executePost("lead/add/", lead).success(function(data){
+			
+			$localStorage.lead = data.item;
+			$rootScope.lead = data.item;
+			callback(data.item);
+		});
+		
+	}
+	
+	var _setAction = function(action){
+		
+		$localStorage.lead.lastAction = action;
+		$rootScope.lead.lastAction = action;
+		_saveLead($rootScope.lead);
+	}
+	
+	return {
+		saveLead: _saveLead,
+		setAction: _setAction
+	}
+})
+
 app.run(['$rootScope', '$route', 'stService', '$localStorage', '$location', function($rootScope, $route, stService, $localStorage, $location) {
+	
+	
+	$rootScope.lead = $localStorage.lead;
+	
+	
+	
+	
 	
 	 $rootScope.$on('$routeChangeSuccess', function() {
 		 

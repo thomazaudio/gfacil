@@ -32,7 +32,8 @@
 				idInput:"=",
 				resultadoBusca:"=",//Bind para resultados da busca
 				useCache:"=",//cacheGet
-				autoShowBusca:"="//Mostra a busca automaticamente
+				autoShowBusca:"=",//Mostra a tela de busca automaticamente
+				forceExecuteBusca:"="//Mostra a tela de busca automaticamente
 			},
 
 			templateUrl:'autoCompleteObject.html',
@@ -45,8 +46,6 @@
 						$scope.labelValue="";
 					}
 				});
-
-			
 
 				var fix = $scope.fixProperties||[];
 
@@ -102,6 +101,11 @@
 				function getInitialBusca(){
 
 					return $scope.initialBusca;
+				}
+				
+				function getForceExecuteBusca(){
+
+					return $scope.forceExecuteBusca;
 				}
 
 				function getItens(){
@@ -278,6 +282,7 @@
 
 					$scope.aba = aba;
 				}
+				
 
 				//Abre o modal de busca
 				$scope.openBusca = function(){
@@ -293,7 +298,10 @@
 							$scope.placeHolder=placeHolder;
 							$scope.modelValue = getModelValue();
 							$scope.initialBusca = getInitialBusca();
+							$scope.forceExecuteBusca = getForceExecuteBusca();
 							$scope.focusBusca=true;
+							
+							console.log("initialBusca: "+getInitialBusca());
 							
 							
 							$scope.inputFocus = function(labelValue){
@@ -391,10 +399,16 @@
 
 							}
 
-							//Busca Inicial
-							if(getInitialBusca()){
+							
+							if($scope.forceExecuteBusca==true){
 
-								$scope.buscarItem(getInitialBusca());
+								$scope.buscarItem("");
+							}
+							
+							//Busca Inicial
+							if($scope.initialBusca ){
+
+								$scope.buscarItem($scope.initialBusca );
 							}
 
 							$scope.fecharModal = function(ele){

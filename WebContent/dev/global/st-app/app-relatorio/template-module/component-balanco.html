@@ -1,4 +1,5 @@
 <meta charset="UTF-8" />
+<div ng-show="!loading || loading==false">
 <!-- Despesas Pagas -->
 <div class="col-lg-4">
 	<div class="panel panel-default">
@@ -41,4 +42,10 @@
 	  </div>
 
  </div>
+</div>
+</div>
+<div ng-show="loading==true">
+   <p class="text-muted">
+       Carregando dados 	<i n class="fa fa-refresh faa-spin animated" aria-hidden="true"></i>
+   </p>
 </div>

@@ -26,7 +26,7 @@ public class Lead extends CrudClass {
 	@JsonView(util.Views.Public.class)
 	private String nome;
 	
-	//Origem do Lead ex: a1, a2, f1, f2
+	//Origem do Lead ex: a1, a2, f1, f2, s1, s2, s3
 	@JsonView(util.Views.Public.class)
 	private String codOrigem;
 
@@ -48,11 +48,28 @@ public class Lead extends CrudClass {
 	private Long list_id;
 
 	@JsonView(util.Views.Public.class)
-	private String phone_number;
+	private String telefone;
 
-	//Etapa atual do lead
 	@JsonView(util.Views.Public.class)
 	private String custom_1;
+	
+	//Ultima ação do usuário
+	@JsonView(util.Views.Public.class)
+	private String lastAction;
+	
+	@JsonView(util.Views.Public.class)
+	private String alturaTela;
+	
+	@JsonView(util.Views.Public.class)
+	private String larguraTela;
+	
+	@JsonView(util.Views.Public.class)
+	private String email;
+		
+	
+	//Versão da landing page utilizada no processo
+    @JsonView(util.Views.Public.class)
+	private String versaoLandingPage;
 
 	@JsonView(util.Views.Public.class)
 	private String teste;

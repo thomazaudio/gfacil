@@ -32,7 +32,7 @@
 						produto = prod;
 					
 						}else{
-							stUtil.showMessage("","Verifique sua conexão com a internet!","danger");
+							//stUtil.showMessage("","Verifique sua conexão com a internet!","danger");
 						}
 
 						$scope.carregandoEstoque = false;

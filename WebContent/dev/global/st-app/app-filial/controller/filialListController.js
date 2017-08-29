@@ -3,7 +3,7 @@
 
 	angular.module("adm")
 
-	.controller("filialListController",function($scope,$rootScope,$localStorage,cacheGet,$route,filialUtil,stUtil){
+	.controller("filialListController",function($scope, $rootScope, $localStorage, cacheGet, $route, filialUtil, stUtil){
 
 		$rootScope.$watch("currentFilial",function(currentFilial){
 
@@ -30,7 +30,6 @@
 		//Altera a filial atual do sistema
 		$scope.alterarFilial = function(filial){
 			
-			
 			if(filial.bloqueada==1){
 				
 				stUtil.showMessage("","A origem '"+filial.nome+"' não está disponível.","danger");
@@ -43,8 +42,9 @@
 
 			//atualizar caches
 			cacheGet.getOfflineCache(function(){
-
-				if(!$scope.inModal ||$scope.inModal==false)
+				
+				stUtil.showMessage("","Origem alterada para  '"+filial.nome+"'.","info");
+				 
 					$route.reload();
 
 			});

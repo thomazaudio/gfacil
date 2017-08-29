@@ -217,7 +217,8 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 		return {
 			'request': function(config) {
 			
-				if(config.url.indexOf("projecao/execute-query")==-1 && config.url.indexOf("projecao/get-projecoes")==-1)
+				
+				if(config.url.indexOf("projecao/execute-query")==-1 && config.url.indexOf("projecao/get-projecoes")==-1  && config.url.indexOf("isCachePost=true")==-1)
 					$rootScope.loadingSpinner=true;
 
 				
@@ -232,11 +233,21 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 						filialId = $rootScope.currentFilial.id;
 					}
 					
-					config.url = config.url + "?token=" + authToken+"&&filialId="+filialId;
+					var operator = "?";
+					
+					if( config.url.indexOf("?")!=-1)
+						operator="&&";
+					
+					config.url = config.url +operator+ "token=" + authToken;
+					
+					if(config.url.indexOf("filialId")==-1){
+						config.url = config.url +"&&filialId="+filialId;
+					}
+					
+					
+					
 				}
 				
-				
-
 				return config || $q.when(config);
 			},
 

@@ -3,7 +3,7 @@
 
 	angular.module("adm") 
 
-	.factory("loginUtil",function($location,cachePost,cacheGet,stUtil,$localStorage,$rootScope,$cookieStore,stService,$route,loginService,$timeout,st,configUtil,filialUtil, syncCachePost){
+	.factory("loginUtil",function($location,cachePost,cacheGet,stUtil,$localStorage,$rootScope,$cookieStore,stService,$route,loginService,$timeout,st,configUtil,filialUtil){
 
 		var _logOut = function() {
 			delete $rootScope.user;
@@ -31,9 +31,7 @@
 
 			loginService.logar(login).success(function(data){
 
-				//Inicialização do cache de post http
-				cachePost.init();
-
+				
 				//Token de acesso gerado pelo back-end
 				var authToken = data.token;
 				$rootScope.authToken = authToken;
@@ -84,10 +82,7 @@
 
 				});
 				
-				
-				//Sincronização de cachePost
-				syncCachePost.start();
-
+			
 				callback(data);
 				
 
@@ -111,10 +106,20 @@
 			});
 
 		}
+		
+		var _isLogado = function(){
+			
+		
+			if($rootScope.usuarioSistema)
+				return true;
+			else
+				return false;
+		}
 
 		return{
 			logar: _logar,
-			logOut:_logOut
+			logOut:_logOut,
+			isLogado: _isLogado
 
 		}
 	})

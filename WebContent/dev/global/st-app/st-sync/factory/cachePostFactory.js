@@ -16,6 +16,7 @@
 
 			//Filial corrente
 			objeto.idFilial = $rootScope.currentFilial.id; 
+			url = url +"?filialId="+$rootScope.currentFilial.id+"&&isCachePost=true";
 
 			var icrementaId = false;
 

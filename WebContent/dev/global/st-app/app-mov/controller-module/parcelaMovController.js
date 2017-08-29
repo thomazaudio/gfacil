@@ -3,7 +3,7 @@
 
 	angular.module("adm") 
 
-	.controller("parcelaMovController",function($scope,dateUtil,movUtil,$window,$filter,pedidoUtil){
+	.controller("parcelaMovController",function($scope, movUtil, $window, $filter, pedidoUtil){
 
 		if(!$scope.originalMov)
 			$scope.originalMov = {};

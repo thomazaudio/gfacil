@@ -145,6 +145,7 @@
 				pdv.movimentacao.data = $filter("date")(new Date(),"dd/MM/yyyy");
 
 			pdv.tipoPdvLancamento="pdvficha";//Tipo de pdv em que a venda foi lançada
+			
 
 			//Nome do evento
 			var nomeEvento = "";

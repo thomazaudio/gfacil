@@ -42,6 +42,24 @@
 
 @media only screen and (max-width : 1199px) {
 	
+	.btn-escolher-filial{
+	   background-color: #3276b1;
+	    white-space: nowrap;
+	    width: 7.5em;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+        padding: 5px;
+	   font-size:9px!important;
+	}
+	
+	.label-atual-page-mobile{
+	
+		color: #FBF7F7;
+	    white-space: nowrap;
+	    width: 7.5em;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	}
 	
 	/*Alteração para  o modal ocupar a tela toda*/
 .modal-lg {

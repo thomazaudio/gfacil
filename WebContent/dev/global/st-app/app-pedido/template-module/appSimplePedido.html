@@ -1,18 +1,21 @@
 <meta charset="UTF-8" />
-    <div class="input-group">
-		<input   ng-model-options="{debounce: 500}"  ng-model="vm.nomeProduto" ng-change="vm.buscaProduto(vm.attrBuscaProduto, vm.nomeProduto)" class="form-control input-busca-map input-primary" placeholder="{{vm.attrBuscaProduto=='nome'?'Buscar pelo nome do produto':'Buscar pelo código de barras'}}"/>
+    <div class="input-group" style="width:100%">
+		<input   ng-model-options="{debounce: 500}"  ng-model="vm.nomeProduto" ng-change="vm.buscaProduto(vm.attrBuscaProduto, vm.nomeProduto)" class="form-control" placeholder="{{vm.attrBuscaProduto=='nome'?'Buscar pelo nome do produto':'Buscar pelo código de barras'}}"/>
 		<span   ng-show="vm.nomeProduto" class="input-group-btn"><button type="button" ng-click="vm.nomeProduto='';vm.buscaProduto('')" class="btn btn-default btn-busca-map-limpa text-muted input-primary">x</button></span>  
+	    
+	    <!--  
 	    <span class="input-group-btn">
-	      <button id="change-attr-busca"  class="btn btn-block btn-default dropdown-toggle" style="width:35px;height:42px;" type="button" data-toggle="dropdown"> 
-	                <span><i  class="fa fa-bars info" aria-hidden="true"></i></span></button>
+	    <button id="change-attr-busca"  class="btn btn-block btn-default dropdown-toggle" style="width:35px;height:42px;" type="button" data-toggle="dropdown"> 
+	                 <span><i  class="fa fa-bars info" aria-hidden="true"></i></span></button>
 		            <ul class="dropdown-menu  list-group pull-right" style="padding:5px">
 		                <li id="change-busca-nome" class="list-group-item" ng-click="vm.changeAttrBuscaProduto('nome')" ><strong>Buscar pelo nome</strong> <i ng-show="attrBuscaProduto=='nome'" class="fa fa-check-circle-o" aria-hidden="true" style="color:var(--secondary-color)"></i></li>
 			            <li id="change-busca-codigo" class="list-group-item" ng-click="vm.changeAttrBuscaProduto('codigoBarras')"><strong>Buscar pelo código de barras</strong> <i ng-show="vm.attrBuscaProduto=='codigoBarras'" class="fa fa-check-circle-o" aria-hidden="true" style="color:var(--secondary-color)" ></i></li>
 		            </ul>
 	     </span>
+	     -->
 	</div>
 	<vertical-space></vertical-space>
-	<button style="margin:3px;" ng-click="vm.buscaProduto('tag', tag);vm.tagSelected=$index;vm.nomeProduto=''"  class="btn btn-xs" ng-class="{'btn-secondary': vm.tagSelected==$index}" ng-repeat="tag in vm.tagsProduto"><i class="fa fa-tag"></i> {{tag |uppercase}}</button>
+	<button style="margin:3px;" ng-click="vm.buscaProduto('tag', tag);vm.tagSelected=$index;vm.nomeProduto=''"  class="btn btn-xs" ng-class="{'btn-secondary': vm.tagSelected==$index}" ng-repeat="tag in vm.tagsProduto"><i class="fa fa-tag"></i> <strong>{{tag |uppercase}}</strong></button>
 	<button ng-if="vm.tagSelected>=0" style="margin:3px;" ng-click="vm.buscaProduto();vm.tagSelected=-1;vm.nomeProduto=''"  class="btn btn-xs"><i class="fa fa-times"></i></button>
 		
 	

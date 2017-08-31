@@ -34,12 +34,7 @@
 								 <br>{{item.label}}</a>
 					   </div>
 					  
-					    <div class="col-xs-12">
-					       <button-filial-list-with-modal></button-filial-list-with-modal>
-					       <hr></hr>
-					    </div> 
-					   
-					   
+					  
 					   <!-- // Necessário para funcionar (Não remover) -->
 				
 		               <div class="col-xs-4"  ng-repeat="item in itens" style="padding-bottom:19px;">
@@ -92,7 +87,7 @@
 					<a ng-if="atualPage!='Inicio'" class="navbar-brand"
 						ng-click="goToPageAnt(pageAnt)" style="color: #FBF7F7;"><i
 						class="fa fa-arrow-left" aria-hidden="true"></i></a> <a
-						ng-if="atualPage!='Inicio'" class="navbar-brand"
+						ng-if="atualPage!='Inicio'" class="navbar-brand label-atual-page-mobile"
 						style="color: #FBF7F7;">
 						<span ng-show="!loadingSpinner || loadingSpinner==false"  style="margin-left:-17px;font-size:0.9em;">{{atualPage}}</span>
 						<i ng-show="loadingSpinner==true" class="fa fa-spinner faa-spin animated" aria-hidden="true"></i>
@@ -108,6 +103,10 @@
 					  
 					  
 				  	   <sync-cache-post></sync-cache-post>
+				  	   
+				  	  <div class="item-menu-top" style="float:right">
+				  	    <filial-list id="filial-list-principal"></filial-list>
+				  	   </div>
 			      
 					
 			</div>

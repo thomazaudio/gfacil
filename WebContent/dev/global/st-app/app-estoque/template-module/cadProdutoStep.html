@@ -3,20 +3,14 @@
 
  <div class="col-lg-2"></div> 
  <div class="col-lg-8">
-      <div class="only-desktop">
-	         <div ng-show="step==2" class="pull-left">
-	            <button class="btn btn-default" ng-click="cancelAction()">Voltar</button>
-	        </div>
-	        <div ng-show="produto.nome.length>0" class="pull-right ng-enter">
-	            <button class="btn btn-secondary" ng-click="cadastrarProduto()"><i class="fa {{infoModal.okActionIcon}}"></i> {{infoModal.okActionLabel}}</button>
-	        </div>
-	   </div>
 	   <vertical-space></vertical-space>
 	   <div ng-show="step==1">
 		     <div class="form-group">
 		         <label>Informe o nome do produto</label>
 		         <input ng-model="produto.nome" placeholder="Ex: BATATA DOCE ROXA SACO" class="form-control"/>
 		     </div>
+		     <set-all-filials  objeto="produto"></set-all-filials>
+		      
 	   </div>
 	   
 	   <div ng-show="step==2">

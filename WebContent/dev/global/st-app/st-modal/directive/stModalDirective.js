@@ -65,7 +65,9 @@
 				titulo:"@",
 				icon:"@",
 				idmodal:"@",
-				size:"@"
+				size:"@",
+				okIcon:"@",
+				okLabel:"@"
 
 			},
 

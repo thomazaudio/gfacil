@@ -396,7 +396,7 @@ if(window.location.href.indexOf("localhost")==-1 && window.location.href.indexOf
 	    <!--Esconde o html até que tudo seja carregado -->
 		hide('appG');
 	 </script>
-	<div id="anchor_cima"></div>
+	
 
 	<!-- Spin de carregamento -->
 	<span style="position: fixed; top: 50%; left: 50%; z-index: 9999"
@@ -430,7 +430,7 @@ if(window.location.href.indexOf("localhost")==-1 && window.location.href.indexOf
 			id="{{(atualPage!='Login' && atualPage!='Alterar senha')?'page-wrapper':''}}">
 			<div style="margin-top: 62px;" class="printHide"></div>
 
-             <test-user-button ng-show="!testIsOpen || testIsOpen==false"></test-user-button>  
+             <test-user-button ng-show="(!testIsOpen || testIsOpen==false) && config.confs.usuarioTeste=='true'"></test-user-button>  
 			<!-- Conteúdo das rotas -->
 			
 			<div ng-show="faltaExecutarCachePost>0">
@@ -439,6 +439,7 @@ if(window.location.href.indexOf("localhost")==-1 && window.location.href.indexOf
 						aria-hidden="true"></i>
 				</h2>
 			</div>
+			<div id="anchor_cima"></div>
 			<div class="route-view" ng-view>
 			  
 			</div>

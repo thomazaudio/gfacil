@@ -1,6 +1,6 @@
 <meta charset="UTF-8" />
-<button class="btn btn-default  btn-xs dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-person"></i>
-   {{usuarioSistema.nome||usuarioSistema.login}}
+<button class="btn btn-default  btn-xs dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-user"></i>
+   <strong>{{usuarioSistema.nome||usuarioSistema.login|uppercase}}</strong>
    <span class="caret"></span>
 </button>
 <ul class="dropdown-menu list-group pull-right" style="padding:5px">

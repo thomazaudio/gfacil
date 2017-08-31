@@ -45,8 +45,8 @@
 </div>
 
 <!-- Balanço -->
-<st-collapse-panel class="col-lg-12" ng-if="config.confs.itensRelatorio.indexOf('balanco')!=-1"  icone="'balance-scale'" show="true" titulo="'Balanço'">
-			<component-balanco  id="component-balanco-inicio"   ></component-balanco>
+<st-collapse-panel class="col-lg-12" ng-if="config.confs.itensRelatorio.indexOf('balanco')!=-1"  icone="'balance-scale'" show="true" titulo="'Balanço do dia'">
+			<component-balanco de="hoje" ate="hoje"  id="component-balanco-inicio"   ></component-balanco>
 </st-collapse-panel>
 
 

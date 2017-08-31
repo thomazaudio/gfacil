@@ -30,13 +30,18 @@
 					pessoa:pessoa,
 					quantidade: quantidadeBaixar
 			}
-
+            
+			vm.salvando = true;
 			stService.save("logisticareversa",lr).success(function(data){
 
+				vm.salvando = false;
 				$modalInstance.close();
 				stUtil.showMessage("","Atualizado com sucesso!","info");
 				callback();
 
+			}).error(function(){
+				vm.salvando = false;
+				stUtil.showMessage("","Ocorreu um erro, verifique sua conexão com a internet","danger");
 			});
 		}
 

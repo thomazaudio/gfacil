@@ -94,8 +94,7 @@
 		return{
 			restrict:"E",
 			templateUrl:"global/st-app/st-util/template-module/stTopMenu.html",
-			controller:function($scope){
-
+			controller:function($scope, $rootScope){
 
 				$scope.lancaEntradaMercadoria = function(){
 

@@ -36,9 +36,9 @@
 		    <p class="text-muted"  style="padding-left:9px;">Período: de <strong>{{vm.periodoDe}}</strong> até <strong>{{vm.periodoAte}} </strong> - Total: R$ <strong>{{vm.total|number:2}}</strong></p>
         </div>
         
-        <st-modal idmodal="modalOpcoes" titulo="Opções para listagem de movimentações" size="lg" icon="exchange">
+        <st-modal ok-icon="" ok-label="OK" idmodal="modalOpcoes" titulo="Opções para listagem de movimentações" size="lg" icon="exchange">
 		
-				<div class="form-group col-lg-5">
+				<div class="form-group col-lg-3">
 				      <label>Data utilizada como referência</label>
 			          <select ng-change="vm.getMovimentacoes()"  ng-model="vm.tipoDataBusca" class="form-control">
 					                <option value="data">Data de vencimento</option>
@@ -47,7 +47,7 @@
 					   </select>
 				   </div>
 			 
-			 <div class="form-group col-lg-5">
+			 <div class="form-group col-lg-3">
 			     <label>Baixa</label>
 				 <select st-initial value="todas" ng-change="vm.changeTipoBaixa(vm.baixa)" ng-model="vm.baixa" class="form-control">
 					<option value="todas">Todas</option>
@@ -56,20 +56,25 @@
 				 </select>
 			</div>
 		
-		 <div class="form-group col-lg-5">
+		 <div class="form-group col-lg-3">
 		        <label>Agrupamento</label>
 	            <select ng-change="vm.getMovimentacoes()"  ng-model="vm.agrupamentoMovs" class="form-control">
 			                <option value="">Nenhum</option>
 			                <option value="pessoa.id">Pessoa</option>
 			    </select>
 		  </div>
-		<div class="form-group col-lg-5">
+		<div class="form-group col-lg-3">
 		     <label>Ordenação dos dados</label>
 	         <select ng-disabled="!vm.agrupamentoMovs==''" ng-change="vm.getMovimentacoes()"  ng-model="vm.orderMovs" class="form-control" >
 			                <option value="data">Pela data</option>
 			                <option value="id">Nº da movimentação</option>
 			                <option value="pessoa.nome">Pessoa</option>
 			 </select>
+		 </div>
+		 <div class="col-lg-12">
+		     <div class="pull-right">
+		         <button data-dismiss="modal" class="btn btn-primary">OK</button>
+		     </div>
 		 </div>
 </st-modal>
 

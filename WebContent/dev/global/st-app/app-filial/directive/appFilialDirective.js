@@ -8,10 +8,53 @@
 		return{
 			templateUrl:'filialList.html',
 			scope:{
-				inModal:"=",//Indica se está setada dentro de um modal (Para não charmar $route.reload())
+				inModal:"="//Indica se está setada dentro de um modal (Para não charmar $route.reload())
+				
 			},
 
 			controller:"filialListController"
+			
+		}
+
+	})
+	
+	.directive("buttonFilialListWithModal",function($uibModal){
+
+		return{
+			restric:"E",
+			templateUrl:"global/st-app/app-filial/template/buttonFilialListWithModal.html",
+		    controller: function ($scope, $rootScope){
+				
+				   $scope.currentFilial = $rootScope.currentFilial;
+				   $rootScope.$watch("currentFilial",function(currentFilial){
+
+						if(currentFilial)
+							$scope.labelCurrentFilial = currentFilial.xNome;
+					});
+				   $scope.config = $rootScope.config;
+
+					$scope.open = function(){
+						
+						$uibModal.open({
+							animation: true,
+							templateUrl:"global/st-app/app-filial/template/filialListWithModal.html",
+							size:'lg',
+							controller: function($scope, $modalInstance){
+								
+								$scope.fechar = function(){
+									
+									console.log("Chamou");
+									$modalInstance.close();
+								}
+								
+							}
+							
+						});
+						
+					}
+				
+			}
+			
 		}
 
 	})

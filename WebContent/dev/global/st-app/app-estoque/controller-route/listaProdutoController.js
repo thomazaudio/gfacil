@@ -19,6 +19,11 @@ angular.module("adm").controller("listaProdutoController",function(estoqueUtil,$
 	$scope.addEntradaMercadoria = function(){
 		estoqueUtil.openEntradaMercadoria();
 	}
+	
+	$scope.verPrecosCompra = function(produto){
+		
+		estoqueUtil.openPrecosCompraProduto(produto);
+	}
 
 	$scope.buscaEspecial = {
 

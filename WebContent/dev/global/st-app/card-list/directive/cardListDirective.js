@@ -14,7 +14,8 @@
 				ob:"=",
 				pivo:"=",
 				editFunction:"=",
-				deleteFunction:"="
+				deleteFunction:"=",
+				index:"@"
 				
 			},
 

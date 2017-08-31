@@ -1,6 +1,6 @@
 angular.module("adm").controller("inicioController",function($scope,dateUtil, stService,$route,movUtil, pdvUtil, estoqueUtil){
 	
-	var hoje = new Date();
+	$scope.hoje = new Date();
 	
 	$scope.atualizar = function(){
 		
@@ -17,19 +17,7 @@ angular.module("adm").controller("inicioController",function($scope,dateUtil, st
 		pdvUtil.openVendaInModal();
 	}
 
-	$scope.setSaldoGeral = function(){
-    	
-		$scope.carregandoSaldo =true;
-		var hoje = new Date();
-    	movUtil.getBalanco(hoje,hoje,function(receitas,despesas){
-    		$scope.carregandoSaldo= false;
-    		$scope.receitas = receitas;
-    		$scope.despesas = despesas;
-    		
-    	});
-		
-    }
 	
-    $scope.setSaldoGeral();
+   
 	
 });

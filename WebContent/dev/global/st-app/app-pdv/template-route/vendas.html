@@ -12,8 +12,7 @@
             order-type="'ASC'"
 			filtros="[
 			{attr:'movimentacao.pessoa.nome',placeholder:'Buscar pelo nome do cliente'} ,
- 	        {attr:'movimentacao.id',placeholder:'Buscar pelo Nº da movimentação'},
-			{attr:'vendedor.nome',placeholder:'Buscar pelo  Vendedor'},
+ 	        {attr:'movimentacao.id',placeholder:'Buscar pelo ID', queryOperator: '='}
 			
 			]
 			"></st-filter-map>
@@ -22,7 +21,7 @@
     <vertical-space class="only-desktop"></vertical-space>
     <vertical-space class="only-desktop"></vertical-space>
 	<div class="col-lg-4 only-desktop" >
-	    <button ng-click="goToPdv()" class="btn btn-secondary"><i class="fa fa-plus"></i> Cadastrar Venda</button>
+	    <button ng-click="goToPdv()" class="btn btn-default"><i class="fa fa-plus"></i> <strong>Cadastrar Venda</strong></button>
 	</div>
 
 <vertical-space></vertical-space>
@@ -35,12 +34,16 @@
 	
 	 <vertical-space></vertical-space>
 	 <div ng-repeat="ob in objetos" class="col-lg-4">
-	   	 <card-list class="pdv-item" ob="ob" pivo="'movimentacao.pessoa.nome'"  edit-function="goToPdv" delete-function="deletarVenda">
-	   	     <div class="col-lg-12 col-xs-12">
-	   	         <div class="pull-left">
-	   	             <label class="text-muted"><i class="fa fa-calendar"></i> {{ob.movimentacao.data|date:'dd/MM/yyyy'}}</label>   
+	   	 <card-list index="{{$index}}" class="pdv-item" ob="ob" pivo="'movimentacao.pessoa.nome'"  edit-function="goToPdv" delete-function="deletarVenda">
+	   	     <div class="row">
+	   	         <div class="col-lg-3 col-xs-3">
+	   	              <button class="btn btn-xs text-muted">ID: <strong>{{ob.movimentacao.id}}</strong> </button>
 	   	         </div>
-	   	         <div class="pull-right">
+	   	         <div class="col-lg-4 col-xs-4">
+	   	             <label class="text-muted text-small"><i class="fa fa-calendar"></i> {{ob.movimentacao.data|date:'dd/MM/yyyy'}}</label>   
+	   	         </div>
+	   	        
+	   	         <div class="col-lg-5 col-xs-5">
 		   	         <label class="pdv-item-preco">R$ <strong class="pdv-item-preco" style="font-size:19px;">{{ob.movimentacao.valor|number:2}}</strong></label>   
 		   	     </div>
 	   	     </div>

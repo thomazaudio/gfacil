@@ -228,7 +228,7 @@
 <!-- stSync -->
 <script src="global/st-app/st-sync/factory/cacheGetFactory.js"></script>
 <script src="global/st-app/st-sync/factory/cachePostFactory.js"></script>
-<script src="global/st-app/st-sync/factory/syncCachePostFactory.js"></script>
+<script src="global/st-app/st-sync/directive/syncCachePostDirective.js"></script>
 <!-- FIM stSync -->
 
 <!-- Cadastros -->
@@ -396,7 +396,7 @@ if(window.location.href.indexOf("localhost")==-1 && window.location.href.indexOf
 	    <!--Esconde o html até que tudo seja carregado -->
 		hide('appG');
 	 </script>
-	<div id="anchor_cima"></div>
+	
 
 	<!-- Spin de carregamento -->
 	<span style="position: fixed; top: 50%; left: 50%; z-index: 9999"
@@ -430,7 +430,7 @@ if(window.location.href.indexOf("localhost")==-1 && window.location.href.indexOf
 			id="{{(atualPage!='Login' && atualPage!='Alterar senha')?'page-wrapper':''}}">
 			<div style="margin-top: 62px;" class="printHide"></div>
 
-             <test-user-button ng-show="!testIsOpen || testIsOpen==false"></test-user-button>  
+             <test-user-button ng-show="(!testIsOpen || testIsOpen==false) && config.confs.usuarioTeste=='true'"></test-user-button>  
 			<!-- Conteúdo das rotas -->
 			
 			<div ng-show="faltaExecutarCachePost>0">
@@ -439,23 +439,21 @@ if(window.location.href.indexOf("localhost")==-1 && window.location.href.indexOf
 						aria-hidden="true"></i>
 				</h2>
 			</div>
+			<div id="anchor_cima"></div>
 			<div class="route-view" ng-view>
 			  
 			</div>
-
 			<div ng-show="loadingSpinner==true">
-				<h2 class="text-muted col-lg-12">
+				<h3 class="text-muted col-lg-12">
 					Carregando <i class="fa fa-spinner faa-spin animated"
 						aria-hidden="true"></i>
-				</h2>
+				</h3>
 			</div>
+			
 		</div>
 	</div>
 
 <script>
- 
- 
-  
 </script>
 
 </body>

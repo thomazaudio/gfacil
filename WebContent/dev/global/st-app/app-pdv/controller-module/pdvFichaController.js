@@ -1,13 +1,8 @@
-
 "use strict";
 (function(){
 	angular.module("adm").controller("pdvFichaController",function(cacheGet, $location ,cachePost, $uibModal, pdvUtil, pedidoUtil, $rootScope, $scope, stService ,pdv, stUtil ,movUtil,$route, $filter, st, nfeUtil, $modalInstance, lrUtil){
 
-		console.log("pdv aqui: ");
-		console.log(pdv);
-		
 		var ini = new Date().getTime(); 
-
 		var vm = this;
 
 		vm.changeStep = function(step){
@@ -37,8 +32,6 @@
 			vm.infoModal = _infoModal;
 
 		}
-
-		vm.changeStep(0);
 
 		vm.cancelAction = function(){
 
@@ -350,19 +343,30 @@
 			//Recupera os produtos mais vendidos
 			//$scope.sugestaoProdutos();
 		}
-		if(pdv.data){
+		
+		
+		var _init = function(){
+			
+			var ini = new Date().getTime();
+			
+			if(pdv.data){
 
-			configureEditPdv(pdv.data.item);
-			vm.titulo = "Editar venda";
+				configureEditPdv(pdv.data.item);
+				vm.titulo = "Editar venda";
+			}
 
+			else{
+
+				configurePdvVazio();
+				vm.titulo = "Nova venda";
+
+			}
+			
+			
+			vm.changeStep(0);
+			
 		}
-
-		else{
-
-			configurePdvVazio();
-			vm.titulo = "Nova venda";
-
-		}
+		_init();
 
 	});
 })();

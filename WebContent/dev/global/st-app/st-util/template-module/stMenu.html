@@ -4,7 +4,11 @@
 			class="navbar navbar-default navbar-static-top" role="navigation"
 			style="margin-bottom: 0; background-color: #EDEDED">
 			
+			 
+			
        <div id="nav-header" class="navbar-header"  style="padding-top: 0px; min-width: 200px;">
+				
+			
 				
 				<button ng-click="changeCollapse()" type="button"
 					class="navbar-toggle btn btn-default  dropdown-toggle" data-toggle="dropdown" style="margin: 0px!important; font-size: 25px;">
@@ -19,22 +23,18 @@
 					     </div>
 				
 				        <!-- Necessário para funcionar (Não remover) -->
-						<div class="col-xs-4"   style="padding-bottom:19px;">
+						<div class="col-xs-4"   style="padding-bottom:1px;">
 				                 <a style="width:100%;" ng-click="clickItemMenu(item.path)"nav-click>
 				                 <i class="fa fa-{{item.icon}} fa-2x info" aria-hidden="true"></i>
 								 <br>{{item.label}}</a>
 					   </div>
-					   <div class="col-xs-4"   style="padding-bottom:19px;">
+					   <div class="col-xs-4"   style="padding-bottom:1px;">
 				                 <a style="width:100%;" ng-click="clickItemMenu(item.path)"nav-click>
 				                 <i class="fa fa-{{item.icon}} fa-2x info" aria-hidden="true"></i>
 								 <br>{{item.label}}</a>
 					   </div>
-					   <div class="col-xs-4"   style="padding-bottom:19px;">
-				                 <a  style="width:100%;" ng-click="clickItemMenu(item.path)"nav-click>
-				                 <i class="fa fa-{{item.icon}} fa-2x info" aria-hidden="true"></i>
-								 <br>{{item.label}}</a>
-					   </div>
-					   
+					  
+					  
 					   <!-- // Necessário para funcionar (Não remover) -->
 				
 		               <div class="col-xs-4"  ng-repeat="item in itens" style="padding-bottom:19px;">
@@ -78,6 +78,8 @@
 									<br>Sair do sistema</a>
 						</div>
 					</div>
+					
+					 
 				<!-- 
                 <a class="navbar-brand" href="#/inicio"><img width="89" src="logo-albar.png"/></a>
                  -->
@@ -85,17 +87,27 @@
 					<a ng-if="atualPage!='Inicio'" class="navbar-brand"
 						ng-click="goToPageAnt(pageAnt)" style="color: #FBF7F7;"><i
 						class="fa fa-arrow-left" aria-hidden="true"></i></a> <a
-						ng-if="atualPage!='Inicio'" class="navbar-brand"
+						ng-if="atualPage!='Inicio'" class="navbar-brand label-atual-page-mobile"
 						style="color: #FBF7F7;">
 						<span ng-show="!loadingSpinner || loadingSpinner==false"  style="margin-left:-17px;font-size:0.9em;">{{atualPage}}</span>
 						<i ng-show="loadingSpinner==true" class="fa fa-spinner faa-spin animated" aria-hidden="true"></i>
 						<network-button-status></network-button-status>
+						
 					 </a>
-					  
 				</div>
+				
+				
 				 
 				<a class="navbar-brand only-desktop text-center" style="color: white;border-right-style: dotted;border-right-width: 2px;border-right-color: #e0e4e5;width:215px"><img
 					  style="padding-bottom: 5px;" src="icone-menu-sistema.png"  /></a>
+					  
+					  
+				  	   <sync-cache-post></sync-cache-post>
+				  	   
+				  	  <div class="item-menu-top" style="float:right">
+				  	    <filial-list id="filial-list-principal"></filial-list>
+				  	   </div>
+			      
 					
 			</div>
 			    
@@ -121,6 +133,8 @@
 				  </div>
 				  <st-top-menu class="only-desktop"></st-top-menu>
 			  </div>
+			  
+			
 
 
 <!-- Menu desktop -->

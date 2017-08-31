@@ -2,7 +2,7 @@
 (function(){
 var app  = angular.module("adm",["angular-growl","angularSpinner","ngRoute","ds.clock","FBAngular","ng-mfb","ngCookies","angular.filter","ngStorage","ngAudio","ngDraggable","ui.bootstrap","ui.transition","angular-confirm","ngMessages","chart.js","youtube-embed","ui.utils.masks","angular-json-tree","ngAnimate","ngSanitize", "textAngular","angular-chrono"]);
 
-app.run(['$rootScope', '$route','$modalStack','syncCachePost','$localStorage','$http','config','$location','$cookieStore','st','$filter','filialUtil',"stUtil","$templateCache", function($rootScope, $route,$modalStack, syncCachePost,$localStorage,$http,config,$location,$cookieStore,st,$filter,filialUtil,stUtil,$templateCache) {
+app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','$location','$cookieStore','st','$filter','filialUtil',"stUtil","$templateCache", function($rootScope, $route,$modalStack, $localStorage,$http,config,$location,$cookieStore,st,$filter,filialUtil,stUtil,$templateCache) {
 	
 	config.cacheTemplates();
 	
@@ -22,9 +22,6 @@ app.run(['$rootScope', '$route','$modalStack','syncCachePost','$localStorage','$
 	
     $rootScope.$on('$routeChangeStart', function(event, next, current) { 
     	
-    	//syncCachePost.start();
-    	
-    	console.log("faltaExecutarCachePost: "+$rootScope.faltaExecutarCachePost);
     	
     	
     	//Filiais

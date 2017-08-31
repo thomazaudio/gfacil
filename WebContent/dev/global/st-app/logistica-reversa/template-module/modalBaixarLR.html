@@ -1,5 +1,5 @@
 <meta charset="UTF-8" />
-<modal-content ok-action="vm.salvarEmp" icone-titulo="'list'" modal-instance="this" titulo="'Devolução'">
+<modal-content  loading-ok-action="vm.salvando"  ok-action="vm.salvarEmp" icone-titulo="'list'" modal-instance="this" titulo="'Devolução'">
 <p class="text-muted">Cliente : <strong>{{vm.emprestimo.lrs[0].pessoa.nome}}</strong></p>
 <p class="text-muted">Total de itens pendentes de devolução : <strong class="destaque-item">{{vm.emprestimo.quantidadeReceber}}</strong></p>
 

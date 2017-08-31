@@ -17,7 +17,7 @@
 <vertical-space class="only-desktop"></vertical-space>
 <vertical-space class="only-desktop"></vertical-space>
 <div class="col-lg-4 only-desktop" >
-    <button ng-click="openDetalhe()" class="btn btn-secondary"><i class="fa fa-plus"></i> Cadastrar Produto</button>
+    <button ng-click="openDetalhe()" class="btn btn-default"><i class="fa fa-plus"></i> <strong>Cadastrar Produto</strong></button>
 </div>
   
  <button-add ng-click="openDetalhe()"></button-add>
@@ -25,13 +25,24 @@
 <vertical-space></vertical-space>
 <vertical-space></vertical-space>
  <div ng-repeat="ob in objetos" class="col-lg-4">
-	   	 <card-list class="produto-item" ob="ob" pivo="'nome'"  edit-function="openDetalhe" delete-function="deletarProduto">
+	   	 <card-list index="{{$index}}" class="produto-item" ob="ob" pivo="'nome'"  edit-function="openDetalhe" delete-function="deletarProduto">
 	   	    <div class="col-lg-12 col-xs-12">
 	   	         <div class="pull-left">
 	   	             <span class="destaque-item">R$ {{ob.preco|number:2}}</span> 
 	   	         </div>
+	   	         <div class="pull-right">
+	   	              <button class="btn btn-xs text-muted"><i class="fa fa-tag"></i> <strong>{{ob.tag|uppercase}}</strong></button>
+		   	     </div>
+	   	     </div>
+	   	     <vertical-space></vertical-space>
+	   	     <vertical-space></vertical-space>
+	   	     
+	   	     <div class="col-lg-12 col-xs-12">
+	   	         <div class="pull-left">
+	   	             <button ng-click="verPrecosCompra(ob)" class="btn btn-xs text-muted"><i class="fa fa-truck"></i> <strong>preços de compra</strong></button> 
+	   	         </div>
 	   	         <div class="pull-right" style="font-size:17px;">
-		   	         <label class="text-muted">em estoque:  <strong>{{ob.quantidade}}</strong></label><button-estoque id="button-estoque" produto="ob"></button-estoque> 
+		   	         <label class="text-muted text-small">em estoque:  <strong>{{ob.quantidade}}</strong></label><button-estoque id="button-estoque" produto="ob"></button-estoque> 
 		   	     </div>
 	   	     </div>
 	   	 </card-list>

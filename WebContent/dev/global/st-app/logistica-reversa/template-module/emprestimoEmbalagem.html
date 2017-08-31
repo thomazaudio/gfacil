@@ -13,7 +13,7 @@
 	      	<strong  ng-class="{'danger':vm.emprestimo.quantidadeReceber>0}" style="font-size:35px;" >{{vm.emprestimo.quantidadeReceber}} <i class="fa fa-archive" style="font-size:12px"></i></strong>
 	     </p>
 		<p class="text-muted text-center text-small">
-		    embalagen(s) a receber 	<a  ng-click="vm.showHistorico(vm.emprestimo)" > Visualizar histórico <i class="fa fa-external-link"></i></a>
+		    embalagen(s) a receber 	<button class="btn btn-xs text-muted"  ng-click="vm.showHistorico(vm.emprestimo)" ><strong><i class="fa fa-clock-o"></i> visualizar histórico </strong></button>
 		    
 		    <strong ng-show="vm.carregando==true" class="text-muted">Carregando  <i  class="fa fa-refresh faa-spin animated" aria-hidden="true"></i></strong>
 			<a ng-click="vm.getEmprestimo(vm.pessoa)" ng-show="vm.erro" class="text-small"><i class="fa fa-exclamation-triangle"></i> Clique para tentar novamente</a>

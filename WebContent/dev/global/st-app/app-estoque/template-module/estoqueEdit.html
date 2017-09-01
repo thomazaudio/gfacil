@@ -1,5 +1,5 @@
 <meta charset="UTF-8" />
- <modal-content ok-action="vm.confirmar" titulo="'Alterar quantidade'" modal-instance="this" icone="'fa-list'">
+ <modal-content loading-ok-action="vm.carregando" ok-action="vm.confirmar" titulo="'Alterar quantidade'" modal-instance="this" icone="'fa-list'">
    <alert-filial class="col-lg-12" ng-if="currentFilial.id==0" label="'Não é possível alterar a quantidade para '"></alert-filial>
    <div ng-show="currentFilial.id!=0">
       <div class="col-lg-12"><label>Quantidade atual: <strong>{{vm.produto.quantidade}}</strong></label></div>

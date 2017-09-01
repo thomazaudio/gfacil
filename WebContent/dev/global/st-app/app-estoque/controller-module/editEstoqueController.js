@@ -26,6 +26,8 @@
 			var produto  = vm.produto;
 			var novaQuantidade = vm.novaQuantidade;
 			
+			vm.carregando= true;
+			
 			estoqueUtil.getEstoqueProduto(produto, function(produtoRes){
 
 				novaQuantidade = parseFloat(novaQuantidade);
@@ -46,6 +48,7 @@
 
 					stUtil.showMessage("","Estoque atualizado com sucesso!","info");
 
+					vm.carregando= false;
 					$modalInstance.close();
 
 					produto.quantidade = novaQuantidade;

@@ -257,8 +257,7 @@ public class DataBaseUtil {
 
 	}
 	
-	public void createSchema (UserSystem user, String tipo,String produtos) throws SQLException{
-		
+	public void createSchema (UserSystem user) throws SQLException{
 		
 		String nomeDb = DB_PREFIX + user.getLogin();
 		
@@ -269,7 +268,6 @@ public class DataBaseUtil {
 			return;
 		}
 	   
-		
 		//Dados padrão
 		ResourceDatabasePopulator rdp = new ResourceDatabasePopulator();    
 		rdp.addScript(new ClassPathResource("usuarioCeasa.sql"));
@@ -285,39 +283,18 @@ public class DataBaseUtil {
                 rdp.populate(connection);
         
         //Alterar login padrão
-        stm.execute("update pessoa set nome='"+user.getNome().split(" ")[0]+"', login = '"+user.getLogin()+"', senha='123',defaultPassword=1 where id>0 ");
-        
-        
-        String[] arrayProds = {};
-        
-        PreparedStatement prepStm = null;
-        
-        if(produtos!=null)
-           arrayProds = produtos.split(",");
-        
-        
-        //Realiza o cadastro de produtos padrão
-        for(String p : arrayProds){
-        	if(p.length()>0){
-	        	prepStm = getConnection().prepareStatement("insert into produto(nome) values(?)");
-	        	prepStm.setString(1,p);
-	        	prepStm.execute();
-             }
-        }
+        stm.execute("update pessoa set nome='"+user.getNome().split(" ")[0]+"', login = '"+user.getLogin()+"', senha='123',defaultPassword=1 where id=1 ");
         
         //Atualiza o banco de dados
         updateSchema((ComboPooledDataSource) getDataSource(nomeDb),nomeDb);
         
         try{
 	        stm.close();
-	        prepStm.close();
         }
         catch(Exception e){
         	
         }
-        
-      
-	
+       
 	}
 	
 	public   void updateSchema(ComboPooledDataSource dataSource, String tenantId ) throws SQLException {

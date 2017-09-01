@@ -146,6 +146,8 @@ CREATE TABLE `pessoa` (
   `diasEntrega` int(11) DEFAULT '1',
   `id_operador` bigint(20) DEFAULT NULL,
   `defaultPassword` tinyint(1) NOT NULL,
+   `allFilials` int(11) NOT NULL,
+
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`),
   UNIQUE KEY `pin` (`pin`),
@@ -160,7 +162,8 @@ CREATE TABLE `pessoa` (
 
 LOCK TABLES `pessoa` WRITE;
 /*!40000 ALTER TABLE `pessoa` DISABLE KEYS */;
-INSERT INTO `pessoa` VALUES ('admin',1,NULL,0,NULL,NULL,NULL,'31993901343','GILBERTO',NULL,'pdv, vendas, estoque, clientes,funcionários, fornecedores, balanço, movimentações, cadastros, registros de ponto, logística reversa',NULL,'leghacy123',NULL,0,NULL,1,1,0);
+INSERT INTO `pessoa` VALUES ('admin',1,NULL,0,NULL,NULL,NULL,'31993901343','Admin',NULL,'pdv, vendas, estoque, clientes,funcionários, fornecedores, balanço, movimentações, cadastros, registros de ponto, logística reversa',NULL,'123',NULL,0,NULL,1,1,0,1);
+INSERT INTO `pessoa` (`tipo_pessoa`, `disable`, `doc`, `tipoDoc`, `defaultPassword`,`nome`,`allFilials` ) VALUES ('cliente', 0, 'null', '0','0','OUTROS',1);
 /*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
 UNLOCK TABLES;
 

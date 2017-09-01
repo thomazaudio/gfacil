@@ -16,12 +16,16 @@
 	</div>
 	<vertical-space></vertical-space>
 	<button style="margin:3px;" ng-click="vm.buscaProduto('tag', tag);vm.tagSelected=$index;vm.nomeProduto=''"  class="btn btn-xs" ng-class="{'btn-secondary': vm.tagSelected==$index}" ng-repeat="tag in vm.tagsProduto"><i class="fa fa-tag"></i> <strong>{{tag |uppercase}}</strong></button>
-	<button ng-if="vm.tagSelected>=0" style="margin:3px;" ng-click="vm.buscaProduto();vm.tagSelected=-1;vm.nomeProduto=''"  class="btn btn-xs"><i class="fa fa-times"></i></button>
 		
 	
 
 <vertical-space></vertical-space>
 <p  class="text-muted text-small"><span ng-show="vm.resultadoBusca.length>0 && vm.nomeProduto.length>0"><i class="fa fa-search" aria-hidden="true"></i> Resultado da busca   <strong>"{{vm.nomeProduto}}"</strong> </span><span><a ng-click="vm.cadProduto(vm.nomeProduto)"> Cadastrar produto <i class="fa fa-plus"></i></a></span></p>
+<p class="text-muted" ng-if="vm.tagSelected>-1 || vm.nomeProduto.length>0 ">
+       <i class="fa fa-exclamation-triangle"></i> exibindo resultados somente para <strong>{{vm.nomeProduto || vm.tagsProduto[vm.tagSelected]}}</strong>
+      <button ng-click="vm.buscaProduto();vm.tagSelected=-1;vm.nomeProduto=''"  class="btn btn-xs"><i class="fa fa-trash"></i> limpar buscar</button>
+</p>
+
 <p ng-show="vm.nomeProduto.length>0 && vm.resultadoBusca.length==0" class="text-muted text-small"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Não encontrado <strong>'{{vm.nomeProduto}}'</strong></p>	
 				 
 <!-- Apenas para buscas -->

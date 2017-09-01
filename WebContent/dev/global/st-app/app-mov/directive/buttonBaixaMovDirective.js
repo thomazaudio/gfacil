@@ -10,7 +10,8 @@
 			templateUrl:'buttonBaixaMov.html',
 			scope:{
 				mov:"=",
-				id:"="
+				id:"=",
+				templateVersion:"@"
 			},
 
 			controller:function($scope){

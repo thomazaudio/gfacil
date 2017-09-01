@@ -1,13 +1,23 @@
 
 
-
+.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    width: 10px;
+    height: 25px;
+    line-height:1;
+}
 
 .form-group input[type="checkbox"] + .btn-group > label span {
     width: 20px;
+    height:15px;
+    
 }
 
 .form-group input[type="checkbox"] + .btn-group > label span:first-child {
     display: none;
+    width: 20px;
+    height:15px;
 }
 .form-group input[type="checkbox"] + .btn-group > label span:last-child {
     display: inline-block;   

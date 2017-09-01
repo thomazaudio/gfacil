@@ -12,6 +12,7 @@
 
 			$uibModal.open({
 				animation: true,
+				backdrop: 'static',
 				templateUrl:'pdv-ficha.html',
 				controller:"pdvFichaController",
 				bindToController:true,

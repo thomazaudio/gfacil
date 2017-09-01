@@ -144,46 +144,25 @@ public class UserSystemControl extends GenericControl<UserSystem> {
 	@JsonView(util.Views.Public.class)
 	@ResponseBody
 	@RequestMapping(value="/cadastrar-usuario", method= RequestMethod.GET)
-	public AjaxResponse<FunilCeasa> cadastrarUsuario(@RequestParam String login) {
+	public AjaxResponse<UserSystem> cadastrarUsuario(@RequestParam String login) {
 
-
-		
-
-		AjaxResponse<FunilCeasa> res= new AjaxResponse<FunilCeasa>();
-
+		AjaxResponse<UserSystem> res= new AjaxResponse<UserSystem>();
 
 		//Somente se o schema para  o usuário ainda não foi criado
 		//Recupera o usuário de acordo com o 'login' informado em user
 		try {
 
-			FunilCeasa funil= new  FunilCeasaDAO().getUserByPhone(login);
-
-
-			//Caso o usuário não esteja cadastro no funil
-			if(funil==null){
-
-				funil = new FunilCeasa();
-				funil.setNome("");
-				funil.setEmail("");
-				funil.setTelefone(login);
-			}
-
-
-			res.setItem(funil);
-
 			UserSystem user = new UserSystem();
-			user.setNome(funil.getNome());
-			user.setLogin(funil.getTelefone());
-			user.setEmail(funil.getEmail());
-
+			user.setNome("Admin");
+			user.setLogin(login);
+		
 			//Adiciona um novo schema no sistema
-			new DataBaseUtil().createSchema(user,"ceasa",funil.getProdutos());
+			new DataBaseUtil().createSchema(user);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 
 		return res;
 	}

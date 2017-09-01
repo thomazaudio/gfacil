@@ -1,10 +1,13 @@
 "use strict";
 (function(){
-var app  = angular.module("adm",["angular-growl","angularSpinner","ngRoute","ds.clock","FBAngular","ng-mfb","ngCookies","angular.filter","ngStorage","ngAudio","ngDraggable","ui.bootstrap","ui.transition","angular-confirm","ngMessages","chart.js","youtube-embed","ui.utils.masks","angular-json-tree","ngAnimate","ngSanitize", "textAngular","angular-chrono"]);
+var app  = angular.module("adm",["angular-growl","angularSpinner","ngRoute","ds.clock","FBAngular","ng-mfb","ngCookies","angular.filter","ngStorage","ngAudio","ngDraggable","ui.bootstrap","ui.transition","angular-confirm","ngMessages","chart.js","youtube-embed","ui.utils.masks","angular-json-tree","ngAnimate","ngSanitize", "textAngular","angular-chrono","ui.checkbox"]);
 
 app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','$location','$cookieStore','st','$filter','filialUtil',"stUtil","$templateCache", function($rootScope, $route,$modalStack, $localStorage,$http,config,$location,$cookieStore,st,$filter,filialUtil,stUtil,$templateCache) {
 	
 	config.cacheTemplates();
+	
+	$.fn.modal.prototype.constructor.Constructor.DEFAULTS.backdrop = 'static';
+	$.fn.modal.prototype.constructor.Constructor.DEFAULTS.keyboard =  false;
 	
 	$rootScope.$on("modal.closing", function(){
 		

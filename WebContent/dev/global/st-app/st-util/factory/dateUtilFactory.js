@@ -43,7 +43,6 @@
 			var periodoDe = new Date();
 			periodoDe.setDate(1);
 			periodoDe.setMonth(0);
-			de = periodoDe;
 
 			return {
 				de:periodoDe,

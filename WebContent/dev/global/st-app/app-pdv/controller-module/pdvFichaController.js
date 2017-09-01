@@ -20,7 +20,7 @@
 			//Escolha de produtos
 			else if(step==1){
 				_infoModal.titulo = "Definição dos produtos";
-				_infoModal.okActionLabel = "Avançar";
+				_infoModal.okActionLabel = $rootScope.config.confs.showEmpEmbalagensPdv=='true' ? "Avançar" :"Finalizar";
 				_infoModal.okActionIcon = "fa-angle-double-right";
 			}
 			else if(step==2){
@@ -122,7 +122,7 @@
 			}
 
 
-			if(vm.step<2){
+			if(vm.step<2 && ($rootScope.config.confs.showEmpEmbalagensPdv=='true' || vm.step<1) ){
 				vm.changeStep(vm.step+1);
 				return;
 			}

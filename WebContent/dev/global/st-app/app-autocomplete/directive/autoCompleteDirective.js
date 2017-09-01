@@ -32,8 +32,7 @@
 				idInput:"=",
 				resultadoBusca:"=",//Bind para resultados da busca
 				useCache:"=",//cacheGet
-				autoShowBusca:"=",//Mostra a tela de busca automaticamente
-				forceExecuteBusca:"="//Mostra a tela de busca automaticamente
+				autoShowBusca:"="//Mostra a tela de busca automaticamente
 			},
 
 			templateUrl:'autoCompleteObject.html',
@@ -103,10 +102,7 @@
 					return $scope.initialBusca;
 				}
 				
-				function getForceExecuteBusca(){
-
-					return $scope.forceExecuteBusca;
-				}
+			
 
 				function getItens(){
 
@@ -298,7 +294,6 @@
 							$scope.placeHolder=placeHolder;
 							$scope.modelValue = getModelValue();
 							$scope.initialBusca = getInitialBusca();
-							$scope.forceExecuteBusca = getForceExecuteBusca();
 							$scope.focusBusca=true;
 							
 							console.log("initialBusca: "+getInitialBusca());
@@ -400,13 +395,8 @@
 							}
 
 							
-							if($scope.forceExecuteBusca==true){
-
-								$scope.buscarItem("");
-							}
-							
 							//Busca Inicial
-							if($scope.initialBusca ){
+							if($scope.initialBusca !=undefined ){
 
 								$scope.buscarItem($scope.initialBusca );
 							}

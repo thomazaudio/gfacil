@@ -1,5 +1,20 @@
-<label class="toggle" uib-tooltip="{{mov.baixada==true && mov.dataBaixa!=null ? 'Paga em: ' + (mov.dataBaixa|date:'dd/MM/yyyy') + ' (' + (mov.dataBaixa|date:'EEEE') + ')' :''}}"> 
+<label ng-if="!templateVersion || templateVersion==1" class="toggle" uib-tooltip="{{mov.baixada==true && mov.dataBaixa!=null ? 'Paga em: ' + (mov.dataBaixa|date:'dd/MM/yyyy') + ' (' + (mov.dataBaixa|date:'EEEE') + ')' :''}}"> 
 	<input  ng-disabled="mov.disable" type="checkbox" ng-change="alterarBaixa(mov)" ng-model="mov.baixada" />
 	<span id="{{id}}" class="handle"></span>
 </label>
+
+<div ng-if="templateVersion==2" >
+ <checkbox  class="btn-primary"
+					   ng-change="alterarBaixa(mov)" 
+					   ng-model="mov.baixada"            
+					>
+					
+					</checkbox>
+					<label class="text-muted" uib-tooltip="{{mov.baixada==true && mov.dataBaixa!=null ? 'Paga em: ' + (mov.dataBaixa|date:'dd/MM/yyyy') + ' (' + (mov.dataBaixa|date:'EEEE') + ')' :''}}">
+					    <strong>Pago</strong>
+					</label>
+					
+</div>
+
+
 

@@ -15,6 +15,7 @@ import movimentacao.Movimentacao;
 import movimentacao.MovimentacaoService;
 import pedido.Pedido;
 import system.SystemUtil;
+import util.DataUtil;
 
 @Service
 public class PdvService extends GenericService<Pdv>{
@@ -49,8 +50,10 @@ public class PdvService extends GenericService<Pdv>{
 		Date dataVenda = item.getData();
 
 		//Se a data da venda for null, é setada como a data atual do sistema
-		if(dataVenda==null)
+		if(dataVenda==null){
 			dataVenda = new Date();
+			item.setData(DataUtil.getFormated(dataVenda));
+		}
 		
 	    if(item.getParcelas()!=null){
 			//Garante as inforações básicas corretas para todas as parcelas

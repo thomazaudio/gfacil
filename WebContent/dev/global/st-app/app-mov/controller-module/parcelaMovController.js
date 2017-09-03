@@ -46,8 +46,8 @@
 			basicMov.pedidos=null;
 			basicMov.valor = 0;
 			basicMov.id=0;
-			basicMov.baixada=false;
-			basicMov.data = new Date();
+			basicMov.baixada=true;
+			basicMov.data = $scope.originalMov.data || new Date();
 			$scope.movs.push(mov||basicMov);
 
 			//Corrige mov.parcela e mov.numeroParcela de todas as parcelas
@@ -92,6 +92,8 @@
 					},'onlyPeriod');//onlyPeriod é informado para deletar a movimentação diretamente
 				} 
 
+			}else{
+				$scope.movs.splice(index,1);
 			}
 
 			//Corrige mov.parcela e mov.numeroParcela de todas as parcelas
@@ -136,7 +138,16 @@
 		//Mudança no valor das parcelas (Exceto a original)
 		$scope.changeParcela = function(){
 
-			setAlerts();
+			var soma = 0;
+			for(var i = 1;i<$scope.movs.length;i++){
+
+				soma+=$scope.movs[i].valor;
+				
+			}
+			
+			$scope.movs[0].valor = movUtil.getTotalMov($scope.originalMov, "pedidos")  - soma;
+			
+			//setAlerts();
 		}
 
 		//Altera as informações mov.numeroParcelas e mov.parcela

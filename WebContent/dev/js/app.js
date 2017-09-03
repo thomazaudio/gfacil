@@ -6,6 +6,13 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','
 	
 	config.cacheTemplates();
 	
+	console.log("Rodando...");
+	
+	//Desabiliar zoom
+	document.documentElement.addEventListener('gesturestart', function (event) {
+	    event.preventDefault();      
+	}, false);
+	
 	$.fn.modal.prototype.constructor.Constructor.DEFAULTS.backdrop = 'static';
 	$.fn.modal.prototype.constructor.Constructor.DEFAULTS.keyboard =  false;
 	

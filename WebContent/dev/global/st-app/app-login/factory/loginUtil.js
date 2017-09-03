@@ -47,7 +47,15 @@
 
 				//Filiais disponíveis no sistema
 				filialUtil.getAllFiliais(function(){
-
+					
+					var idFilial = parseInt($rootScope.config.confs.currentFilialId);
+					var nomeFilial = $rootScope.config.confs.labelCurrentFilial;
+					 
+					if(idFilial>0){
+						$rootScope.currentFilial = {id: idFilial, xNome: nomeFilial};
+					}
+				
+					
 					//Cache offline para otimização do PDV
 					cacheGet.getOfflineCache(function(){
 

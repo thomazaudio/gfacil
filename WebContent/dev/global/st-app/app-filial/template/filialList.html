@@ -4,7 +4,7 @@
 		   <i class="fa fa-info-circle" aria-hidden="true"></i>
 		   <strong>{{labelCurrentFilial|uppercase}}</strong>
 		  <span class="caret"></span></button>
-			     <ul class="dropdown-menu list-group" style="padding:5px">
+			     <ul class="dropdown-menu list-group lista-filiais" style="padding:5px">
 					 <li ng-click="alterarFilial(filial)" ng-repeat="filial in filiais" class="list-group-item filial-list"  >
 					        <i ng-show="filial.id==currentFilial.id" class="warning fa fa-check-circle-o" aria-hidden="true"></i>
 						    <strong>{{filial.xNome|uppercase}} </strong>

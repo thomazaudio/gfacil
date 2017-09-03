@@ -175,7 +175,7 @@
 				//Escolha da data de pagamento	
 				var modal = 	$uibModal.open({
 					animation: true,
-					templateUrl:"global/st-app/app-mov/template-module/modalBaixaMov.html",
+					templateUrl:"modalBaixaMov.html",
 					size:'lg',
 					controller:"alterarBaixaController",
 					controllerAs:"vm",

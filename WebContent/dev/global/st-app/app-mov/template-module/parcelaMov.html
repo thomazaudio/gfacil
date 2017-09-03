@@ -64,7 +64,7 @@
 		                 <strong style="font-size:15px;">R$ {{totalParcelas|number:2}}</strong>
 		               </div>
 		               
-		               <div class="col-lg-4">
+		               <div class="col-lg-3">
 		                   <!-- Apenas é exibido se a movimentação possui relação com vendas --> 
 		                   <strong ng-show="originalMov.pedidos.length>0">{{totalAlert}}</strong>
 		                   <div class="text-center">
@@ -72,12 +72,12 @@
 		                   </div>
 		               </div>
 		               
-		               <div class="col-lg-2">
-		                 <button id="btn-add-parcela" ng-click="addParcela()" class="btn btn-secondary">Adicionar parcela <i class="fa fa-plus"> </i></button>
+		               <div class="col-lg-3">
+		                 <button id="btn-add-parcela" ng-click="addParcela()" class="btn btn-secondary"><i class="fa fa-plus"> </i> Adicionar parcela </button>
 		               </div>
 		               
 		               <div class="col-lg-2">
-		                 <button ng-if="isModal==true" id="btn-ok" data-dismiss="modal" class="btn btn-default">OK <i class="fa fa-check"></i></button>
+		                 <button ng-if="isModal==true" id="btn-ok" data-dismiss="modal" class="btn btn-default"><i class="fa fa-check"></i> OK</button>
 		               </div>
 		               
 		            </th>

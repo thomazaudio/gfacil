@@ -4,6 +4,11 @@
 
 		var ini = new Date().getTime(); 
 		var vm = this;
+		
+		vm.changeDataPdv = function(data){
+			
+			vm.pdv.movimentacao.data = data;
+		}
 
 		vm.changeStep = function(step){
 
@@ -12,7 +17,7 @@
 			var _infoModal = {};
 
 			if(step==0){
-				_infoModal.titulo = "Defina um cliente";
+				_infoModal.titulo = "Definição do cliente";
 				_infoModal.okActionLabel = "Avançar";
 				_infoModal.okActionIcon = "fa-angle-double-right";
 			}
@@ -24,7 +29,7 @@
 				_infoModal.okActionIcon = "fa-angle-double-right";
 			}
 			else if(step==2){
-				_infoModal.titulo = "Outras informações";
+				_infoModal.titulo = "Empréstimo de embalagens";
 				_infoModal.okActionLabel  = "Finalizar";
 				_infoModal.okActionIcon = "fa-check";
 			}
@@ -334,7 +339,6 @@
 		function configurePdvVazio(){
 
 			vm.pdv = {};
-			vm.pdv.data =  new Date();
 			vm.pdv.movimentacao = {};
 			vm.pdv.movimentacao.pedidos=[];
 

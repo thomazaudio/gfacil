@@ -42,6 +42,14 @@
 
 @media only screen and (max-width : 1199px) {
 	
+	
+	
+	.lista-filiais{
+	    float: right!important;
+	    right:0;
+	    left:auto;
+	}
+	
 	.btn-escolher-filial{
 	   background-color: #3276b1;
 	    white-space: nowrap;
@@ -56,7 +64,7 @@
 	
 		color: #FBF7F7;
 	    white-space: nowrap;
-	    width: 7.5em;
+	    width: 5.5em;
 	    overflow: hidden;
 	    text-overflow: ellipsis;
 	}

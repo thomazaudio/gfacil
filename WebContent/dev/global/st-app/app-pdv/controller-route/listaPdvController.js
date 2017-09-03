@@ -56,6 +56,10 @@ angular.module("adm").controller("listaPdvController",function($scope, $rootScop
 		stService.executeGet("/pdv/save-retirou",{idPdv:pdv.id,carregado:pdv.carregado}).success(function(){
 
 
+		}).error(function(){
+			
+			stUtil.showMessage("","Ocorreu um erro ao alterar o status, verifique sua conexão com a internet","danger");
+			pdv.carregado = !pdv.carregado;
 		});
 
 	}

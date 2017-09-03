@@ -3,8 +3,11 @@
 
 	angular.module("adm")
 
-	.controller("filialListController",function($scope, $rootScope, $localStorage, cacheGet, $route, filialUtil, stUtil){
+	.controller("filialListController",function($scope, $rootScope, $localStorage, cacheGet, $route, filialUtil, stUtil, configUtil){
 
+		console.log("currentFilial: ");
+		console.log($rootScope.currentFilial);
+		
 		$rootScope.$watch("currentFilial",function(currentFilial){
 
 			if(currentFilial)
@@ -39,12 +42,18 @@
 			$scope.currentFilial = filial;
 			$rootScope.currentFilial = filial;
 			$localStorage.currentFilial = filial;
+			
+			
+			configUtil.setConfig("currentFilialId",filial.id+"");
+			configUtil.setConfig("labelCurrentFilial",filial.xNome);
+			
 
 			//atualizar caches
 			cacheGet.getOfflineCache(function(){
 				
 				stUtil.showMessage("","Origem alterada para  '"+filial.nome+"'.","info");
 				 
+				    if($scope.inModal!=true)
 					$route.reload();
 
 			});

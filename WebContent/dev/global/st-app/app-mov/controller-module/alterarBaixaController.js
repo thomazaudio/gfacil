@@ -17,12 +17,12 @@
 
 		vm.confirmar = function(){
 			
+			vm.carregando = true;
 			var data = vm.dataPagamento;
 			var valor = vm.valorMov;
 			var formaPagamento = vm.formaPagamento;
 
 			var dataBaixa = dateUtil.getDate(data);
-			$modalInstance.close();
 			mov.valor = valor;
 			mov.formaPagamento = formaPagamento;
 			mov.dataBaixa = dataBaixa||new Date();
@@ -31,6 +31,8 @@
 			//Caso seja uma movimentação fixa (modoRepeticao!=0), cadastra da movimentação abastrata gerada
 			if(mov.originalMov && mov.originalMov.modoRepeticao!=0){
 
+				
+				
 				var originalMov = mov.originalMov;
 
 				originalMov = movUtil.addBaixaForMov(originalMov,mov.data);
@@ -38,6 +40,8 @@
 				//Salva a movimentação fixa original (Com a baixa adicionada)
 				stService.save("movimentacao",originalMov).success(function(){
 
+					vm.carregando = false;
+					$modalInstance.close();
 					//Cadastrada a movimentação fixa abstrata gerada
 					movUtil.cadMov([mov]);
 
@@ -49,7 +53,13 @@
 			else{
 
 				mov.dataBaixa = dataBaixa||new Date();
-				movUtil.confirmAlterarBaixa (mov);
+				movUtil.confirmAlterarBaixa (mov, function(){
+					
+					vm.carregando = false;
+				
+					$modalInstance.close();
+					
+				});
 			}
 		}
 

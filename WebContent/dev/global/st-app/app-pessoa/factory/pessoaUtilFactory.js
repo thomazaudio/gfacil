@@ -9,6 +9,7 @@
 
 			var _modal  = 	$uibModal.open({
 				animation: true,
+				backdrop: 'static',
 				templateUrl:"global/st-app/app-pessoa/template-module/modalDetalhePessoa.html",
 				size:'lg',
 				controller:function($scope, $modalInstance){

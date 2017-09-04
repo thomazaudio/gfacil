@@ -159,7 +159,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
      });
 	
 	//Intercepta um erro de resposta
-	$httpProvider.interceptors.push(function ($q, $rootScope, $location, stUtil, st) {
+	$httpProvider.interceptors.push(function ($q, $rootScope, $location, stUtil) {
 		return {
 
 			'responseError': function(rejection) {
@@ -170,20 +170,6 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 				$rootScope.loadingSpinner=false;
 				
-				console.log("Objeto rejection: ");
-				console.log(rejection);
-				
-				if(url.indexOf("usuariosistema/add-event")==-1){
-				
-					//Envia evento para o backend
-					st.evt({
-					  evento:"erro_"+status,
-					  url:url,
-					  urlMethod:method,
-					  descricao: JSON.stringify(config.data)
-						
-					});
-				}
 				
 				if(status==-1){
 					

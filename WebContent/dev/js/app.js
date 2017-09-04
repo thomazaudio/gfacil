@@ -6,22 +6,12 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','
 	
 	config.cacheTemplates();
 	
-	console.log("Rodando...");
-	
-	//Desabiliar zoom
+	//Desabiliar zoom (Necessário para safari)
 	document.documentElement.addEventListener('gesturestart', function (event) {
 	    event.preventDefault();      
 	}, false);
 	
-	$.fn.modal.prototype.constructor.Constructor.DEFAULTS.backdrop = 'static';
-	$.fn.modal.prototype.constructor.Constructor.DEFAULTS.keyboard =  false;
-	
-	$rootScope.$on("modal.closing", function(){
-		
-		console.log("Modal fechou");
-		
-	});
-	
+
 	Chart.moneyFormat= function(value) {
 		return $filter('number')(value,2);
 	}
@@ -32,8 +22,6 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','
 	
     $rootScope.$on('$routeChangeStart', function(event, next, current) { 
     	
-    	
-    	
     	//Filiais
     	if(!$rootScope.filiais){
     		
@@ -43,26 +31,12 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','
     		
     	}
     	
-    	//Configurações do usuário e filias
-    	if(!$rootScope.config){
-    		
-    		if(!$rootScope.config)
-    			$rootScope.config = $localStorage.config;
-    		
-    		console.log("Original path: ");
-    		console.log(next.$$route);
-    		
-    		if(!$rootScope.config && next.$$route.originalPath.indexOf("/usuario/:login")==-1 && next.$$route.originalPath.indexOf("/prot")==-1){
-    			
-    		   $location.path("login");
-    			
-    		}
-    		
+    	if(!next.$$route){
+    		$location.path("/login");
     	}
     
-    	
     	//Caso o usuário não esteja logado, é direcionado para página de login
-    	if(!$cookieStore.get("usuarioSistema") && (!next.$$route || next.$$route.originalPath.indexOf("/usuario/:login")==-1) && next.$$route.originalPath.indexOf("/teste")==-1){
+    	else if(!$rootScope.usuarioSistema && (!next.$$route || next.$$route.originalPath.indexOf("/usuario/:login")==-1) && next.$$route.originalPath.indexOf("/teste")==-1){
     		console.log("Não existe usuário logado no sistema");
     		$location.path("/login");
     	}
@@ -90,8 +64,7 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','
     	var isModalOpen = function(){
     		
     		var modals = $(".modal");
-    		
-    		    		
+    		   		
     		for(var i in modals){
     			
     			if(modals[i].className=='modal in'){
@@ -119,8 +92,7 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','
          
          if(preventDefault==true)
             event.preventDefault();
-               
-	
+           
      });
 }]);
 

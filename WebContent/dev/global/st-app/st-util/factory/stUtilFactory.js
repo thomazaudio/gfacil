@@ -3,26 +3,22 @@
 
 	angular.module("adm") 
 	
-	
-	.factory('st',function(){
+	.factory('st',function(stService, $rootScope, $cookieStore){
 
 		//Enviar um evento no sistema contablidade no servidor
 		var _evt  = function(evt){
 
 			//evt.pathOrigem = window.location.href;
-			var usuario = {};
-
-
+	        var usuario =  $cookieStore.get("usuarioSistema");
+			
 			if(!evt.login && usuario)
-				evt.login = usuario;
+				evt.login = usuario.originalLogin;
 
-			/*
-			stService.save("eventousuario",evt).success(function(){
+		
+			stService.executePost("eventousuario/add/",evt).success(function(){
 
 
 			});
-
-			 */
 
 		};
 

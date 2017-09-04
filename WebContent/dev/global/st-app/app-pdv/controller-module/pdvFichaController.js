@@ -161,14 +161,9 @@
 			
 			cachePost.add("pdv/add/", pdv, function(){
 				
-				
 				vm.carregandoFinalizarVenda =false;
-
-				//Evento tempo de resposta do servidor ao finalizar venda
+				
 				st.evt({evento:nomeEvento,descricao:((new Date().getTime()-ini)/1000)+""});
-
-				//Tempo total para finalizar a venda
-				st.evt({evento:"tempo_resposta_finalizar_venda",descricao:((new Date().getTime()-iniTempoResposta)/1000)+""});
 
 				$modalInstance.close();
 				$uibModal.open({

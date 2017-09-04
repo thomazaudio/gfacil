@@ -56,7 +56,7 @@
 	     <div ng-if="vm.step==0">
 	              <div class="form-group">
 				   <label class="text-muted"><i class="fa fa-user"></i> Cliente</label>
-				   <auto-complete-object initial-busca="config.confs.defaultClienteLabel || 'Outros'" auto-show-busca="!vm.pdv.movimentacao.pessoa" id-input="'cliente-venda'"  use-cache="true" extra-class="'input-lg'" inline="true"  tipo="'select'" label-cad="'Cadastrar novo Cliente'" place-holder="'Primeiro, digite o nome do cliente'"  object-op="'cliente'" querys="" label="'nome'" ng-model="vm.pdv.movimentacao.pessoa" />
+				   <auto-complete-object initial-busca="vm.defaultClienteLabel  || 'Outros'" auto-show-busca="!vm.pdv.movimentacao.pessoa" id-input="'cliente-venda'"  use-cache="true" extra-class="'input-lg'" inline="true"  tipo="'select'" label-cad="'Cadastrar novo Cliente'" place-holder="'Primeiro, digite o nome do cliente'"  object-op="'cliente'" querys="" label="'nome'" ng-model="vm.pdv.movimentacao.pessoa" />
 	              </div>
 		          <vertical-space></vertical-space>
 		          <div class="form-group" ng-show="config.confs.showDataEmissaoPdv=='true'">

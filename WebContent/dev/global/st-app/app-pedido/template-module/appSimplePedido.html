@@ -22,7 +22,7 @@
 <vertical-space></vertical-space>
 <p  class="text-muted text-small"><span ng-show="vm.resultadoBusca.length>0 && vm.nomeProduto.length>0"><i class="fa fa-search" aria-hidden="true"></i> Resultado da busca   <strong>"{{vm.nomeProduto}}"</strong> </span><span><a ng-click="vm.cadProduto(vm.nomeProduto)"> Cadastrar produto <i class="fa fa-plus"></i></a></span></p>
 <p class="text-muted" ng-if="vm.tagSelected>-1 || vm.nomeProduto.length>0 ">
-       <i class="fa fa-exclamation-triangle"></i> exibindo resultados somente para <strong>{{vm.nomeProduto || vm.tagsProduto[vm.tagSelected]}}</strong>
+       <i class="fa fa-exclamation-triangle"></i> exibindo resultados somente para <strong>"{{vm.nomeProduto || vm.tagsProduto[vm.tagSelected] |uppercase}}"</strong>
       <button ng-click="vm.buscaProduto();vm.tagSelected=-1;vm.nomeProduto=''"  class="btn btn-xs"><i class="fa fa-trash"></i> limpar buscar</button>
 </p>
 

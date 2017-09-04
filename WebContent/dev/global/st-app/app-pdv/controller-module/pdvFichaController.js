@@ -53,6 +53,13 @@
 
 			if(!vm.pdv.movimentacao.pessoa)
 				return;
+			
+			if(!vm.pdv.id && vm.pdv.movimentacao.pessoa.nome == vm.defaultClienteLabel){
+				
+				vm.pdv.carregado = 1;
+				vm.pdv.movimentacao.baixada = true;
+				
+			}
 
 			vm.pdv.movimentacao.pessoa = cacheGet.getObjectById("cliente",vm.pdv.movimentacao.pessoa.id);
 
@@ -347,6 +354,8 @@
 		var _init = function(){
 			
 			var ini = new Date().getTime();
+			
+			vm.defaultClienteLabel = $rootScope.config.confs.defaultClienteLabel;
 			
 			if(pdv.data){
 

@@ -20,7 +20,6 @@ var filesToCache = [
   'js/app.js',
   'js/base.js',
   'index.html',
-  
 ];
 
 self.addEventListener('install', function(e) {

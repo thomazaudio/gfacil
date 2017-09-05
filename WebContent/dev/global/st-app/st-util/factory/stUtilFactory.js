@@ -193,10 +193,12 @@
 
 		};
 
-		var _buscaOb = function(array,query,attr){
+		var _buscaOb = function(array, query, attr){
+			
+			var attrs = [];
 
 			if(attr)
-				var attrs = attr.split(".");
+				 attrs = attr.split(".");
 
 			for(var i in array){
 

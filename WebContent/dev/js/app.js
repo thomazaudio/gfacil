@@ -60,7 +60,7 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','
     	
     	
     	//Caso o menu mobile esteja visivel, é fechado
-    	if($("#nav-header")[0].className.indexOf("open")!=-1){
+    	if($("#nav-header")[0] && $("#nav-header")[0].className.indexOf("open")!=-1){
     		$("#nav-header").removeClass("open");
     	}
         

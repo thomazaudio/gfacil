@@ -1,5 +1,11 @@
 angular.module('adm').factory('config',function($location, $rootScope, $http, $templateCache){
 
+	
+	function getAppVersion(){
+		
+		return "CeasaPlus 2.0"
+	}
+	
 	function getUrlBase(){
 		
 		//Servidor de teste local (Utilizado para deploy do .war gerado pelo jenkins)
@@ -67,6 +73,8 @@ angular.module('adm').factory('config',function($location, $rootScope, $http, $t
 			});
 		}
 		
+	
+		
 		
 	}
 	
@@ -75,7 +83,8 @@ angular.module('adm').factory('config',function($location, $rootScope, $http, $t
 	return {
 		cacheTemplates: cacheTemplates,
 		baseUrl: getUrlBase(),
-		path: getPath()
+		path: getPath(),
+		appVersion: getAppVersion()
 	};
 
 

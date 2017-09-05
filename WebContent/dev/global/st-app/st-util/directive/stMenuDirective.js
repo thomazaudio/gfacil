@@ -12,8 +12,10 @@
 
 				itens: "="
 			},
-			controller:function($scope, $rootScope, $route, $filter, anchorScroll, loginUtil, $location, Fullscreen, $localStorage, stUtil, pdvUtil, estoqueUtil, movUtil){
+			controller:function($scope, $rootScope, $route, $filter, anchorScroll, loginUtil, $location, Fullscreen, $localStorage, stUtil, pdvUtil, estoqueUtil, movUtil , config){
 
+				$scope.appVersion = config.appVersion;
+				
 				$rootScope.$on('$routeChangeSuccess', function() {
 
 					var path;

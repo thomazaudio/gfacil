@@ -71,7 +71,11 @@
 					   
 						
 						<div class="col-xs-12"><hr></hr></div>
-						
+						<div class="col-xs-6" >
+			                 <a class="btn btn-mobile-menu" style="width:100%;" >
+			                 <i class="fa fa-info-circle info fa-2x" aria-hidden="true"></i>
+									<br><strong>{{appVersion}}</strong></a>
+						</div>
 						 <div class="col-xs-4" >
 			                 <a class="btn btn-mobile-menu" style="width:100%;" ng-click="logOut()" nav-click>
 			                 <i class="fa fa-sign-out fa-2x info" aria-hidden="true"></i>
@@ -157,6 +161,9 @@
 						aria-hidden="true"></i> {{item.label}}</a></li>
 					
 			</ul>
+			<div class=""><strong class="text-small text-muted" style="padding:9px; font-size:10px;"><i class="fa fa-info-circle"></i> {{appVersion}}</strong></div>
+			
+			 
 	</div>
 </div>
 </nav>

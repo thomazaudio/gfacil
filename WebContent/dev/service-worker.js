@@ -10,8 +10,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var dataCacheName = 'CeasaPlusV1';
-var cacheName = 'CeasaPlusV1';
+var dataCacheName = 'CeasaPlus2.0';
+var cacheName = 'CeasaPlus2.0';
 var filesToCache = [
    '/',
   'css/style.css',
@@ -59,7 +59,7 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
-  if (e.request.url.indexOf("html") > -1) {
+  if (e.request.url.indexOf(".html") > -1 || e.request.url.indexOf(".jpg") > -1 || e.request.url.indexOf(".png") > -1) {
     /*
      * When the request URL contains dataUrl, the app is asking for fresh
      * weather data. In this case, the service worker always goes to the

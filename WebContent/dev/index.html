@@ -154,10 +154,6 @@
 <script src="global/lib/angular-bootstrap-checkbox.js"></script>
 
 
-
-
-
-
 <!-- endbuild -->
 
 <!-- build:js js/app.js -->
@@ -327,8 +323,6 @@
 <!-- stNav -->
 <script src="global/st-app/st-nav/directive/stNavDirective.js"></script>
 
-<!-- endbuild -->
-<script src="global/lib/angular/angular-spinner.js"></script>
 
 <!-- stCheckBox -->
 <script src="global/st-app/st-checkbox/directive/stCheckboxDirective.js"></script>
@@ -344,6 +338,11 @@
 <!-- test-user-->
 <script src="global/st-app/test-user/directive/testUserDirective.js"></script>
 <script src="global/st-app/test-user/testUserConfig.js"></script>
+
+<!-- endbuild -->
+
+
+<script src="global/lib/angular/angular-spinner.js"></script>
 
 
 <script>
@@ -406,7 +405,7 @@ if(window.location.href.indexOf("localhost")==-1 && window.location.href.indexOf
 	<div id="wrapper">
 
 		<!-- Menu mobile e menu desktop -->
-		<st-menu ng-if="usuarioSistema"
+		<st-menu 
 			itens="
                    [
                     
@@ -451,22 +450,11 @@ if(window.location.href.indexOf("localhost")==-1 && window.location.href.indexOf
 			
 		</div>
 	</div>
-
-<script>
-</script>
+  
 
 </body>
 
-<script>
 
-/*  Registração do service-worker  */
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-             .register('./service-worker.js')
-             .then(function() { console.log('Service Worker Registered'); });
-  }
-
-</script>
 
 <!-- Start of Async Drift Code -->
 <script>

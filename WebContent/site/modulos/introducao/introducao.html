@@ -3,10 +3,10 @@
 <div  ng-show="step!=2" class="stepwizard col-md-offset-3">
     <div class="stepwizard-row setup-panel">
       <div class="stepwizard-step">
-        <a href="#step-1" type="button" class="btn btn-default btn-circle" ng-class="{'btn-primary': step==0}">1</a>
+        <a  type="button" class="btn btn-default btn-circle" ng-class="{'btn-primary': step==0}">1</a>
       </div>
       <div class="stepwizard-step">
-        <a href="#step-2" type="button" class="btn btn-default btn-circle" ng-class="{'btn-primary': step==1}">2</a>
+        <a  type="button" class="btn btn-default btn-circle" ng-class="{'btn-primary': step==1}">2</a>
       </div>
     </div>
   </div>
@@ -34,12 +34,13 @@
 </div>
 
  <div ng-show="step==2" class="row">
-     <p>Assista ao vídeo e saiba como a ferramenta <strong>Ceasa Plus</strong> pode transformar sua vida de vendedor na Ceasa!</p>
+     <p>Vejo o vídeo e saiba como a ferramenta <strong>Ceasa Plus</strong> pode transformar sua vida de vendedor na Ceasa!</p>
 	<youtube-video player-vars="playerVars" player-width="'100%'" video-url="'https://www.youtube.com/watch?v=WcIHw4ihcY8&feature=youtu.be'" player="videoIntro"></youtube-video>
 	<div class="form-group">
-	            <label ng-show="!showButtonProx || showButtonProx==false"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Por favor,  assista o vídeo para se cadastrar.</label>
-				<button ng-click="cadastrar()" ng-show="showButtonProx" type="button" class="btn btn-primary btn-lg btn-block">
-				     <h2 style="color: white;line-height:15px;font-size:25px">Efetuar cadastro</h2>
+	            
+				<button ng-disabled="!showButtonProx || showButtonProx==false" ng-click="cadastrar()"  type="button" class="btn btn-primary btn-lg btn-block">
+				     <h2 ng-show="showButtonProx" style="color: white;line-height:15px;font-size:25px">Efetuar cadastro</h2>
+				     <h2 ng-show="!showButtonProx || showButtonProx==false" style="color: white;line-height:15px;font-size:19px"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Veja o vídeo para se cadastrar.</h2>
 				     <h4>({{vagasRestantes}} vagas restantes)</h4>
 				</button>
 	</div>

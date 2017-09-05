@@ -4,6 +4,13 @@ var app  = angular.module("adm",["angular-growl","angularSpinner","ngRoute","ds.
 
 app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','$location','$cookieStore','st','$filter','filialUtil',"stUtil","$templateCache", function($rootScope, $route,$modalStack, $localStorage,$http,config,$location,$cookieStore,st,$filter,filialUtil,stUtil,$templateCache) {
 	
+	
+	if('serviceWorker' in navigator) {
+		  navigator.serviceWorker
+		           .register('service-worker.js')
+		           .then(function() { console.log("Service r Registered"); });
+		}
+	
 	config.cacheTemplates();
 	
 	//Desabiliar zoom (Necessário para safari)

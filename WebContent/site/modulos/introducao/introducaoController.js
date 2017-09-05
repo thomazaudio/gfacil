@@ -1,4 +1,4 @@
-angular.module("site").controller("introducaoController", function(origem, $scope, stService, $localStorage, $interval, leadUtil, $location){
+angular.module("site").controller("introducaoController", function(origem, $scope, $rootScope ,stService, $localStorage, $interval, leadUtil, $location){
 
 	var youtubePlayer;
 	
@@ -34,13 +34,26 @@ angular.module("site").controller("introducaoController", function(origem, $scop
 	$scope.responder = function(){
 
 		leadUtil.setAction("respondeu_pergunta_"+($scope.step+1));
+		
 		$scope.step++;
 		
-		if($scope.step==2){
+        if($scope.step==2){
+        	
+        	console.log("lead");
+        	console.log($rootScope.lead);
+        	
+        	//Origem a partir do facebook
+    		if($rootScope.lead.codOrigem.indexOf("fv")!=-1){
+    			
+    			$location.path("cadastro");
+    		}else{
+    			youtubePlayer.playVideo();
+    		}
 			
-			youtubePlayer.playVideo();
+			
 		}
-
+		
+		
 	}
 
 

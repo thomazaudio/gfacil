@@ -15,9 +15,11 @@ var cacheName = 'CeasaPlus2.2';
 var filesToCache = [
    '/',
   'css/style.css',
+  'global/lib/spin.js',
   'js/base.js',
-  'js/app.js',
-  'index.html',
+   'js/app.js',
+  'index.html'
+ 
 ];
 
 self.addEventListener('install', function(e) {

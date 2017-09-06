@@ -10,13 +10,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var dataCacheName = 'CeasaPlus2.1';
-var cacheName = 'CeasaPlus2.1';
+var dataCacheName = 'CeasaPlus2.2';
+var cacheName = 'CeasaPlus2.2';
 var filesToCache = [
    '/',
   'css/style.css',
-  'js/app.js',
   'js/base.js',
+  'js/app.js',
   'index.html',
 ];
 

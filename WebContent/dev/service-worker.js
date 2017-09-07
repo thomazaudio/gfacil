@@ -11,8 +11,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var dataCacheName = 'CeasaPlus2.3';
-var cacheName = 'CeasaPlus2.3';
+var dataCacheName = 'CeasaPlus2.90';
+var cacheName = 'CeasaPlus2.90';
 var filesToCache = [
   'css/style.css',
   'global/lib/spin.js',

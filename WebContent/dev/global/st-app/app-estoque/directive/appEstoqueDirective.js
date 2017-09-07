@@ -7,7 +7,7 @@
 	.directive('buttonEstoque', function (movUtil,stUtil,stService,$filter,$uibModal,estoqueUtil) {
 		return {
 			restrict: 'E',
-			templateUrl:'buttonEstoque.html',
+			templateUrl:"global/st-app/app-estoque/template-module/buttonEstoque.html" ,
 			scope:{
 
 				produto:"=",

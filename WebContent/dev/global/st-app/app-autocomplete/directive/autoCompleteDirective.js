@@ -35,7 +35,7 @@
 				autoShowBusca:"="//Mostra a tela de busca automaticamente
 			},
 
-			templateUrl:'autoCompleteObject.html',
+			templateUrl:"global/st-app/app-autocomplete/template-module/autoCompleteObject.html",
 
 			link: function($scope, element, attrs,ctrl){
 
@@ -285,7 +285,7 @@
 
 					$uibModal.open({
 						animation: true,
-						templateUrl:"buscaAutoCompleteObject.html",
+						templateUrl:"global/st-app/app-autocomplete/template-module/buscaAutoCompleteObject.html",
 						size:"lg",
 						controller:function($scope, $modalInstance){
 

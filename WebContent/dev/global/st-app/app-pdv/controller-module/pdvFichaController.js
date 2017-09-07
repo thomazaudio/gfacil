@@ -175,7 +175,7 @@
 				$modalInstance.close();
 				$uibModal.open({
 					animation: true,
-					templateUrl:"modalPosVenda.html",
+					templateUrl:"global/st-app/app-pdv/template-module/modalPosVenda.html",
 					size:'lg',
 					controller:function($scope, $modalInstance){
 

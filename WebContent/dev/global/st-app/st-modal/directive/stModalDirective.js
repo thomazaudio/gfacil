@@ -5,7 +5,7 @@
 	.directive('modalContent', function($templateCache) {
 		return {
 			//templateUrl:'global/st-app/st-modal/template-module/modalContent.html',
-			templateUrl:'modalContent.html',
+			templateUrl:'global/st-app/st-modal/template-module/modalContent.html',
 			restrict:"E",
 			transclude:true,
 			scope:{
@@ -57,7 +57,7 @@
 
 		return {
 
-			templateUrl:'stModal.html',
+			templateUrl:"global/st-app/st-modal/template-module/stModal.html",
 			restrict:"AE",
 			transclude:true,
 			scope:{

@@ -10,15 +10,33 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var dataCacheName = 'CeasaPlus2.3';
-var cacheName = 'CeasaPlus2.3';
+var dataCacheName = 'CeasaPlus2.4';
+var cacheName = 'CeasaPlus2.4';
 var filesToCache = [
-   '/',
   'css/style.css',
   'global/lib/spin.js',
   'js/base.js',
    'js/app.js',
-  'index.html'
+  'index.html',
+  "global/st-app/st-modal/template-module/modalContent.html",
+  "global/st-app/app-autocomplete/template-module/buscaAutoCompleteObject.html",
+  "global/st-app/app-autocomplete/template-module/autoCompleteObject.html",
+  "global/st-app/app-pdv/template-module/modalPosVenda.html",
+  "global/st-app/app-pdv/template-module/pdv-ficha.html",
+  "global/st-app/app-filial/template/alertFilial.html",
+  "global/st-app/app-filial/template/filialList.html",
+  "global/st-app/app-pedido/template-module/appSimplePedido.html",
+  "global/st-app/app-pedido/template-module/appListSimplePedido.html",
+  "global/st-app/app-estoque/template-module/buttonEstoque.html",
+  "global/st-app/st-util/template-module/stToggle.html",
+  "global/st-app/app-pedido/template-module/itensPedido.html",
+  "global/st-app/app-mov/template-module/parcelaMov.html",
+  "global/st-app/app-mov/template-module/buttonBaixaMov.html",
+  "global/st-app/st-modal/template-module/stModal.html",
+  'global/st-app/st-modal/template-module/modalContent.html',
+  "global/st-app/app-pdv/template-route/vendas.html",
+  "global/st-app/app-estoque/template-route/entradaMercadoria.html",
+  "global/st-app/app-mov/template-module/modalBaixaMov.html"
  
 ];
 

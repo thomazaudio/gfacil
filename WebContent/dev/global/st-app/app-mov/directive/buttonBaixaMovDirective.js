@@ -7,7 +7,7 @@
 	.directive("buttonBaixaMov",function(movUtil){
 
 		return{
-			templateUrl:'buttonBaixaMov.html',
+			templateUrl:"global/st-app/app-mov/template-module/buttonBaixaMov.html",
 			scope:{
 				mov:"=",
 				id:"=",

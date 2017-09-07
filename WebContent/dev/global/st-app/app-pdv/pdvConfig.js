@@ -2,7 +2,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	$routeProvider.when("/pdv",{
 
-		templateUrl:"vendas.html",
+		templateUrl:"global/st-app/app-pdv/template-route/vendas.html",
 		controller:"stControl"
 
 	}); 

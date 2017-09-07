@@ -34,47 +34,7 @@ angular.module('adm').factory('config',function($location, $rootScope, $http, $t
 	
 	
 	function cacheTemplates (){
-		
-		
-		var caches = [
-		     {url: "global/st-app/st-modal/template-module/modalContent.html", key: "modalContent.html" },
-		     {url: "global/st-app/app-autocomplete/template-module/buscaAutoCompleteObject.html", key: "buscaAutoCompleteObject.html"},
-		     {url: "global/st-app/app-autocomplete/template-module/autoCompleteObject.html", key: "autoCompleteObject.html"},
-		     {url: "global/st-app/app-pdv/template-module/modalPosVenda.html", key: "modalPosVenda.html" },
-		     {url: "global/st-app/app-pdv/template-module/pdv-ficha.html", key:"pdv-ficha.html" },
-		     {url: "global/st-app/app-filial/template/alertFilial.html", key:"alertFilial.html"},
-		     {url: "global/st-app/app-pedido/template-module/appSimplePedido.html" , key:"appSimplePedido.html"},
-		     {url: "global/st-app/app-pedido/template-module/appListSimplePedido.html", key:"appListSimplePedido.html"},
-		     {key: "buttonEstoque.html", url:  "global/st-app/app-estoque/template-module/buttonEstoque.html" },
-		     {key: "stToggle.html", url: "global/st-app/st-util/template-module/stToggle.html"},
-		     {key: "itensPedido.html", url:"global/st-app/app-pedido/template-module/itensPedido.html"},
-		     {key: "parcelaMov.html", url:"global/st-app/app-mov/template-module/parcelaMov.html"},
-		     {key: "buttonBaixaMov.html", url:"global/st-app/app-mov/template-module/buttonBaixaMov.html"},
-		     {key: "buttonBaixaMov.html", url:"global/st-app/app-mov/template-module/buttonBaixaMov.html"},
-		     {key: "stModal.html", url: "global/st-app/st-modal/template-module/stModal.html"},
-		     {key: "vendas.html", url: "global/st-app/app-pdv/template-route/vendas.html"},
-		     {key: "stModal.html", url:"global/st-app/st-modal/template-module/stModal.html"},
-		     {key:"filialList.html", url:"global/st-app/app-filial/template/filialList.html"},
-		     {key:"entradaMercadoria.html",url:"global/st-app/app-estoque/template-route/entradaMercadoria.html"},
-		     {key:"modalBaixaMov.html", url:"global/st-app/app-mov/template-module/modalBaixaMov.html"}
-		              
-		];
-		
-		for( var i in caches){
-			
-			cacheTemplate(caches[i]);
-			
-		}
-		
-		function cacheTemplate(ob){
-			
-			$http.get(ob.url).success(function(data){
-				$templateCache.put(ob.key, data);
-			});
-		}
-		
-	
-		
+		//Função substituida com a inclusão com service-worker
 		
 	}
 	

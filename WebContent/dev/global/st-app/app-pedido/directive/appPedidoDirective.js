@@ -7,7 +7,7 @@
 	.directive('appListSimplePedido', function (pedidoUtil,dateUtil,stService,stUtil,cacheGet,estoqueUtil) {
 		return {
 			restrict: 'E',
-			templateUrl:'appListSimplePedido.html',
+			templateUrl:"global/st-app/app-pedido/template-module/appListSimplePedido.html",
 			scope:{
 				itens:"=",
 				labelQuantidade:"=",
@@ -67,7 +67,7 @@
 	.directive('appSimplePedido', function (pedidoUtil,dateUtil,stService,stUtil,cacheGet,configUtil,$rootScope,st,$uibModal,estoqueUtil) {
 		return {
 			restrict: 'E',
-			templateUrl:'appSimplePedido.html',
+			templateUrl:"global/st-app/app-pedido/template-module/appSimplePedido.html",
 			require:'pedidos',
 			scope:{
 
@@ -95,7 +95,7 @@
 				pedidos:"=",
 				hideButtonTodos:"="
 			},
-			templateUrl:'itensPedido.html',
+			templateUrl:"global/st-app/app-pedido/template-module/itensPedido.html",
 			controller:function($scope,$uibModal){
 
 				//Abre os detalhes dos pedidos

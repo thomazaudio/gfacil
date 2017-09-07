@@ -10,8 +10,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var dataCacheName = 'CeasaPlus2.5';
-var cacheName = 'CeasaPlus2.5';
+
+var dataCacheName = 'CeasaPlus2.3';
+var cacheName = 'CeasaPlus2.3';
 var filesToCache = [
   'css/style.css',
   'global/lib/spin.js',

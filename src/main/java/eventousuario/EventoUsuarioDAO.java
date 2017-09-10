@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 
 import org.springframework.stereotype.Repository;
 
+import transactional.SendEmail;
 import database.DataBaseUtil;
 import model.GenericDAO;
 
@@ -21,6 +22,11 @@ public class EventoUsuarioDAO extends GenericDAO<EventoUsuario> {
 
 	@Override
 	public EventoUsuario addOrUpdate(EventoUsuario evt) {
+		
+		
+		if(evt.getEvento().equals("erro_cache_post"))
+			new SendEmail().enviaEmailErroCachePost(evt);
+		
 		Connection con = DataBaseUtil.getConnection();
 
 		PreparedStatement stm =null;
@@ -28,7 +34,7 @@ public class EventoUsuarioDAO extends GenericDAO<EventoUsuario> {
 		try {
             //Os eventos sempre serão salvos em db_shared
 			con.createStatement().execute("use db_shared");			
-			stm = con.prepareStatement("insert into eventousuario(login,evento,url,descricao,disable,hora,dataCadastro,pathOrigem,urlMethod,idFilial,allFilials) values(?,?,?,?,?,?,?,?,?,?,?)");
+			stm = con.prepareStatement("insert into eventousuario(login,evento,url,descricao,disable,hora,dataCadastro,pathOrigem,urlMethod,idFilial,allFilials,descricao_2) values(?,?,?,?,?,?,?,?,?,?,?,?)");
 			stm.setString(1,evt.getLogin());
 			stm.setString(2,evt.getEvento());
 			stm.setString(3,evt.getUrl());
@@ -40,6 +46,7 @@ public class EventoUsuarioDAO extends GenericDAO<EventoUsuario> {
 			stm.setString(9,evt.getUrlMethod());
 			stm.setLong(10,0);
 			stm.setLong(11,1);
+			stm.setString(12,evt.getDescricao_2());
 
 			stm.execute();
 

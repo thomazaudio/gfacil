@@ -30,6 +30,10 @@ public class EventoUsuario extends CrudClass {
 	@JsonView(util.Views.Public.class)
 	private String descricao;
 	
+	@Column(name = "descricao_2",length=900000)
+	@JsonView(util.Views.Public.class)
+	private String descricao_2;
+	
 	@JsonView(util.Views.Public.class)
 	private Date hora = new Date();
 	

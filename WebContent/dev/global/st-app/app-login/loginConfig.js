@@ -13,6 +13,13 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 	}); 
 	
 	
+	$routeProvider.when("/manutencao",{
+
+		templateUrl:"global/st-app/app-login/template-route/manutencao.html",
+		
+	}); 
+	
+	
 	$routeProvider.when("/login/test",{
 
 		templateUrl:"global/st-app/app-login/template-route/login.html",

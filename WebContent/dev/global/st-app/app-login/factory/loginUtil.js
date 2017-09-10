@@ -3,7 +3,7 @@
 
 	angular.module("adm") 
 
-	.factory("loginUtil",function($location,cachePost,cacheGet,stUtil,$localStorage,$rootScope,$cookieStore,stService,$route,loginService,$timeout,st,configUtil,filialUtil){
+	.factory("loginUtil",function($location,cacheGet,stUtil,$localStorage,$rootScope,$cookieStore,stService,$route,loginService,$timeout,st,configUtil,filialUtil){
 
 		var _logOut = function() {
 			delete $rootScope.user;

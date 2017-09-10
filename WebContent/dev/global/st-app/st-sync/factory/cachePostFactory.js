@@ -5,33 +5,26 @@
 
 	.factory("cachePost",function($localStorage,$cookieStore,$rootScope){
 
-		var _getByIdCache = function(idCache){
-
-			return $localStorage.cachePost[idCache];
-
-		}
-
 		//Adiciona ou edita um objeto ao cache
 		var _add = function(url, objeto, callback){
-
+			
 			//Filial corrente
-			objeto.idFilial = $rootScope.currentFilial.id; 
-			url = url +"?filialId="+$rootScope.currentFilial.id+"&&isCachePost=true";
-
-			var icrementaId = false;
-
-			//Resolve se vai ou não realizar a incrementação de id
-			if(!objeto.idCache)
-				icrementaId=true;
+			var idFilial = 0;
+			
+			if($rootScope.currentFilial){
+				
+				idFilial  =  $rootScope.currentFilial.id;
+				
+			}
+			
+			
+			objeto.idFilial = idFilial;
+			url = url +"?filialId="+idFilial+"&&isCachePost=true";
 
 			if(!$localStorage.cachePost)
 				$localStorage.cachePost = [];
 
-			//idBase é definido no controller de login a cada login no sistema
-			var idBase = $localStorage.baseIdCachePost;
-
-			var idCache = objeto.idCache || idBase ;
-
+		
 			var uS = $cookieStore.get("usuarioSistema");
 
 			var login;
@@ -43,51 +36,27 @@
 				login="shared@shared";
 			}
 
-			objeto.idCache = idCache;
-
+		
 			var obCache = {
 					    url:url,
 						objeto:objeto,
-						login:login,
-						idCache:idCache
-	
+						login:login
+					
 			}
 			
 			$localStorage.cachePost.push(obCache);
 
-			if(icrementaId==true)
-				$localStorage.baseIdCachePost = (idBase+1);
 
 			//Retorna o objeto com 'idCachePost' para futuras referencias
+			if(callback)
 			callback(objeto);
 		}
 
-		//Seta o id base para referencia pros demais itens do cache
-		var _initBaseIdCachePost = function(){
-
-			var caches = $localStorage.cachePost;
-			var maior = 0;
-
-			for(var key in caches){
-
-				if(key>maior)
-					maior=parseInt(key);
-			}
-
-			$localStorage.baseIdCachePost = (maior+1);
-
-		}
-
-		var _init = function(){
-
-			_initBaseIdCachePost();
-		}
+		
 
 		return{
 
-			init:_init,
-			add:_add,
-			getByIdCache:_getByIdCache
+			add:_add
 		}
 
 	})

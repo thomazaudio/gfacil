@@ -9,6 +9,13 @@
 	margin-bottom:15px;
 }
 
+
+.panel-list-pedido>.panel-heading{
+	
+	box-shadow:none;
+	border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
 .panel-secondary >.panel-body{
 	
 	border: 1px solid var(--secondary-color);

@@ -13,7 +13,7 @@
 			},
 			controllerAs:"vm",
 			bindToController:true,
-			controller: function($localStorage, $interval, $timeout, stService, $rootScope, stUtil, onlineStatus, $scope, loginUtil) {
+			controller: function($localStorage, $interval, $timeout, stService, $rootScope, stUtil, onlineStatus, $scope, loginUtil, st, $uibModal) {
 
 				var vm = this;
 
@@ -58,13 +58,34 @@
 							}, 300);
 
 
-						}).error(function(){
-
-							$timeout(function(){
-								executePosts((i+1), tam);
-
-							}, 300);
-
+						}).error(function(erro, status){
+							
+							console.log("Erro no cachePost: ");
+							console.log(erro);
+							
+							console.log("Status no cachePost");
+							console.log(status);
+							
+							console.log("Objeto no cachePost");
+							console.log($localStorage.cachePost[0]);
+							
+							if(erro && status!=401){
+								st.evt({evento:"erro_cache_post", descricao: erro, descricao_2: JSON.stringify($localStorage.cachePost[0]) });
+								$localStorage.cachePost.splice(0,1);
+								$uibModal.open({
+									animation: true,
+									size:"lg",
+									templateUrl:"global/st-app/app-login/template-route/manutencao.html"
+								});
+							}
+						
+						
+								$timeout(function(){
+									executePosts((i+1), tam);
+	
+								}, 300);
+							
+					
 
 						});
 					}

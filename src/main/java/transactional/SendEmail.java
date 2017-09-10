@@ -11,6 +11,7 @@ import javax.mail.internet.*;
 
 import org.springframework.core.io.ClassPathResource;
 
+import eventousuario.EventoUsuario;
 import funilceasa.FunilCeasa;
 
 
@@ -22,6 +23,29 @@ public class SendEmail {
     static final String HOST = "smtp.zoho.com";    
     
     static final int PORT = 587;
+    
+    
+    
+public void enviaEmailErroCachePost(EventoUsuario evt){
+    	
+    	
+    	
+    	 String emailBuilder =  new SendEmail().getTemplate("erroCachePost").toString();
+         
+         emailBuilder= emailBuilder.replaceAll("LOGIN_USUARIO",evt.getLogin());
+         emailBuilder =  emailBuilder.replaceAll("DESCRICAO_ERRO", evt.getDescricao());
+         emailBuilder =  emailBuilder.replaceAll("OBJETO_ERRO", evt.getDescricao_2());
+         
+        try {
+			sendMail("thomaz@ceasaplus.com.br","Problema no cachePost para "+evt.getLogin( ),emailBuilder);
+		} catch (AddressException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
     
     public void enviaEmailCadastroUsuario(FunilCeasa funil){
     	

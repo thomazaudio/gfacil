@@ -73,6 +73,9 @@
 
              							if(callback)
              								callback(data.item);
+             						}).error(function(){
+             							$scope.salvando = false;
+             							stUtil.showMessage("","Ocorreu um erro, verifique sua conexão","danger");
              						});
                                 	 
                                  }
@@ -81,6 +84,9 @@
                                 	 stUtil.showMessage("","Já existe um registro com '"+pessoa.nome+"' cadastrado no sistema","danger");	
                                  }
 
+						}).error(function(){
+							$scope.salvando = false;
+							stUtil.showMessage("","Ocorreu um erro, verifique sua conexão","danger");	
 						});
 						
 						

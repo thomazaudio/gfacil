@@ -4,9 +4,9 @@
 
 		var ini = new Date().getTime(); 
 		var vm = this;
-		
+
 		vm.changeDataPdv = function(data){
-			
+
 			vm.pdv.movimentacao.data = data;
 		}
 
@@ -53,12 +53,12 @@
 
 			if(!vm.pdv.movimentacao.pessoa)
 				return;
-			
+
 			if(!vm.pdv.id && vm.pdv.movimentacao.pessoa.nome == vm.defaultClienteLabel){
-				
+
 				vm.pdv.carregado = 1;
 				vm.pdv.movimentacao.baixada = true;
-				
+
 			}
 
 			vm.pdv.movimentacao.pessoa = cacheGet.getObjectById("cliente",vm.pdv.movimentacao.pessoa.id);
@@ -105,8 +105,12 @@
 		//Lançamento da venda
 		vm.lancarVenda = function(){
 
+			if($rootScope.config.confs.showDataEmissaoPdv=='true'){
+				$rootScope.config.confs.lastDataEmissaoPdv = vm.pdv.data;	
+			}
+
 			var pdv = vm.pdv;
-			
+
 			if(!pdv.movimentacao.pessoa && $rootScope.config.confs.escolhaClientePdv=='true'){
 
 				stUtil.showMessage("","Selecione um cliente para continuar.","danger");
@@ -115,7 +119,7 @@
 			}
 
 			if(vm.step==1){
-				
+
 				//Somente pedidos com quantidade>0
 				pdv.movimentacao.pedidos = pdv.movimentacao.pedidos.filter(function(pedido){
 
@@ -126,10 +130,10 @@
 					if(pedido.quantidade>0 || pedido.id)
 						return pedido;
 				});
-				
+
 				if(pdv.movimentacao.pedidos.length==0){
 					stUtil.showMessage("","Adicione pelo menos um produto!","danger");
-				   return;
+					return;
 				}
 			}
 
@@ -150,7 +154,7 @@
 				pdv.movimentacao.data = $filter("date")(new Date(),"dd/MM/yyyy");
 
 			pdv.tipoPdvLancamento="pdvficha";//Tipo de pdv em que a venda foi lançada
-			
+
 
 			//Nome do evento
 			var nomeEvento = "";
@@ -165,11 +169,11 @@
 			var iniTempoResposta = new Date().getTime();
 
 			vm.carregandoFinalizarVenda =true;
-			
+
 			cachePost.add("pdv/add/", pdv, function(){
-				
+
 				vm.carregandoFinalizarVenda =false;
-				
+
 				st.evt({evento:nomeEvento,descricao:((new Date().getTime()-ini)/1000)+""});
 
 				$modalInstance.close();
@@ -228,7 +232,7 @@
 
 					}
 				});
-				
+
 			});
 
 
@@ -344,19 +348,22 @@
 			vm.pdv.movimentacao = {};
 			vm.pdv.movimentacao.pedidos=[];
 
-			console.log("Tempo gasto: "+ (new Date().getTime() - ini));
+			if($rootScope.config.confs.showDataEmissaoPdv=='true'){
 
-			//Recupera os produtos mais vendidos
-			//$scope.sugestaoProdutos();
+				var ultimaData = $rootScope.config.confs.lastDataEmissaoPdv || new Date();
+				vm.pdv.data = ultimaData;
+				vm.changeDataPdv(ultimaData);
+			}
+
 		}
-		
-		
+
+
 		var _init = function(){
-			
+
 			var ini = new Date().getTime();
-			
+
 			vm.defaultClienteLabel = $rootScope.config.confs.defaultClienteLabel;
-			
+
 			if(pdv.data){
 
 				configureEditPdv(pdv.data.item);
@@ -369,10 +376,10 @@
 				vm.titulo = "Nova venda";
 
 			}
-			
-			
+
+
 			vm.changeStep(0);
-			
+
 		}
 		_init();
 

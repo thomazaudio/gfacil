@@ -31,13 +31,13 @@ angular.module("site").controller("introducaoController", function(origem, $scop
 
 	$scope.step=0;
 
-	$scope.responder = function(){
+	$scope.responder = function(res){
 
-		leadUtil.setAction("respondeu_pergunta_"+($scope.step+1));
+		leadUtil.setAction("respondeu_"+res);
 		
 		$scope.step++;
 		
-        if($scope.step==2){
+        if($scope.step==1){
         	
         	console.log("lead");
         	console.log($rootScope.lead);

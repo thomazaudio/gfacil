@@ -1,5 +1,5 @@
 <meta charset="UTF-8" />
-
+<!-- 
 <div  ng-show="step!=2" class="stepwizard col-md-offset-3">
     <div class="stepwizard-row setup-panel">
       <div class="stepwizard-step">
@@ -10,30 +10,25 @@
       </div>
     </div>
   </div>
+   -->
 
 <div ng-show="step==0" class="row">
-   <h3 class="col-lg-12 text-center">Quer economizar tempo de trabalho, evitar prejuizos e modernizar seu negócio na <strong>Ceasa?</strong></h3>
+   <div class="col-lg-12">
+      <h2 class="text-center text-muted">Olá!</h2>
+      <h3 class="text-center text-muted">Quer evitar prejuízos e facilitar seu trabalho na  <strong style="font-size:25px;">Ceasa?</strong></h3>
+   </div>
+   
    <div class="vertical-space"></div>
    <div class="col-lg-6">
-         <button ng-click="responder()" class="btn btn-resposta btn-block">SIM</button>
+         <button ng-click="responder('sim')" class="btn btn-resposta btn-block">SIM</button>
    </div>
    <div class="col-lg-6">
-       <button  class="btn btn-nao btn-resposta btn-block">NÃO</button>
+       <button ng-click="responder('nao')"  class="btn btn-nao btn-resposta btn-block">NÃO</button>
    </div>
 </div>
 
-<div ng-show="step==1" class="row">
-   <h3 class="col-lg-12 text-center">Deseja utilizar uma ferramenta que irá ajudar a organizar melhor suas vendas na <strong>Ceasa?</strong></h3>
-   <div class="vertical-space"></div>
-   <div class="col-lg-6">
-         <button ng-click="responder()" class="btn btn-resposta btn-block">SIM</button>
-   </div>
-   <div class="col-lg-6">
-       <button class="btn btn-nao btn-resposta btn-block">NÃO</button>
-   </div>
-</div>
 
- <div ng-show="step==2" class="row">
+ <div ng-show="step==1" class="row">
      <p>Vejo o vídeo e saiba como a ferramenta <strong>Ceasa Plus</strong> pode transformar sua vida de vendedor na Ceasa!</p>
 	<youtube-video player-vars="playerVars" player-width="'100%'" video-url="'https://www.youtube.com/watch?v=WcIHw4ihcY8&feature=youtu.be'" player="videoIntro"></youtube-video>
 	<div class="form-group">

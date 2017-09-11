@@ -23,10 +23,6 @@ public class EventoUsuarioDAO extends GenericDAO<EventoUsuario> {
 	@Override
 	public EventoUsuario addOrUpdate(EventoUsuario evt) {
 		
-		
-		if(evt.getEvento().equals("erro_cache_post"))
-			new SendEmail().enviaEmailErroCachePost(evt);
-		
 		Connection con = DataBaseUtil.getConnection();
 
 		PreparedStatement stm =null;
@@ -61,6 +57,10 @@ public class EventoUsuarioDAO extends GenericDAO<EventoUsuario> {
 				e.printStackTrace();
 			}
 		}
+		
+		
+		if(evt.getEvento().equals("erro_cache_post"))
+			new SendEmail().enviaEmailErroCachePost(evt);
 		
 		return evt;
 

@@ -3,7 +3,7 @@
 
 	angular.module("adm") 
 
-	.factory("loginUtil",function($location,cacheGet,stUtil,$localStorage,$rootScope,$cookieStore,stService,$route,$timeout,st,configUtil,filialUtil){
+	.factory("loginUtil",function(cacheGet,$localStorage,$rootScope,$cookieStore,stService,filialUtil){
 
 		var _logOut = function() {
 			delete $rootScope.user;
@@ -11,7 +11,7 @@
 			delete $rootScope.usuarioSistema;
 			$cookieStore.remove('authToken');
 			$cookieStore.remove('usuarioSistema')
-			$location.path("/login");
+			
 		};
 
 		var _configureSystemForUser = function(loginData, callback){

@@ -15,7 +15,8 @@
 				pivo:"=",
 				editFunction:"=",
 				deleteFunction:"=",
-				index:"@"
+				index:"@",
+				icon:"@"
 				
 			},
 

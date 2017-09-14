@@ -2,8 +2,8 @@
 (function(){
 	angular.module("adm").controller("pdvFichaController",function(cacheGet, $location ,cachePost, $uibModal, pdvUtil, pedidoUtil, $rootScope, $scope, stService ,pdv, stUtil ,movUtil,$route, $filter, st, nfeUtil, $modalInstance, lrUtil){
 
-		var ini = new Date().getTime(); 
 		var vm = this;
+		var ini = new Date().getTime();
 
 		vm.changeDataPdv = function(data){
 
@@ -50,7 +50,7 @@
 		}
 
 		$scope.$watch("vm.pdv.movimentacao.pessoa", function(){
-
+			
 			if(!vm.pdv.movimentacao.pessoa)
 				return;
 
@@ -73,9 +73,6 @@
 			});
 
 		});
-
-		//Para cálculo da métrica "tempo_finalizar_venda"
-		var ini = new Date().getTime();
 
 		vm.deletarVenda = function(){
 
@@ -111,7 +108,7 @@
 
 			var pdv = vm.pdv;
 
-			if(!pdv.movimentacao.pessoa && $rootScope.config.confs.escolhaClientePdv=='true'){
+			if(!pdv.movimentacao.pessoa){
 
 				stUtil.showMessage("","Selecione um cliente para continuar.","danger");
 				vm.changeStep(0);
@@ -120,11 +117,8 @@
 
 			if(vm.step==1){
 
-				//Somente pedidos com quantidade>0
-				pdv.movimentacao.pedidos = pdv.movimentacao.pedidos.filter(function(pedido){
-
-					//Contabilidade de empréstimo de caixas plásticas
-					pedido.lancaEmprestimo=true;
+				   //Somente pedidos com quantidade>0
+				   pdv.movimentacao.pedidos = pdv.movimentacao.pedidos.filter(function(pedido){
 
 					//O pedido deve ter a quantidade>0 ou já ter sido salvo na venda
 					if(pedido.quantidade>0 || pedido.id)
@@ -150,11 +144,8 @@
 			else
 				msg="Venda atualizada com sucesso!";
 
-			if(!pdv.movimentacao.data)
-				pdv.movimentacao.data = $filter("date")(new Date(),"dd/MM/yyyy");
-
+		
 			pdv.tipoPdvLancamento="pdvficha";//Tipo de pdv em que a venda foi lançada
-
 
 			//Nome do evento
 			var nomeEvento = "";
@@ -322,9 +313,9 @@
 		}
 
 		//Configuração de PDV não-vazio (Edição)
-		function configureEditPdv(pdv){
+		function configureEditPdv(pdvEdit){
 
-			var peds  = pdv.movimentacao.pedidos;
+			var peds  = pdvEdit.movimentacao.pedidos;
 
 			for(var i in peds){
 
@@ -335,48 +326,46 @@
 
 			}
 
-			pdv.movimentacao.pedidos = peds;
+			pdvEdit.movimentacao.pedidos = peds;
 
-			vm.pdv = pdv;
+			return pdvEdit;
 		}
 
 
 		//Configura um pdv vazio no escopo
 		function configurePdvVazio(){
 
-			vm.pdv = {};
-			vm.pdv.movimentacao = {};
-			vm.pdv.movimentacao.pedidos=[];
+			var pdvVazio = {};
+			pdvVazio.movimentacao = {};
+			pdvVazio.movimentacao.pedidos=[];
 
 			if($rootScope.config.confs.showDataEmissaoPdv=='true'){
 
 				var ultimaData = $rootScope.config.confs.lastDataEmissaoPdv || new Date();
-				vm.pdv.data = ultimaData;
-				vm.changeDataPdv(ultimaData);
+				pdvVazio.data = ultimaData;
+				pdvVazio.changeDataPdv(ultimaData);
 			}
+			
+			return pdvVazio;
 
 		}
 
-
 		var _init = function(){
-
-			var ini = new Date().getTime();
 
 			vm.defaultClienteLabel = $rootScope.config.confs.defaultClienteLabel;
 
 			if(pdv.data){
 
-				configureEditPdv(pdv.data.item);
+				vm.pdv = configureEditPdv(pdv.data.item);
 				vm.titulo = "Editar venda";
 			}
 
 			else{
 
-				configurePdvVazio();
+				vm.pdv  = configurePdvVazio();
 				vm.titulo = "Nova venda";
 
 			}
-
 
 			vm.changeStep(0);
 

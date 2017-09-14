@@ -2,7 +2,7 @@
 (function(){
 var app  = angular.module("adm",["angular-growl","angularSpinner","ngRoute","ds.clock","FBAngular","ng-mfb","ngCookies","angular.filter","ngStorage","ngAudio","ngDraggable","ui.bootstrap","ui.transition","angular-confirm","ngMessages","chart.js","youtube-embed","ui.utils.masks","angular-json-tree","ngAnimate","ngSanitize", "textAngular","angular-chrono","ui.checkbox"]);
 
-app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','$location','$cookieStore','st','$filter','filialUtil',"stUtil","$templateCache", function($rootScope, $route,$modalStack, $localStorage,$http,config,$location,$cookieStore,st,$filter,filialUtil,stUtil,$templateCache) {
+app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','$filter', function($rootScope, $route,$modalStack, $localStorage,$location,st,$filter) {
 	
 	
 	if('serviceWorker' in navigator) {
@@ -11,7 +11,6 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','
 		           .then(function() { console.log("Service r Registered"); });
 		}
 	
-	config.cacheTemplates();
 	
 	//Desabiliar zoom (Necessário para safari)
 	document.documentElement.addEventListener('gesturestart', function (event) {
@@ -19,6 +18,7 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','
 	}, false);
 	
 
+	//Configuração da lib de Chart
 	Chart.moneyFormat= function(value) {
 		return $filter('number')(value,2);
 	}
@@ -28,15 +28,6 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','
 	st.evt({evento:"tempo_carregamento_sistema",descricao:tempoCarregamento});
 	
     $rootScope.$on('$routeChangeStart', function(event, next, current) { 
-    	
-    	//Filiais
-    	if(!$rootScope.filiais){
-    		
-			filialUtil.getAllFiliais(function(){
-				
-			});
-    		
-    	}
     	
     	if(!next.$$route){
     		$location.path("/login");
@@ -64,7 +55,6 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','
     		$("#nav-header").removeClass("open");
     	}
         
-    
     	//Caso tenha backdrop aberto, este é removido
     	$(".modal-backdrop").remove();
     	
@@ -95,7 +85,6 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$http','config','
          if (top) {
              $modalStack.dismiss(top.key);
          }
-         
          
          if(preventDefault==true)
             event.preventDefault();

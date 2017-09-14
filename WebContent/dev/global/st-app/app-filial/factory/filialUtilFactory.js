@@ -83,6 +83,9 @@
 				if(callback)
 					callback(data.itens);
 
+			}).error(function(){
+				
+				callback();
 			});
 
 		}

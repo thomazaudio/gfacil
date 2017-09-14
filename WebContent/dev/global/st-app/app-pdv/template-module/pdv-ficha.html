@@ -25,31 +25,12 @@
 					    ng-true-value="1"
 					    ng-false-value="0"
 					    name="custom-name" 
-					               
 					>
-					
 					</checkbox>
 					<label class="text-muted"><strong>Entregue</strong></label>
 			   </div>
-			   
-			   
-			   <!-- 
-			   <div class="col-lg-4 col-xs-4">
-			          <label class="text-muted text-small">Pago   (<a id="btn-change-parcelas" data-toggle="modal" data-target="#modalParcelas">Parcelas</a>) </label>
-					  <button-baixa-mov class="printHide" mov="vm.pdv.movimentacao"></button-baixa-mov>
-			   </div>
-			    <div class="col-lg-4 col-xs-4">
-			           <label class="text-muted text-small" style="margin-bottom:12px">Entregue</label>
-					   <label class="toggle"> 
-					   <input  uib-tooltip="Carregou?"  ng-model="vm.pdv.carregado"  ng-true-value="1" ng-false-value="0" type="checkbox" />
-					   <span class="handle" style="top:-65%"></span>
-					  </label>
-			   </div>
-			    -->
-		   </div>
+			</div>
 	   </div>
-	  
-	
 	  
 	<div class="panel-body">
 	   
@@ -82,16 +63,13 @@
 				           </div>
 				   </div>
 		      </div>
-			 
-		      
 		</div>
 	
 	<div class="row"></div>
-	
-		<!-- Modal parcelamento -->
-		<st-modal titulo="Parcelamento" idmodal="modalParcelas"  size="lg">
-		  <parcela-mov is-modal="true" id="parcelas-venda" original-mov="vm.pdv.movimentacao"  movs="vm.pdv.parcelas"></parcela-mov>
-		</st-modal>
 	</div>
 </div>
+<!-- Modal parcelamento -->
+<st-modal titulo="Parcelamento" idmodal="modalParcelas"  size="lg">
+	<parcela-mov is-modal="true" id="parcelas-venda" original-mov="vm.pdv.movimentacao"  movs="vm.pdv.parcelas"></parcela-mov>
+</st-modal>
 </modal-content>	

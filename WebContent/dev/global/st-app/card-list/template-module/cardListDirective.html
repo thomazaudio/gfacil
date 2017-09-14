@@ -1,10 +1,12 @@
 <meta charset="UTF-8" />
-
 	<div class="panel pivo-panel" ng-class="{'card-list-panel-par':vm.index%2!=0}">
 		<div class="panel-heading">
 			  <div class="pull-left card-list-label-pivo">
-			    <strong style="font-size:17px;""> {{vm.labelPivo|uppercase}}</strong>
-			  </div> 
+			     <button disabled="" class="btn btn-primary btn-xs"><i class="fa fa-{{vm.icon||'list'}}"></i></button>
+			    <strong style="font-size:17px;"">
+			    {{vm.labelPivo|uppercase}}
+			    </strong>
+			  </div>
 			  
 			  <div class="pull-right">
 			     <a ng-click="vm.editFunction(vm.ob)"  class="btn-option-card-list"  ><i class="fa fa-edit"></i></a>

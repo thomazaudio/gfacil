@@ -18,7 +18,7 @@
 	<vertical-space></vertical-space>
 	<div>
 		<div ng-repeat="ob in objetos" class="col-lg-4">
-		   	 <card-list index="{{$index}}" class="pessoa-item" ob="ob" pivo="'nome'"  edit-function="openDetalhe" delete-function="deletarItem">
+		   	 <card-list  icon="{{icon}}" index="{{$index}}" class="pessoa-item" ob="ob" pivo="'nome'"  edit-function="openDetalhe" delete-function="deletarItem">
 		   	    <div class="col-lg-12 col-xs-12">
 		   	         <div class="pull-left">
 		   	               <label ng-if="detalheLink==true"> <a  class="open-detalhe" style="color:var(--secondary-color)" uib-tooltip="Visualizar movimentações (vendas, despesas, etc)"

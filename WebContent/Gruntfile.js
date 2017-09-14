@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 			main: {
 				expand: true,
 				cwd: 'dev/',
-				src: ['**', '!js/**', '!lib/**','!**/*.css'],
+				src: ['**', '!js/**', '!lib/**','!**/*.css','!**/*.png'],
 				dest: 'dist/'
 			},
 			shims: {

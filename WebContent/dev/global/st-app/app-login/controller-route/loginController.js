@@ -1,4 +1,4 @@
-angular.module("adm").controller("loginController",function(demo,$scope,$location,$rootScope,$localStorage,$cookieStore,loginUtil){
+angular.module("adm").controller("loginController",function(demo,$scope,$location,$rootScope,$localStorage,$cookieStore,loginUtil, stUtil){
 
 	$scope.carregando = false;
 	$scope.lembrarSenha = true;
@@ -17,20 +17,20 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 
 	$scope.logar = function(login,lembrarSenha){
 		
-		/*
-	
-		///Se não for informado login.empresa, login.empresa assume o valor de login.usuario
-		if($scope.showEmpresa==false)
-			login.empresa = login.usuario;
-			
-			*/
-		
 		login.empresa = login.usuario;
 
 		$scope.carregando=true;
-		loginUtil.logar(login,lembrarSenha,function(){
+		loginUtil.logar(login,lembrarSenha,function(loginData){
 
 			$scope.carregando=false;
+			
+			if(loginData){
+				$location.path("/inicio");
+			}
+			else{
+				stUtil.showMessage("","Ocorreu um erro ao realizar login, tente novamente","danger");
+			}
+			
 		});
 	}
 

@@ -159,7 +159,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
      });
 	
 	//Intercepta um erro de resposta
-	$httpProvider.interceptors.push(function ($q, $rootScope, $location, stUtil) {
+	$httpProvider.interceptors.push(function ($q, $rootScope, $location, stUtil, $localStorage) {
 		return {
 
 			'responseError': function(rejection) {
@@ -179,14 +179,13 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 				if (status == 401) {
                     
 					/*
-					if($location.$$path!='/login' && $location.$$path!='/login/demo' )
-						$rootScope.pathPos = $location.$$path;
-
+					var login  = {empresa:$localStorage.empresa,usuario:$localStorage.usuario,senha:$localStorage.senha};
+					loginUtil.logar(login, true, function(){
+						
+						
+					});
 					
-					if($rootScope.atualPage!='Login' && rejection.config.url.indexOf("config?")==-1)
-						$location.path("/login");
-
-                    */
+					*/
 
 				} else {
 					//stUtil.showMessage("","Ocorreu um erro ao processar a soicitação.","danger");

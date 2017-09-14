@@ -33,11 +33,12 @@
 					detalheLink:"=",
 					labelPivo:"=",
 					tipoObjeto:"=",//Tipo de movimentação padrão no sistema 1 = Despesas, 2 = Receitas
+					icon: "@"
 				},
 
 
 				link:function($scope){
-
+					
 					//Navegacao atual
 					$rootScope.atualPage = $scope.title;
 
@@ -114,6 +115,9 @@
 
 						pessoaUtil.openDetalhePessoa(objeto,0,function(){
 
+							console.log("Objeto: ");
+							console.log(objeto);
+							
 							$route.reload();
 
 						});

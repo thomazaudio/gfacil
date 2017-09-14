@@ -142,7 +142,6 @@
 
 			if(typeof data=='object' || typeof data=='number'){
 
-				console.log("O tipo é objeto!!!");
 				return $filter("date")(data,"yyyy-MM-d");
 			}
 

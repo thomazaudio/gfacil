@@ -70,12 +70,15 @@
 							console.log($localStorage.cachePost[0]);
 							
 							if(erro && status!=401){
+								
 								st.evt({evento:"erro_cache_post", descricao: erro, descricao_2: JSON.stringify($localStorage.cachePost[0]) });
+
 								$localStorage.cachePost.splice(0,1);
 								$uibModal.open({
 									animation: true,
 									size:"lg",
 									templateUrl:"global/st-app/app-login/template-route/manutencao.html"
+									
 								});
 							}
 						
@@ -83,7 +86,7 @@
 								$timeout(function(){
 									executePosts((i+1), tam);
 	
-								}, 300);
+								}, 5000);
 							
 					
 

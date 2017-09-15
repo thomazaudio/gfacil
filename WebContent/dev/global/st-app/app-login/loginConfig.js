@@ -1,6 +1,21 @@
 angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	//Login
+	$routeProvider.when("/login-redirect",{
+
+		templateUrl:"global/st-app/app-login/template-route/login.html",
+		controller:"loginController",
+		resolve: {
+			demo:function(){
+				return {};
+			},
+			redirect:function(){
+				return true;
+			}
+		}
+	}); 
+	
+	
 	$routeProvider.when("/login",{
 
 		templateUrl:"global/st-app/app-login/template-route/login.html",
@@ -8,9 +23,15 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 		resolve: {
 			demo:function(){
 				return {};
+			},
+			redirect:function(){
+				false;
 			}
+			
 		}
 	}); 
+	
+	
 	
 	
 	$routeProvider.when("/manutencao",{

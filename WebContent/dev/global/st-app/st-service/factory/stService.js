@@ -3,7 +3,7 @@
 
 	angular.module("adm")
 
-	.factory("stService",function($http,$localStorage,config,$rootScope,$cookieStore,$timeout,cachePost){
+	.factory("stService",function($http, config, $cookieStore){
 
 		//Opções
 		var _saveOp  = function(descricao,valor){

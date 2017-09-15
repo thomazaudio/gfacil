@@ -26,18 +26,19 @@ public class SendEmail {
     
     
     
-public void enviaEmailErroCachePost(EventoUsuario evt){
+public void enviaEmailEvent(EventoUsuario evt){
     	
     	
     	
-    	 String emailBuilder =  new SendEmail().getTemplate("erroCachePost").toString();
+    	 String emailBuilder =  new SendEmail().getTemplate("eventoUsuario").toString();
          
          emailBuilder= emailBuilder.replaceAll("LOGIN_USUARIO",evt.getLogin());
          emailBuilder =  emailBuilder.replaceAll("DESCRICAO_ERRO", evt.getDescricao());
-         emailBuilder =  emailBuilder.replaceAll("OBJETO_ERRO", evt.getDescricao_2());
+         emailBuilder =  emailBuilder.replaceAll("EVENTO_ERRO", evt.getEvento());
+         emailBuilder =  emailBuilder.replaceAll("DESCRICAO_2", evt.getDescricao_2());
          
         try {
-			sendMail("thomaz@ceasaplus.com.br","Problema no cachePost para "+evt.getLogin( ),emailBuilder);
+			sendMail("thomaz@ceasaplus.com.br","Evento "+evt.getEvento()+" - "+evt.getLogin( ),emailBuilder);
 		} catch (AddressException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

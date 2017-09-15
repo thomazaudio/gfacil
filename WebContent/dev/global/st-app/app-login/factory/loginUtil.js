@@ -3,15 +3,16 @@
 
 	angular.module("adm") 
 
-	.factory("loginUtil",function(cacheGet,$localStorage,$rootScope,$cookieStore,stService,filialUtil){
+	.factory("loginUtil",function(cacheGet,$localStorage,$rootScope,$cookieStore,stService,filialUtil, $location){
 
 		var _logOut = function() {
 			delete $rootScope.user;
 			delete $rootScope.authToken;
 			delete $rootScope.usuarioSistema;
+			delete $localStorage.senha;
 			$cookieStore.remove('authToken');
 			$cookieStore.remove('usuarioSistema')
-			
+			$location.path("/login");
 		};
 
 		var _configureSystemForUser = function(loginData, callback){
@@ -32,14 +33,22 @@
 			//Filiais disponíveis no sistema
 			filialUtil.getAllFiliais(function(filiaisReturn){
 
+				console.log("filiaisReturn: ");
+				console.log(filiaisReturn);
+				
 				if(!filiaisReturn){
 					callback();
 					return;
 				}
 				
 				//Cache offline para otimização do PDV
-				cacheGet.getOfflineCache(function(){
+				cacheGet.getOfflineCache(function(resCache){
 
+					if(!resCache){
+						callback();
+						return;
+					}
+					
 					var idFilialInConfig = parseInt($rootScope.config.confs.currentFilialId);
 					var nomeFilial = $rootScope.config.confs.labelCurrentFilial;
 
@@ -49,17 +58,13 @@
 
 					callback(loginData);
 
-				}).error(function(){
-
-					callback();
-
-				});
+				})
 
 			});
 
 		}
 
-		var _logar = function(login,lembrarSenha, callback){
+		var _logar = function(login, lembrarSenha, callback){
 
 			$localStorage.empresa = login.empresa;
 			$localStorage.usuario = login.usuario;

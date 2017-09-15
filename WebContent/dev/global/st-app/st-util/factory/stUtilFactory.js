@@ -3,7 +3,7 @@
 
 	angular.module("adm") 
 	
-	.factory('st',function(stService, $rootScope, $cookieStore){
+	.factory('st',function(stService, $rootScope, $cookieStore, config){
 
 		//Enviar um evento no sistema contablidade no servidor
 		var _evt  = function(evt){
@@ -14,6 +14,7 @@
 			if(!evt.login && usuario)
 				evt.login = usuario.originalLogin;
 
+			evt.versaoApp = config.appVersion;
 		
 			stService.executePost("eventousuario/add/",evt).success(function(){
 

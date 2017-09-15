@@ -109,7 +109,6 @@
 					var prods = produtos.itens;
 					_add("produto",prods);
 					
-				
 					//Cache de tags
 					var tags = [];
 					for(var i in prods){ 
@@ -120,12 +119,18 @@
 					
 					_add("tagsProduto",tags);
 					
+					callback("ok");
+					
 
+				}).error(function(){
+					
+					callback();
 				});
 
-				if(callback)
+			}).error(function(){
+				
 					callback();
-
+				
 			});
 
 		}

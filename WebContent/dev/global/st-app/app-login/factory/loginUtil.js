@@ -101,7 +101,6 @@
 				
 				console.log("data do front end: ");
 				console.log(dataFrontEnd.getTime());
-				
 				console.log("data do backend: ");
 				console.log(dataBackEnd.getTime());
 				

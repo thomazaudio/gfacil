@@ -28,9 +28,20 @@ public class SendEmail {
     
 public void enviaEmailEvent(EventoUsuario evt){
     	
-    	
-    	
     	 String emailBuilder =  new SendEmail().getTemplate("eventoUsuario").toString();
+    	 
+    	 if(evt.getLogin()==null)
+    		 evt.setLogin("");
+    	 
+    	 if(evt.getDescricao()==null)
+    		 evt.setDescricao("");
+    	 
+    	 if(evt.getEvento()==null)
+    		 evt.setEvento("");
+    	 
+    	 if(evt.getDescricao_2()==null)
+    		 evt.setDescricao_2("");
+    	 
          
          emailBuilder= emailBuilder.replaceAll("LOGIN_USUARIO",evt.getLogin());
          emailBuilder =  emailBuilder.replaceAll("DESCRICAO_ERRO", evt.getDescricao());

@@ -3,8 +3,22 @@
 
 	angular.module("adm") 
 
-	.factory("loginUtil",function(cacheGet,$localStorage,$rootScope,$cookieStore,stService,filialUtil, $location){
+	.factory("loginUtil",function(cacheGet,$localStorage,$rootScope,$cookieStore,stService,filialUtil, $location, dateUtil, $uibModal, st){
 
+		var _openModalDateErro = function(){
+			
+			$uibModal.open({
+				animation: true,
+				templateUrl:"global/st-app/app-login/template-module/modalDateErro.html",
+				size:'lg',
+				controller:function($scope){
+					
+				}
+			});
+			
+		}
+		
+		
 		var _logOut = function() {
 			delete $rootScope.user;
 			delete $rootScope.authToken;
@@ -80,6 +94,24 @@
 			$cookieStore.remove('authToken');
 
 			stService.executePost("/user/login/", login).success(function(data){
+				
+				//Verifica se a data do computador é a mesma do backend
+				var dataFrontEnd  = dateUtil.getDate(new Date());
+				var dataBackEnd = dateUtil.getDate(data.dataBackEnd);
+				
+				console.log("data do front end: ");
+				console.log(dataFrontEnd.getTime());
+				
+				console.log("data do backend: ");
+				console.log(dataBackEnd.getTime());
+				
+				if(dataFrontEnd.getTime() != dataBackEnd.getTime()){
+					
+					st.evt({evento:"data_frontend_errada",descricao:"data_usuario_errada", descricao:"data do backend: "+dataBackEnd+", data do frontend: "+dataFrontEnd});
+					_openModalDateErro();
+					callback();
+					return;
+				}
 
 				_configureSystemForUser(data, callback);
 

@@ -61,7 +61,6 @@
 	}
 	
 	window.onload = function() {
-		id('appG').style.display = 'block';//liberando html qndo terminar
 		$("#spin_ini").hide();  //Escondendo Spinner de carregamento
 	}
 </script>
@@ -386,15 +385,9 @@ if(window.location.href.indexOf("localhost")==-1 && window.location.href.indexOf
    
 </script>
 </head>
-<body id="appG">
+<body  id="appG" ng-cloak>
 	<div growl></div>
-	<script type="text/javascript">
-	 
-	    <!--Esconde o html até que tudo seja carregado -->
-		hide('appG');
-	 </script>
 	
-
 	<!-- Spin de carregamento -->
 	<span style="position: fixed; top: 50%; left: 50%; z-index: 9999"
 		us-spinner="{radius:27, width:10, length: 19,shadow: true,zIndex:10001}"

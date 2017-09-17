@@ -5,6 +5,9 @@ var app  = angular.module("adm",["angular-growl","angularSpinner","ngRoute","ds.
 app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','$filter', function($rootScope, $route,$modalStack, $localStorage,$location,st,$filter) {
 	
 	
+    document.getElementById("loading-system").setAttribute("style","");
+
+	
 	if('serviceWorker' in navigator) {
 		  navigator.serviceWorker
 		           .register('service-worker.js')
@@ -85,6 +88,7 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','
          if (top) {
              $modalStack.dismiss(top.key);
          }
+         
          
          if(preventDefault==true)
             event.preventDefault();

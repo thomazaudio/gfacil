@@ -1,13 +1,17 @@
 "use strict";
 (function(){
-var app  = angular.module("adm",["angular-growl","angularSpinner","ngRoute","ds.clock","FBAngular","ng-mfb","ngCookies","angular.filter","ngStorage","ngAudio","ngDraggable","ui.bootstrap","ui.transition","angular-confirm","ngMessages","chart.js","youtube-embed","ui.utils.masks","angular-json-tree","ngAnimate","ngSanitize", "textAngular","angular-chrono","ui.checkbox"]);
-
+var app;
+try{
+ app  = angular.module("adm",["angular-growl","angularSpinner","ngRoute","ds.clock","FBAngular","ng-mfb","ngCookies","angular.filter","ngStorage","ngAudio","ngDraggable","ui.bootstrap","ui.transition","angular-confirm","ngMessages","chart.js","youtube-embed","ui.utils.masks","angular-json-tree","ngAnimate","ngSanitize", "textAngular","angular-chrono","ui.checkbox"]);
+}catch(e){
+	window.alert(e);
+}
 app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','$filter', function($rootScope, $route,$modalStack, $localStorage,$location,st,$filter) {
 	
 	
-    document.getElementById("loading-system").setAttribute("style","");
-
+	try{
 	
+  
 	if('serviceWorker' in navigator) {
 		  navigator.serviceWorker
 		           .register('service-worker.js')
@@ -94,6 +98,10 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','
             event.preventDefault();
            
      });
+    
+	}catch(e){
+		window.alert(e);
+	}
 }]);
 
 })();

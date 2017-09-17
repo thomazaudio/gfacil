@@ -37,7 +37,10 @@ var filesToCache = [
   'global/st-app/st-modal/template-module/modalContent.html',
   "global/st-app/app-pdv/template-route/vendas.html",
   "global/st-app/app-estoque/template-route/entradaMercadoria.html",
-  "global/st-app/app-mov/template-module/modalBaixaMov.html"
+  "global/st-app/app-mov/template-module/modalBaixaMov.html",
+  "aws.png",
+  "site-seguro.png",
+  "logo-login.png"
  
 ];
 

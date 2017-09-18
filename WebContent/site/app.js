@@ -1,17 +1,17 @@
 
-var app  = angular.module("site",["ngRoute","ngStorage","youtube-embed"]);
+var app  = angular.module("site",["ngRoute","ngStorage","youtube-embed","ng.deviceDetector"]);
 
-
-app.factory("leadUtil", function(stService, $localStorage, $rootScope, config){
+app.factory("leadUtil", function(stService, $localStorage, $rootScope, config, deviceDetector){
 	
 	var _saveLead = function(lead, callback){
 	
-	
 		lead = lead || {};
-		
 		lead.versaoLandingPage = config.versaoLandingPage;
 		lead.alturaTela = $(window).height()+"";
 		lead.larguraTela = $(window).width()+"";
+		lead.os = deviceDetector.os+" - "+deviceDetector.os_version;
+		lead.device = deviceDetector.device;
+		lead.browser = deviceDetector.browser +" - "+deviceDetector.browser_version;
 		
 		stService.executePost("lead/add/", lead).success(function(data){
 			
@@ -40,10 +40,6 @@ app.run(['$rootScope', '$route', 'stService', '$localStorage', '$location', func
 	
 	$rootScope.lead = $localStorage.lead;
 	
-	
-	
-	
-	
 	 $rootScope.$on('$routeChangeSuccess', function() {
 		 
 		if($localStorage.lead){
@@ -54,10 +50,8 @@ app.run(['$rootScope', '$route', 'stService', '$localStorage', '$location', func
 				
 			});
 	    }
-		
 			    
     });
-	 
 	 
 	 //SDK do facebook
 	  window.fbAsyncInit = function() {
@@ -105,9 +99,7 @@ app.run(['$rootScope', '$route', 'stService', '$localStorage', '$location', func
 	}(document, 'script', 'facebook-jssdk'));
     
 	//FIM sdk facebook
-            
-	
-     
+      
 }]);
 
 

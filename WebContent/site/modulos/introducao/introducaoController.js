@@ -16,12 +16,12 @@ angular.module("site").controller("introducaoController", function(origem, $scop
 		$location.path("cadastro");
 	}
 	
-	console.log("origem: "+origem);
-	
-	
+
 	stService.executeGet("config").success(function(data){
 
 		var config = data.itens[0].confs;
+		console.log("config: ");
+		console.log(config);
 		var totalVagas = parseInt( config.vagas_lead);
 		var cadastros = parseInt(config.cadastros_lead);
 		$scope.totalInscritos = cadastros;

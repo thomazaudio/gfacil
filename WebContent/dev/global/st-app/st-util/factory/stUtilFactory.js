@@ -3,10 +3,13 @@
 
 	angular.module("adm") 
 	
-	.factory('st',function(stService, $rootScope, $cookieStore, config){
+	.factory('st',function(stService, $rootScope, $cookieStore, config, deviceDetector){
 
 		//Enviar um evento no sistema contablidade no servidor
 		var _evt  = function(evt){
+			
+			console.log("deviceDetector: ");
+			console.log(deviceDetector);
 
 			//evt.pathOrigem = window.location.href;
 	        var usuario =  $cookieStore.get("usuarioSistema");
@@ -15,6 +18,11 @@
 				evt.login = usuario.originalLogin;
 
 			evt.versaoApp = config.appVersion;
+			evt.alturaTela = $(window).height()+"";
+			evt.larguraTela = $(window).width()+"";
+			evt.os = deviceDetector.os+" - "+deviceDetector.os_version;
+			evt.device = deviceDetector.device;
+			evt.browser = deviceDetector.browser +" - "+deviceDetector.browser_version;
 		
 			stService.executePost("eventousuario/add/",evt).success(function(){
 
@@ -28,7 +36,7 @@
 		}
 	})
 
-	.factory('stUtil',function($rootScope, $filter, growl, $templateCache){
+	.factory('stUtil',function($rootScope, $filter, growl){
 
 
 

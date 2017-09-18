@@ -21,37 +21,54 @@ public class EventoUsuario extends CrudClass {
 	public static ArrayList<String> eventosImportantes;
 
 	@JsonView(util.Views.Public.class)
-	private String login;
+	private String login= "";
 
 	@JsonView(util.Views.Public.class)
-	private String evento;
+	private String evento= "";
 
 	@JsonView(util.Views.Public.class)
-	private String url;
+	private String url= "";
 
 	@Column(name = "descricao",length=900000)
 	@JsonView(util.Views.Public.class)
-	private String descricao;
+	private String descricao= "";
 
 	@Column(name = "descricao_2",length=900000)
 	@JsonView(util.Views.Public.class)
-	private String descricao_2;
+	private String descricao_2= "";
 
 	@JsonView(util.Views.Public.class)
 	private Date hora = new Date();
 
 	//Path onde ocorreu o evento (Ex: #/pdv)
 	@JsonView(util.Views.Public.class)
-	private String pathOrigem;
+	private String pathOrigem= "";
 
 	//GET ou POST
 	@JsonView(util.Views.Public.class)
-	private String urlMethod;
+	private String urlMethod= "";
 
 	//Versão da aplicação no FrontEnd
 	@JsonView(util.Views.Public.class)
-	private String versaoApp;
+	private String versaoApp= "";
 
+	//Bowser do dispositivo
+	@JsonView(util.Views.Public.class)
+	private String device= "";
+
+	//Sistema operacional do dispositivo
+	@JsonView(util.Views.Public.class)
+	private String os= "";
+
+	//Bowser do dispositivo
+	@JsonView(util.Views.Public.class)
+	private String browser= "";
+
+	@JsonView(util.Views.Public.class)
+	private String alturaTela= "";
+	
+	@JsonView(util.Views.Public.class)
+	private String larguraTela= "";
 
 
 

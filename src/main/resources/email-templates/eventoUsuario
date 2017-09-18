@@ -8,6 +8,24 @@
   Evento: <strong>EVENTO_ERRO</strong>
 </p>
 
+<p>
+  Dispositivo: <strong>EVENTO_DEVICE</strong>
+</p>
+
+<p>
+  OS: <strong>EVENTO_OS</strong>
+</p>
+
+
+<p>
+  Browser: <strong>EVENTO_BROWSER</strong>
+</p>
+
+
+<p>
+  Resolução da tela: <strong>EVENTO_LARGURA_TELA  x EVENTO_ALTURA_TELA </strong>
+</p>
+
 
 <p>
 Descricao: 

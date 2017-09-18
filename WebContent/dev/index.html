@@ -37,8 +37,6 @@
 
 <title></title>
 
-
-
 </head>
 
 <body style="background-color:white;" >
@@ -46,16 +44,12 @@
 	<div growl></div>
 	
 	<div style="margin-top: 15%; text-align:center" class="splash" ng-cloak="">
-	    
-	       <img width="329px" src="splash.gif"/>
-	     
+	    <img width="329px" src="splash.gif"/>
 	</div>
 
 	<!-- Corpo da página -->
 	<div id="wrapper" ng-cloak="">
 	
-	      
-
 		<!-- Menu mobile e menu desktop -->
 		<st-menu 
 			itens="
@@ -83,19 +77,15 @@
              <test-user-button ng-show="(!testIsOpen || testIsOpen==false) && config.confs.usuarioTeste=='true'"></test-user-button>  
 			<!-- Conteúdo das rotas -->
 			
-			
 			<div id="anchor_cima"></div>
 			<div class="route-view" ng-view>
 			    
 			</div>
 		</div>
 	</div>
-  
-
 </body>
 
 <script src="https://www.youtube.com/iframe_api"></script>
-
 
 <!-- escolha dinamica do tema a ser utilizado 
 <link ng-href="global/{{config.confs.temaLayout||'light'}}.css"rel="stylesheet">
@@ -135,7 +125,6 @@
 <link href="global/st-app/app-inicio/style/style.css" rel="stylesheet" />
 <link href="global/lib/bootstrap-tour.css" rel="stylesheet" />
 <link href="global/lib/angular/textAngular.css" rel="stylesheet" />
-
 
 <!-- endbuild -->
 
@@ -182,7 +171,8 @@
 <script src="global/lib/mfb-directive.js"></script>
 <script src="global/lib/angular-bootstrap-checkbox.js"></script>
 <script src="global/lib/angular/angular-spinner.js"></script>
-
+<script src="global/lib/ng-device-detector.min.js"></script>
+<script src="global/lib/re-tree.min.js"></script>
 
 <!-- endbuild -->
 
@@ -235,19 +225,6 @@
 <script src="global/st-app/app-filial/controller/filialListController.js"></script>
 <script src="global/st-app/app-filial/directive/appFilialDirective.js"></script>
 <!-- Fim appFilial -->
-
-<!-- stUtil -->
-<script src="global/st-app/st-util/stUtilConfig.js"></script>
-<script src="global/st-app/st-util/factory/stUtilFactory.js"></script>
-<script src="global/st-app/st-util/factory/onlineStatusFactory.js"></script>
-<script src="global/st-app/st-util/factory/dateUtilFactory.js"></script>
-<script src="global/st-app/st-util/directive/stUtilDirective.js"></script>
-<script src="global/st-app/st-util/directive/mobileTabsDirective.js"></script>
-<script src="global/st-app/st-util/directive/stMenuDirective.js"></script>
-<script src="global/st-app/st-util/directive/stSelectDirective.js"></script>
-<script src="global/st-app/st-util/directive/stInputDirective.js"></script>
-<script src="global/st-app/st-util/controller-module/stUtilController.js"></script>
-<!-- Fim stUtil -->
 
 <!-- stSync -->
 <script src="global/st-app/st-sync/factory/cacheGetFactory.js"></script>
@@ -351,7 +328,6 @@
 <!-- stNav -->
 <script src="global/st-app/st-nav/directive/stNavDirective.js"></script>
 
-
 <!-- stCheckBox -->
 <script src="global/st-app/st-checkbox/directive/stCheckboxDirective.js"></script>
 
@@ -362,10 +338,22 @@
 <!-- appPrototype -->
 <script src="global/st-app/app-prototype/protConfig.js"></script>
 
-
 <!-- test-user-->
 <script src="global/st-app/test-user/directive/testUserDirective.js"></script>
 <script src="global/st-app/test-user/testUserConfig.js"></script>
+
+<!-- stUtil -->
+<script src="global/st-app/st-util/stUtilConfig.js"></script>
+<script src="global/st-app/st-util/factory/stUtilFactory.js"></script>
+<script src="global/st-app/st-util/factory/onlineStatusFactory.js"></script>
+<script src="global/st-app/st-util/factory/dateUtilFactory.js"></script>
+<script src="global/st-app/st-util/directive/stUtilDirective.js"></script>
+<script src="global/st-app/st-util/directive/mobileTabsDirective.js"></script>
+<script src="global/st-app/st-util/directive/stMenuDirective.js"></script>
+<script src="global/st-app/st-util/directive/stSelectDirective.js"></script>
+<script src="global/st-app/st-util/directive/stInputDirective.js"></script>
+<script src="global/st-app/st-util/controller-module/stUtilController.js"></script>
+<!-- Fim stUtil -->
 
 <!-- endbuild -->
 
@@ -409,7 +397,6 @@ if(window.location.href.indexOf("localhost")==-1 && window.location.href.indexOf
 
 <script>
 
-  
   var html = document.getElementsByTagName('html')[0];
   var body = document.getElementsByTagName('body')[0];
    

@@ -9,6 +9,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonView;
+
 import crud.CrudClass;
 import lombok.Getter;
 import lombok.Setter;
@@ -70,7 +71,20 @@ public class Lead extends CrudClass {
 	//Versão da landing page utilizada no processo
     @JsonView(util.Views.Public.class)
 	private String versaoLandingPage;
+    
+  //Bowser do dispositivo
+  	@JsonView(util.Views.Public.class)
+  	private String device= "";
 
+  	//Sistema operacional do dispositivo
+  	@JsonView(util.Views.Public.class)
+  	private String os= "";
+
+  	//Bowser do dispositivo
+  	@JsonView(util.Views.Public.class)
+  	private String browser= "";
+
+  
 	@JsonView(util.Views.Public.class)
 	private String teste;
 

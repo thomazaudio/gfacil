@@ -30,23 +30,17 @@ public void enviaEmailEvent(EventoUsuario evt){
     	
     	 String emailBuilder =  new SendEmail().getTemplate("eventoUsuario").toString();
     	 
-    	 if(evt.getLogin()==null)
-    		 evt.setLogin("");
-    	 
-    	 if(evt.getDescricao()==null)
-    		 evt.setDescricao("");
-    	 
-    	 if(evt.getEvento()==null)
-    		 evt.setEvento("");
-    	 
-    	 if(evt.getDescricao_2()==null)
-    		 evt.setDescricao_2("");
-    	 
+    	
          
          emailBuilder= emailBuilder.replaceAll("LOGIN_USUARIO",evt.getLogin());
          emailBuilder =  emailBuilder.replaceAll("DESCRICAO_ERRO", evt.getDescricao());
          emailBuilder =  emailBuilder.replaceAll("EVENTO_ERRO", evt.getEvento());
          emailBuilder =  emailBuilder.replaceAll("DESCRICAO_2", evt.getDescricao_2());
+         emailBuilder =  emailBuilder.replaceAll("EVENTO_OS", evt.getOs());
+         emailBuilder =  emailBuilder.replaceAll("EVENTO_BROWSER", evt.getBrowser());
+         emailBuilder =  emailBuilder.replaceAll("EVENTO_DEVICE", evt.getDevice());
+         emailBuilder =  emailBuilder.replaceAll("EVENTO_ALTURA_TELA", evt.getAlturaTela());
+         emailBuilder =  emailBuilder.replaceAll("EVENTO_LARGURA_TELA", evt.getLarguraTela());
          
         try {
 			sendMail("thomaz@ceasaplus.com.br","Evento "+evt.getEvento()+" - "+evt.getLogin( ),emailBuilder);

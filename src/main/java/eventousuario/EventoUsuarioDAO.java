@@ -33,7 +33,7 @@ public class EventoUsuarioDAO extends GenericDAO<EventoUsuario> {
 		try {
             //Os eventos sempre serão salvos em db_shared
 			con.createStatement().execute("use db_shared");			
-			stm = con.prepareStatement("insert into eventousuario(login,evento,url,descricao,disable,hora,dataCadastro,pathOrigem,urlMethod,idFilial,allFilials,descricao_2,versaoApp) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			stm = con.prepareStatement("insert into eventousuario(login,evento,url,descricao,disable,hora,dataCadastro,pathOrigem,urlMethod,idFilial,allFilials,descricao_2,versaoApp, device, os, browser, alturaTela, larguraTela) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			stm.setString(1,evt.getLogin());
 			stm.setString(2,evt.getEvento());
 			stm.setString(3,evt.getUrl());
@@ -47,6 +47,11 @@ public class EventoUsuarioDAO extends GenericDAO<EventoUsuario> {
 			stm.setLong(11,1);
 			stm.setString(12,evt.getDescricao_2());
 			stm.setString(13,evt.getVersaoApp());
+			stm.setString(14,evt.getDevice());
+			stm.setString(15,evt.getOs());
+			stm.setString(16,evt.getBrowser());
+			stm.setString(17,evt.getAlturaTela());
+			stm.setString(18,evt.getLarguraTela());
 
 			stm.execute();
 

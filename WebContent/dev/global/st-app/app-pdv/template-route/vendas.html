@@ -40,11 +40,11 @@
 	   	              <button class="btn  text-muted">ID: <strong>{{ob.movimentacao.id}}</strong> </button>
 	   	         </div>
 	   	         <div class="col-lg-4 col-xs-4">
-	   	             <label class="btn  text-muted"><i class="fa fa-calendar"></i> <strong>{{ob.movimentacao.data|date:'dd/MM/yyyy'}}</strong></label>   
+	   	             <label class="btn  text-muted text-small"><i class="fa fa-calendar"></i> <strong>{{ob.movimentacao.data|date:'dd/MM/yyyy'}}</strong></label>   
 	   	         </div>
 	   	        
 	   	         <div class="col-lg-5 col-xs-5">
-		   	         <label class="text-muted">R$ <strong class="pdv-item-preco" style="font-size:19px;">{{ob.movimentacao.valor|number:2}}</strong></label>   
+		   	         <label class="text-muted text-small">R$ <strong class="pdv-item-preco" style="font-size:19px;">{{ob.movimentacao.valor|number:2}}</strong></label>   
 		   	     </div>
 	   	     </div>
 	   	     <vertical-space></vertical-space>

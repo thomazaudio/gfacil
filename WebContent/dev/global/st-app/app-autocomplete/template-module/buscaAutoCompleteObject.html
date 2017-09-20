@@ -1,18 +1,18 @@
 <div class="busca-auto-complete">
 <div class="modal-header">
-   <div class="col-lg-11 col-xs-11" style="padding-left:0px;padding-right:5px;width:89%">
+
+  <div class="col-lg-1 col-xs-1" style="padding-left:3px;padding-right:3px;margin-top:5px">
+  
+            <a class="ripple"  ng-click="fecharModal(this)"  style="color: #FBF7F7;font-size:20px;padding:9px;"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+			
+	 </div>
+   <div class="col-lg-11 col-xs-11" style="padding-left:9px;padding-right:0px;width:89%">
         <div class="input-group">
 	        <input id="{{idInput}}" ng-change="buscarItem(labelValue)" ng-model-options="{debounce: 500}"  ng-model="labelValue"  autocomplete="off"   placeholder="{{placeHolder}}" class="form-control"  focus-me="true"/>
 	   		<span   ng-show="labelValue" class="input-group-btn"><button type="button" ng-click="labelValue='';buscarItem('')" class="btn btn-default btn-busca-map-limpa text-muted input-primary" style="height:42px;"><i class="fa fa-trash-o"></i></button></span>  
         </div>
    </div>
-   <div class="col-lg-1 col-xs-1" style="padding-left:3px;padding-right:3px">
-			<ul class="list-button-action-modal">
-			      <li>
-				     <button type="button" ng-click="fecharModal(this)" class="btn btn-action-modal"  style="color:white"data-dismiss="modal"><i class="fa fa-times"></i></button>
-				  </li>  
-		    </ul>
-	 </div>
+   
 </div>
 
 <div class="modal-body">
@@ -21,7 +21,7 @@
 	 <!-- aba de resultados -->
 	<div ng-show="aba=='resultados' ||!aba" class="col-lg-12 auto-complete-inline" >
 		 <div  class="pull-left" style="margin-left:5px;padding:5px 0px 5px 0px">
-				 <a ng-show="labelValue.length>0 && salvandoItem!=true" ng-click="cadItem(labelValue, auxItemFilial.allFilials, this)" class="text-muted" style="font-size:17px"><i class="fa fa-plus-square-o" aria-hidden="true"></i> cadastrar <strong>"{{labelValue}}"</strong></a>
+				 <a ng-show="labelValue.length>0 && salvandoItem!=true" ng-click="cadItem(labelValue, auxItemFilial.allFilials, this)" class="btn btn-secondary" ><i class="fa fa-plus-square-o" aria-hidden="true"></i> cadastrar <strong>"{{labelValue}}"</strong></a>
 		        <label ng-show="salvandoItem == true" >Cadastrando item <i class="fa fa-refresh faa-spin animated" aria-hidden="true"></i></label>
 		 </div>
 	   

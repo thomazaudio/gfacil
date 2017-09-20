@@ -24,7 +24,7 @@
 	background-color:#4aba58;
 	height: 44px;
 	text-align: center;
-	font-size: 22px;
+	font-size: 17px;
 	line-height: 1;
 	border-radius: 22px;
 	border: 2px solid white!important;
@@ -34,8 +34,9 @@
 @media only screen and (max-width : 1199px) {
 	
 	.btn-action-modal {
-	    padding: 6px 0;
-	    width:44px;
+	    height: 35px;
+       font-size: 12px;
+    
 	}
 }
 

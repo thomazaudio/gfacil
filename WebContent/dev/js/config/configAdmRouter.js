@@ -6,13 +6,11 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 		templateUrl:"view/inicio.html",
 		controller:function($scope,stService){
 
-
 			var items = [{'title':'Mensalidade Albar','quantity':1,'currency_id':'BRL','unit_price':150.0}];
 
 			var payer = {name:'Silvio',email:'thomaz-guitar@hotmail.com'};
 
 			var data = {items:items,payer:payer};
-
 
 			stService.executePost("pagamento/lancar/",data).success(function(){
 
@@ -22,41 +20,37 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 
 	}); 
-	
-	
-	
-	
-	
+
 	//Rota para protótipos
 	//ao especificar o endereço do template deve-se trocar '/' por '@'
 	$routeProvider.when("/prot/:template",{
 
 		templateUrl:"view/prot.html",
 		controller:function($scope,template){
-			
+
 			$scope.template = template;
 		},
 		resolve:{
-			
+
 			template: function($route){
-				
+
 				var template = $route.current.params.template;
-				
+
 				template = "/" +template;
-				
+
 				if(template.indexOf("view")==-1)
 					template = "view/"+template;
-				
+
 				if(template.indexOf(".html")==-1)
 					template +=".html";
-				
+
 				template = template.replace("//","/");
-					
-				
+
+
 				return template =template.replace("@","/");
 			}
 		}
-		
+
 	});
 
 	$routeProvider.when("/checklist",{
@@ -156,8 +150,8 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 	$routeProvider.otherwise({
 		templateUrl:"global/st-app/app-inicio/template-route/inicio.html",
 		controller:"inicioController"	
-     });
-	
+	});
+
 	//Intercepta um erro de resposta
 	$httpProvider.interceptors.push(function ($q, $rootScope, $location, stUtil, $localStorage) {
 		return {
@@ -168,19 +162,19 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 				var method = config.method;
 				var url = config.url;
 
-				$rootScope.loadingSpinner=false;
-				
-				
+				usSpinnerService.stop('spinner-1');
+
+
 				if(status==-1){
-					
+
 					stUtil.showMessage("Sem conexão com a internet!");
 				}
 
 				if (status == 401) {
-                    
-				
+
+
 					$location.path("/login-redirect");
-					
+
 
 				} else {
 					//stUtil.showMessage("","Ocorreu um erro ao processar a soicitação.","danger");
@@ -193,41 +187,38 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 	);
 
 	//Intercepta uma requisição para inclusao do Token
-	$httpProvider.interceptors.push(function ($q, $rootScope, $location,$cookieStore,usSpinnerService,cacheGet) {
+	$httpProvider.interceptors.push(function ($q, $rootScope, $location,$cookieStore, usSpinnerService,cacheGet) {
 		return {
 			'request': function(config) {
-			
-				
-				if(config.url.indexOf("projecao/execute-query")==-1 && config.url.indexOf("projecao/get-projecoes")==-1  && config.url.indexOf("isCachePost=true")==-1)
-					$rootScope.loadingSpinner=true;
 
-				
+				if(config.url.indexOf("projecao/execute-query")==-1 && config.url.indexOf("projecao/get-projecoes")==-1  && config.url.indexOf("isCachePost=true")==-1)
+					usSpinnerService.spin('spinner-1');
+
 				//Inclusão do token e da filial
 				if(config.url.indexOf(".html")==-1) {
 
 					var authToken = $rootScope.authToken ||$cookieStore.get("authToken"); 
 					var filialId = 0;
-					
+
 					if($rootScope.currentFilial){
-						
+
 						filialId = $rootScope.currentFilial.id;
 					}
-					
+
 					var operator = "?";
-					
+
 					if( config.url.indexOf("?")!=-1)
 						operator="&&";
-					
+
 					config.url = config.url +operator+ "token=" + authToken;
-					
+
 					if(config.url.indexOf("filialId")==-1){
 						config.url = config.url +"&&filialId="+filialId;
 					}
-					
-					
-					
+
+
 				}
-				
+
 				return config || $q.when(config);
 			},
 
@@ -246,24 +237,23 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 						cacheGet.delObjectById("produto",produto.id);
 					else{
 						cacheGet.updateObject("produto",produto);
-						
+
 						if(produto.tag){
 							var tags = cacheGet.get("tagsProduto");
 							if(tags.indexOf(produto.tag)==-1){
 								cacheGet.add("tagsProduto",[produto.tag]);
 							}
 						}
-						
+
 					}
 
 				}
-				
-				
+
 				//Resposta relacionada a operação com cliente (Para incluir no cacheGet)
 				else if(res.data && res.data.item && url.indexOf("cliente/add")!=-1){
 
 					var cliente=res.data.item;
-					
+
 					if(cliente.disable==1)
 						cacheGet.delObjectById("cliente",cliente.id);
 					else{
@@ -272,8 +262,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 				}
 
-
-				$rootScope.loadingSpinner=false;
+				usSpinnerService.stop('spinner-1');
 
 				return res || $q.when(res);
 			}

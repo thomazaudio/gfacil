@@ -17,9 +17,13 @@
 				
 				    <!-- Menu mobile -->
 				<div class="dropdown-menu menu-mobile  pull-right ">
-				
-						<div class="pull-right">
-							      <i class="fa fa-times text-muted" style="font-size:29px;"></i>
+				          <div class="pull-left" style="margin:9px;">
+				              <span class="text-muted">
+				                     <strong><i class="fa fa-info-circle" aria-hidden="true"></i> {{appVersion}}</strong>
+				              </span>
+				          </div>
+						 <div class="pull-right" style="margin:9px;">
+							      <i class="fa fa-times text-muted" style="font-size:32px;"></i>
 					     </div>
 				
 				        <!-- Necessário para funcionar (Não remover) -->
@@ -34,18 +38,10 @@
 								 <br>{{item.label}}</a>
 					   </div>
 					  
-					  
 					   <!-- // Necessário para funcionar (Não remover) -->
-				
-		               <div class="col-xs-4"  ng-repeat="item in itens" style="padding-bottom:19px;">
-		                 <a class="btn btn-mobile-menu ripple" style="width:100%;" ng-click="clickItemMenu(item.path)"nav-click>
-		                 <i class="fa fa-{{item.icon}} fa-2x info" aria-hidden="true"></i>
-						 <br><strong>{{item.label}}</strong></a>
-					   </div>
-					  
-		               <vertical-space></vertical-space>
-		               
-		               <div class="col-xs-4" >
+					   
+					   <vertical-space></vertical-space>
+					    <div class="col-xs-4" >
 			                 <a class="btn btn-mobile-menu btn-mobile-menu-destaque ripple" style="width:100%;color: var(--secondary-color);"  ng-click="atualizarEstoque()">
 				                  <i class="fa fa-truck fa-2x" aria-hidden="true"></i>
 								 <br><strong>Entrada de merc.</strong>
@@ -66,16 +62,18 @@
 								 <br><strong>Nova Despesa</strong>
 							 </a>
 		                </div>
-		                
-		                
-					   
-						
+				       <vertical-space></vertical-space>
+				       <div class="col-xs-12"><hr></hr></div>
+		               <div class="col-xs-4"  ng-repeat="item in itens" style="padding-bottom:19px;">
+			                 <a class="btn btn-mobile-menu ripple" style="width:100%;" ng-click="clickItemMenu(item.path)"nav-click>
+			                 <i class="fa fa-{{item.icon}} fa-2x info" aria-hidden="true"></i>
+							 <br><strong>{{item.label}}</strong></a>
+					   </div>
+					  
+		               <vertical-space></vertical-space>
+		               
 						<div class="col-xs-12"><hr></hr></div>
-						<div class="col-xs-6" >
-			                 <a class="btn btn-mobile-menu" style="width:100%;" >
-			                 <i class="fa fa-info-circle info fa-2x" aria-hidden="true"></i>
-									<br><strong>{{appVersion}}</strong></a>
-						</div>
+						
 						 <div class="col-xs-4" >
 			                 <a class="btn btn-mobile-menu" style="width:100%;" ng-click="logOut()" nav-click>
 			                 <i class="fa fa-sign-out fa-2x info" aria-hidden="true"></i>

@@ -60,17 +60,21 @@
 				vm.pdv.movimentacao.baixada = true;
 
 			}
+			else{
+				
+				lrUtil.getInfoEmprestimos(vm.pdv.movimentacao.pessoa, function(emprestimo){
+
+					if(emprestimo)
+						vm.quantidadeEmbalagemReceber = emprestimo.quantidadeReceber;
+
+				});
+			}
 
 			vm.pdv.movimentacao.pessoa = cacheGet.getObjectById("cliente",vm.pdv.movimentacao.pessoa.id);
 
 			getProdutosSugeridosByCliente(vm.pdv.movimentacao.pessoa);
 
-			lrUtil.getInfoEmprestimos(vm.pdv.movimentacao.pessoa, function(emprestimo){
-
-				if(emprestimo)
-					vm.quantidadeEmbalagemReceber = emprestimo.quantidadeReceber;
-
-			});
+			
 
 		});
 

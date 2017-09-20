@@ -3,7 +3,7 @@
 	background-color: aliceblue;
 }
 
-.button-add{
+.button-mobile{
 	right:0;
 	bottom:0;
 	box-sizing: border-box;
@@ -15,7 +15,7 @@
     list-style: none;
 }
 
-.button-add a{
+.button-mobile a{
 	background-color: #28b914!important;;
     display: inline-block;
     position: relative;
@@ -35,8 +35,8 @@
     z-index: 20;
 }
 
-.button-add a>i{
-    font-size: 18px;
+.button-mobile a>i{
+    font-size: 25px;
     text-align: center;
     line-height: 55px;
     line-width: 55px;

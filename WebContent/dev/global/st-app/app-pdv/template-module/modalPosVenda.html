@@ -1,5 +1,5 @@
 <meta charset="UTF-8" />
-<modal-content icone-titulo="'check'" titulo="'Venda salva com sucesso!'" modal-instance="this" ok-action="toVendas">
+<modal-content icone-titulo="'check'" titulo="'Venda salva com sucesso!'" ok-action-label="'OK'" modal-instance="this" ok-action="toVendas">
 	
 	  <div class="form-group col-lg-4 col-lg-12">
 	    <label class="text-muted"><i class="fa fa-user"></i> Cliente: <strong>{{pdv.movimentacao.pessoa.nome}}</strong></label>
@@ -13,13 +13,10 @@
 		  <p class="text-small">Total: <strong style=" color:var(--secondary-color);font-size:22px">R$ {{getTotalPedidos(pdv.movimentacao.pedidos)|number:2}}</strong></p>
 	  </div>
 	  
-	 
-	  
 	  <div class="col-lg-12">
 	  <hr></hr>
 	  </div>
 	  
-	 
 	 
 	  <!--  
 	  <input ng-show="false" st-input tipo="data" ng-model="pdv.data" />

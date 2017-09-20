@@ -10,6 +10,8 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','
 	
 	
 	try{
+		
+		
 	
   
 	if('serviceWorker' in navigator) {

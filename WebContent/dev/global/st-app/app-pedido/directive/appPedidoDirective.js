@@ -93,7 +93,8 @@
 			scope:{
 
 				pedidos:"=",
-				hideButtonTodos:"="
+				hideButtonTodos:"=",
+				max:"@"
 			},
 			templateUrl:"global/st-app/app-pedido/template-module/itensPedido.html",
 			controller:function($scope,$uibModal){

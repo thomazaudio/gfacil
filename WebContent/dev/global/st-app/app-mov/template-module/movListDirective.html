@@ -129,7 +129,9 @@
 				<th ng-hide="vm.hideColumns.indexOf('formaPagamento')!=-1" >Forma de pagamento</th>
 				<th ng-hide="vm.hideColumns.indexOf('valor')!=-1" >Valor</th>
 				<th ng-hide="vm.hideColumns.indexOf('pago')!=-1" style="min-width:20px;" >Pago</th>
+				<!-- 
 				<th ng-hide="vm.hideColumns.indexOf('alert')!=-1" class=""></th>
+				 -->
 			 </tr>
 			</thead>
             <tbody ng-repeat="mov in movs">
@@ -164,14 +166,16 @@
 				   <span class="text-small text-muted"  ng-if="mov.parcela!=0 && (mov.numeroParcelas>1||mov.originalMov.numeroParcelas>1)">({{mov.parcela}} de {{mov.numeroParcelas||mov.originalMov.numeroParcelas}})</span>
 				</td>
 				<td ng-hide="vm.hideColumns.indexOf('pago')!=-1" class="mov-pago " style="min-width:50px;" data-title="Pago">
-					 <button-baixa-mov class="printHide" mov="mov"></button-baixa-mov>
+					 <button-baixa-mov  template-version="2"  class="printHide" mov="mov"></button-baixa-mov>
 					 <input ng-model="mov.baixada" type="checkbox"  class="form-control printOnly" />
 				</td>
+				<!--  
 				<td ng-hide="vm.hideColumns.indexOf('alert')!=-1" class="printHide ">
 				   <i uib-tooltip="Movimentação paga."  ng-show="mov.baixada==true"  class="info fa fa-check-circle fa-2x"  aria-hidden="true"></i>
 				   <i uib-tooltip="Movimentação com vencimento hoje!"  ng-show="mov.alertMov==1 && (!mov.baixada || mov.baixada==false)"  class="warning fa fa-exclamation-triangle fa-2x"  aria-hidden="true"></i>
 				   <i uib-tooltip="Movimentação vencida!" ng-show="mov.alertMov==2 && (!mov.baixada || mov.baixada==false)"  class="danger fa fa-exclamation-triangle fa-2x"  aria-hidden="true"></i>
 				</td>
+				-->
               </tr>
 			</tbody>
 		</table>

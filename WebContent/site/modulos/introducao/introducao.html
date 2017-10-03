@@ -14,8 +14,8 @@
 
 <div ng-show="step==0" class="row">
    <div class="col-lg-12">
-      <h2 class="text-center text-muted">Olá!</h2>
-      <h3 class="text-center text-muted">Quer evitar prejuízos e facilitar seu trabalho na  <strong style="font-size:25px;">Ceasa?</strong></h3>
+      <h2 class="text-center text-muted">Olá <i class="fa fa-smile-o" aria-hidden="true"></i></h2>
+      <h3 class="text-center text-muted">Quer evitar prejuízos e facilitar <strong>muito</strong>  o seu trabalho na  <strong style="font-size:25px;">Ceasa?</strong></h3>
    </div>
    
    <div class="vertical-space"></div>
@@ -27,17 +27,18 @@
    </div>
 </div>
 
-
  <div ng-show="step==1" class="row">
-     <p>Vejo o vídeo e saiba como a ferramenta <strong>Ceasa Plus</strong> pode transformar sua vida de vendedor na Ceasa!</p>
-	<youtube-video player-vars="playerVars" player-width="'100%'" video-url="'https://www.youtube.com/watch?v=WcIHw4ihcY8&feature=youtu.be'" player="videoIntro"></youtube-video>
-	<div class="form-group">
-	            
-				<button ng-disabled="!showButtonProx || showButtonProx==false" ng-click="cadastrar()"  type="button" class="btn btn-primary btn-lg btn-block">
-				     <h2 ng-show="showButtonProx" style="color: white;line-height:15px;font-size:25px">Efetuar cadastro</h2>
-				     <h2 ng-show="!showButtonProx || showButtonProx==false" style="color: white;line-height:15px;font-size:19px"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Veja o vídeo para se cadastrar.</h2>
-				     <h4>({{vagasRestantes}} vagas restantes)</h4>
-				</button>
+   <div class="col-lg-12 text-center">
+		<youtube-video   player-width="tamanhoVideo" player-height="tamanhoVideo" player-vars="playerVars"  video-url="'https://youtu.be/93RTB0PXAU0'" player="videoIntro"></youtube-video>
+		<div class="form-group">
+		            
+					<button ng-disabled="!showButtonProx || showButtonProx==false" ng-click="cadastrar()"  type="button" class="btn btn-primary btn-lg" ng-style="{'width': tamanhoVideo}">
+					     <h2 ng-show="showButtonProx" style="color: white;line-height:15px;font-size:25px">Efetuar cadastro</h2>
+					     <h2 ng-show="!showButtonProx || showButtonProx==false" style="color: white;line-height:15px;font-size:15px"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Veja o vídeo para se cadastrar.</h2>
+					     <h4>({{vagasRestantes}} vagas restantes)</h4>
+					</button>
+		</div>
 	</div>
+	
 </div>
 	

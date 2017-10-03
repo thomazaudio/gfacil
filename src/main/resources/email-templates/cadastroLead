@@ -1,0 +1,12 @@
+<h3>Novo Lead Cadastrado</h3>
+
+<p>Data de cadastro: <strong>LEAD_DATA_CADASTRO</strong></p>
+<p>Nome: <strong>LEAD_NOME</strong></p>
+<p>Telefone: <strong>LEAD_TELEFONE</strong></p>
+<p>Email: <strong>LEAD_EMAIL</strong></p>
+<p>Browser: <strong>LEAD_BROWSER</strong></p>
+<p>Dispositivo: <strong>LEAD_DEVICE</strong></p>
+<p>Sistema operacional: <strong>LEAD_OS</strong></p>
+<p>Origem: <strong>LEAD_COD_ORIGEM</strong></p>
+<p>Resolução da tela: <strong>LEAD_LARGURA_TELA  x  LEAD_ALTURA_TELA</strong></p>
+

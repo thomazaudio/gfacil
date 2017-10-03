@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.springframework.stereotype.Repository;
 
+import transactional.SendEmail;
 import model.GenericDAO;
 
 
@@ -19,7 +20,15 @@ public class LeadDAO extends GenericDAO<Lead>  {
 	
 	@Override
 	public Lead addOrUpdate(Lead item) {
+		
+		if(item.getSavedInForm().equals("1")){
+			//Envia email de cadastro de novo usuário
+			new SendEmail().enviaEmailCadastroLead(item);
+		}
+
+		
 		item.setLastUpdate(new Date());
+		
 		return super.addOrUpdate(item);
 	}
  

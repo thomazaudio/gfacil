@@ -11,7 +11,8 @@
 			scope:{
 				mov:"=",
 				id:"=",
-				templateVersion:"@"
+				templateVersion:"@",
+				label:"@"
 			},
 
 			controller:function($scope){

@@ -106,8 +106,11 @@
 		//Lançamento da venda
 		vm.lancarVenda = function(){
 
-			if($rootScope.config.confs.showDataEmissaoPdv=='true'){
+			if($rootScope.config.confs.saveLastDataEmissaoPdv=='true'){
 				$rootScope.config.confs.lastDataEmissaoPdv = vm.pdv.data;	
+			}
+			else {
+				$rootScope.config.confs.lastDataEmissaoPdv = null;
 			}
 
 			var pdv = vm.pdv;
@@ -347,7 +350,7 @@
 
 				var ultimaData = $rootScope.config.confs.lastDataEmissaoPdv || new Date();
 				pdvVazio.data = ultimaData;
-				pdvVazio.changeDataPdv(ultimaData);
+				pdvVazio.movimentacao.data  = ultimaData;
 			}
 			
 			return pdvVazio;

@@ -18,6 +18,11 @@ import lombok.Setter;
 @Entity
 public class Lead extends CrudClass {
 	
+	
+	//Salvo utilizando o formulário de cadasor
+	@JsonView(util.Views.Public.class)
+	@Transient
+	private String savedInForm;
 
 	//Data da ultima atualização do Lead
 	@Temporal(TemporalType.TIMESTAMP)

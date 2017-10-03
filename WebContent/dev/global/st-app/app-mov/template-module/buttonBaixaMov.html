@@ -4,14 +4,14 @@
 </label>
 
 <div ng-if="templateVersion==2" >
- <checkbox larger  class="btn-primary"
+ <checkbox  class="btn-primary"
 					   ng-change="alterarBaixa(mov)" 
 					   ng-model="mov.baixada"            
 					>
 					
 					</checkbox>
 					<label class="text-muted" uib-tooltip="{{mov.baixada==true && mov.dataBaixa!=null ? 'Paga em: ' + (mov.dataBaixa|date:'dd/MM/yyyy') + ' (' + (mov.dataBaixa|date:'EEEE') + ')' :''}}">
-					    <strong>Pago</strong>
+					    <strong>{{label}}</strong>
 					</label>
 					
 </div>

@@ -14,5 +14,5 @@
 </p>
 </div>
 
-<button ng-show="!hideButtonTodos" ng-click="openDetalhe(pedidos)" class="btn btn-xs btn-default btn-block" ng-if="pedidos.length> (max || 5)">Visualizar Pedidos ({{pedidos.length}}) <i class="fa fa-external-link-square"></i></button>
+<a ng-show="!hideButtonTodos" ng-click="openDetalhe(pedidos)" class="text-itens-mov"  ng-if="pedidos.length> (max || 5)"><strong>visualizar pedidos ({{pedidos.length}}) <i class="fa fa-external-link-square"></i></strong></a>
 

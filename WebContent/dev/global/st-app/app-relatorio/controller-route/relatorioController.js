@@ -20,6 +20,7 @@ angular.module("adm").controller("relatorioController",function($scope,$rootScop
 	}
 
 	$scope.atualizarDados = function(){
+		
 
 		if(!$scope.dataDe && !$scope.dataAte){
 			stUtil.showMessage("","Defina um período para geração do relatório.","danger");

@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import transactional.SendEmail;
+
 import com.google.gson.Gson;
 
 import model.GenericService;
@@ -57,7 +59,8 @@ public class  LeadService extends GenericService<Lead>   {
 		catch(Exception e){
 
 		}
-
+		
+		
 		return null;
 	}
 

@@ -1,4 +1,10 @@
-angular.module("site").controller("cadastroController", function($scope, stService, $localStorage, $location, googleAdWordsService, leadUtil){
+angular.module("site").controller("cadastroController", function(origem, $scope, stService, $localStorage, $location, googleAdWordsService, leadUtil){
+	
+	
+	if(origem!=null){
+		
+		leadUtil.saveLead({codOrigem: origem});
+	}
 	
 	stService.executeGet("config").success(function(data){
 		
@@ -27,10 +33,11 @@ angular.module("site").controller("cadastroController", function($scope, stServi
 		 currency: 'USD'
 		 });
 		
-		 
+		 lead.savedInForm = "1";
 		 leadUtil.saveLead(lead, function(res){
 			 
 			 googleAdWordsService.registerLeadConversion();
+			 res.savedInForm = 0;
 			 $localStorage.lead = res;
 			 $scope.lead = res;
 			 leadUtil.setAction("finalizou_cadastro");

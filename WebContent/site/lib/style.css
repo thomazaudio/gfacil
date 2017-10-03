@@ -264,7 +264,7 @@ ul.navbar-nav {
 }
 
 .form-bottom {
-	padding: 25px 25px 30px 25px;
+	padding:5px;
 	background: #eee;
 	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
 	text-align: left;
@@ -293,14 +293,16 @@ ul.navbar-nav {
 	.navbar-collapse { border: 0; }
 	.navbar-toggle { margin-top: 12px; }
 	
-	.inner-bg { padding: 60px 0 110px 0; }
+	.inner-bg { padding: 30px 0 30px 0; }
 	.top-content .top-big-link { margin-top: 25px; }
 	.top-content .top-big-link a.btn { margin-top: 10px; }
 
 }
 
 @media (max-width: 415px) {
-	
+	.form-box{
+	  padding: 0px!important;
+	}
 	h1, h2 { font-size: 32px; }
 
 }

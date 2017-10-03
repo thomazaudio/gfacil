@@ -14,13 +14,13 @@
 			   </div>
 			   
 			   <div class="col-lg-3 col-xs-3">
-			        <button-baixa-mov template-version="2" class="printHide" mov="vm.pdv.movimentacao"></button-baixa-mov>
+			        <button-baixa-mov template-version="2" label="Pago" class="printHide" mov="vm.pdv.movimentacao"></button-baixa-mov>
 			        <a ng-if="vm.pdv.movimentacao.valor>0 && config.confs.showParcelementoInPdv=='true'" data-toggle="modal" data-target="#modalParcelas">parcelas</a>
 			    </div>
 			  
 			   <div class="col-lg-4 col-xs-4">
 			    
-			      <checkbox larger class="btn-primary"
+			      <checkbox class="btn-primary"
 					    ng-model="vm.pdv.carregado"
 					    ng-true-value="1"
 					    ng-false-value="0"
@@ -42,6 +42,18 @@
 		          <vertical-space></vertical-space>
 		          <div class="form-group" ng-show="config.confs.showDataEmissaoPdv=='true'">
 						<label class="text-muted"><i class="fa fa-calendar"></i> Data Emissão</label>
+						 
+					 <label class="text-muted">
+					 <input type="checkbox"
+					    ng-model="config.confs.saveLastDataEmissaoPdv"
+					    ng-true-value="'true'"
+					    ng-false-value="'false'"
+					    
+					    />
+					    Salvar data para próxima emissão
+					   </label>
+					
+					
 						<input ng-change="vm.changeDataPdv(vm.pdv.data)"    st-input tipo="data" ng-model="vm.pdv.data" class="form-control"/>
 				  </div>
 				

@@ -2,8 +2,23 @@ angular.module("site").controller("introducaoController", function(origem, $scop
 
 	var youtubePlayer;
 	
+	//Resolver largura do video de acordo com o dispositivo
+	var alturaTela = $(window).height();
+	var larguraTela = $(window).width();
+	var menor = larguraTela;
+	if(alturaTela<menor)
+		menor = alturaTela;
+	
+    menor = menor  - ((15 *  menor)/100);// - 15%
+	   
+	$scope.tamanhoVideo = menor+"px";
+	
 	var savedTimeVideo1 = false;
 	var savedTimeVideo2 = false;
+	var savedTimeVideo3 = false;
+	var savedTimeVideo4 = false;
+	var savedTimeVideo5 = false;
+	var savedTimeVideo6 = false;
 	
 	if(!$localStorage.lead){
 		
@@ -66,7 +81,7 @@ angular.module("site").controller("introducaoController", function(origem, $scop
 
 	$interval(function(){
 
-		if($scope.videoIntro.getCurrentTime()>5 ){
+		if($scope.videoIntro.getCurrentTime()>=232 ){
 
 			$scope.showButtonProx = true;
 		}
@@ -76,6 +91,7 @@ angular.module("site").controller("introducaoController", function(origem, $scop
 
 			savedTimeVideo1 = true;
 			leadUtil.setAction("assistiu_video_30");
+		
 			
 		}
 		
@@ -83,6 +99,30 @@ angular.module("site").controller("introducaoController", function(origem, $scop
 
 			savedTimeVideo2 = true;
 			leadUtil.setAction("assistiu_video_50");
+		}
+		
+		if($scope.videoIntro.getCurrentTime()>100 && savedTimeVideo3==false ){
+
+			savedTimeVideo3 = true;
+			leadUtil.setAction("assistiu_video_100");
+		}
+		
+		if($scope.videoIntro.getCurrentTime()>150 && savedTimeVideo4==false ){
+
+			savedTimeVideo4 = true;
+			leadUtil.setAction("assistiu_video_150");
+		}
+		
+		if($scope.videoIntro.getCurrentTime()>200 && savedTimeVideo5==false ){
+
+			savedTimeVideo5 = true;
+			leadUtil.setAction("assistiu_video_200");
+		}
+		
+		if($scope.videoIntro.getCurrentTime()>240 && savedTimeVideo6==false ){
+
+			savedTimeVideo6 = true;
+			leadUtil.setAction("assistiu_video_call_to_action");
 		}
 
 	},1000);

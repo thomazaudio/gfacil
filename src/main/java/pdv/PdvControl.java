@@ -18,6 +18,17 @@ public class PdvControl extends GenericControl<Pdv> {
 
 	@Autowired
 	private PdvService pdvService;
+	
+	@JsonView(util.Views.Public.class)
+	@ResponseBody
+	@RequestMapping(value="/pdv/save-retirou", method=RequestMethod.GET)
+	public AjaxResponse<Pdv> saveRetirouMercadoria(@RequestParam long idPdv, @RequestParam int carregado) {
+
+		pdvService.changeAttr(idPdv,"carregado","carregado="+carregado);
+
+		return null;
+	}
+
 
 	@Override
 	@JsonView(util.Views.Public.class)

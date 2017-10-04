@@ -48,12 +48,12 @@ public class  LeadService extends GenericService<Lead>   {
 			//Cadastrar
 			if(lead.getId()==0){
 
-				return this.addLead(lead);
+				this.addLead(lead);
 			}
 			//Atualizar
 			else{
 
-				return this.updateLead(lead);
+				this.updateLead(lead);
 			}
 		}
 		catch(Exception e){
@@ -61,7 +61,7 @@ public class  LeadService extends GenericService<Lead>   {
 		}
 		
 		
-		return null;
+		return lead;
 	}
 
 

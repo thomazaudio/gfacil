@@ -17,7 +17,9 @@ app.factory("leadUtil", function(stService, $localStorage, $rootScope, config, d
 			
 			$localStorage.lead = data.item;
 			$rootScope.lead = data.item;
-			callback(data.item);
+			
+			if(callback)
+			   callback(data.item);
 		});
 		
 	}

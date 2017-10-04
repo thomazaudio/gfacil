@@ -33,6 +33,9 @@ public class SendEmail {
 
 		String emailBuilder =  new SendEmail().getTemplate("cadastroLead").toString();
 
+		if(lead.getEmail()==null){
+			lead.setEmail("");
+		}
 		emailBuilder= emailBuilder.replaceAll("LEAD_DATA_CADASTRO",lead.getDataCadastro().toString());
 		emailBuilder= emailBuilder.replaceAll("LEAD_NOME",lead.getNome());
 		emailBuilder= emailBuilder.replaceAll("LEAD_TELEFONE",lead.getTelefone());

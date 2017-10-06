@@ -2,7 +2,7 @@
 	<div class="panel pivo-panel" ng-class="{'card-list-panel-par':vm.index%2!=0}">
 		<div class="panel-heading">
 			  <div class="pull-left card-list-label-pivo">
-			   <strong style="font-size:17px;"">
+			   <strong style="font-size:17px;"" uib-tooltip="{{vm.labelPivo}}">
 			    <i class="fa fa-{{vm.icon||'list'}}"></i>  {{vm.labelPivo|uppercase}}
 			    </strong>
 			  </div>

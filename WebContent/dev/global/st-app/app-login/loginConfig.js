@@ -59,12 +59,44 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 	$routeProvider.when("/video-apresentacao",{
 
 		templateUrl:"global/st-app/app-login/template-route/videoApresentacao.html",
-		controller:function($scope,stUtil,$location,st){
+		controller:function($scope,stUtil,$location,st, configUtil, $interval){
 
-			$scope.proximo = function(player){
-				st.evt({evento:"assistiu_video_apresentacao",descricao:player.getCurrentTime()+""});
-				stUtil.showMessage("","Seja bem vindo!","info");
-				$location.path("/inicio");
+			var youtubePlayer;
+			
+			$scope.playerVars = {
+					controls: 0,
+					autoplay: 0,
+					modestbranding:1,
+					rel:0
+			};
+			
+			$scope.$on('youtube.player.ready', function ($event, player) {
+
+		        youtubePlayer = player;
+		        youtubePlayer.playVideo();
+				
+			});
+			
+			$interval(function(){
+
+				if($scope.videoTutorial.getCurrentTime()>10 ){
+                   
+					$scope.showButton=true;
+				}
+			
+			},1000);
+			
+			$scope.proximo = function(){
+				configUtil.setConfig("assistiuTutorialBasico", 'true', function(){
+					
+					st.leadEvt({descricao:"assistiu_tutorial_basico"});
+					stUtil.showMessage("","Seja bem vindo!","info");
+					
+					$location.path("/inicio");
+					
+				});
+				
+			
 			}
 		}
 

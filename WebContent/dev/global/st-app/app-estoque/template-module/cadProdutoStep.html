@@ -22,7 +22,7 @@
 	   
 	   <div ng-show="step==3">
 		     <div class="form-group">
-		         <label>Qual é a quantidade em estoque do produto <strong>{{produto.nome}}?</strong></label>
+		         <label>Qual é a quantidade em estoque do produto <strong>"{{produto.nome|uppercase}}" ?</strong></label>
 		         <input type="tel" ng-model="produto.quantidade"  class="form-control"/>
 		     </div>
 	   </div>

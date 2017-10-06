@@ -1,7 +1,6 @@
 
-"use strict";
-(function(){
-angular.module("adm").controller("changePasswordController",function($scope,stService,$cookieStore,$location,st,$localStorage, stUtil){
+
+angular.module("adm").controller("changePasswordController",function($rootScope, $scope,stService,$cookieStore,$location,st,$localStorage, stUtil, configUtil){
 
 	$scope.usuarioSistema =  $cookieStore.get("usuarioSistema");
 
@@ -10,26 +9,38 @@ angular.module("adm").controller("changePasswordController",function($scope,stSe
 	$scope.alterarSenha = function(usuarioSistema){
 
 		//Validações
-		if(usuarioSistema.senha.length<4)
+		if(!usuarioSistema.senha || usuarioSistema.senha.length<4)
 		{
 			stUtil.showMessage("","A senha deve ter pelo menos 4 caracteres.","danger"); 
 			return;
 		}
-
-		usuarioSistema.defaultPassword=false;
 		stService.save("operadorsistema",usuarioSistema).success(function(){
+			
+			st.leadEvt({descricao:"usuario_mudou_senha"});
+			
+			configUtil.setConfig("mudouSenha", 'true', function(){
+				
+				//Grava a senha alterada em $localStorage
+				$localStorage.senha = usuarioSistema.senha;
+				
+				if($rootScope.config.confs.assistiuTutorialBasico != 'true'){
+				     $location.path("/video-apresentacao");
+				}
+				else{
+					
+					   $location.path("/inicio");
+				}
+				
+			});
 
-			st.evt({evento:"change_password"});
+			
 
-			//Grava a senha alterada em $localStorage
-			$localStorage.senha = usuarioSistema.senha;
-
-			$location.path("/video-apresentacao");
-
+		}).error(function(){
+			st.evt({evento:"erro_mudar_senha"});
+			stUtil.showMessage("","Ocorreu um erro, tente novamente","danger"); 
 		});
 	}
 
 
-});
 
 });

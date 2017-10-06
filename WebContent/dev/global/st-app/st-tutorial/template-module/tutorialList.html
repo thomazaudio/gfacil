@@ -1,0 +1,10 @@
+<meta charset="UTF-8" />
+<modal-content icone-titulo="'question'"    titulo="'Ajuda do sistema'" modal-instance="this">
+	
+	<li ng-repeat="item in vm.tutoriais" class="list-group-item" ng-click="vm.openTutorial(item)" style="height:55px">
+			  <strong>{{item.titulo||uppercase}}</strong>
+			  <br>
+			  <span n class="text-small text-muted">{{item.descricao}} </span>
+	</li>
+	
+</modal-content>	

@@ -1,4 +1,4 @@
-angular.module("adm").controller("loginController",function(demo,$scope,$location,$rootScope,$localStorage,$cookieStore,loginUtil, stUtil, redirect, st){
+angular.module("adm").controller("loginController",function(demo,$rootScope,$scope,$location,$rootScope,$localStorage,$cookieStore,loginUtil, stUtil, redirect, st){
 
 	if(redirect==true){
 		st.evt({evento:"usuario_foi_deslogado", descricao:"O usuário foi deslogado do Sistema"});
@@ -38,14 +38,23 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 
 		$scope.carregando=true;
 		loginUtil.logar(login,lembrarSenha,function(loginData){
-
-			console.log("loginData: ");
-			console.log(loginData);
-
+			
 			$scope.carregando=false;
-
+		
 			if(loginData){
-				$location.path("/inicio");
+				
+			
+				if($rootScope.config.confs.mudouSenha != 'true'){
+					
+					$location.path("/change-password");
+					
+				}
+				else if($rootScope.config.confs.assistiuTutorialBasico != 'true'){
+					$location.path("/video-apresentacao");
+				}
+				else{
+				  $location.path("/inicio");
+				}
 			}
 			else{
 				stUtil.showMessage("","Ocorreu um erro ao realizar login, tente novamente","danger");

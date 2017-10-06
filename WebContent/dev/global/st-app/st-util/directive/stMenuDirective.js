@@ -28,7 +28,7 @@
 						return;
 					}
 
-					if(path=='/login')
+					if(path=='/login' || path=='/change-password' || path=='/video-apresentacao' || path=='/login-redirect')
 						$scope.showMenu = false;
 					else
 						$scope.showMenu = true;

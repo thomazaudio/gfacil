@@ -14,9 +14,14 @@
 	          
 	       </div>
 		</div>
-		<div ng-if="escolheuPeriodo==true" class="col-lg-3 only-desktop">
+		<div ng-if="escolheuPeriodo==true" class="only-desktop">
 		      <br>
-		     <button class="btn btn-default"  ng-click="imprimirRelatorio()" ><strong><i class="fa fa-print"></i> Imprimir / Salvar</strong></button>
+		      <div class="col-lg-3">
+		        <button class="btn btn-default"  ng-click="imprimirRelatorio()" ><strong><i class="fa fa-print"></i> Imprimir / Salvar</strong></button>
+		     </div> 
+		     <div class="col-lg-3">
+		         <button-open-config label="'Alterar composição'" active-tab="2"></button-open-config>
+		     </div>
 		</div>
 		
 		<!-- Botão flutuante -->

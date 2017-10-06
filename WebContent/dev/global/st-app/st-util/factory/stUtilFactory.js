@@ -30,9 +30,22 @@
 			});
 
 		};
+		
+		
+		var _leadEvt  = function(descricao){
 
+			var usuario =  $cookieStore.get("usuarioSistema");
+
+			stService.executeGet("/lead/add-action-by-tel",{tel:usuario.login, action: descricao }).success(function(){
+
+			});
+
+		};
+		
+		
 		return{
-			evt: _evt
+			evt: _evt,
+			leadEvt: _leadEvt
 		}
 	})
 

@@ -1,14 +1,13 @@
 package lead;
 import model.GenericControl;
 import util.AjaxResponse;
-import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.ecwid.mailchimp.MailChimpException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Controller
@@ -20,7 +19,7 @@ public class LeadControl extends GenericControl<Lead> {
 	@JsonView(util.Views.Public.class)
 	@ResponseBody
 	@RequestMapping(value="/lead/add/", method=RequestMethod.POST)
-	public AjaxResponse<lead.Lead> adicionar(@RequestBody Lead lead) throws IOException, MailChimpException {
+	public AjaxResponse<lead.Lead> adicionar(@RequestBody Lead lead){
    
 		AjaxResponse<Lead> res = new AjaxResponse<Lead>();
 		
@@ -28,9 +27,17 @@ public class LeadControl extends GenericControl<Lead> {
 		
 		return res;
 	
-		
 	}
 	
+	@JsonView(util.Views.Public.class)
+	@ResponseBody
+	@RequestMapping(value="/lead/add-action-by-tel", method=RequestMethod.GET)
+	public AjaxResponse<lead.Lead> adicionar(@RequestParam String tel, @RequestParam String action) {
+   
+		leadService.addActionByTel(tel, action);
+		return null;
+		
+	}
 	
 	
 

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import transactional.SendEmail;
 import model.GenericService;
@@ -14,8 +15,15 @@ public class  LeadService extends GenericService<Lead>   {
 
 	@Autowired
 	private LeadDAO dao;
+	
+	@Transactional
+	public void addActionByTel(String tel, String action){
+		
+		dao.addActionByTel(tel, action);
+	}
 
 	@Override
+	@Transactional
 	public Lead addOrUpdate(Lead lead) {
 
 

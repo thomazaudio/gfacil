@@ -153,7 +153,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 	});
 
 	//Intercepta um erro de resposta
-	$httpProvider.interceptors.push(function ($q, $rootScope, $location, stUtil, $localStorage) {
+	$httpProvider.interceptors.push(function ($q, $rootScope, $location, stUtil, $localStorage, usSpinnerService) {
 		return {
 
 			'responseError': function(rejection) {

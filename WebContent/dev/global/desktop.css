@@ -5,6 +5,9 @@
 
 @media only screen and (min-width : 1200px) {
 	
+	.video-apresentacao{
+	    margin-left: -19%;
+	}
 	.sidebar {
 		z-index: 1;
 		position: absolute;

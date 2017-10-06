@@ -6,10 +6,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import org.apache.commons.lang.ArrayUtils;
 import org.springframework.stereotype.Repository;
-
 import transactional.SendEmail;
 import database.DataBaseUtil;
 import model.GenericDAO;

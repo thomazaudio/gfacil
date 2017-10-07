@@ -1,3 +1,6 @@
+
+"use strict";
+(function(){
 angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	//Login
@@ -64,7 +67,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 			var youtubePlayer;
 			
 			$scope.playerVars = {
-					controls: 0,
+					//controls: 0,
 					autoplay: 0,
 					modestbranding:1,
 					rel:0
@@ -79,7 +82,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 			
 			$interval(function(){
 
-				if($scope.videoTutorial.getCurrentTime()>10 ){
+				if($scope.videoTutorial.getCurrentTime()>200 ){
                    
 					$scope.showButton=true;
 				}
@@ -89,7 +92,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 			$scope.proximo = function(){
 				configUtil.setConfig("assistiuTutorialBasico", 'true', function(){
 					
-					st.leadEvt({descricao:"assistiu_tutorial_basico"});
+					st.leadEvt({descricao:"assistiu_tutorial_basico_"+parseInt($scope.videoTutorial.getCurrentTime())});
 					stUtil.showMessage("","Seja bem vindo!","info");
 					
 					$location.path("/inicio");
@@ -183,4 +186,6 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 	}); 
 
 });
+
+})();
 

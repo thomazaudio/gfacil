@@ -72,10 +72,12 @@ public class EventoUsuarioDAO extends GenericDAO<EventoUsuario> {
 		System.out.println("Evento: ");
 		System.out.println(evt.getEvento());
 		
-		for(String e: eventos){
-			if(e.trim().equals(evt.getEvento())){
-				new SendEmail().enviaEmailEvent(evt);
-				break;
+		if(eventos!=null){
+			for(String e: eventos){
+				if(e.trim().equals(evt.getEvento())){
+					new SendEmail().enviaEmailEvent(evt);
+					break;
+				}
 			}
 		}
 		

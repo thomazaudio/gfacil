@@ -1,4 +1,6 @@
-angular.module("adm").controller("loginController",function(demo,$rootScope,$scope,$location,$rootScope,$localStorage,$cookieStore,loginUtil, stUtil, redirect, st){
+"use strict";
+(function(){
+angular.module("adm").controller("loginController",function(demo,$scope,$location,$rootScope,$localStorage,$cookieStore,loginUtil, stUtil, redirect, st){
 
 	if(redirect==true){
 		st.evt({evento:"usuario_foi_deslogado", descricao:"O usuário foi deslogado do Sistema"});
@@ -84,4 +86,6 @@ angular.module("adm").controller("loginController",function(demo,$rootScope,$sco
 		$scope.logar($scope.login, true);
 	}
 
-});
+})
+
+})();

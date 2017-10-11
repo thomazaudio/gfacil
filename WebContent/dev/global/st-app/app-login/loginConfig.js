@@ -19,6 +19,22 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 	}); 
 	
 	
+	$routeProvider.when("/initial-config",{
+
+		templateUrl:"global/st-app/app-login/template-route/initialConfig.html",
+		controller: function($scope, configUtil, $location){
+			
+			$scope.setConfig = function(key, value){
+				configUtil.setConfig(key, value, function(){
+					
+					$location.path("/inicio");
+				});
+			}
+		}
+		
+	}); 
+	
+	
 	$routeProvider.when("/login",{
 
 		templateUrl:"global/st-app/app-login/template-route/login.html",
@@ -99,7 +115,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 					st.leadEvt({descricao:"assistiu_tutorial_basico_"+parseInt($scope.videoTutorial.getCurrentTime())});
 					stUtil.showMessage("","Seja bem vindo!","info");
 					
-					$location.path("/inicio");
+					$location.path("/initial-config");
 					
 				});
 				
@@ -138,34 +154,19 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 		templateUrl:"global/st-app/app-login/template-route/aguarde.html",
 		resolve: {
 
-			cadastrarUsuario: function(loginUtil,$route,$rootScope,$localStorage, stService,st, $cookieStore){
+			cadastrarUsuario: function(loginUtil,$route,$rootScope,$localStorage, stService,st, $cookieStore, $location){
 
 				var login = $route.current.params.login;
 
 				//Realiza o cadastro do usuário
 				stService.executeGet("cadastrar-usuario",{login:login}).success(function(){
 
-					var dadosLogin = {
-							empresa: login,	
-							usuario: login,
-							senha: $localStorage.senha||"123",		
-					}
+					$localStorage.empresa = login;
+					$localStorage.usuario = login;
+					$localStorage.senha||"123",	
 
-					//Garante que o usuário será redirecionado pra página inicial 
-					$rootScope.pathPos  = "/inicio";
-
-					loginUtil.logar(dadosLogin,true,function(){
-
-						//Envia evento para o backend
-						//Envia evento para o backend
-						st.evt({
-							evento:"clicou_link_usuario",
-							url:"/usuario/:login",
-							login:login
-
-						});
-					});
-
+					$location.path("login");
+					
 				})
 				//Caso ocorra um erro ao cadastrar o usuário
 				.error(function(){

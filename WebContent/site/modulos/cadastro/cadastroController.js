@@ -29,6 +29,12 @@ angular.module("site").controller("cadastroController", function(origem, $scope,
 	
 	 $scope.cadastrarLead = function(lead){
 		 
+		 console.log(lead.telefone.length);
+		 
+		 if(lead.telefone.length!=11){
+			 alert("Você deve informar o telefone com DDD e 9º dígito, ex: 31992267947");
+			 return;
+		 }
 		 
 		 $scope.cadastrando = true;
 		 

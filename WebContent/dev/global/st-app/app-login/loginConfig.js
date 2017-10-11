@@ -163,8 +163,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 					$localStorage.empresa = login;
 					$localStorage.usuario = login;
-					$localStorage.senha||"123",	
-
+					$localStorage.senha  = $localStorage.senha||"123",	
 					$location.path("login");
 					
 				})

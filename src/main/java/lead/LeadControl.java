@@ -29,6 +29,21 @@ public class LeadControl extends GenericControl<Lead> {
 	
 	}
 	
+
+	
+	@JsonView(util.Views.Public.class)
+	@ResponseBody
+	@RequestMapping(value="/lead/get-basic", method=RequestMethod.GET)
+	public AjaxResponse<lead.Lead> adicionar(@RequestParam long id){
+   
+		AjaxResponse<Lead> res = new AjaxResponse<Lead>();
+		
+		res.setItem(leadService.	getBasicInfoLeadById(id));
+		
+		return res;
+	
+	}
+	
 	@JsonView(util.Views.Public.class)
 	@ResponseBody
 	@RequestMapping(value="/lead/add-action-by-tel", method=RequestMethod.GET)

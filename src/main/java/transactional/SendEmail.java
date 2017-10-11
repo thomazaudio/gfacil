@@ -19,14 +19,12 @@ import funilceasa.FunilCeasa;
 
 public class SendEmail {
 
-	static final String FROM = "thomazrd@ceasaplus.com.br";  
-	static final String SMTP_USERNAME = "thomazrd@ceasaplus.com.br";  
+	static final String FROM = "thomaz@ceasaplus.com.br";  
+	static final String SMTP_USERNAME = "thomaz@ceasaplus.com.br";  
 	static final String SMTP_PASSWORD = "leghacy123";  
 	static final String HOST = "smtp.zoho.com";    
 
 	static final int PORT = 587;
-
-
 
 
 	public void enviaEmailCadastroLead(Lead lead){
@@ -50,6 +48,24 @@ public class SendEmail {
 
 		try {
 			sendMail("cadastros@ceasaplus.com.br","Cadastro de novo LEAD "+lead.getTelefone(),emailBuilder);
+		} catch (AddressException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void enviaEmailCadastroUsuario(Lead lead){
+
+		String emailBuilder =  new SendEmail().getTemplate("cadastroUsuario").toString();
+		emailBuilder= emailBuilder.replaceAll("LEAD_NOME",lead.getNome());
+		emailBuilder= emailBuilder.replaceAll("LEAD_TELEFONE",lead.getTelefone());
+	
+
+		try {
+			sendMail(lead.getEmail(),"Dados de acesso ao CeasaPlus",emailBuilder);
 		} catch (AddressException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

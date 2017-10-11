@@ -32,11 +32,11 @@
 		};
 		
 		
-		var _leadEvt  = function(descricao){
+		var _leadEvt  = function(evt){
 
 			var usuario =  $cookieStore.get("usuarioSistema");
 
-			stService.executeGet("/lead/add-action-by-tel",{tel:usuario.login, action: descricao }).success(function(){
+			stService.executeGet("/lead/add-action-by-tel",{tel:usuario.login, action: evt.descricao }).success(function(){
 
 			});
 

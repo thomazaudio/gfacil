@@ -7,9 +7,27 @@ angular.module("site").config(function($routeProvider){
 		controller:"introducaoController",
 		resolve: {
 
-			origem: function($route){
+			lead: function($route){
 
-				return $route.current.params.origem;
+				return {codOrigem: $route.current.params.origem};
+				
+				
+			}
+
+		}
+
+	})
+	
+	$routeProvider.when("/s1/:idLead",{
+
+		templateUrl:"modulos/introducao/introducao.html",
+		controller:"introducaoController",
+		resolve: {
+
+			lead: function($route){
+
+				return {id: $route.current.params.idLead, codOrigem:"s1" };
+				
 			}
 
 		}

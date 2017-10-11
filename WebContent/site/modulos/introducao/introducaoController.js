@@ -1,4 +1,4 @@
-angular.module("site").controller("introducaoController", function(origem, $scope, $rootScope ,stService, $localStorage, $interval, leadUtil, $location){
+angular.module("site").controller("introducaoController", function(lead, deviceDetector,$scope, $rootScope ,stService, $localStorage, $interval, leadUtil, $location){
 
 	var youtubePlayer;
 	
@@ -9,7 +9,8 @@ angular.module("site").controller("introducaoController", function(origem, $scop
 	if(alturaTela<menor)
 		menor = alturaTela;
 	
-    menor = menor  - ((15 *  menor)/100);// - 15%
+	if(deviceDetector.isDesktop()==true)
+       menor = menor  - ((15 *  menor)/100);// - 15%
 	   
 	$scope.tamanhoVideo = menor+"px";
 	
@@ -20,9 +21,20 @@ angular.module("site").controller("introducaoController", function(origem, $scop
 	var savedTimeVideo5 = false;
 	var savedTimeVideo6 = false;
 	
-	if(!$localStorage.lead){
+
+	if(lead.id){
 		
-		leadUtil.saveLead({codOrigem: origem});
+		stService.executeGet("/lead/get-basic", {id: lead.id }).success(function(data){
+			
+			lead.nome = data.item.nome;
+			lead.telefone = data.item.telefone;
+			leadUtil.saveLead(lead);
+			
+		});
+		
+	}else{
+		
+		leadUtil.saveLead(lead);
 		
 	}
 	
@@ -73,7 +85,7 @@ angular.module("site").controller("introducaoController", function(origem, $scop
 
 
 	$scope.playerVars = {
-			controls: 0,
+			controls: window.location.href.indexOf("localhost") ==-1? 0 : 1,
 			autoplay: 0,
 			modestbranding:1,
 			rel:0

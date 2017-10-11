@@ -17,6 +17,8 @@ angular.module("site").controller("cadastroController", function(origem, $scope,
 	});
 	
 	$scope.lead =  $localStorage.lead || {};
+	$scope.lead.nome = "";
+	$scope.lead.telefone = "";
 	$scope.step=0;
 	
 	$scope.responder = function(){
@@ -27,6 +29,9 @@ angular.module("site").controller("cadastroController", function(origem, $scope,
 	
 	 $scope.cadastrarLead = function(lead){
 		 
+		 
+		 $scope.cadastrando = true;
+		 
 	     //Inserção do pixel do acebook
 		 fbq('track', 'Lead', {
 		 value: 25.00,
@@ -36,6 +41,7 @@ angular.module("site").controller("cadastroController", function(origem, $scope,
 		 lead.savedInForm = "1";
 		 leadUtil.saveLead(lead, function(res){
 			 
+			 $scope.cadastrando = false;
 			 googleAdWordsService.registerLeadConversion();
 			 res.savedInForm = 0;
 			 $localStorage.lead = res;

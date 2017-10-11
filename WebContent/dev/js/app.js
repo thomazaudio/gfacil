@@ -43,7 +43,7 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','
     	}
     
     	//Caso o usuário não esteja logado, é direcionado para página de login
-    	else if(!$rootScope.usuarioSistema && (!next.$$route || next.$$route.originalPath.indexOf("/usuario/:login")==-1) && next.$$route.originalPath.indexOf("/teste")==-1){
+    	else if(!$rootScope.usuarioSistema && (!next.$$route || next.$$route.originalPath.indexOf("/login/:login")==-1) && next.$$route.originalPath.indexOf("/teste")==-1){
     		console.log("Não existe usuário logado no sistema");
     		$location.path("/login");
     	}

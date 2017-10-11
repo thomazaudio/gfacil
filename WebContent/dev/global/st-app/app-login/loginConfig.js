@@ -41,9 +41,10 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 		templateUrl:"global/st-app/app-login/template-route/manutencao.html",
 		
-	}); 
+	});
 	
 	
+	/*
 	$routeProvider.when("/login/test",{
 
 		templateUrl:"global/st-app/app-login/template-route/login.html",
@@ -58,6 +59,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 			}
 		}
 	}); 
+	*/
 
 	$routeProvider.when("/video-apresentacao",{
 
@@ -67,7 +69,9 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 			var youtubePlayer;
 			
 			$scope.playerVars = {
-					//controls: 0,
+					controls: 0,
+					color:"red",
+					modestbranding : 1,
 					autoplay: 0,
 					modestbranding:1,
 					rel:0
@@ -113,7 +117,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	}); 
 
-
+  /*
 	//Login demonstrativo ADM
 	$routeProvider.when("/login/demo",{
 
@@ -126,8 +130,10 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 		}
 
 	}); 
+	
+	*/
 
-	$routeProvider.when("/usuario/:login",{
+	$routeProvider.when("/login/:login",{
 
 		templateUrl:"global/st-app/app-login/template-route/aguarde.html",
 		resolve: {
@@ -172,19 +178,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	});
 
-	//Login demonstrativo personalizado
-	$routeProvider.when("/login/demo/:empresa/:usuario/:senha",{
-
-		templateUrl:"global/st-app/app-login/template-route/login.html",
-		controller:"loginController",
-		resolve: {
-			demo:function($route){
-				return {empresa:$route.current.params.empresa,usuario:$route.current.params.usuario,senha:$route.current.params.senha};
-			}
-		}
-
-	}); 
-
+	
 });
 
 })();

@@ -8,9 +8,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import lead.Lead;
+
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
+import transactional.SendEmail;
 import cliente.Cliente;
 
 public class Teste {
@@ -18,18 +21,12 @@ public class Teste {
 
 	public static void main(String[] args){
 		
-		String tel = "3134969358";
-		//System.out.println(tel.toCharArray()[2]);
+		Lead l  = new Lead();
+		l.setNome("Thomaz");
+		l.setTelefone("31992267947");
+		l.setEmail("thomaz-guitar@hotmail.com");
 		
-		if(tel.length()==10){
-			 tel  = new StringBuffer(tel).insert(2, "9").toString();
-		}
-		
-		
-		
-	montar();
-		
-		
+		new SendEmail().enviaEmailCadastroUsuario(l);
 		
 	}
 	
@@ -48,6 +45,7 @@ Connection con = database.DataBaseUtil.getConnection();
 				
 				String nome = res.getString("nome");
 	            String telefone = res.getString("telefone");
+				long id = res.getLong("id");
 				
 	            telefone  = telefone.replace("(","");
 	            telefone  = telefone.replace(")","");
@@ -71,10 +69,10 @@ Connection con = database.DataBaseUtil.getConnection();
 				            	
 				            	
 				            
-				            	System.out.println(t+";"+nome);
+				            	System.out.println(t+";"+id);
 	            	}   	
 	            	
-	            	if(i==300){
+	            	if(i==150){
 	            		i=0;
 	            		System.out.println();
 	            		System.out.println("=============================================================");

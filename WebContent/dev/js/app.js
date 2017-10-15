@@ -2,7 +2,7 @@
 (function(){
 var app;
 try{
- app  = angular.module("adm",["angular-growl","angularSpinner","ngRoute","ds.clock","FBAngular","ng-mfb","ngCookies","angular.filter","ngStorage","ngAudio","ngDraggable","ui.bootstrap","ui.transition","angular-confirm","ngMessages","chart.js","youtube-embed","ui.utils.masks","angular-json-tree","ngAnimate","ngSanitize", "textAngular","angular-chrono","ui.checkbox","ng.deviceDetector"]);
+ app  = angular.module("adm",["angular-growl","angularSpinner","ngRoute","ds.clock","FBAngular","ng-mfb","ngCookies","angular.filter","ngStorage","ngAudio","ngDraggable","ui.bootstrap","ui.transition","angular-confirm","ngMessages","chart.js","youtube-embed","ui.utils.masks","angular-json-tree","ngAnimate","ngSanitize", "textAngular","angular-chrono","ui.checkbox","ng.deviceDetector","ngOnboarding"]);
 }catch(e){
 	window.alert(e);
 }
@@ -11,8 +11,7 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','
 	
 	try{
 		
-		
-	
+		//
   
 	if('serviceWorker' in navigator) {
 		  navigator.serviceWorker
@@ -103,7 +102,8 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','
     
 	}catch(e){
 		window.alert("O CeasaPlus não é compatível com seu navegador!");
+		console.log(e);
 	}
 }]);
-
+ 
 })();

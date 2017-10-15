@@ -1,6 +1,7 @@
 angular.module('adm').factory('config',function($location, $rootScope, $http, $templateCache){
 
 	
+	
 	function getAppVersion(){
 		
 		return "Ceasa Plus 2.5"

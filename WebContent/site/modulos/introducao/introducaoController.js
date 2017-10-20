@@ -64,7 +64,7 @@ angular.module("site").controller("introducaoController", function(lead, deviceD
 		
 		$scope.step++;
 		
-        if($scope.step==1){
+        if($scope.step==2){
         	
         	console.log("lead");
         	console.log($rootScope.lead);

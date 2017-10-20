@@ -1,4 +1,42 @@
 
+.btn-count-users{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 45px;
+    line-height: 1.428571429;
+    border-radius: 50px;
+    color: white;
+    background-color: var(--primary-color);
+    opacity: 0.9;
+}
+
+
+.button-step{
+	
+    width: 200px;
+}
+
+.simple-step{
+	color: #6f6c6c;
+    list-style-type: none;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.button-step{
+	color: #6f6c6c;
+    list-style-type: none;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.simple-step>li{
+	float:left;
+	padding:12px;
+}
+
 .splash {
     display: none;
 }

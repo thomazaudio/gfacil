@@ -5,6 +5,29 @@
 	
 	
 	//Diretiva necessária para upload de arquivos
+	.directive('delayCount',function (onlineStatus) {
+		return {
+			restrict: 'E',
+			template:"{{count}}",
+			scope:{
+				number:"=",
+				time:"="
+			},
+			controller: function($scope, $interval) {
+				$scope.count = 0;
+				$interval(function(){
+					
+					if($scope.count<$scope.number)
+						$scope.count++;
+					else
+						return;
+					
+				}, $scope.time|| 300);
+			}
+		};
+	})
+	
+	//Diretiva necessária para upload de arquivos
 	.directive('networkButtonStatus',function (onlineStatus) {
 		return {
 			restrict: 'E',

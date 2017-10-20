@@ -1,6 +1,6 @@
 <meta charset="UTF-8" />
 <label>
 	<label  class="{{classLabel}}"><a id="btn-show-quantidade" class="btn-show-quantidade" ng-show="produto.quantidade==null && (carregandoEstoque==false ||!carregandoEstoque)" ng-click="carregaEstoqueProduto(produto)">[ver estoque atual]</a></label>
-	<label ng-hide="hideButtons==true" class="{{classLabel}}"><a id="btn-edit-quantidade"  class="btn-edit-quantidade" ng-show="produto.quantidade!=null" ng-click="editQuantidade(produto)"><i class="fa fa-edit"></i></a></label>
+	<label ng-hide="hideButtons==true" class="{{classLabel}}"><a id="btn-edit-quantidade"  class="btn-edit-quantidade" ng-show="produto.quantidade!=null" ng-click="editQuantidade(produto)"><span class="text-small">{{produto.uCom}}</span>  <i class="fa fa-edit"></i></a></label>
 	<label ng-hide="hideButtons==true" class="{{classLabel}}"><a id="btn-atualiza-quantidade" class="btn-atualiza-quantidade" ng-show="produto.quantidade!=null|| carregandoEstoque==true" ng-click="carregaEstoqueProduto(produto)" ><i  class="fa fa-refresh faa-spin" ng-class="{'animated':carregandoEstoque==true}" aria-hidden="true"></i></a></label>
 </label>

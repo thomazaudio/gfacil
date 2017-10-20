@@ -1,6 +1,16 @@
-angular.module("adm").controller("inicioController",function($scope,dateUtil, stService,$route,movUtil, pdvUtil, estoqueUtil){
+angular.module("adm").controller("inicioController",function($scope,dateUtil, stService,$route,movUtil, pdvUtil, estoqueUtil, onboardUtil){
 
-
+	onboardUtil.openOnboardIntro();
+	
+	
+	$scope.myCallbackFunction = function(){
+		
+		console.log("chamou");
+		
+		$("#button-menu-mobile").click();
+		
+	}
+	
 	$scope.onboardingSteps = [
 	                          {
 	                        	  title: "Olá!",
@@ -11,10 +21,10 @@ angular.module("adm").controller("inicioController",function($scope,dateUtil, st
 	                          },
 	                          {
 	                        	  title: "Account Setup",
-	                        	  position: "right",
-	                        	  description: "Para efetuar uma venda é só clicar neste botão",
-	                        	  attachTo: "#menu-novavenda",
-	                        	  position: "bottom",
+	                        	  position: "left",
+	                        	  description: "Este é o menu",
+	                        	  attachTo: "#button-menu-mobile",
+	                        	 
 	                        	  nextButtonText:"Proximo",
 	                        	  overlayOpacity: 0.2
 	                          }

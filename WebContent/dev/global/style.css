@@ -1,15 +1,24 @@
 
 .btn-count-users{
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     text-align: center;
     padding: 6px 0;
-    font-size: 45px;
+    font-size: 59px;
     line-height: 1.428571429;
-    border-radius: 50px;
+    border-radius: 100px;
     color: white;
     background-color: var(--primary-color);
     opacity: 0.9;
+    border: none;
+    -webkit-transition: color 2s, font-size 2s;
+    -moz-transition: color 2s, font-size 2s;
+    -o-transition: color 2s, font-size 2s;
+     transition: color 2s, font-size 2s;
+}
+
+.btn-count-users-large-font{
+	 font-size: 95px;
 }
 
 
@@ -48,7 +57,6 @@
 
 
 .btn:hover, .btn:focus {
-    color: inherit;
     text-decoration: none;
 }
 .panel-secondary {
@@ -353,6 +361,12 @@ a:hover, a:focus {
     color: #fff;
     background-color: var(--secondary-color);
 }
+
+.btn-secondary:hover, .btn-secondary:focus {
+    color: #fff;
+    background-color: var(--secondary-color);
+}
+
 
 .embed-responsive {
   position: relative;

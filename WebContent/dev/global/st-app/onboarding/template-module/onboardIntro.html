@@ -2,6 +2,7 @@
 <!-- Step 1 -->
 <div ng-if="vm.step==1">
  <h3 class="text-muted text-center">Seja bem vindo ao Ceasa Plus <i class="fa fa-smile-o"></i></h3>
+ <p class="text-center"><img  ng-src="computador-onboard.png" ></img></p>
 
 </div>
 <!-- FIM Step 1 -->
@@ -9,12 +10,14 @@
 
 <!-- Step 2 -->
 <div ng-if="vm.step==2">
-	<h3 class="text-muted text-center">Você já faz parte do nosso time!</h3>
+    <h2 class="text-muted text-center">Parabéns!</h2>
+	<h4 class="text-muted text-center">Você já faz parte do nosso time.</h4>
 	<vertical-space></vertical-space>
 	
 	<div class="col-lg-12 text-center">
-	    <button class="btn-count-users"><delay-count number="45" time="100"></delay-count></button>
-	    <p class="text-muted">Vendedores estão utilizando o CeasaPlus para facilitar o trabalho na Ceasa <i class="fa fa-smile-o"></i></p>
+	    <button class="btn-count-users" ng-class="{'btn-count-users-large-font':finishCount==true }"><delay-count finish="finishCount" number="45" time="49"></delay-count></button>
+	    <vertical-space></vertical-space>
+	    <p class="text-muted">Este é o número de vendedores que estão utilizando o CeasaPlus para facilitar o trabalho na Ceasa <i class="fa fa-smile-o"></i></p>
 	</div>
 	
 </div>
@@ -24,7 +27,8 @@
 <!-- Step 3 -->
 <div ng-if="vm.step==3">
     <h3 class="text-muted text-center">Pronto para começar?</h3>
-
+    <p class="text-center"><img  ng-src="produto-onboard.png" ></img></p>
+    
 </div>
 <!-- FIM Step 3 -->
 

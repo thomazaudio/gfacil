@@ -11,7 +11,8 @@
 			template:"{{count}}",
 			scope:{
 				number:"=",
-				time:"="
+				time:"=",
+				finish:"="
 			},
 			controller: function($scope, $interval) {
 				$scope.count = 0;
@@ -19,8 +20,10 @@
 					
 					if($scope.count<$scope.number)
 						$scope.count++;
-					else
+					else{
+						$scope.finish = true;
 						return;
+					}
 					
 				}, $scope.time|| 300);
 			}

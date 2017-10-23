@@ -84,6 +84,8 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 			var youtubePlayer;
 			
+			$scope.showButton=true;
+			
 			$scope.playerVars = {
 					controls: 0,
 					color:"red",

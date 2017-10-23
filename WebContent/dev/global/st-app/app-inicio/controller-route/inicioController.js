@@ -1,6 +1,6 @@
 angular.module("adm").controller("inicioController",function($scope,dateUtil, stService,$route,movUtil, pdvUtil, estoqueUtil, onboardUtil){
 
-	//onboardUtil.openOnboardIntro();
+	onboardUtil.openOnboardIntro();
 	
 	
 	$scope.myCallbackFunction = function(){

@@ -22,11 +22,11 @@
 	<div class="panel-body only-desktop" style="padding: 0px 5px 0px 5px;">
 	    <vertical-space></vertical-space>
 		<div class="form-group" ng-class="{'col-xs-12':hideValorUnitario==true,'col-xs-6':!hideValorUnitario}">
-			<strong><label class="text-small text-muted">{{labelQuantidade||'Quantidade'}}</label></strong>
+			<strong><label class="text-small text-muted">{{vm.labelQuantidade||'quantidade'}}</label></strong>
 			<input   ng-change="vm.addPedido(r)"  placeholder="0 unidades"  ng-model="r.quantidade" type="number" class="form-control"/>
 		</div>
 		<div ng-if="!hideValorUnitario || hideValorUnitario==false" class="form-group col-xs-6">
-			<strong><label class="text-small text-muted">{{labelValorUnitario||'Valor unitário'}}</label></strong>
+			<strong><label class="text-small text-muted">{{vm.labelValorUnitario||'valor unitário'}}</label></strong>
 			<input type="tel" ng-change="vm.addPedido(r)"  ng-model="r.valorUnitario" ng-init="r.valorUnitario=r.valorUnitario ||  (r.produto.preco>0?r.produto.preco:'')" ui-number-mask="2"  class="form-control"/>
 		</div>
 	</div>

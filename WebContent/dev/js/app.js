@@ -101,7 +101,7 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','
      });
     
 	}catch(e){
-		window.alert("O CeasaPlus não é compatível com seu navegador!");
+		window.alert("O CeasaPlus não é compatível com seu navegador!\n"+e);
 		console.log(e);
 	}
 }]);

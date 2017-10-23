@@ -2,6 +2,15 @@
 (function(){
 	angular.module("adm").controller("entradaMercadoriaController",function($filter, movUtil, $location, st, $uibModal, $rootScope, estoqueUtil, pedidoUtil, cacheGet, $stModal, $scope, stUtil, stService, $route, entradaMercadoria, callback, $modalInstance){
 
+		
+		
+		//A cada mudança nos pedidos o valor total é atualizado
+		$scope.$watch('em.movimentacao.pedidos',function(pedidos){
+
+			$scope.em.movimentacao.valor = pedidoUtil.getTotalPedidos(pedidos);
+
+		},true);
+		
 		$scope.alterarLancarDespesa = function(lancar){
 
 			if(lancar==true){

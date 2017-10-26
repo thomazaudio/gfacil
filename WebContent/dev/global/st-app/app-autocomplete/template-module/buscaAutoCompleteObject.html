@@ -29,7 +29,7 @@
 	<ul ng-show="obs.length>0 &&(!hideResults || hideResults==false)" class="list-group" style="padding:5px">
 	     
 		  <div class="row"></div>
-		  <li ng-repeat="item in obs" class="list-group-item" ng-click="selecionarItem(item)" style="height:55px">
+		  <li ng-repeat="item in obs" class="list-group-item generic-transition" ng-click="selecionarItem(item)" style="height:55px">
 			  <strong>{{item[1]}}</strong>
 			  <br>
 			  <span ng-show="subLabel" class="text-small text-muted">{{subLabel.label}}: {{item[2]}} </span>

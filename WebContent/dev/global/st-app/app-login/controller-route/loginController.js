@@ -59,6 +59,8 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 				}
 			}
 			else{
+				$scope.login.senha = "";
+				delete $localStorage.senha;
 				stUtil.showMessage("","Ocorreu um erro ao realizar login, tente novamente","danger");
 			}
 

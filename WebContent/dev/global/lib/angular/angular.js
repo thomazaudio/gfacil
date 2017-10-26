@@ -3237,7 +3237,6 @@ forEach({
         return this;
       } else {
         // we are a read, so read the first child.
-        // TODO: do we still need this?
         var value = fn.$dv;
         // Only if we have $dv do we iterate over all, otherwise it is just the first element.
         var jj = (isUndefined(value)) ? Math.min(nodeCount, 1) : nodeCount;

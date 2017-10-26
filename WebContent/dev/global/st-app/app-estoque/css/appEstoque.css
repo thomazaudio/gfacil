@@ -1,0 +1,33 @@
+.label-quantidade-estoque.onboarding-focus{
+	color: var(--secondary-color)!important;
+	animation-name: animation-onboarding-focus;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+
+
+
+
+
+.onboarding-quantidade-produto-arrow, .onboarding-quantidade-produto-arrow:after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+
+
+.onboarding-quantidade-produto-arrow {
+    border-width: 11px;
+}
+
+.onboarding-quantidade-produto-arrow {
+    top: -11px;
+    left: 50%;
+    margin-left: -95px;
+    border-bottom-color: #9fb0a1!important;
+    border-top-width: 0!important;
+}

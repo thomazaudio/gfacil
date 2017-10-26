@@ -8,9 +8,9 @@
 			  </div>
 			  
 			  <div class="pull-right">
-			     <a ng-click="vm.editFunction(vm.ob)"  class="btn-option-card-list"  ><i class="fa fa-edit"></i></a>
-			     <a confirm="Tem certeza que deseja deletar este item?" ng-click="vm.deleteFunction(vm.ob)" class="btn-option-card-list"   ><i class="fa fa-trash"></i></a>
-			     <a button-info-ob  objeto="{{vm.ob}}" ng-click="vm.openDetalhePedido(r)" class="btn-option-card-list"  ><i class="fa fa-info-circle"></i></a>
+			     <a id="card_edit_{{vm.index}}"  ng-click="vm.editFunction(vm.ob)"  class="btn-option-card-list"  ><i class="fa fa-edit"></i></a>
+			     <a id="card_delete_{{vm.index}}" confirm="Tem certeza que deseja deletar este item?" ng-click="vm.deleteFunction(vm.ob)" class="btn-option-card-list"   ><i class="fa fa-trash"></i></a>
+			     <a id="card_info_{{vm.index}}" button-info-ob  objeto="{{vm.ob}}" ng-click="vm.openDetalhePedido(r)" class="btn-option-card-list"  ><i class="fa fa-info-circle"></i></a>
 			  </div>
 			  <div class="row"></div>		
 			  <div class="pivo-panel-separator"></div>

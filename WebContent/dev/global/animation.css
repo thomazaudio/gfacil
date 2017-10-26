@@ -1,3 +1,33 @@
+@keyframes animation-onboarding-focus {
+    0%   {
+        filter: brightness(1);
+        filter: contrast(1);
+        -webkit-filter: brightness(1);
+        -webkit-filter: contrast(1);
+    }
+    50%  {
+        filter: brightness(0.4);
+        filter: contrast(0.4);
+        -webkit-filter: brightness(0.4);
+        -webkit-filter: contrast(0.4);
+    }
+    100% {
+        filter: brightness(1);
+        filter: contrast(1);
+        -webkit-filter: brightness(1);
+        -webkit-filter: contrast(1);
+    }
+}
+
+.generic-transition.ng-enter{
+  transition: all 0.7s linear;
+  opacity: 0;
+}
+
+.generic-transition.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
 
 /*Animação para mudança de rota*/
 .route-view.ng-enter{

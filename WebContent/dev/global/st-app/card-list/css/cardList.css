@@ -5,9 +5,16 @@
 	
 }
 
+.btn-option-card-list.onboarding-focus{
+	color: var(--secondary-color)!important;
+	animation-name: animation-onboarding-focus;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
 .card-list-label-pivo{
 	white-space: nowrap;
-    width: 14.5em;
+    width: 12.5em;
     overflow: hidden;
     text-overflow: ellipsis;
 }

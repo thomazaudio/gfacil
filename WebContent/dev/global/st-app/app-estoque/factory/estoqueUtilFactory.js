@@ -40,7 +40,7 @@
 				controller:function($scope, $modalInstance){
 
 					$scope.produto = produto || {};
-					
+
 					var nomeOriginal =  $scope.produto.nome;
 
 					$scope.cancelAction = function(){
@@ -55,12 +55,12 @@
 					}
 
 					$scope.cadastrarProduto = function(){
-						
+
 						var produto = $scope.produto;
-						
+
 						console.log("Resultado: ");
 						console.log(cacheGet.get("produto","nome",produto.nome));
-						
+
 						//Evitar cadastro duplicado
 						if( cacheGet.get("produto","nome",produto.nome).length>0 && produto.nome != nomeOriginal)
 						{
@@ -68,14 +68,14 @@
 							$scope.changeStep(1);
 							return;
 						}
-						
+
 						if(!produto.nome){
-							
+
 							stUtil.showMessage("","Informe um nome para o produto","danger");
 							$scope.changeStep(1);
 							return;
 						}
-						
+
 						if($scope.step!=3 && (produto.setQuantidade!=false)){
 							$scope.changeStep($scope.step+1);
 							return;
@@ -84,9 +84,13 @@
 						$scope.salvando = true;
 
 						stService.executePost("produto/add/", produto).success(function(data){
+
+							
 							
 							if(data.item.id==1){
 								st.leadEvt({descricao: "cadastrou_primeiro_produto"});
+									
+								
 							}
 
 							var pedidoEntrada = {};
@@ -119,13 +123,13 @@
 							_infoModal.okActionLabel = "Avançar";
 							_infoModal.okActionIcon = "fa-angle-double-right";
 						}
-						
+
 						else if(step==2){
 							_infoModal.titulo = "Atalho";
 							_infoModal.okActionLabel  = "Avançar";
 							_infoModal.okActionIcon = "fa-angle-double-right";
 						}
-						
+
 						else if(step==3){
 							_infoModal.titulo = "Quantidade em estoque";
 							_infoModal.okActionLabel  = "Finalizar";

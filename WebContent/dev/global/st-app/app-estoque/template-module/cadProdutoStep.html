@@ -1,38 +1,41 @@
 <meta charset="UTF-8" />
+<!-- onboarding -->
 <modal-content  loading-ok-action="salvando" cancel-action="cancelAction" ok-action="cadastrarProduto"  ok-action-label="infoModal.okActionLabel" ok-action-icon="infoModal.okActionIcon"   item="produto" titulo="infoModal.titulo" modal-instance="this">
 
- <div class="col-lg-2"></div> 
+
+
+ <div class="col-lg-2"></div>
  <div class="col-lg-8">
 	   <vertical-space></vertical-space>
-	   <div ng-show="step==1">
+	   <div ng-show="step==1" class="generic-transition">
 		     <div class="form-group col-lg-8" style="padding:0px;">
 		         <label>Informe o nome do produto</label>
-		         <input ng-model="produto.nome" placeholder="Ex: BATATA DOCE ROXA SACO" class="form-control"/>
+		         <input focus-me="step==1" tooltip-is-open="true" tooltip-placement="bottom" uib-tooltip="Informe aqui o nome completo do produto" ng-model="produto.nome" placeholder="Ex: BATATA DOCE ROXA SACO" class="form-control"/>
 		     </div>
-		     <div class="form-group col-lg-4 ">
+		     <div ng-show="config.confs.showUnidadeMedidaCadastroProduto=='true'" class="form-group col-lg-4 ">
 				 <nfe-unidade-medida label="'Unidade comercial'" ng-model="produto.uCom"></nfe-unidade-medida>		
 			</div>
 		     <set-all-filials  objeto="produto"></set-all-filials>
 		      
 	   </div>
 	   
-	   <div ng-show="step==2">
-		     <div class="form-group">
+	   <div ng-if="step==2" class="generic-transition">
+		     <div id="form--produto" class="form-group col-lg-8">
 		         <label>Informe a categoria do produto</label>
-		         <auto-complete-object  initial-busca="''"   place-holder="'Ex: Batatas Roxas'" show-results-on-focus="true" inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova descrição'" place-holder="placeHolderCategoria"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'categoria_produto'}" ng-model="produto.tag" ></auto-complete-object>
+		         <auto-complete-object  tooltip-is-open="true" tooltip-placement="bottom" uib-tooltip="Isso irá agilizar as vendas para este produto :-)"   initial-busca="''"   place-holder="'Ex: Batatas Roxas'" show-results-on-focus="true" inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova descrição'" place-holder="placeHolderCategoria"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'categoria_produto'}" ng-model="produto.tag" ></auto-complete-object>
 		      </div>
 	   </div>
 	   
-	   <div ng-show="step==3">
-		     <div class="form-group">
+	   <div ng-show="step==3" class="generic-transition">
+		     <div class="form-group col-lg-8">
 		         <label>Qual é a quantidade em estoque do produto <strong>"{{produto.nome|uppercase}}" ?</strong></label>
-		         <input type="tel" ng-model="produto.quantidade"  class="form-control"/>
+		         <input focus-me="step==3"    type="tel" ng-model="produto.quantidade"  class="form-control"/>
 		     </div>
 	   </div>
 	   
- </div>  
+ </div>
  
- <div class="col-lg-2"></div> 
+ <div class="col-lg-2"></div>
 
 </modal-content>
 

@@ -1,34 +1,9 @@
-angular.module("adm").controller("inicioController",function($scope,dateUtil, stService,$route,movUtil, pdvUtil, estoqueUtil, onboardUtil){
+angular.module("adm").controller("inicioController",function($scope,dateUtil, stService,$route,movUtil, pdvUtil, estoqueUtil, onboardUtil, deviceDetector){
 
-	//onboardUtil.openOnboardIntro();
-	
-	
-	$scope.myCallbackFunction = function(){
-		
-		console.log("chamou");
-		
-		$("#button-menu-mobile").click();
-		
+	if(deviceDetector.isMobile()==true){
+	   onboardUtil.openOnboardIntro();
 	}
 	
-	$scope.onboardingSteps = [
-	                          {
-	                        	  title: "Olá!",
-	                        	  position: "centered",
-	                        	  description: "Seja bem vindo ao CeasaPlus!!",
-	                        	  width: 300,
-	                        	  nextButtonText:"Iniciar"
-	                          },
-	                          {
-	                        	  title: "Account Setup",
-	                        	  position: "left",
-	                        	  description: "Este é o menu",
-	                        	  attachTo: "#button-menu-mobile",
-	                        	 
-	                        	  nextButtonText:"Proximo",
-	                        	  overlayOpacity: 0.2
-	                          }
-	                          ];
 
 	$scope.hoje = new Date();
 

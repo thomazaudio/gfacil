@@ -60,7 +60,7 @@ public class SendEmail {
 	public void enviaEmailCadastroUsuario(Lead lead){
 
 		String emailBuilder =  new SendEmail().getTemplate("cadastroUsuario").toString();
-		emailBuilder= emailBuilder.replaceAll("LEAD_NOME",lead.getNome());
+		emailBuilder= emailBuilder.replaceAll("LEAD_NOME",lead.getNome().split(" ")[0]);
 		emailBuilder= emailBuilder.replaceAll("LEAD_TELEFONE",lead.getTelefone());
 	
 

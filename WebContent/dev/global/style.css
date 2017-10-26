@@ -1,4 +1,14 @@
 
+
+.tooltip-inner {
+    background-color: #5262bc; 
+}
+
+.tooltip-arrow {
+    border-top-color: #5262bc!important;
+    border-bottom-color: #5262bc!important;
+}
+
 .btn-count-users{
     width: 200px;
     height: 200px;

@@ -1,6 +1,8 @@
 <meta charset="UTF-8" />
 <vertical-space></vertical-space>
 <div ng-controller="stControl">
+<onboarding-popover ng-if="objetos.length==1 && config.confs.visualizouOnboardingProdutos!='true'" enabled="true" steps="stepsProduto" on-finish-callback='finalizarOnboarding()' step-index='stepsProdutoIndex'></onboarding-popover>
+
 <div class="col-lg-6">
     <st-filter-map
 		    filter-map-instace="filterMapInstance"
@@ -25,10 +27,10 @@
 <vertical-space></vertical-space>
 <vertical-space></vertical-space>
  <div ng-repeat="ob in objetos" class="col-lg-4">
-	   	 <card-list index="{{$index}}" class="produto-item" ob="ob" pivo="'nome'"  edit-function="openDetalhe" delete-function="deletarProduto">
+	   	 <card-list  index="{{$index}}" class="produto-item" ob="ob" pivo="'nome'"  edit-function="openDetalhe" delete-function="deletarProduto">
 	   	    <div class="col-lg-12 col-xs-12">
-	   	         <div class="pull-left">
-	   	             <span class="destaque-item">R$ {{ob.preco|number:2}}</span> 
+	   	         <div class="pull-left" >
+	   	             <span class="destaque-item">R$ {{ob.preco|number:2}}</span>
 	   	         </div>
 	   	         <div class="pull-right">
 	   	              <button class="btn btn-xs text-muted"><i class="fa fa-tag"></i> <strong>{{ob.tag|uppercase}}</strong></button>
@@ -40,7 +42,7 @@
 	   	     <div class="col-lg-12 col-xs-12">
 	   	         
 	   	         <div class="pull-left" style="font-size:17px;">
-		   	         <label class="text-muted text-small">estoque:  <strong style="font-size:19px" >{{ob.quantidade}}</strong></label><button-estoque style="font-size:19px" id="button-estoque" produto="ob"></button-estoque> 
+		   	         <label   class="text-muted text-small ">estoque:  <strong  id="produto_estoque_{{$index}}" style="font-size:19px" class="label-quantidade-estoque"   >{{ob.quantidade}}</strong></label><button-estoque style="font-size:19px" id="button-estoque" produto="ob"></button-estoque> 
 		   	     </div>
 		   	     <div class="pull-right">
 	   	             <!-- 

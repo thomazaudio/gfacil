@@ -38,8 +38,9 @@
 		                    	   arrowClass:"onboarding-quantidade-produto-arrow",
 		                    	   overlay:true,
 		                    	   overlayOpacity: 0.05,
-		                    	   xOffset:-59,
-		                    	   yOffset:-10,
+		                    	   xOffset:-9,
+		                    	   yOffset:-9,
+		                    	   
 		                    
 		                    	  
 		                       },

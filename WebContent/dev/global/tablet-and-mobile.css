@@ -1,6 +1,7 @@
 /* tablet e mobile */
 
 
+
 .only-mobile {
 	display: none;
 }
@@ -41,7 +42,13 @@
 
 
 @media only screen and (max-width : 1199px) {
-	
+
+.modal-content{
+    height: 120%!important;
+    width: 101%;
+    border: none;
+    margin-left: -2px;
+}
 	
 /* the scrollbar area itself */
 ::-webkit-scrollbar {

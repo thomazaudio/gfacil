@@ -23,13 +23,8 @@ angular.module("adm").controller("changePasswordController",function($rootScope,
 				//Grava a senha alterada em $localStorage
 				$localStorage.senha = usuarioSistema.senha;
 				
-				if($rootScope.config.confs.assistiuTutorialBasico != 'true'){
-				     $location.path("/video-apresentacao");
-				}
-				else{
-					
-					   $location.path("/inicio");
-				}
+			    $location.path("/inicio");
+			
 				
 			});
 

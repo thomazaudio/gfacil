@@ -4,64 +4,50 @@ angular.module("adm").config(function($routeProvider, $httpProvider){
 	$routeProvider.when("/prot/:template",{
 
 		templateUrl:"global/st-app/app-prototype/template-route/prototype.html",
-			
-	
+
 		controller: function($scope, $rootScope, $route, stService, $localStorage,  $http){
-			
-			
+
 			var prot = $route.current.params.template;
-			
-	        var urlBase = "global/st-app/app-prototype/prots/"+prot+"/";
-	        
-	        var versions = [];
-	        
-	        for(var i =1; i <=10 ;i++){
-	        	
-	        	versions.push({id: i,  label:"Versão "+i,template:urlBase+i+".html"});
-	        	
-	        }
-	        
-	       
-	        
-	        $localStorage.activeVersion = $localStorage["prot_"+prot]|| versions[0];
-	        
-	        $scope.activeVersion =  $localStorage.activeVersion;
-	        
-	        $scope.changeActiveVersion = function(v){
-	        	
-	            $scope.activeVersion = v;
-	            $localStorage["prot_"+prot] =  v;
-	        }
-	        
-	        
-	        $scope.funcao = function(){
-	        	
-	        	console.log("!!!!!!!!!!!!!!!!!!!!!!!!");
-	        }
-	      
-	        
-          
-              
-              console.log("Versions: ");
-              console.log(versions);
-               
-               $scope.vs = versions;
-               
-               
-               angular.forEach($scope.vs, function(v){
-            	   // Here, the lang object will represent the lang you called the request on for the scope of the function
-            	   $http.get(v.template).success(function(){
-            		   
-            		   v.enable=true;
-            		   console.log("Erro em: "+v.template);
-            		   
-            	   });
-            	 });
-	        
-			
-			 
+
+			var urlBase = "global/st-app/app-prototype/prots/"+prot+"/";
+
+			var versions = [];
+
+			for(var i =1; i <=10 ;i++){
+
+				versions.push({id: i,  label:"Versão "+i,template:urlBase+i+".html"});
+
+			}
+
+			$localStorage.activeVersion = $localStorage["prot_"+prot]|| versions[0];
+
+			$scope.activeVersion =  $localStorage.activeVersion;
+
+			$scope.changeActiveVersion = function(v){
+
+				$scope.activeVersion = v;
+				$localStorage["prot_"+prot] =  v;
+			}
+
+			$scope.funcao = function(){
+
+				console.log("!!!!!!!!!!!!!!!!!!!!!!!!");
+			}
+
+			$scope.vs = versions;
+
+			angular.forEach($scope.vs, function(v){
+				// Here, the lang object will represent the lang you called the request on for the scope of the function
+				$http.get(v.template).success(function(){
+
+					v.enable=true;
+					console.log("Erro em: "+v.template);
+
+				});
+			});
+
 		}
-		
+
 
 	}); 
 

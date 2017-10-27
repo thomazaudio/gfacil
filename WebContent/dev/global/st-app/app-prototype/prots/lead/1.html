@@ -1,0 +1,135 @@
+<!-- Defina aqui a descrição do protótipo -->
+<meta charset="UTF-8" />
+<div class="col-lg-6">
+    <st-filter-map
+		    filter-map-instace="filterMapInstance"
+			busca-especial="buscaEspecial"
+			filtros="[
+ 	        
+ 	        {attr:'nome',placeholder:'Buscar pelo nome do produto'},
+			
+			]
+			">
+   </st-filter-map>
+</div>
+<div class="col-lg-6 form-group">
+   <select class="form-control">
+       <option>Período de testes</option>
+   </select>
+</div>
+<vertical-space></vertical-space>
+<vertical-space></vertical-space>
+<div class="col-lg-12">
+<div class="panel pivo-panel col-lg-5" ng-class="{'card-list-panel-par':vm.index%2!=0}">
+		<div class="panel-heading">
+			  <div class="pull-left card-list-label-pivo">
+			   <strong style="font-size:17px;"" uib-tooltip="{{vm.labelPivo}}">
+			    <i class="fa fa-user-o"></i> PAULO ROBERTO
+			    </strong>
+			  </div>
+			  
+			  <div class="pull-right">
+			     <a id="card_edit_{{vm.index}}"  ng-click="vm.editFunction(vm.ob)"  class="btn-option-card-list"  ><i class="fa fa-edit"></i></a>
+			     <a id="card_delete_{{vm.index}}" confirm="Tem certeza que deseja deletar este item?" ng-click="vm.deleteFunction(vm.ob)" class="btn-option-card-list"   ><i class="fa fa-trash"></i></a>
+			     <a id="card_info_{{vm.index}}" button-info-ob  objeto="{{vm.ob}}" ng-click="vm.openDetalhePedido(r)" class="btn-option-card-list"  ><i class="fa fa-info-circle"></i></a>
+			  </div>
+			  <div class="row"></div>		
+			  <div class="pivo-panel-separator"></div>
+		</div>
+		<div class="panel-body" >
+		
+		
+		   <div class="pull-left">
+			   <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-phone-square"></i> <strong>31992267947</strong></span>
+			</div>
+			<div class="pull-right">
+			   <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-envelope" aria-hidden="true"></i> <strong>thomaz-guitar@hotmail.com</strong></span>
+			</div>
+			
+			<vertical-space></vertical-space>
+			<div class="pull-left">
+			    <button style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa-commenting-o" aria-hidden="true"></i> Comentários</button>
+			</div>
+			<div class="pull-right">
+			    <p style="margin-top:10px;" class="text-small text-muted">origem da aquisição: <span class="destaque-item">S1</span></p>
+			</div>
+			<div class="col-lg-12">
+			   <hr></hr>
+			</div>
+		   
+		    <div class="form-group col-lg-6" style="padding-left:0px;">
+		        <label>etapa do funil</label>
+		        <select class="form-control">
+		            <option>Período de testes</option>
+		        </select>
+		    </div>
+		    <div class="form-group col-lg-3">
+		        <label>ult login</label>
+		        <br>
+		        <span class="text-muted text-small"><strong> 27/10/2017</strong></span>
+		    </div>
+		    
+		    <div class="form-group col-lg-3">
+		        <label>ult cad</label>
+		        <br>
+		        <span class="text-muted text-small"><strong> 27/10/2017</strong></span>
+		    </div>
+			
+			<vertical-space></vertical-space>
+			<vertical-space></vertical-space>
+			<div class="col-lg-3" style="padding-left:0px;">
+			    <button class="btn btn-default text-small">
+			         <span class="text-center"><i class="fa fa-list"></i> Prods</span>
+			         <br>
+			         <span class="text-center"><strong>20</strong></span>
+			    </button>
+			</div>
+			<div class="col-lg-3" >
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Vendas</span>
+			         <br>
+			         <span class="text-center"><strong>10</strong></span>
+			    </button>
+			</div>
+			<div class="col-lg-3">
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-user-o" aria-hidden="true"></i> Clientes</span>
+			         <br>
+			         <span class="text-center"><strong>15</strong></span>
+			    </button>
+			</div>
+			<div class="col-lg-3" style="padding-right:0px;">
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-user-o" aria-hidden="true"></i> Relatórios</span>
+			         <br>
+			         <span class="text-center"><strong>15</strong></span>
+			    </button>
+			</div>
+			<div class="col-lg-12">
+			    <hr></hr>
+			</div>
+			<div class="col-lg-4" style="padding-left:0px;">
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-laptop" aria-hidden="true"></i> Computador</span>
+			         <br>
+			         <span class="text-center"><strong>10</strong></span>
+			    </button>
+			</div>
+			<div class="col-lg-4" >
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-tablet" aria-hidden="true"></i> Tablet</span>
+			         <br>
+			         <span class="text-center"><strong>15</strong></span>
+			    </button>
+			</div>
+			<div class="col-lg-4" style="padding-right:0px;">
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-mobile" aria-hidden="true"></i> Celular</span>
+			         <br>
+			         <span class="text-center"><strong>15</strong></span>
+			    </button>
+			</div>
+		</div>
+	</div>
+
+</div>

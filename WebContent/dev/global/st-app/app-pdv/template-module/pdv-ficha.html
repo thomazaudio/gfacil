@@ -34,7 +34,7 @@
 	  
 	<div class="panel-body">
 	   
-	     <div ng-if="vm.step==0">
+	     <div ng-if="vm.step==0" class="generic-transition">
 	              <div class="form-group">
 				   <label class="text-muted"><i class="fa fa-user"></i> Cliente</label>
 				   <auto-complete-object initial-busca="vm.defaultClienteLabel  || 'Outros'" auto-show-busca="!vm.pdv.movimentacao.pessoa" id-input="'cliente-venda'"  use-cache="true" extra-class="'input-lg'" inline="true"  tipo="'select'" label-cad="'Cadastrar novo Cliente'" place-holder="'Primeiro, digite o nome do cliente'"  object-op="'cliente'" querys="" label="'nome'" ng-model="vm.pdv.movimentacao.pessoa" />
@@ -59,11 +59,11 @@
 				
 	     </div>
 	   
-		 <div  ng-if="vm.step==1">
+		 <div  ng-if="vm.step==1" class="generic-transition">
 		        <app-simple-pedido pedidos="vm.pdv.movimentacao.pedidos"></app-simple-pedido> 
 		  </div>
 	
-        <div  ng-if="vm.step==2">
+        <div  ng-if="vm.step==2" class="generic-transition">
               <vertical-space></vertical-space>
 			  
 			  <div class="panel" ng-if="config.confs.showEmpEmbalagensPdv=='true'">	

@@ -51,9 +51,7 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 					$location.path("/change-password");
 					
 				}
-				else if($rootScope.config.confs.assistiuTutorialBasico != 'true'){
-					$location.path("/video-apresentacao");
-				}
+				
 				else{
 				  $location.path("/inicio");
 				}

@@ -4,7 +4,7 @@
 		<label  class="pull-left">
 		     <destaque-texto  style="font-size:17px;" texto="r.produto.nome|uppercase" busca="busca"></destaque-texto>
 		    <br class="only-mobile">
-		   <label class="text-small" ng-show="r.produto.quantidade!=null">(em estoque <strong> {{r.produto.quantidade}}</strong> {{r.produto.uCom || 'uni'|lowercase}})</label>
+		   <label class="text-small" ng-show="r.produto.quantidade!=null">(em estoque <strong> {{r.produto.quantidade|number:2}}</strong> {{r.produto.uCom || 'uni'|lowercase}})</label>
            <button-estoque hide-buttons="true" auto-load="true"  produto="r.produto"></button-estoque> 		   
 		</label>
 		<label class="pull-right"> 

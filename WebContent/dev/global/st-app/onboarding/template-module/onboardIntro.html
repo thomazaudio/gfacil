@@ -1,9 +1,10 @@
 <meta charset="UTF-8" />
 <!-- Step 1 -->
 <div ng-if="vm.step==1" class="generic-transition">
- <h3 class="text-muted text-center">Seja bem vindo ao Ceasa Plus <i class="fa fa-smile-o"></i></h3>
+ <h3 class="text-muted text-center">Olá <strong>{{usuarioSistema.nome||uppercase}}</strong> <i class="fa fa-smile-o"></i></h3>
+ <h4 class="text-muted text-center">Seja bem vindo ao Ceasa Plus!</h4>
  <p class="text-center"><img  ng-src="computador-onboard.png" ></img></p>
- <p class="text-muted text-center">Para mais conforto e praticidade, você pode utilizar o <strong>CeasaPlus</strong> também em um
+ <p class="text-muted text-center col-lg-12">Para mais conforto e praticidade, você pode utilizar o <strong>CeasaPlus</strong> também em um
   computador ou notebook.
  </p>
 </div>
@@ -54,5 +55,4 @@
 <vertical-space></vertical-space>
 <button class="center-block btn btn-secondary button-step" ng-click="vm.nextStep()">{{vm.labelButton}} <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 <button ng-show="vm.showButtonCadastrarProdutoDepois==true" class="center-block btn btn-default button-step" ng-click="vm.toInicio()">Cadastrar depois <i class="fa fa-clock-o" aria-hidden="true"></i></button>
-
 

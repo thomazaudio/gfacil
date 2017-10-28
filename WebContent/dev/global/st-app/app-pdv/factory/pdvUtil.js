@@ -73,6 +73,24 @@
 			});
 
 		}
+		
+		//Recupera um pdv a partir de uma movimentação
+		var _getPDVByMovId = function(mov, callback){
+
+			var idMov = mov.id;
+
+			if(mov.originalMov)
+				idMov = mov.originalMov.id;
+
+			stService.getLike("pdv",idMov,"id_movimentacao").success(function(data){
+
+				callback(data.itens[0]);
+
+			}).error(function(){
+				callback();
+			});
+
+		}
 
 		var _goToPdv = function(id){
 
@@ -101,7 +119,8 @@
 			getTotalPedidos:_getTotalPedidos,
 			goToPdvFromMov: _goToPdvFromMov,
 			deletarVenda:_deletarVenda,
-			openVendaInModal:_openVendaInModal 
+			openVendaInModal:_openVendaInModal,
+			getPDVByMovId: _getPDVByMovId 
 		}
 
 	})

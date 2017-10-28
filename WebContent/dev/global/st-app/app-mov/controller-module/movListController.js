@@ -83,7 +83,6 @@
 				params.qs = movListControllerFactory.configureQuerysForBuscaFixa(vm);
 				stService.executeGet("/movimentacao/busca/map",params).success(function(data){
 
-					
 					var allMovs = [];
 					
 					//Realiza a junção com as movimentações variáveis
@@ -134,6 +133,44 @@
 
 		if(vm.allPeriod==true)
 			atualizaMovs();
+		
+		
+		vm.deleteMov = function(mov){
+
+			//Operação de vendas
+			if(mov && mov.tipoOperacaoLancamento==1){
+			
+				pdvUtil.getPDVByMovId(mov, function(resPdv){
+					
+					if(resPdv){
+						pdvUtil.deletarVenda(resPdv,function(data){
+							stUtil.showMessage("","Venda deletada com sucesso!");
+							atualizaMovs();
+						});
+					}
+					else{
+						stUtil.showMessage("","Ocorreu um erro ao deletar a venda","danger");
+					}
+					
+				});
+				
+			}
+
+			//Operação de atualização de estoque
+			else if(mov && mov.tipoOperacaoLancamento==2){
+				stUtil.showMessage("","Não é possível deletar uma operação de entrada de mercadoria","danger");
+				
+			}
+			else {
+				movUtil.deleteMov(mov, function(){
+					stUtil.showMessage("","Movimentação deletada com sucesso!");
+					atualizaMovs();
+				});
+				
+				
+			}
+		}
+
 
 		vm.openDetalheMov = function(mov){
 

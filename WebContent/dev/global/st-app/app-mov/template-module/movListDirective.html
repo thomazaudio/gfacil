@@ -138,8 +138,9 @@
             
 			 <tr class="alert-info text-muted" ng-if="!mov.hideList || mov.hideList==false"  >
 			  
-			  	<td class="printHide" style="width:35px">
+			  	<td class="printHide" style="width:70px">
 				   <a ng-show="mov.id" ng-click="vm.openDetalheMov(mov)" class="default" ><i class="fa fa-edit fa-2x"></i></a>
+				    <a  style="margin-left:4px;" confirm="Tem certeza que deseja deletar este item?" ng-show="mov.id" ng-click="vm.deleteMov(mov)" class="default" ><i class="fa fa-trash fa-2x"></i></a>
 	            </td>
 	            <td ng-hide="vm.hideColumns.indexOf('id')!=-1" class=""><strong class="text-center">{{mov.id||'N/D'}}</strong></td>
 	            <td ng-hide="vm.hideColumns.indexOf('vencimento')!=-1" class="mov-vencimento " data-title="Vencimento" >

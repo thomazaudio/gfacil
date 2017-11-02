@@ -24,7 +24,20 @@ public class  LeadService extends GenericService<Lead>   {
 		dao.addActionByTel(tel, action);
 	}
 	
+	@Transactional
+	public Long getIdLeadByTel(String tel){
+		
+		return dao.getIdLeadByTel(tel);
+	}
 	
+	@Transactional
+	public void addIntMetric(String key, Integer value){
+		
+		 dao.addIntMetric(key, value);
+	
+	}
+	
+	@Transactional
 	public  Lead getBasicInfoLeadById(long id){
 		
 		return dao.getBasicInfoLeadById(id);

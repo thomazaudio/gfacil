@@ -24,15 +24,19 @@ public class TokenTransfer
 	private Config config;
 	
 	@JsonView(util.Views.Public.class)
+	private Long idLead;
+	
+	@JsonView(util.Views.Public.class)
 	private Date dataBackEnd;
 
 
-	public TokenTransfer(String token,UserSystem usuario, Config config)
+	public TokenTransfer(String token,UserSystem usuario, Config config, Long idLead)
 	{
 		this.setUsuarioSistema(usuario);
 		this.token = token;
 		this.config = config;
 		this.dataBackEnd = new Date();
+		this.idLead = idLead;
 	}
 	
 

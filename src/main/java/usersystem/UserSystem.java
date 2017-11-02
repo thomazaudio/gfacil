@@ -33,6 +33,9 @@ public class UserSystem {
 	//Nome da Pessoa no sistema
 	@JsonView(util.Views.Public.class)
 	private String nome;
+	
+	@JsonView(util.Views.Public.class)
+	private Long  idLead;
 
 	//Permissões do usuário
 	@JsonView(util.Views.Public.class)

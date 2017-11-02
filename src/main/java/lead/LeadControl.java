@@ -54,6 +54,17 @@ public class LeadControl extends GenericControl<Lead> {
 		
 	}
 	
+	@JsonView(util.Views.Public.class)
+	@ResponseBody
+	@RequestMapping(value="/lead/add-int-metric", method=RequestMethod.GET)
+	public AjaxResponse<lead.Lead> adicionar(@RequestParam String key, @RequestParam Integer value) {
+   
+		leadService.addIntMetric(key, value);
+		return null;
+		
+	}
+	
+	
 	
 
 	@Override
@@ -87,9 +98,12 @@ public class LeadControl extends GenericControl<Lead> {
 	}
 
 	@Override
-	public AjaxResponse<lead.Lead> getLikeMap(String[] qs, int pagina, int max, String extra) {
-		// TODO Auto-generated method stub
-		return null;
+	@JsonView(util.Views.Public.class)
+	@ResponseBody
+	@RequestMapping(value="/lead/busca/map", method=RequestMethod.GET)
+	public AjaxResponse<lead.Lead> getLikeMap(@RequestParam String[] qs,@RequestParam int pagina,@RequestParam int max,@RequestParam String extra) {
+		
+		return getLikeMapAndRespond(qs,pagina,max,extra);
 	}
 
 	

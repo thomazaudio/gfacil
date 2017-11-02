@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import lead.LeadService;
 import model.GenericService;
 
 @Service
@@ -11,6 +12,20 @@ public class  ProdutoService extends GenericService<Produto>   {
 	@Autowired
 	ProdutoDAO dao;
 	
+	@Autowired
+	private LeadService leadService;
+	
+	
+	@Override
+	public Produto addOrUpdate(Produto item){
+		
+		if(item.getId()==0)
+		  leadService.addIntMetric("cads_produto", 1);
+		
+		super.addOrUpdate(item);
+		return item;
+			
+	}
 	
 	
 	public void deleteByIds(long[] ids){

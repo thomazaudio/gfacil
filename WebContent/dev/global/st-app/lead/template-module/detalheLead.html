@@ -1,0 +1,144 @@
+<meta charset="UTF-8" />
+<modal-content titulo="vm.lead.nome" >
+<div class="panel">
+		<div class="panel-heading">
+			  <div class="pull-left">
+			   <strong style="font-size:12px;"" uib-tooltip="{{vm.labelPivo}}">
+			      <span class="destaque-item">{{vm.lead.etapaFunil}}</span>
+			    </strong>
+			  </div>
+			  
+			
+			  <div class="row"></div>		
+			  <div class="pivo-panel-separator"></div>
+		</div>
+		<div class="panel-body" >
+		
+		   <div class="pull-left">
+			   <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-phone-square"></i> <strong>{{vm.lead.telefone}}</strong></span>
+			</div>
+			<div class="pull-right">
+			   <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-envelope" aria-hidden="true"></i> <strong>{{vm.lead.email}}</strong></span>
+			</div>
+			
+			<vertical-space></vertical-space>
+			<div class="pull-left">
+			    <button data-toggle="modal" data-target="#comentarios" style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa-commenting-o" aria-hidden="true"></i> Comentários</button>
+			    <button ng-disabled="true" style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa-external-link" aria-hidden="true"></i> Acessar sistema</button>
+			</div>
+			<div class="pull-right">
+			    <p style="margin-top:10px;" class="text-small text-muted">origem da aquisição: <span class="destaque-item">{{vm.lead.codOrigem}}</span></p>
+			</div>
+			<div class="col-lg-12">
+			   <hr></hr>
+			</div>
+		   
+		    <div class="form-group col-lg-6" style="padding-left:0px;">
+		        <label>etapa do funil</label>
+		       <auto-complete-object ng-change="vm.salvar(vm.lead)" initial-busca="''"  inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova etapa de funil'" place-holder="'Informe a etapa do lead'"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'etapa_lead'}" ng-model="vm.lead.etapaFunil" ></auto-complete-object>
+
+		    </div>
+		    <div class="form-group col-lg-6">
+		        <label uib-tooltip="Ultimo login efetuado no sistema">Data da ultima etapa</label>
+		        <br>
+		        <span class="text-muted text-small"><strong> ---- (x-dias)</strong></span>
+		    </div>
+		    <div class="col-lg-12">
+		        <hr></hr>
+		    </div>
+		    <div class="form-group col-lg-3">
+		        <label uib-tooltip="Ultimo login efetuado no sistema">ultimo login</label>
+		        <br>
+		        <span class="text-muted text-small"><strong> ----</strong></span>
+		    </div>
+		    
+		    <div class="form-group col-lg-3">
+		        <label uib-tooltip="Ultimo login efetuado no sistema">ultimo cadastro</label>
+		        <br>
+		        <span class="text-muted text-small"><strong> -----</strong></span>
+		    </div>
+		    
+		    <div class="col-lg-3">
+		       		<button ng-disabled="true" style="margin-top:9px;" class="btn btn-xs btn-secondary"> <i class="fa fa-list" aria-hidden="true"></i> Questionário</button>
+		     </div>
+		     
+		      <div class="col-lg-3">
+		       		<button ng-show="false" style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa fa-exchange " aria-hidden="true"></i> Financeiro</button>
+		     </div>
+		     
+		   
+			
+			<vertical-space></vertical-space>
+			<vertical-space></vertical-space>
+			<div class="col-lg-3" style="padding-left:0px;">
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-list"></i> Produtos cadastrados</span>
+			         <br>
+			         <span class="text-center"><strong>{{vm.lead.metrics.cads_produto||0}}</strong></span>
+			    </button>
+			</div>
+			<div class="col-lg-3" >
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Vendas realizadas</span>
+			         <br>
+			         <span class="text-center"><strong>{{vm.lead.metrics.cads_venda||0}}</strong></span>
+			    </button>
+			</div>
+			<div class="col-lg-3">
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-user-o" aria-hidden="true"></i> Clientes</span>
+			         <br>
+			         <span class="text-center"><strong>{{vm.lead.metrics.cads_cliente||0}}</strong></span>
+			    </button>
+			</div>
+			<div class="col-lg-3" style="padding-right:0px;">
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-list" aria-hidden="true"></i> Visualizações de relatórios</span>
+			         <br>
+			         <span class="text-center"><strong>{{vm.lead.metrics.visualizacoes_relatorio||0}}</strong></span>
+			    </button>
+			</div>
+			<div class="col-lg-12">
+			    <hr></hr>
+			</div>
+			<div class="col-lg-4" style="padding-left:0px;">
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-laptop" aria-hidden="true"></i> Computador</span>
+			         <br>
+			         <span class="text-center"><strong>{{vm.lead.metrics.acessos_desktop||0}}</strong></span>
+			    </button>
+			</div>
+			<div class="col-lg-4" >
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-tablet" aria-hidden="true"></i> Tablet</span>
+			         <br>
+			         <span class="text-center"><strong>{{vm.lead.metrics.acessos_tablet||0}}</strong></span>
+			    </button>
+			</div>
+			<div class="col-lg-4" style="padding-right:0px;">
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-mobile" aria-hidden="true"></i> Celular</span>
+			         <br>
+			         <span class="text-center"><strong>{{vm.lead.metrics.acessos_mobile||0}}</strong></span>
+			    </button>
+			</div>
+		</div>
+	</div>
+</modal-content>
+
+<st-modal titulo="Comentários - {{vm.lead.nome}}" idmodal="comentarios">
+   <div class="col-lg-12">
+      <text-angular ta-toolbar=[] ng-model="vm.lead.comentarios"></text-angular>
+   </div>
+   <vertical-space></vertical-space>
+   <vertical-space></vertical-space>
+   <div class="pull-right">
+       <button class="btn btn-secondary" ng-click="vm.salvar(vm.lead)">Salvar <i class="fa fa-check"></i></button>
+   </div>
+</st-modal>
+
+
+
+
+
+

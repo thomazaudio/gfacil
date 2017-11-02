@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cliente.Cliente;
 import cliente.ClienteService;
+import lead.LeadService;
 import logisticareversa.LogisticaReversa;
 import logisticareversa.LogisticaReversaService;
 import model.GenericService;
@@ -23,6 +24,9 @@ import util.DataUtil;
 public class PdvService extends GenericService<Pdv>{
 
 	private PdvUtil pdvUtil = new PdvUtil();
+	
+	@Autowired
+	private LeadService leadService;
 
 	@Autowired
 	private MovimentacaoService movService;
@@ -45,6 +49,9 @@ public class PdvService extends GenericService<Pdv>{
 	@Override
 	@Transactional
 	public Pdv addOrUpdate(Pdv item) {
+		
+		if(item.getId()==0)
+		  leadService.addIntMetric("cads_venda", 1);
 
 		Date dataVenda = item.getData();
 

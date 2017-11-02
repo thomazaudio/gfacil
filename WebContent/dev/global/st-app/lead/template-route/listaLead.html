@@ -1,0 +1,77 @@
+<meta charset="UTF-8" />
+
+<div ng-controller="stControl">
+<div class="col-lg-6">
+    <st-filter-map
+		    filter-map-instace="filterMapInstance"
+			busca-especial="buscaEspecial"
+			filtros="[
+ 	        
+ 	        {attr:'nome',placeholder:'Buscar pelo nome'},
+ 	        {attr:'telefone',placeholder:'Buscar pelo telefone'},
+ 	        {attr:'email',placeholder:'Buscar pelo email'},
+			
+			]
+			">
+   </st-filter-map>
+</div>
+<div class="col-lg-6 form-group">
+   <select class="form-control">
+       <option>Período de testes</option>
+   </select>
+</div>
+<vertical-space></vertical-space>
+<vertical-space></vertical-space>
+<table class="modern-table st-table table-bordered table-striped table-condensed cf col-lg-12" >
+       <thead class="cf">
+		<tr>
+		    <th></th>
+			<th></th>
+			<th>Nome</th>
+			<th>Etapa</th>
+			<th>Telefone</th>
+			<th>Email</th>
+			<th>Origem de aquisição</th>
+			
+			
+		</tr>
+		</thead>
+		<tbody>
+		
+		<tr class="alert-info" ng-repeat="lead in objetos">
+		
+		    <td>
+		         <checkbox class="btn-primary"
+					    ng-model="vm.pdv.carregado"
+					    ng-true-value="1"
+					    ng-false-value="0"
+					    name="custom-name" 
+					></checkbox>
+		    </td>
+		    <td style="width:90px;">
+		        <a ng-click="openDetalhe(lead)" class="btn btn-xs btn-default"> detalhes <i class="fa fa-external-link"></i></a>
+		    </td>
+		    <td data-title="Data" class="text-center">
+		       <strong> {{lead.nome|uppercase}}</strong>
+		    </td>
+		    <td>
+		       <span class="destaque-item">Período de testes</span>
+		    </td>
+		    <td>
+		       <strong>{{lead.telefone}}</strong>
+		    </td>
+		    <td>
+		       <strong>{{lead.email}}</strong>
+		    </td>
+		    <td>
+		       <span class="destaque-item">{{lead.codOrigem|uppercase}}</span>
+		    </td>
+		    </tr>
+    </tbody>
+ </table>
+ </div>
+ <vertical-space></vertical-space>
+ <vertical-space></vertical-space>
+<st-pagination  filter-map-instance="filterMapInstance"></st-pagination>
+
+

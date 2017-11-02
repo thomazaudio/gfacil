@@ -14,6 +14,9 @@ public class ClienteDAO  extends GenericDAO<Cliente>{
 	}
 	
 	
+	
+	
+	
 	public  void atualizarProdutosSugeridos(Long id, String sugestoes){
 		
 		Query query =   getSessionFactory().getCurrentSession().createQuery("update Cliente set sugestoesProdutos=:sugestoes where id=:id");

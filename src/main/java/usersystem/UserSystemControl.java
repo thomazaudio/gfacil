@@ -1,6 +1,8 @@
 package usersystem;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import lead.LeadService;
 import model.GenericControl;
 import security.AccountUserDetails;
 import security.LoginData;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 import config.Config;
@@ -43,6 +46,8 @@ public class UserSystemControl extends GenericControl<UserSystem> {
 	@Autowired
 	private UserDetailServiceImpl userDetailService;
 	
+	@Autowired
+	private LeadService leadService;
 	
 	@Autowired
 	private ConfigService configService;
@@ -194,7 +199,9 @@ public class UserSystemControl extends GenericControl<UserSystem> {
 		AccountUserDetails userDetails = userDetailService.loadUserByUsername(usuario);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		Config configUsuario = configService.getAll().get(0);
-		return new TokenTransfer(TokenUtils.createToken(userDetails),userDetails.getAccount(),configUsuario);
+		Long idLead = leadService.getIdLeadByTel(item.getEmpresa());
+		userDetails.getAccount().setIdLead(idLead);
+		return new TokenTransfer(TokenUtils.createToken(userDetails),userDetails.getAccount(),configUsuario, idLead);
 
 	}
 

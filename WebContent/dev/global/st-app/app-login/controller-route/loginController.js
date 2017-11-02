@@ -1,6 +1,6 @@
 "use strict";
 (function(){
-angular.module("adm").controller("loginController",function(demo,$scope,$location,$rootScope,$localStorage,$cookieStore,loginUtil, stUtil, redirect, st){
+angular.module("adm").controller("loginController",function(demo,$scope,$location,$rootScope,$localStorage,$cookieStore,loginUtil, stUtil, redirect, st, leadUtil){
 
 	if(redirect==true){
 		st.evt({evento:"usuario_foi_deslogado", descricao:"O usuário foi deslogado do Sistema"});
@@ -45,6 +45,7 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 		
 			if(loginData){
 				
+				leadUtil.addMetricaTipoDispositivo();
 			
 				if($rootScope.config.confs.mudouSenha != 'true'){
 					

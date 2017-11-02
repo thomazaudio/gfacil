@@ -19,12 +19,65 @@
 </div>
 <vertical-space></vertical-space>
 <vertical-space></vertical-space>
-<div class="col-lg-12">
-<div class="panel pivo-panel col-lg-5" ng-class="{'card-list-panel-par':vm.index%2!=0}">
+<table class="modern-table st-table table-bordered table-striped table-condensed cf col-lg-12" >
+       <thead class="cf">
+		<tr>
+		    <th></th>
+			<th></th>
+			<th>Nome</th>
+			<th>Etapa</th>
+			<th>Telefone</th>
+			<th>Email</th>
+			<th>Origem de aquisição</th>
+			
+			
+		</tr>
+		</thead>
+		<tbody>
+		
+		<tr class="alert-info">
+		
+		    <td>
+		         <checkbox class="btn-primary"
+					    ng-model="vm.pdv.carregado"
+					    ng-true-value="1"
+					    ng-false-value="0"
+					    name="custom-name" 
+					></checkbox>
+		    </td>
+		    <td style="width:90px;">
+		        <a data-toggle="modal" data-target="#detalhe" class="btn btn-xs btn-default"> detalhes <i class="fa fa-external-link"></i></a>
+		    </td>
+		    <td data-title="Data" class="text-center">
+		       <strong> Paulo</strong>
+		    </td>
+		    <td>
+		       <span class="destaque-item">Período de testes</span>
+		    </td>
+		    <td>
+		       <strong>31992267947</strong>
+		    </td>
+		    <td>
+		       <strong>thomaz-guitar@hotmail.com</strong>
+		    </td>
+		    <td>
+		       <span class="destaque-item">S1</span>
+		    </td>
+		    </tr>
+    </tbody>
+ </table>
+		   
+
+
+<st-modal  idmodal="detalhe" size="lg">
+<div class="panel">
 		<div class="panel-heading">
-			  <div class="pull-left card-list-label-pivo">
-			   <strong style="font-size:17px;"" uib-tooltip="{{vm.labelPivo}}">
-			    <i class="fa fa-user-o"></i> PAULO ROBERTO
+			  <div class="pull-left">
+			   <strong style="font-size:12px;"" uib-tooltip="{{vm.labelPivo}}">
+			    
+			 
+			     PAULO ROBERTO
+			     <span class="destaque-item">Período de testes</span>
 			    </strong>
 			  </div>
 			  
@@ -38,7 +91,6 @@
 		</div>
 		<div class="panel-body" >
 		
-		
 		   <div class="pull-left">
 			   <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-phone-square"></i> <strong>31992267947</strong></span>
 			</div>
@@ -49,6 +101,7 @@
 			<vertical-space></vertical-space>
 			<div class="pull-left">
 			    <button style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa-commenting-o" aria-hidden="true"></i> Comentários</button>
+			    <button style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa-external-link" aria-hidden="true"></i> Acessar sistema</button>
 			</div>
 			<div class="pull-right">
 			    <p style="margin-top:10px;" class="text-small text-muted">origem da aquisição: <span class="destaque-item">S1</span></p>
@@ -63,30 +116,48 @@
 		            <option>Período de testes</option>
 		        </select>
 		    </div>
+		    <div class="form-group col-lg-6">
+		        <label uib-tooltip="Ultimo login efetuado no sistema">Data da ultima etapa</label>
+		        <br>
+		        <span class="text-muted text-small"><strong> 27/10/2017 (x-dias)</strong></span>
+		    </div>
+		    <div class="col-lg-12">
+		        <hr></hr>
+		    </div>
 		    <div class="form-group col-lg-3">
-		        <label>ult login</label>
+		        <label uib-tooltip="Ultimo login efetuado no sistema">ultimo login</label>
 		        <br>
 		        <span class="text-muted text-small"><strong> 27/10/2017</strong></span>
 		    </div>
 		    
 		    <div class="form-group col-lg-3">
-		        <label>ult cad</label>
+		        <label uib-tooltip="Ultimo login efetuado no sistema">ultimo cadastro</label>
 		        <br>
 		        <span class="text-muted text-small"><strong> 27/10/2017</strong></span>
 		    </div>
+		    
+		    <div class="col-lg-3">
+		       		<button style="margin-top:9px;" class="btn btn-xs btn-secondary"> <i class="fa fa-list" aria-hidden="true"></i> Questionário</button>
+		     </div>
+		     
+		      <div class="col-lg-3">
+		       		<button style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa fa-exchange " aria-hidden="true"></i> Financeiro</button>
+		     </div>
+		     
+		   
 			
 			<vertical-space></vertical-space>
 			<vertical-space></vertical-space>
 			<div class="col-lg-3" style="padding-left:0px;">
-			    <button class="btn btn-default text-small">
-			         <span class="text-center"><i class="fa fa-list"></i> Prods</span>
+			    <button class="btn btn-block btn-default text-small">
+			         <span class="text-center"><i class="fa fa-list"></i> Produtos cadastrados</span>
 			         <br>
 			         <span class="text-center"><strong>20</strong></span>
 			    </button>
 			</div>
 			<div class="col-lg-3" >
 			    <button class="btn btn-block btn-default text-small">
-			         <span class="text-center"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Vendas</span>
+			         <span class="text-center"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Vendas realizadas</span>
 			         <br>
 			         <span class="text-center"><strong>10</strong></span>
 			    </button>
@@ -130,6 +201,7 @@
 			    </button>
 			</div>
 		</div>
+		
 	</div>
 
-</div>
+</st-modal>

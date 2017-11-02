@@ -1,9 +1,13 @@
 package lead;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -17,8 +21,8 @@ import lombok.Setter;
 @Getter @Setter
 @Entity
 public class Lead extends CrudClass {
-	
-	
+
+
 	//Salvo utilizando o formulário de cadasor
 	@JsonView(util.Views.Public.class)
 	@Transient
@@ -28,10 +32,28 @@ public class Lead extends CrudClass {
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonView(util.Views.Public.class)
 	private Date lastUpdate;
-	
+
 	@JsonView(util.Views.Public.class)
 	private String nome;
-	
+
+	//Data da ultima atualização do Lead
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonView(util.Views.Public.class)
+	private Date dataUltimoLogin;
+
+	//Data da ultima atualização do Lead
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonView(util.Views.Public.class)
+	private Date dataUltimaEtapa;
+
+	//Data da ultima atualização do Lead
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonView(util.Views.Public.class)
+	private Date dataUltimoCadastro;
+
+	@JsonView(util.Views.Public.class)
+	private String etapaFunil;
+
 	//Origem do Lead ex: a1, a2, f1, f2, s1, s2, s3
 	@JsonView(util.Views.Public.class)
 	private String codOrigem;
@@ -59,39 +81,52 @@ public class Lead extends CrudClass {
 
 	@JsonView(util.Views.Public.class)
 	private String custom_1;
-	
+
 	//Ultima ação do usuário
 	@JsonView(util.Views.Public.class)
 	private String lastAction;
-	
+
 	@JsonView(util.Views.Public.class)
 	private String alturaTela;
-	
+
 	@JsonView(util.Views.Public.class)
 	private String larguraTela;
-	
+
 	@JsonView(util.Views.Public.class)
 	private String email;
-		
-	
+
+
 	//Versão da landing page utilizada no processo
-    @JsonView(util.Views.Public.class)
+	@JsonView(util.Views.Public.class)
 	private String versaoLandingPage;
-    
-  //Bowser do dispositivo
-  	@JsonView(util.Views.Public.class)
-  	private String device= "";
 
-  	//Sistema operacional do dispositivo
-  	@JsonView(util.Views.Public.class)
-  	private String os= "";
+	//Bowser do dispositivo
+	@JsonView(util.Views.Public.class)
+	private String device= "";
 
-  	//Bowser do dispositivo
-  	@JsonView(util.Views.Public.class)
-  	private String browser= "";
+	//Sistema operacional do dispositivo
+	@JsonView(util.Views.Public.class)
+	private String os= "";
 
-  
+	//Bowser do dispositivo
+	@JsonView(util.Views.Public.class)
+	private String browser= "";
+
 	@JsonView(util.Views.Public.class)
 	private String teste;
+
+	@JsonView(util.Views.Public.class)
+	private String comentarios;
+
+
+	//Métricas do lead
+	@ElementCollection(targetClass=Integer.class,fetch=FetchType.EAGER)
+	@JsonView(util.Views.Public.class)
+	private Map<String, Integer> metrics = new HashMap<String,Integer>();
+
+	//Questões do lead
+	@ElementCollection(targetClass=String.class,fetch=FetchType.EAGER)
+	@JsonView(util.Views.Public.class)
+	private Map<String, String> questions = new HashMap<String,String>();
 
 }

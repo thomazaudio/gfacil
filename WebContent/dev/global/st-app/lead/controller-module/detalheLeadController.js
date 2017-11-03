@@ -27,9 +27,10 @@
 		}
 		vm.salvar = function(lead){
 
-			stService.executePost("lead/add/",lead).success(function(){
+			stService.executePost("lead/add/",lead).success(function(data){
 
 				stUtil.showMessage("","Salvo com sucesso!");
+				vm.lead = data.item;
 			});
 
 		},

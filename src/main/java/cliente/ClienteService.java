@@ -19,10 +19,9 @@ public class ClienteService extends GenericService<Cliente> {
 	@Override
 	@Transactional
 	public Cliente addOrUpdate(Cliente item){
-		
-		if(item.getId()==0)
-			  leadService.addIntMetric("cads_cliente", 1);
-		
+		if(item.getId()==0){
+		   leadService.addIntMetric("cads_cliente", new Long(1), true);
+		}
 		return super.addOrUpdate(item);
 	}
 	

@@ -220,6 +220,20 @@
 
 		}
 
+		var _daysBetween = function (date1_ms, date2_ms) {
+
+			// The number of milliseconds in one day
+			var ONE_DAY = 1000 * 60 * 60 * 24
+
+			// Calculate the difference in milliseconds
+			var difference_ms = Math.abs(date1_ms - date2_ms)
+
+			// Convert back to days and return
+			return Math.round(difference_ms/ONE_DAY)
+
+		}
+
+
 		return {
 
 			getPeriodOf:_getPeriodOf,
@@ -227,7 +241,8 @@
 			formatDate: _formatDate,
 			getDate:_getDate,
 			daysInMonth:_daysInMonth,
-			incrementaData:_incrementaData
+			incrementaData:_incrementaData,
+			daysBetween: _daysBetween
 		}
 
 	})

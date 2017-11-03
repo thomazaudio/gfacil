@@ -1,6 +1,6 @@
 "use strict";
 (function(){
-	angular.module("adm").controller("pdvFichaController",function(cacheGet, $location ,cachePost, $uibModal, pdvUtil, pedidoUtil, $rootScope, $scope, stService ,pdv, stUtil ,movUtil,$route, $filter, st, nfeUtil, $modalInstance, lrUtil){
+	angular.module("adm").controller("pdvFichaController",function(cacheGet, $location ,cachePost, $uibModal, pdvUtil, pedidoUtil, $rootScope, $scope, stService ,pdv, stUtil ,movUtil,$route, $filter, st, nfeUtil, $modalInstance, lrUtil, leadUtil){
 
 		var vm = this;
 		var ini = new Date().getTime();
@@ -146,8 +146,10 @@
 
 			var msg = "";
 
-			if(!pdv.id)
+			if(!pdv.id){
 				msg="Venda lançada com sucesso!";
+				leadUtil.addIncMetric("cads_venda",1);
+			}
 			else
 				msg="Venda atualizada com sucesso!";
 
@@ -157,8 +159,11 @@
 			//Nome do evento
 			var nomeEvento = "";
 
-			if(pdv.id)
+			if(pdv.id){
 				nomeEvento = "tempo_editar_venda";
+				
+				
+			}
 
 			else 
 				nomeEvento = "tempo_finalizar_venda";

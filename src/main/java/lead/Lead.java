@@ -36,20 +36,6 @@ public class Lead extends CrudClass {
 	@JsonView(util.Views.Public.class)
 	private String nome;
 
-	//Data da ultima atualização do Lead
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonView(util.Views.Public.class)
-	private Date dataUltimoLogin;
-
-	//Data da ultima atualização do Lead
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonView(util.Views.Public.class)
-	private Date dataUltimaEtapa;
-
-	//Data da ultima atualização do Lead
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonView(util.Views.Public.class)
-	private Date dataUltimoCadastro;
 
 	@JsonView(util.Views.Public.class)
 	private String etapaFunil;
@@ -75,6 +61,11 @@ public class Lead extends CrudClass {
 	//id da lista na ferramenta externa
 	@JsonView(util.Views.Public.class)
 	private Long list_id;
+
+
+	//id da lista na ferramenta externa
+	@JsonView(util.Views.Public.class)
+	private Long dataUltimaEtapa;
 
 	@JsonView(util.Views.Public.class)
 	private String telefone;
@@ -116,13 +107,14 @@ public class Lead extends CrudClass {
 	private String teste;
 
 	@JsonView(util.Views.Public.class)
+	@Column( length = 100000 )
 	private String comentarios;
 
 
 	//Métricas do lead
-	@ElementCollection(targetClass=Integer.class,fetch=FetchType.EAGER)
+	@ElementCollection(targetClass=Long.class,fetch=FetchType.EAGER)
 	@JsonView(util.Views.Public.class)
-	private Map<String, Integer> metrics = new HashMap<String,Integer>();
+	private Map<String, Long> metrics = new HashMap<String,Long>();
 
 	//Questões do lead
 	@ElementCollection(targetClass=String.class,fetch=FetchType.EAGER)

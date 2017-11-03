@@ -3,7 +3,7 @@
 
 	angular.module("adm") 
 
-	.factory("estoqueUtil",function($http, config, stService, cacheGet, cachePost, $stModal, stUtil, $filter, movimentacaoService, $stDetalhe, $uibModal, st){
+	.factory("estoqueUtil",function($http, config, stService, cacheGet, cachePost, $stModal, stUtil, $filter, movimentacaoService, $stDetalhe, $uibModal, st, leadUtil){
 
 		var _openPrecosCompraProduto = function(produto){
 
@@ -84,12 +84,11 @@
 						$scope.salvando = true;
 
 						stService.executePost("produto/add/", produto).success(function(data){
+							
+							leadUtil.addIncMetric("cads_produto",1);
 
-							
-							
 							if(data.item.id==1){
 								st.leadEvt({descricao: "cadastrou_primeiro_produto"});
-									
 								
 							}
 

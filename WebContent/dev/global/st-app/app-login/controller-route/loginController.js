@@ -46,6 +46,7 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 			if(loginData){
 				
 				leadUtil.addMetricaTipoDispositivo();
+				leadUtil.addSubsMetric("dataUltimoLogin", new Date().getTime());
 			
 				if($rootScope.config.confs.mudouSenha != 'true'){
 					

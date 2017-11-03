@@ -49,10 +49,7 @@ public class PdvService extends GenericService<Pdv>{
 	@Override
 	@Transactional
 	public Pdv addOrUpdate(Pdv item) {
-		
-		if(item.getId()==0)
-		  leadService.addIntMetric("cads_venda", 1);
-
+	
 		Date dataVenda = item.getData();
 
 		//Se a data da venda for null, é setada como a data atual do sistema

@@ -8,6 +8,7 @@
 	        	   
 	        	   var modal = $uibModal.open({
 						animation: true,
+						backdrop: 'static',
 						templateUrl:"global/st-app/lead/template-module/detalheLead.html",
 						size:'lg',
 						controller:"detalheLeadController",

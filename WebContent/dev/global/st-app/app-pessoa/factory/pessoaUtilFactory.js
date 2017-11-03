@@ -51,12 +51,11 @@
 
 					$scope.salvar = function(){
 						
-						
 						var tipoPessoa  = $scope.objeto.tipo_pessoa;
 						var pessoa = $scope.objeto;
 						
 						$scope.salvando = true;
-						
+					
 						var classe = tipoPessoa.charAt(0).toUpperCase() + tipoPessoa.slice(1);
 
 						stService.executeGet("/projecao/execute-query",{query:  "from "+classe+" where nome like '%"+pessoa.nome+"%' and disable=0"}).success(function(data){

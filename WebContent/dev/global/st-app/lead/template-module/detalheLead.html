@@ -1,5 +1,5 @@
 <meta charset="UTF-8" />
-<modal-content titulo="vm.lead.nome" >
+<modal-content titulo="vm.lead.nome" modal-instance="this">
 <div class="panel">
 		<div class="panel-heading">
 			  <div class="pull-left">
@@ -7,23 +7,54 @@
 			      <span class="destaque-item">{{vm.lead.etapaFunil}}</span>
 			    </strong>
 			  </div>
+			   <div class="pull-right">
+			        <button ng-click="vm.atualizarLead()" class="btn btn-default btn-xs"><i class="fa fa-refresh"></i> Atualizar</button>
+			   </div>
 			  
 			
 			  <div class="row"></div>		
 			  <div class="pivo-panel-separator"></div>
 		</div>
 		<div class="panel-body" >
-		
-		   <div class="pull-left">
-			   <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-phone-square"></i> <strong>{{vm.lead.telefone}}</strong></span>
-			</div>
-			<div class="pull-right">
-			   <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-envelope" aria-hidden="true"></i> <strong>{{vm.lead.email}}</strong></span>
-			</div>
-			
-			<vertical-space></vertical-space>
+		    <div class="generic-transition" ng-show="!inEdit || inEdit==false">
+		          <div class="col-lg-4">
+			     	 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-user-o"></i> <strong>{{vm.lead.nome|uppercase}}</strong></span>
+			     </div>
+			     <div class="col-lg-4">
+			     	 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-phone-square"></i> <strong>{{vm.lead.telefone}}</strong></span>
+			     </div>
+			     <div class="col-lg-4">
+			     	 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-envelope" aria-hidden="true"></i> <strong>{{vm.lead.email}}</strong></span>
+			     </div>
+		     </div>
+		      <div class="generic-transition"  ng-show="inEdit==true">
+		          <div class="col-lg-4 form-group">
+			     	 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-user-o"></i> Nome</span>
+			     	 <input class="form-control" ng-model="vm.lead.nome" />
+			     </div>
+			     
+			     <div class="col-lg-4 form-group">
+			     	 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-phone-square"></i> Telefone</span>
+			     	 <input class="form-control" ng-model="vm.lead.telefone" />
+			     </div>
+			     
+			      <div class="col-lg-4 form-group">
+			     	 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-envelope"></i> Email</span>
+			     	 <input class="form-control" ng-model="vm.lead.email" />
+			     </div>
+		      </div>
+		      <vertical-space></vertical-space>
+		      <div class="pull-left col-lg-12">
+		          <button ng-show="!inEdit || inEdit==false" ng-click="inEdit=true" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> editar</button>
+		          <button ng-show="inEdit==true"  ng-click="inEdit=false" class="btn btn-xs btn-default"><i class="fa fa-undo"></i> cancelar</button>
+		          <button ng-show="inEdit==true" ng-click="inEdit=false;vm.salvar(vm.lead)" class="btn btn-xs btn-default"><i class="fa fa-check"></i> salvar</button>
+		      </div>
+		      <div class="col-lg-12">
+		         <hr></hr>
+		      </div>
 			<div class="pull-left">
 			    <button data-toggle="modal" data-target="#comentarios" style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa-commenting-o" aria-hidden="true"></i> Comentários</button>
+			    <button data-toggle="modal" data-target="#questionario" style="margin-top:9px;" class="btn btn-xs btn-secondary"> <i class="fa fa-list" aria-hidden="true"></i> Questionário</button>
 			    <button ng-disabled="true" style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa-external-link" aria-hidden="true"></i> Acessar sistema</button>
 			</div>
 			<div class="pull-right">
@@ -35,13 +66,13 @@
 		   
 		    <div class="form-group col-lg-6" style="padding-left:0px;">
 		        <label>etapa do funil</label>
-		       <auto-complete-object ng-change="vm.salvar(vm.lead)" initial-busca="''"  inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova etapa de funil'" place-holder="'Informe a etapa do lead'"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'etapa_lead'}" ng-model="vm.lead.etapaFunil" ></auto-complete-object>
+		       <auto-complete-object ng-change="vm.changeEtapaLead(vm.lead)" initial-busca="''"  inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova etapa de funil'" place-holder="'Informe a etapa do lead'"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'etapa_lead'}" ng-model="vm.lead.etapaFunil" ></auto-complete-object>
 
 		    </div>
 		    <div class="form-group col-lg-6">
 		        <label uib-tooltip="Ultimo login efetuado no sistema">Data da ultima etapa</label>
 		        <br>
-		        <span class="text-muted text-small"><strong> ---- (x-dias)</strong></span>
+		        <span class="text-muted text-small"><strong> {{vm.lead.dataUltimaEtapa|date:'dd/MM/yyyy'}} <span class="destaque-item">{{vm.diasUltimaEtapaLead}} dias</span></strong></span>
 		    </div>
 		    <div class="col-lg-12">
 		        <hr></hr>
@@ -49,19 +80,16 @@
 		    <div class="form-group col-lg-3">
 		        <label uib-tooltip="Ultimo login efetuado no sistema">ultimo login</label>
 		        <br>
-		        <span class="text-muted text-small"><strong> ----</strong></span>
+		        <span class="text-muted text-small"><strong> {{vm.lead.metrics.dataUltimoLogin|date:'dd/MM/yyyy'}}</strong></span>
 		    </div>
 		    
 		    <div class="form-group col-lg-3">
 		        <label uib-tooltip="Ultimo login efetuado no sistema">ultimo cadastro</label>
 		        <br>
-		        <span class="text-muted text-small"><strong> -----</strong></span>
+		        <span class="text-muted text-small"><strong> ---</strong></span>
 		    </div>
 		    
-		    <div class="col-lg-3">
-		       		<button ng-disabled="true" style="margin-top:9px;" class="btn btn-xs btn-secondary"> <i class="fa fa-list" aria-hidden="true"></i> Questionário</button>
-		     </div>
-		     
+		  
 		      <div class="col-lg-3">
 		       		<button ng-show="false" style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa fa-exchange " aria-hidden="true"></i> Financeiro</button>
 		     </div>
@@ -130,6 +158,40 @@
    <div class="col-lg-12">
       <text-angular ta-toolbar=[] ng-model="vm.lead.comentarios"></text-angular>
    </div>
+   <vertical-space></vertical-space>
+   <vertical-space></vertical-space>
+   <div class="pull-right">
+       <button class="btn btn-secondary" ng-click="vm.salvar(vm.lead)">Salvar <i class="fa fa-check"></i></button>
+   </div>
+</st-modal>
+
+
+<st-modal titulo="Questionário - {{vm.lead.nome}}" idmodal="questionario">
+   
+   <vertical-space></vertical-space>
+   
+   <div class="col-lg-12">
+		<div class="form-group">
+			<ul class="group-list">Questionário
+			</ul>
+			<li class="group-list-item" >
+			<input type="checkbox" ng-model="vm.lead.questions.emite_nota_fiscal" ng-true-value="'true'" ng-false-value="'false'"  />
+				Trabalha com nota fiscal</li>
+				<li class="group-list-item" >
+			<input type="checkbox" ng-model="vm.lead.questions.trabalha_com_caixas_retornaveis" ng-true-value="'true'" ng-false-value="'false'"  />
+				Trabalha com caixas retornáveis</li>
+		</div>
+	</div>
+	<vertical-space></vertical-space>
+	<div class="form-group col-lg-4">
+	    <label>Perfil</label>
+	    <select ng-model="vm.lead.questions.perfilLead" class="form-control" >
+	          <option value="">------------</option>
+	         <option value="produtor">Produtor</option>
+	         <option value="vendedor">Vendedor</option>
+	         <option value="produtor_vendedor">Produtor e vendedor</option>
+	    </select>
+	</div>
    <vertical-space></vertical-space>
    <vertical-space></vertical-space>
    <div class="pull-right">

@@ -2,6 +2,8 @@ package lead;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
 
 import org.springframework.stereotype.Repository;
 
@@ -23,16 +25,23 @@ public class LeadDAO extends GenericDAO<Lead>  {
 		return super.addOrUpdate(item);
 	}
 	
-	public void addIntMetric(String key, Integer value){
+	public void addIntMetric(String key, Long value, boolean increment){
 		
 		Long idLead = SystemUtil.getCurrentUserDetails().getAccount().getIdLead();
 		
 		Connection con = DataBaseUtil.getConnection();
-
+		Statement stm  = null;
+		
+		String updateValue = value+"";
+		if(increment==true){
+			updateValue = "metrics +"+value;
+		}
+		
 		try {
 			//Os eventos sempre serão salvos em db_shared
-			con.createStatement().execute("use db_shared");			
-			int linhasAfetadas = con.createStatement().executeUpdate("update lead_metrics  set metrics = metrics +"+value+" where metrics_KEY='"+key+"' and Lead_id="+idLead);		
+			stm = con.createStatement();		
+			stm.execute("use db_shared");		
+			int linhasAfetadas =stm.executeUpdate("update lead_metrics  set metrics="+updateValue+" where metrics_KEY='"+key+"' and Lead_id="+idLead);		
             if(linhasAfetadas==0){
             	con.createStatement().executeUpdate("insert into lead_metrics (Lead_id, metrics_KEY, metrics) values("+idLead+",'"+key+"', '"+value+"')");
             }  
@@ -41,6 +50,13 @@ public class LeadDAO extends GenericDAO<Lead>  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
+			
+			try {
+				stm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -51,10 +67,12 @@ public class LeadDAO extends GenericDAO<Lead>  {
 		Long idLead = null;
 
 		ResultSet res = null;
+		Statement stm  = null;
 		try {
+			stm =con. createStatement();
 			//Os eventos sempre serão salvos em db_shared
-			con.createStatement().execute("use db_shared");			
-			res   = con.createStatement().executeQuery("select id from lead where telefone= '"+tel+"'");		
+			stm.execute("use db_shared");			
+			res   = stm.executeQuery("select id from lead where telefone= '"+tel+"'");		
 			if(res.next()){
 				idLead = res.getLong("id");
 			}
@@ -64,6 +82,7 @@ public class LeadDAO extends GenericDAO<Lead>  {
 		}finally{
 			try {
 				res.close();
+				stm.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -80,10 +99,12 @@ public class LeadDAO extends GenericDAO<Lead>  {
 		Lead lead = null;
 
 		ResultSet res = null;
+		Statement stm  = null;
 		try {
+			stm = con.createStatement();
 			//Os eventos sempre serão salvos em db_shared
-			con.createStatement().execute("use db_shared");			
-			res   = con.createStatement().executeQuery("select nome, telefone from lead where id = "+id);		
+			stm.execute("use db_shared");			
+			res = stm.executeQuery("select nome, telefone from lead where id = "+id);		
 			if(res.next()){
 				lead = new Lead();
 				lead.setNome(res.getString("nome"));
@@ -95,6 +116,7 @@ public class LeadDAO extends GenericDAO<Lead>  {
 		}finally{
 			try {
 				res.close();
+				stm.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -103,22 +125,53 @@ public class LeadDAO extends GenericDAO<Lead>  {
 		return lead;
 
 	}
+	
+	public void setDataUltimoParam(String param, Long data) {
 
-
-
-	public void addActionByTel(String telefone, String action) {
-
+		Long idLead = SystemUtil.getCurrentUserDetails().getAccount().getIdLead();
 		Connection con = DataBaseUtil.getConnection();
-
+		Statement stm  = null;
+		System.out.println("id do lead: "+idLead);
 		try {
 			//Os eventos sempre serão salvos em db_shared
-			con.createStatement().execute("use db_shared");			
-			con.createStatement().executeUpdate("update lead set actions =  IFNULL (CONCAT( actions, ',' , '"+action+"' ),  '"+action+"')  where telefone='"+telefone+"'");		
+			stm = con.createStatement();
+			stm.execute("use db_shared");			
+			stm.executeUpdate("update lead set "+param+"="+data+"  where id="+idLead);		
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
+			try {
+				stm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public void addActionByTel(String telefone, String action) {
+
+		Connection con = DataBaseUtil.getConnection();
+		Statement stm  = null;
+		try {
+			stm = con.createStatement();
+			//Os eventos sempre serão salvos em db_shared
+			stm.execute("use db_shared");			
+			stm.executeUpdate("update lead set actions =  IFNULL (CONCAT( actions, ',' , '"+action+"' ),  '"+action+"')  where telefone='"+telefone+"'");		
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				stm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}

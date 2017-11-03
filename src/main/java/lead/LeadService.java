@@ -18,6 +18,7 @@ public class  LeadService extends GenericService<Lead>   {
 	@Autowired
 	private LeadDAO dao;
 	
+	
 	@Transactional
 	public void addActionByTel(String tel, String action){
 		
@@ -31,9 +32,9 @@ public class  LeadService extends GenericService<Lead>   {
 	}
 	
 	@Transactional
-	public void addIntMetric(String key, Integer value){
+	public void addIntMetric(String key, Long value, boolean increment){
 		
-		 dao.addIntMetric(key, value);
+		 dao.addIntMetric(key, value, increment);
 	
 	}
 	

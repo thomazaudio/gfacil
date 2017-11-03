@@ -19,8 +19,6 @@ public class  ProdutoService extends GenericService<Produto>   {
 	@Override
 	public Produto addOrUpdate(Produto item){
 		
-		if(item.getId()==0)
-		  leadService.addIntMetric("cads_produto", 1);
 		
 		super.addOrUpdate(item);
 		return item;

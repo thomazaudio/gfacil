@@ -11,7 +11,7 @@
 			restrict:"AE",
 			scope:{
 
-				filtros:"=",
+				filtros:"=",//Filtros do tipo String
 				filterMapInstance:"=",
 				querys:"=",//Querys para binds
 				extra:"="//Query extra a ser aplicado no getLikeMap
@@ -178,6 +178,8 @@
 
 					if(!$scope.qs || $scope.qs.length==0)
 						$scope.qs = [''];
+					
+					//Adciona filtros de data a $scope.qs
 
 					if($scope.$parent.getLikeMap)   
 						$scope.$parent.getLikeMap($scope.qs,0,max,$scope.extra,$scope.orderBy,$scope.orderType);

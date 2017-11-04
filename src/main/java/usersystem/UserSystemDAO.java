@@ -19,7 +19,11 @@ public class UserSystemDAO extends GenericDAO<UserSystem>  {
 	public UserSystem getByLogin(String login){
 
 		String dadosLogin[] = login.split("@");
-		String dbEmpresa  = DataBaseUtil.DB_PREFIX+dadosLogin[1];
+		int posicaoDadosEmpresa = 0;
+		if(dadosLogin.length>1)
+			posicaoDadosEmpresa = 1;
+			 
+		String dbEmpresa  = DataBaseUtil.DB_PREFIX+dadosLogin[posicaoDadosEmpresa];
 		String usuarioEmpresa = dadosLogin[0];
 		Connection con = null;
 

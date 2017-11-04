@@ -22,6 +22,10 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 	if(!$rootScope.usuarioSistema)
 		$rootScope.usuarioSistema = $cookieStore.get("usuarioSistema");
 
+	$scope.lembrarSenhaUsuario = function(){
+		loginUtil.openLembrarSenha();
+	}
+	
 	$scope.logar = function(login,lembrarSenha){
 
 		if(!login.usuario){

@@ -53,6 +53,7 @@
     <context:component-scan base-package="filial" />
     <context:component-scan base-package="lead" />
     <context:component-scan base-package="gerencianet" />
+      <context:component-scan base-package="transactional" />
     
     
     <bean id="multipartResolver"

@@ -1,0 +1,21 @@
+<meta charset="UTF-8" />
+<modal-content loading-ok-action="vm.carregando" icone-titulo="''" modal-instance="this" ok-action="vm.confirmar" titulo="'Lembrar senha'">
+  
+  <div class="generic-transition" ng-show="vm.step==1">
+	  <div class="form-group col-lg-4">
+	   <label class="text-small">Número de telefone (Login)</label>
+	   <input   ng-model="vm.numero" class="form-control"></select>
+	  </div>
+	  <div class="col-lg-12 pull-right">
+	       <button ng-click="vm.lembrarSenha(vm.numero)" class="btn  btn-primary"><i class="fa fa-commenting-o" aria-hidden="true"></i> Enviar minha senha por SMS</button>
+	  </div>
+  </div>
+  <div class="generic-transition" ng-show="vm.step==2">
+      <p class="text-muted">Em breve você receberá um sms com sua senha</p>
+       <div class="col-lg-12 pull-right">
+	       <button ng-click="vm.fechar()" class="btn  btn-default"><i class="fa fa-times"></i> fechar</button>
+       </div>
+  </div>
+ 
+ 
+</modal-content>

@@ -1,8 +1,13 @@
 package usersystem;
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import transactional.SmsAPI;
+import database.DataBaseUtil;
 import model.GenericService;
 
 @Component
@@ -18,6 +23,27 @@ public class UserSystemService extends GenericService<UserSystem>{
 
 	public void setUserDAO(UserSystemDAO userDAO) {
 		this.userDAO = userDAO;
+	}
+	
+	@Transactional
+	public boolean lembrarSenhaSMS(String numero){
+		
+		try {
+			if(DataBaseUtil.existeSchema("db_"+numero)){
+				
+				UserSystem user =  userDAO.getByLogin(numero);
+				String msg = "Sua senha do Ceasa Plus: "+user.getPassword();
+				SmsAPI.sendSimple(msg, numero);
+				return true;
+			}
+			else{
+				return false;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	@Transactional

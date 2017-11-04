@@ -45,12 +45,15 @@ public class UserSystemControl extends GenericControl<UserSystem> {
 
 	@Autowired
 	private UserDetailServiceImpl userDetailService;
-	
+
 	@Autowired
 	private LeadService leadService;
-	
+
 	@Autowired
 	private ConfigService configService;
+	
+	@Autowired
+	private UserSystemService userSystemService;
 
 	//Convert um card em u objeto FunilCeasa
 	public FunilCeasa cardDescToFunil(CardDesc card) throws SQLException{
@@ -86,9 +89,9 @@ public class UserSystemControl extends GenericControl<UserSystem> {
 			new SendEmail().enviaEmailCadastroUsuario(funil);
 
 			if(cardDesc.getFormaContato().equals("SMS"))
-			  new SMS().enviaSMSApresentacaoSistema(funil);
+				new SMS().enviaSMSApresentacaoSistema(funil);
 			else
-			  new SMS().enviaSMSCadastroUsuario(funil);
+				new SMS().enviaSMSCadastroUsuario(funil);
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -98,6 +101,19 @@ public class UserSystemControl extends GenericControl<UserSystem> {
 
 
 		return null;
+	}
+
+
+
+	//Origem a partir do funil do trello
+	//Não se interessou no primeiro contato
+	@JsonView(util.Views.Public.class)
+	@ResponseBody
+	@RequestMapping(value="/lembrar-senha-sms", method= RequestMethod.GET)
+	public boolean lembrarSenhaSMS(@RequestParam String numero) {
+
+		return userSystemService.lembrarSenhaSMS(numero);
+		
 	}
 
 	//Origem a partir do funil do trello
@@ -122,27 +138,27 @@ public class UserSystemControl extends GenericControl<UserSystem> {
 		}
 		return null;
 	}
-	
-	
-		@JsonView(util.Views.Public.class)
-		@ResponseBody
-		@RequestMapping(value="/uso-gratuito/add/", method= RequestMethod.POST)
-		public AjaxResponse<UserSystem> addUsoGratuito(@RequestBody CardDesc cardDesc) {
 
-			try {
 
-				FunilCeasa funil =  cardDescToFunil(cardDesc);
-				funil.setInteressouPrimeiroContato(FunilCeasa.NAO_INTERESSOU_PRIMEIRO_CONTATO);
-				new FunilCeasaDAO().add(funil);
+	@JsonView(util.Views.Public.class)
+	@ResponseBody
+	@RequestMapping(value="/uso-gratuito/add/", method= RequestMethod.POST)
+	public AjaxResponse<UserSystem> addUsoGratuito(@RequestBody CardDesc cardDesc) {
 
-				new SMS().enviaSMSUsoGratuito(funil);
+		try {
 
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			return null;
+			FunilCeasa funil =  cardDescToFunil(cardDesc);
+			funil.setInteressouPrimeiroContato(FunilCeasa.NAO_INTERESSOU_PRIMEIRO_CONTATO);
+			new FunilCeasaDAO().add(funil);
+
+			new SMS().enviaSMSUsoGratuito(funil);
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		return null;
+	}
 
 
 
@@ -160,7 +176,7 @@ public class UserSystemControl extends GenericControl<UserSystem> {
 			UserSystem user = new UserSystem();
 			user.setNome("Admin");
 			user.setLogin(login);
-		
+
 			//Adiciona um novo schema no sistema
 			new DataBaseUtil().createSchema(user);
 

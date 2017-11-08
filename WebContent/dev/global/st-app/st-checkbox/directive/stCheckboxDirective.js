@@ -10,7 +10,8 @@
 			templateUrl:'global/st-app/st-checkbox/template-module/stCheckbox.html',
 			scope:{
 				ngModel:"=",
-				label:"="
+				label:"=",
+				cofirmacao:"="
 			},
 			
 		}

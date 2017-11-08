@@ -166,18 +166,10 @@
 				
 					
 			</ul>
-			<div class=""><strong class="text-small text-muted" style="padding:9px; font-size:10px;"><i class="fa fa-info-circle"></i> {{appVersion}}</strong></div>
 			<div style="padding:9px;">
-			           <label class="text-small">
-							 <checkbox  class="btn-primary"
-							    ng-model="vm.pdv.carregado"
-							    ng-true-value="1"
-							    ng-false-value="0"
-							    name="custom-name" 
-							></checkbox>	
-							Permitir suporte remoto</label>
-						
-			</div>
+			     <st-checkbox  label="'Suporte remoto'" ng-model="vm.onlyDevedores"></st-checkbox>
+            </div>
+			<div class=""><strong class="text-small text-muted" style="padding:9px; font-size:10px;"><i class="fa fa-info-circle"></i> {{appVersion}}</strong></div>
 			
 			 
 	</div>

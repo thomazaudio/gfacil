@@ -56,6 +56,9 @@
 			    <button data-toggle="modal" data-target="#comentarios" style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa-commenting-o" aria-hidden="true"></i> Comentários</button>
 			    <button data-toggle="modal" data-target="#questionario" style="margin-top:9px;" class="btn btn-xs btn-secondary"> <i class="fa fa-list" aria-hidden="true"></i> Questionário</button>
 			    <button ng-disabled="true" style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa-external-link" aria-hidden="true"></i> Acessar sistema</button>
+			    <button data-toggle="modal" data-target="#email" style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa-envelope" aria-hidden="true"></i> Enviar email</button>
+			    <button data-toggle="modal" data-target="#sms" style="margin-top:9px;" class="btn btn-xs btn-default"> <i class="fa fa-external-link" aria-hidden="true"></i> Enviar SMS</button>
+			    
 			</div>
 			<div class="pull-right">
 			    <p style="margin-top:10px;" class="text-small text-muted">origem da aquisição: <span class="destaque-item">{{vm.lead.codOrigem}}</span></p>
@@ -63,6 +66,35 @@
 			<div class="col-lg-12">
 			   <hr></hr>
 			</div>
+			
+			<div class="col-lg-12">
+			   <hr></hr>
+			</div>
+			
+			 <div class="form-group col-lg-4" style="padding-left:0px;">
+			       <label>Data da apresentação</label>
+			       <input st-input tipo="data" class="form-control" ng-model="vm.lead.dataApresentacao" />
+			 </div>
+			 
+			  <div class="form-group col-lg-4" style="padding-left:0px;">
+			       <label>Hora da apresentação</label>
+			       <input type="time" class="form-control" ng-model="vm.lead.horaApresentacao" />
+			 </div>
+			 
+			 <div class="form-group col-lg-4" ng-show="vm.lead.horaApresentacao">
+			         <label>Realizada</label>
+			         <br>
+			         <input ng-change="vm.salvar(vm.lead)" type="checkbox" ng-true-value="1" ng-false-value="0"  class="form-control"   ng-model="vm.lead.apresentacaoRealizada"/>
+			      
+					</checkbox>
+					
+			 </div>
+			 <div class="col-lg-12 pull-left" style="padding-left:0px;margin-top:-5px;">
+			    <button confirm="Tem certeza que deseja salvar?" ng-click="vm.salvar(vm.lead)" class="btn btn-default btn-xs">Salvar <i class="fa fa-check"></i></button>
+			 </div>
+			 <div class="col-lg-12">
+			     <hr></hr>
+			 </div>
 		   
 		    <div class="form-group col-lg-6" style="padding-left:0px;">
 		        <label>etapa do funil</label>
@@ -153,6 +185,49 @@
 		</div>
 	</div>
 </modal-content>
+
+<st-modal titulo="SMS - {{vm.lead.nome}}" idmodal="sms">
+   <div class="col-lg-12">
+		 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-phone-square"></i> <strong>{{vm.lead.telefone}}</strong></span>
+   </div>
+   <div class="col-lg-12">
+      <textarea  rows="9" class="form-control" ng-model="vm.sms"></textarea>
+   </div>
+   <vertical-space></vertical-space>
+   <vertical-space></vertical-space>
+   <div class="pull-right">
+       <button ng-disabled="vm.enviandoSMS==true" class="btn btn-secondary" ng-click="vm.enviarSMS(vm.sms)"> Enviar  SMS <i class="fa fa-external-link"></i></button>
+   </div>
+</st-modal>
+
+<st-modal titulo="Enviar email - {{vm.lead.nome}}" idmodal="email" size="lg">
+   <form ng-submit="vm.enviarEmail(vm.assuntoEmail, vm.contentEmail)">
+         
+	    <div class="col-lg-6 form-group">
+	        <label>Assunto</label>
+	        <input ng-model="vm.assuntoEmail" class="form-control" required />
+	    </div>
+	   
+	    <div class="form-group col-lg-6">
+	        <button ng-click="getEmailTemplates()" ng-show="!vm.emailTemplates" class="btn btn-xs btn-default">mostrar templates</button>
+	         <div ng-show="vm.emailTemplates">
+		        <label>Escolha um template</label>
+		         <select ng-model="vm.templateEmail" ng-options="template as template.titulo for template in vm.emailTemplates" ng-change="vm.changeEmailTemplate(vm.templateEmail)" class="form-control">
+		         </select>
+	         </div> 
+	    </div>
+	   <div class="col-lg-12">
+	        <text-angular ng-model="vm.contentEmail"></text-angular>
+	   </div>
+	   <vertical-space></vertical-space>
+	   <vertical-space></vertical-space>
+	   <div class="pull-right">
+	       <button ng-disabled="vm.enviandoEmail==true" type="submit" class="btn btn-secondary">Enviar email <i class="fa fa-envelope"></i></button>
+	   </div>
+   </form>
+</st-modal>
+
+
 
 <st-modal titulo="Comentários - {{vm.lead.nome}}" idmodal="comentarios">
    <div class="col-lg-12">

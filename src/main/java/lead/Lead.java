@@ -12,6 +12,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import util.DataUtil;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 import crud.CrudClass;
@@ -27,6 +29,27 @@ public class Lead extends CrudClass {
 	@JsonView(util.Views.Public.class)
 	@Transient
 	private String savedInForm;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonView(util.Views.Public.class)
+	private Date horaApresentacao;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonView(util.Views.Public.class)
+	private Date dataApresentacao;
+
+	public void setDataApresentacao(String data) {
+
+		this.dataApresentacao =DataUtil.formatData(data);
+	}
+	
+	public void setHoraApresentacao(String hora) {
+
+		this.horaApresentacao =DataUtil.formatData(hora);
+	}
+
+	@JsonView(util.Views.Public.class)
+	private int apresentacaoRealizada;
 
 	//Data da ultima atualização do Lead
 	@Temporal(TemporalType.TIMESTAMP)

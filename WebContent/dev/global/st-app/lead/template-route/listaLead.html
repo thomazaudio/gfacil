@@ -16,6 +16,9 @@
 			">
    </st-filter-map>
 </div>
+<div class="col-lg-6">
+      <st-period   submit="atualizarDados"    de="dataDe"  ate="dataAte"></st-period>
+</div>
 
 <vertical-space></vertical-space>
 <vertical-space></vertical-space>
@@ -48,7 +51,15 @@
 		        <a ng-click="openDetalhe(lead)" class="btn btn-xs btn-default"> detalhes <i class="fa fa-external-link"></i></a>
 		    </td>
 		    <td data-title="Data" class="text-center">
-		       <strong> {{lead.nome|uppercase}}</strong>
+		       <strong  uib-tooltip
+		       uib-tooltip-html="'Produtos cadastrados: {{lead.metrics.cads_produto||0}} <br>
+		       Vendas realizadas: {{lead.metrics.cads_venda||0}}<br>
+		       Clientes cadastrados: {{lead.metrics.cads_cliente||0}}<br>
+		       Visualizações de relatório: {{lead.metrics.visualizacoes_relatorio||0}}
+		       Despesas lançadas: {{lead.metrics.cads_despesa||0}}
+		       '"
+		       > 
+		       {{lead.nome|uppercase}}</strong>
 		    </td>
 		     <td>
 		       <span>{{lead.metrics.dataUltimoLogin|date:'dd/MM/yyyy'}}</span>

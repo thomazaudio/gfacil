@@ -5,6 +5,15 @@
 
 	.factory("leadUtil",function(stService, deviceDetector){
 
+		var _changeAttr = function(attr_, value_, id_){
+			
+			stService.executeGet("/lead/change-attr",{attr: attr_, value: value_, id: id_}).success(function(){
+
+
+			});
+			
+		}
+		
 		var _addMetricaTipoDispositivo = function(){
 
 			var _label = "acessos_";
@@ -43,7 +52,8 @@
 		return{
 			addMetricaTipoDispositivo: _addMetricaTipoDispositivo,
 			addIncMetric: _addIncMetric,
-			addSubsMetric: _addSubsMetric
+			addSubsMetric: _addSubsMetric,
+			changeAttr: _changeAttr
 			
 		}
 

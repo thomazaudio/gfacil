@@ -7,7 +7,7 @@
 	.directive("stMenu",function(){
 
 		return{
-			templateUrl:'global/st-app/st-util/template-module/stMenu.html',
+			templateUrl:'global/st-app/st-menu/template-module/stMenu.html',
 			scope:{
 
 				itens: "="
@@ -28,7 +28,7 @@
 						return;
 					}
 
-					if( path=='/login' || path=='/change-password' || path=='/video-apresentacao' || path=='/login-redirect' || path=="/login/:login" || path=="/initial-config")
+					if( path=='/cadastro/:login' ||  path=='/login' || path=='/change-password' || path=='/video-apresentacao' || path=='/login-redirect' || path=="/login/:login" || path=="/initial-config")
 						$scope.showMenu = false;
 					else
 						$scope.showMenu = true;

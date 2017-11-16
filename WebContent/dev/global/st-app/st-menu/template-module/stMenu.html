@@ -1,22 +1,19 @@
 <meta charset="UTF-8" />
 <div>
+ 
   <nav id="nav_principal"  ng-cloak ng-show="showMenu"
 			class="navbar navbar-default navbar-static-top" role="navigation"
 			style="margin-bottom: 0; background-color: #EDEDED">
-			
-			 
-			
+		
        <div id="nav-header" class="navbar-header"  style="padding-top: 0px; min-width: 200px;">
 				
-			
-				
 				<button ng-click="changeCollapse()" type="button" id="button-menu-mobile"
-					class="navbar-toggle btn btn-default  dropdown-toggle" data-toggle="dropdown" style="margin: 0px!important; font-size: 25px;">
+					class="navbar-toggle btn btn-default  dropdown-toggle onboarding-pulse" data-toggle="dropdown" style="margin: 0px!important; font-size: 25px;">
 					<i class="fa fa-bars fa-1.5x" style="color:white;"></i>
 				</button>
 				
 				    <!-- Menu mobile -->
-				<div class="dropdown-menu menu-mobile  pull-right ">
+				<div id="menu" class="dropdown-menu menu-mobile  pull-right">
 				          <div class="pull-left" style="margin:9px;">
 				              <span class="text-muted">
 				                     <strong><i class="fa fa-info-circle" aria-hidden="true"></i> {{appVersion}}</strong>
@@ -42,7 +39,7 @@
 					   
 					   <vertical-space></vertical-space>
 					    <div class="col-xs-4" >
-			                 <a class="btn btn-mobile-menu btn-mobile-menu-destaque ripple" style="width:100%;color: #ff8a01"  ng-click="atualizarEstoque()">
+			                 <a id="button-entrada-mercadoria-mobile" class="btn btn-mobile-menu btn-mobile-menu-destaque ripple" style="width:100%;color: #ff8a01"  ng-click="atualizarEstoque()">
 				                  <i class="fa fa-truck fa-2x" aria-hidden="true"></i>
 								 <br><strong>Entrada de merc.</strong>
 							 </a>
@@ -73,13 +70,21 @@
 		               <vertical-space></vertical-space>
 		               
 						<div class="col-xs-12"><hr></hr></div>
-							<!-- 
+						
 					     <div class="col-xs-4" >
-			                 <a button-tutorial class="btn btn-mobile-menu" style="width:100%;" nav-click>
-			                 <i class="fa fa-question-circle fa-2x info" aria-hidden="true"></i>
-									<br>Ajuda</a>
+			                 <a class="btn btn-mobile-menu drift-open-chat" style="width:100%;" nav-click>
+			                 <i class="fa fa-commenting-o fa-2x info" aria-hidden="true"></i>
+									<br>Suporte  chat</a>
 						 </div>
-						 -->
+						 
+						 <!-- 
+						 <div class="col-xs-4" >
+			                 <a button-tutorial   class="btn btn-mobile-menu drift-open-chat" style="width:100%;" nav-click>
+			                 <i class="fa fa-film fa-2x info" aria-hidden="true"></i>
+									<br>Vídeos</a>
+						 </div>
+						  -->
+						 
 						 <div class="col-xs-4" >
 			                 <a class="btn btn-mobile-menu" style="width:100%;" ng-click="logOut()" nav-click>
 			                 <i class="fa fa-sign-out fa-2x info" aria-hidden="true"></i>
@@ -167,7 +172,10 @@
 					
 			</ul>
 			<div style="padding:9px;">
+			    <a class="btn btn-default btn-block drift-open-chat"><i class="fa fa-commenting-o" aria-hidden="true" style="color: var(--secondary-color)"></i> Suporte </a>
+			     <!--  
 			     <st-checkbox  label="'Suporte remoto'" ng-model="vm.onlyDevedores"></st-checkbox>
+			     -->
             </div>
 			<div class=""><strong class="text-small text-muted" style="padding:9px; font-size:10px;"><i class="fa fa-info-circle"></i> {{appVersion}}</strong></div>
 			

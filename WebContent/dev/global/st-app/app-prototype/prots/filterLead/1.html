@@ -1,0 +1,48 @@
+<meta charset="UTF-8" />
+<div class="col-lg-4 form-group">
+     <label>Busca por ocorrencia de termo</label>
+    <div  class="filter-map text-center">
+		      <form>
+				<div class="input-group" style="z-index:1;">
+				   <input id="busca" st-input tipo="{{infoBusca.tipo}}" class="form-control  input-busca-map"  ng-model="infoBusca.value" placeholder="informe um termo para buscar">
+				   <span id="span-limpa-busca"  ng-show="infoBusca.value" class="input-group-btn"><button id="btn-limpa-busca" type="button" ng-click="infoBusca.value='';buscar(infoBusca)" class="btn btn-default btn-busca-map-limpa text-muted">x</button></span>  
+				  <span class="input-group-btn">
+				           <button id="btn-change-filtros"  class="btn btn-block btn-default dropdown-toggle" style="width:35px;height:42px;" type="button" data-toggle="dropdown"> 
+				                <span><i  class="fa fa-bars info" aria-hidden="true"></i></span></button>
+					            <ul class="dropdown-menu  list-group pull-right" style="padding:5px">
+					                <li class="list-group-item"  ><strong>{{info.placeholder}}</strong> <i class="fa fa-check-circle-o" aria-hidden="true" style="color:var(--secondary-color)"></i> Buscar pelo nome do Lead</li>
+					            </ul>
+				    </span>
+		  		</div>
+			  </form> 	
+		</div>
+</div>
+
+<div class="col-lg-4 form-group">
+     <select class="form-control" style="line-height: 15px!important;
+    height: 25px!important;
+    margin-bottom: 2px;
+    font-size: 11px;">
+        <option>Data do ultimo login</option>
+     </select>
+    <st-period   de="periodoDe"  ate="periodoAte"></st-period>
+</div>
+
+<div class="col-lg-4 form-group">
+   <label>Ativação</label>
+   <br>
+   <select class="form-control">
+      <option>Ativo nos ultimos 10 dias</option>
+   </select>
+</div>
+
+<div class="col-lg-12 pull-right">
+    <button class="btn btn-xs  btn btn-default"><i class="fa fa-trash"></i> limpar filtros</button>
+    <button class="btn btn-xs btn-primary"> aplicar filtros <i class="fa fa-check"></i></button>
+</div>
+
+
+
+
+
+

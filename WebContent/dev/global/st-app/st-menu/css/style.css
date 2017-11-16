@@ -1,0 +1,26 @@
+.onboarding-button-menu-arrow, .onboarding-button-menu-arrow:after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+
+
+.onboarding-button-menu-arrow {
+    border-width: 11px;
+}
+
+.onboarding-button-menu-arrow{
+    top: -11px;
+    left: 50%;
+    margin-left: 42%;
+    border-bottom-color: var(--secondary-color);
+    border-top-width: 0!important;
+}
+
+.onboarding-close-button, .onboarding-close-button:hover, .onboarding-close-button:visited {
+    color: #fffafa;
+    text-decoration: none;
+}

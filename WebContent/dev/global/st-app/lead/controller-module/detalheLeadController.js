@@ -107,6 +107,7 @@
 		}
 
 		vm.lead = lead;
+		vm.lead.horaApresentacao = new Date(vm.lead.horaApresentacao);
 
 		vm.diasUltimaEtapaLead = dateUtil.daysBetween(vm.lead.dataUltimaEtapa, new Date().getTime());
 
@@ -114,14 +115,28 @@
 			stService.getById("lead", vm.lead.id).success(function(data){
 				stUtil.showMessage("","Atualizado com sucesso!");
 				vm.lead = data.item;
+				vm.lead.horaApresentacao = new Date(vm.lead.horaApresentacao);
+				console.log("hora: ");
+				console.log(new Date(vm.lead.horaApresentacao));
 			});
 		}
 		vm.salvar = function(lead){
-
+			
+			console.log("horaApresentação: ");
+			console.log(lead.horaApresentacao);
+		
+			
+			if(lead.dataApresentacao)
+				lead.dataApresentacao= dateUtil.getDate(lead.dataApresentacao).getTime();
+			else
+				lead.dataApresentacao =0;
+				
+			
 			stService.executePost("lead/add/",lead).success(function(data){
 
 				stUtil.showMessage("","Salvo com sucesso!");
 				vm.lead = data.item;
+				vm.lead.horaApresentacao = new Date(vm.lead.horaApresentacao);
 			});
 
 		},

@@ -1,7 +1,8 @@
 <meta charset="UTF-8" />
 <vertical-space></vertical-space>
 <div ng-controller="stControl">
-<onboarding-popover ng-if="objetos.length==1 && config.confs.visualizouOnboardingProdutos!='true'" enabled="true" steps="stepsProduto" on-finish-callback='finalizarOnboarding()' step-index='stepsProdutoIndex'></onboarding-popover>
+
+<onboarding-popover  enabled="objetos.length==1 && config.confs.visualizouOnboardingProdutos!='true'" steps="stepsProduto" on-finish-callback='finalizarOnboarding()' step-index='stepsProdutoIndex'></onboarding-popover>
 
 <div class="col-lg-6">
     <st-filter-map

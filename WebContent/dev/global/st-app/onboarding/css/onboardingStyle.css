@@ -1,0 +1,43 @@
+.onboarding-pulse.onboarding-focus {
+    color: var(--secondary-color)!important;
+    animation-name: animation-onboarding-focus;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+
+.onboarding-popover-title {
+    position: relative;
+    padding: 8px 14px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 18px;
+    border-bottom: 1px solid #4aba58;
+    border-radius: 5px 5px 0 0;
+    color: white;
+    background-color: var(--secondary-color);
+}
+
+.onboarding-popover {
+    border: 1px solid #4aba58;
+    
+}
+
+.onboarding-popover.onboarding-left .onboarding-arrow {
+ 
+    border-left-color: var(--secondary-color)!important;
+  
+}
+
+.onboarding-popover.onboarding-bottom .onboarding-arrow {
+ 
+    border-bottom-color: var(--secondary-color)!important;
+  
+}
+
+.onboarding-popover.onboarding-top .onboarding-arrow {
+ 
+    border-top-color: var(--secondary-color)!important;
+  
+}

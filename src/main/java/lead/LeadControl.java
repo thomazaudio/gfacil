@@ -33,7 +33,15 @@ public class LeadControl extends GenericControl<Lead> {
 
 	}
 
+ 
+	@JsonView(util.Views.Public.class)
+	@ResponseBody
+	@RequestMapping(value="/lead/change-attr", method=RequestMethod.GET)
+	public int changeAttr(@RequestParam String attr, @RequestParam String value, @RequestParam long id){
 
+		return leadService.changeAttr(id, attr, value);
+
+	}
 
 
 

@@ -1,0 +1,59 @@
+<meta charset="UTF-8" />
+<div class="col-lg-4 form-group">
+     <label>Busca por ocorrencia de termo</label>
+    <div  class="filter-map text-center">
+		      <form>
+				<div class="input-group" style="z-index:1;">
+				   <input ng-change="vm.changeFilters()" id="busca" class="form-control  input-busca-map"  ng-model="vm.buscaLabel.value" placeholder="{{vm.buscaLabel.titulo}}">
+				   <span id="span-limpa-busca"  ng-show="vm.buscaLabel.value" class="input-group-btn"><button id="btn-limpa-busca" type="button" ng-click="vm.buscaLabel.value=''" class="btn btn-default btn-busca-map-limpa text-muted">x</button></span>  
+				  <span class="input-group-btn">
+				           <button id="btn-change-filtros"  class="btn btn-block btn-default dropdown-toggle" style="width:35px;height:42px;" type="button" data-toggle="dropdown"> 
+				                <span><i  class="fa fa-bars info" aria-hidden="true"></i></span></button>
+					            <ul class="dropdown-menu  list-group pull-left" style="padding:5px">
+					                <li ng-click="vm.buscaLabel = busca" class="list-group-item"  ng-repeat="busca in vm.listaBuscaLabel" ><strong>{{busca.titulo}}</strong> <i ng-show="vm.buscaLabel.attr==busca.attr" class="fa fa-check-circle-o" aria-hidden="true" style="color:var(--secondary-color)"></i></li>
+					            </ul>
+				    </span>
+		  		</div>
+			  </form> 	
+		</div>
+</div>
+
+<div class="col-lg-4">
+     <select  ng-change="vm.changeFilters()"   ng-model="vm.attrData" class="form-control" style="line-height: 15px!important;
+    height: 25px!important;
+    margin-bottom: 2px;
+    font-size: 11px;">
+        <option value="dataUltimoLogin">Data do ultimo login</option>
+        <option value="dataApresentacao">Data de apresentação</option>
+     </select>
+      <input ng-change="vm.changeFilters()"  placeholder="Informe uma data" st-input tipo="data" class="form-control"  ng-model="vm.dataValue"  />
+</div>
+
+<div class="col-lg-4 form-group">
+   <label>Ativação</label>
+   <br>
+   <select ng-change="vm.changeFilters()"   ng-model="vm.ativacaoLastDays" class="form-control">
+       <option value="0">Nenhum</option>
+       <option value="2">Ativo nos ultimos 2 dias</option>
+       <option value="10">Ativo nos ultimos 10 dias</option>
+       <option value="30">Ativo nos ultimos 30 dias</option>
+       <option value="100">Ativo nos ultimos 100 dias</option>
+      
+   </select>
+</div>
+<div class="col-lg-12 pull-right">
+    <button ng-click="vm.limparFiltros()" class="btn btn-xs  btn btn-default"><i class="fa fa-trash"></i> limpar filtros</button>
+    <button ng-click="vm.aplicarFiltros()" class="btn btn-xs btn-primary"> aplicar filtros <i class="fa fa-check"></i></button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

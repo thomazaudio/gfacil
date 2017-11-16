@@ -30,23 +30,27 @@ public class Lead extends CrudClass {
 	@Transient
 	private String savedInForm;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@JsonView(util.Views.Public.class)
+	private Long dataUltimoLogin;
+
+	@JsonView(util.Views.Public.class)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date horaApresentacao;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@JsonView(util.Views.Public.class)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataApresentacao;
+
+	//id da lista na ferramenta externa
+	@JsonView(util.Views.Public.class)
+	private Long dataUltimaEtapa;
 
 	public void setDataApresentacao(String data) {
 
-		this.dataApresentacao =DataUtil.formatData(data);
+		this.dataApresentacao  = DataUtil.formatData(data);
 	}
-	
-	public void setHoraApresentacao(String hora) {
 
-		this.horaApresentacao =DataUtil.formatData(hora);
-	}
+	
 
 	@JsonView(util.Views.Public.class)
 	private int apresentacaoRealizada;
@@ -86,9 +90,7 @@ public class Lead extends CrudClass {
 	private Long list_id;
 
 
-	//id da lista na ferramenta externa
-	@JsonView(util.Views.Public.class)
-	private Long dataUltimaEtapa;
+
 
 	@JsonView(util.Views.Public.class)
 	private String telefone;

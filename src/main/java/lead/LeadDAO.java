@@ -3,10 +3,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
-
 import org.springframework.stereotype.Repository;
-
 import system.SystemUtil;
 import database.DataBaseUtil;
 import model.GenericDAO;
@@ -24,33 +21,69 @@ public class LeadDAO extends GenericDAO<Lead>  {
 
 		return super.addOrUpdate(item);
 	}
-	
-	public void addIntMetric(String key, Long value, boolean increment){
-		
-		Long idLead = SystemUtil.getCurrentUserDetails().getAccount().getIdLead();
-		
+
+	@Override
+	public int changeAttr(long id,String attr,String value) {
+
+		if(id==0)
+			id =  SystemUtil.getCurrentUserDetails().getAccount().getIdLead();
+
+		int linhasAfetadas = 0;
+
 		Connection con = DataBaseUtil.getConnection();
 		Statement stm  = null;
-		
+
+		String query = "update lead set "+attr+" = "+value+" where id = "+id;
+
+		try {
+			//Os eventos sempre serão salvos em db_shared
+			stm = con.createStatement();		
+			stm.execute("use db_shared");		
+			linhasAfetadas =stm.executeUpdate(query);		
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+
+			try {
+				stm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+
+		return linhasAfetadas;
+	}
+
+	public void addIntMetric(String key, Long value, boolean increment){
+
+		Long idLead = SystemUtil.getCurrentUserDetails().getAccount().getIdLead();
+
+		Connection con = DataBaseUtil.getConnection();
+		Statement stm  = null;
+
 		String updateValue = value+"";
 		if(increment==true){
 			updateValue = "metrics +"+value;
 		}
-		
+
 		try {
 			//Os eventos sempre serão salvos em db_shared
 			stm = con.createStatement();		
 			stm.execute("use db_shared");		
 			int linhasAfetadas =stm.executeUpdate("update lead_metrics  set metrics="+updateValue+" where metrics_KEY='"+key+"' and Lead_id="+idLead);		
-            if(linhasAfetadas==0){
-            	con.createStatement().executeUpdate("insert into lead_metrics (Lead_id, metrics_KEY, metrics) values("+idLead+",'"+key+"', '"+value+"')");
-            }  
-			
+			if(linhasAfetadas==0){
+				con.createStatement().executeUpdate("insert into lead_metrics (Lead_id, metrics_KEY, metrics) values("+idLead+",'"+key+"', '"+value+"')");
+			}  
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			
+
 			try {
 				stm.close();
 			} catch (SQLException e) {
@@ -125,7 +158,7 @@ public class LeadDAO extends GenericDAO<Lead>  {
 		return lead;
 
 	}
-	
+
 	public void setDataUltimoParam(String param, Long data) {
 
 		Long idLead = SystemUtil.getCurrentUserDetails().getAccount().getIdLead();

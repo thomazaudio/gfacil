@@ -1185,6 +1185,7 @@
 				de:"=",
 				ate:"=",
 				submit:"=",
+				change:"=",
 				syncPeriod:"=",//se true, o periodo selecionado é sincronizado em local storage
 				
 			},

@@ -1,33 +1,19 @@
 <meta charset="UTF-8" />
 
 <div ng-controller="stControl">
-<div class="col-lg-6">
-    <st-filter-map
-		    filter-map-instace="filterMapInstance"
-			busca-especial="buscaEspecial"
-			filtros="[
- 	        
- 	        {attr:'nome',placeholder:'Buscar pelo nome'},
- 	         {attr:'etapaFunil',placeholder:'Buscar pelo etapa do lead'},
- 	        {attr:'telefone',placeholder:'Buscar pelo telefone'},
- 	        {attr:'email',placeholder:'Buscar pelo email'},
-			
-			]
-			">
-   </st-filter-map>
-</div>
-<div class="col-lg-6">
-      <st-period   submit="atualizarDados"    de="dataDe"  ate="dataAte"></st-period>
+
+<div class="col-lg-12" style="padding:0px;">
+    <filter-leads qs="vm.qs" submit="aplicarFiltros"></filter-leads>
 </div>
 
 <vertical-space></vertical-space>
 <vertical-space></vertical-space>
 <div class="col-lg-4 only-desktop" >
-    <button ng-click="openDetalhe({})" class="btn btn-default"><i class="fa fa-plus"></i> <strong>Cadastrar Lead</strong></button>
+    <button ng-click="openDetalhe({});" class="btn btn-default"><i class="fa fa-plus"></i> <strong>Cadastrar Lead</strong></button>
 </div>
 <vertical-space></vertical-space>
 <vertical-space></vertical-space>
-<div class="col-lg-12">
+<div class="col-lg-12" ng-show="aplicouFiltros" >
 <table class="modern-table st-table table-bordered table-striped table-condensed cf col-lg-12" >
        <thead class="cf">
 		<tr>
@@ -62,7 +48,7 @@
 		       {{lead.nome|uppercase}}</strong>
 		    </td>
 		     <td>
-		       <span>{{lead.metrics.dataUltimoLogin|date:'dd/MM/yyyy'}}</span>
+		       <span>{{lead.dataUltimoLogin|date:'dd/MM/yyyy'}}</span>
 		    </td>
 		    <td>
 		       <span class="destaque-item">{{lead.etapaFunil}}</span>
@@ -82,7 +68,7 @@
  </div>
  <vertical-space></vertical-space>
  <vertical-space></vertical-space>
-<st-pagination  filter-map-instance="filterMapInstance"></st-pagination>
+<st-pagination ng-show="aplicouFiltros"  querys="vm.qs" ></st-pagination>
  </div>
  
 

@@ -1,22 +1,63 @@
 <!-- Protótipo para novo módulo de logística reversa -->
 <meta charset="UTF-8" />
 
-
-<!-- Botão flutuante -->
-<ul mfb-menu position="br" effect="zoomin" 
-     active-icon="fa fa-edit" resting-icon="fa fa-check"
-     toggling-method="click">
-     <a mfb-button  go-link="'produto/cad-step'" icon="fa fa-plus-square" label="Cadastrar produto"></a>
-     <a mfb-button  go-link="'atualiza-simple-estoque'" icon="fa fa-truck" label="Lançar entrada de mercadoria"></a>
-</ul>
-
-<mobile-tabs tabs="[
-      
-      {label:'Informações', icon:'info-circle'},
-      {label:'Produtos', icon:'pie-chart'},
-       
-  ]">
- </mobile-tabs>
-
-
-
+<div class="panel">
+		   <div class="panel-body" style="padding-bottom:0px;">
+			   <div class="col-lg-5 col-xs-5">
+			         <p class="text-muted text-small" style="margin-left: 10px;">R$  <strong style="color:var(--secondary-color);font-size:19px">{{vm.totalPdv||0|number:2}}</strong></p>
+			   </div>
+			   
+			   <div class="col-lg-3 col-xs-3">
+			        <button-baixa-mov template-version="2" label="Pago" class="printHide" mov="vm.pdv.movimentacao"></button-baixa-mov>
+			        <a ng-if="vm.pdv.movimentacao.valor>0 && config.confs.showParcelementoInPdv=='true'" data-toggle="modal" data-target="#modalParcelas">parcelas</a>
+			    </div>
+			  
+			   <div class="col-lg-4 col-xs-4">
+			    
+			      <checkbox class="btn-primary"
+					    ng-model="vm.pdv.carregado"
+					    ng-true-value="1"
+					    ng-false-value="0"
+					    name="custom-name" 
+					>
+					</checkbox>
+					<label class="text-muted"><strong>Entregue</strong></label>
+			   </div>
+			</div>
+	   </div>
+	   
+	   <div class="panel-body">
+	   
+	     <div class="generic-transition">
+	              <div class="form-group">
+				   <label class="text-muted"><i class="fa fa-user"></i> Cliente</label>
+				   <auto-complete-object initial-busca="vm.defaultClienteLabel  || 'Outros'" auto-show-busca="!vm.pdv.movimentacao.pessoa" id-input="'cliente-venda'"  use-cache="true" extra-class="'input-lg'" inline="true"  tipo="'select'" label-cad="'Cadastrar novo Cliente'" place-holder="'Primeiro, digite o nome do cliente'"  object-op="'cliente'" querys="" label="'nome'" ng-model="vm.pdv.movimentacao.pessoa" />
+	              </div>
+		          <vertical-space></vertical-space>
+		          
+				
+	     </div>
+	   
+		 <div   class="generic-transition">
+		        <app-simple-pedido pedidos="vm.pdv.movimentacao.pedidos"></app-simple-pedido> 
+		  </div>
+	
+        <div  ng-if="vm.step==2" class="generic-transition">
+              <vertical-space></vertical-space>
+			  
+			  <div class="panel" ng-if="config.confs.showEmpEmbalagensPdv=='true'">	
+				   <div class="panel-body">
+				            <div class="form-group col-lg-12">
+					           <label class="text-muted text-small"><i class="fa fa-archive" style="color:#5bc068; font-size:22px"></i> Empréstimo de embalagens </label>
+							   <input type="tel" ng-model="vm.pdv.lr.quantidade" class="form-control ng-enter" placeholder="Quantidade de embalagens emprestadas nesta venda"/>
+							   <label class="text-muted text-small"  ng-if="vm.quantidadeEmbalagemReceber>0">(<strong>{{vm.pdv.movimentacao.pessoa.nome|uppercase}}</strong> já está devendo  <strong class="danger">{{vm.quantidadeEmbalagemReceber}}</strong> embalagens de empréstimos anteriores)</label>
+				           </div>
+				   </div>
+		      </div>
+		</div>
+	
+	<div class="row"></div>
+	</div>
+	   
+	   
+	   

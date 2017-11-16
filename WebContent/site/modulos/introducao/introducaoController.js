@@ -2,6 +2,8 @@ angular.module("site").controller("introducaoController", function(lead, deviceD
 
 	var youtubePlayer;
 	
+	$scope.lead = lead;
+	
 	//Resolver largura do video de acordo com o dispositivo
 	var alturaTela = $(window).height();
 	var larguraTela = $(window).width();
@@ -58,16 +60,13 @@ angular.module("site").controller("introducaoController", function(lead, deviceD
 
 	$scope.step=0;
 
-	$scope.responder = function(res){
+	$scope.next = function(lead){
 
-		leadUtil.setAction("respondeu_"+res);
-		
 		$scope.step++;
 		
-        if($scope.step==2){
-        	
-        	console.log("lead");
-        	console.log($rootScope.lead);
+		leadUtil.saveLead(lead);
+		
+        if($scope.step==1){
         	
         	//Origem a partir do facebook
     		if($rootScope.lead.codOrigem.indexOf("fv")!=-1){
@@ -76,8 +75,7 @@ angular.module("site").controller("introducaoController", function(lead, deviceD
     		}else{
     			youtubePlayer.playVideo();
     		}
-			
-			
+				
 		}
 		
 		
@@ -93,7 +91,7 @@ angular.module("site").controller("introducaoController", function(lead, deviceD
 
 	$interval(function(){
 
-		if($scope.videoIntro.getCurrentTime()>=232 ){
+		if($scope.videoIntro.getCurrentTime()>=19 ){
 
 			$scope.showButtonProx = true;
 		}

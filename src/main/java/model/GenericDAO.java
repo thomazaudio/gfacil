@@ -61,10 +61,10 @@ public abstract class GenericDAO<E> {
 
 
 	//queryValue = ex: nome='Thomaz'
-	public int changeAttr(long id,String atributo,String queryValue) {
+	public int changeAttr(long id,String attr,String queryValue) {
 
 
-		String queryUpdate  = "update from "+classe.getSimpleName()+" set "+queryValue+" where id = :id";
+		String queryUpdate  = "update  "+classe.getSimpleName()+" set "+attr+"="+queryValue+" where id = :id";
 
 		Query query= getSessionFactory().getCurrentSession().createQuery(queryUpdate);
 

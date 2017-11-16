@@ -1,6 +1,11 @@
-angular.module("adm").controller("testeController", function($scope, chronoService, stService){
+angular.module("adm").controller("testeController", function($scope, chronoService, stService, dateUtil){
 	
 	
+	$scope.changeDate = function(data){
+		
+		console.log(dateUtil.getDate(data).getTime());
+		console.log(new Date().getTime());
+	}
 	
    $scope.iniciar = function(){
 	   

@@ -3,6 +3,13 @@
 	angular.module("adm") 
 	
 	.controller("listaLeadController",function($scope, stService, dateUtil, movUtil, $rootScope, $uibModal){
+		
+		     $scope.aplicarFiltros = function(){
+		    
+		    	 $scope.aplicouFiltros=true;
+		     }
+		    	 
+		    	 
 
 	           $scope.openDetalhe = function(lead_){
 	        	   

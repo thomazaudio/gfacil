@@ -345,6 +345,10 @@ a:hover, a:focus {
     border-radius: 2px;
 }
 
+.danger{
+	color:  var(--danger-color)!important;
+}
+
 .destaque-item-danger{
 	
 	background-color: var(--danger-color);

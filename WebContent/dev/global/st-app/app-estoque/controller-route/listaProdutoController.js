@@ -1,7 +1,8 @@
 "use strict";
 (function(){
-	angular.module("adm").controller("listaProdutoController",function(estoqueUtil,$rootScope,stUtil,$scope,$location,$stModal,stService,$route,$stDetalhe, configUtil){
+	angular.module("adm").controller("listaProdutoController",function(estoqueUtil, $rootScope, stUtil, $scope, $location, $stModal, stService, $route, $stDetalhe, configUtil, leadUtil){
 
+	
 		$scope.stepsProduto = [
 		                       
 		                       {
@@ -11,6 +12,7 @@
 		                        	  width: 300,
 		                        	  nextButtonText:"OK",
 		                        	  overlayOpacity: 0,
+		                        	  
 		                          },
 		                          
 		                         
@@ -79,8 +81,9 @@
 		$scope.finalizarOnboarding = function(){
 			
 			configUtil.setConfig("visualizouOnboardingProdutos","true", function(){
-				
-				$location.path("/inicio");
+			
+				 leadUtil.addSubsMetric("onboard_listagem_produtos", 1);
+				 //$location.path("/inicio");
 			})
 		
 		}

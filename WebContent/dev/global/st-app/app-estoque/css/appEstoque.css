@@ -25,6 +25,6 @@
     top: -11px;
     left: 50%;
     margin-left: -95px;
-    border-bottom-color: #9fb0a1!important;
+    border-bottom-color: var(--secondary-color);
     border-top-width: 0!important;
 }

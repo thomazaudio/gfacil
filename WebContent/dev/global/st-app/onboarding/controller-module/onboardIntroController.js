@@ -2,7 +2,7 @@
 (function(){
 	angular.module("adm") 
 
-	.controller("onboardIntroController",function($rootScope, $modalInstance, estoqueUtil, $location,  $uibModal, configUtil){
+	.controller("onboardIntroController",function($rootScope, $modalInstance, estoqueUtil, $location,  $uibModal, configUtil, leadUtil){
 		
 		var vm = this;
 		vm.proj = {data:[[100]], labels:[""]};
@@ -25,6 +25,7 @@
 			
 			if(vm.step==2){
 				configUtil.setConfig("visualizouOnboardIntro","true");
+				leadUtil.addSubsMetric("onboard_intro", 1);
 				vm.labelButton="Cadastrar  produto";
 				vm.showButtonCadastrarProdutoDepois = true;
 			}

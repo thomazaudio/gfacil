@@ -134,6 +134,10 @@
 <link href="global/lib/bootstrap-tour.css" rel="stylesheet" />
 <link href="global/lib/angular/textAngular.css" rel="stylesheet" />
 <link href="global/lib/ng-onboarding.css" rel="stylesheet" />
+<link href="global/st-app/app-prototype/css/style.css" rel="stylesheet" />
+<link href="global/st-app/st-menu/css/style.css" rel="stylesheet" />
+<link href="global/st-app/onboarding/css/onboardingStyle.css" rel="stylesheet" />
+
 
 <!-- endbuild -->
 
@@ -200,13 +204,17 @@
 <script src="global/st-app/st-util/factory/dateUtilFactory.js"></script>
 <script src="global/st-app/st-util/directive/stUtilDirective.js"></script>
 <script src="global/st-app/st-util/directive/mobileTabsDirective.js"></script>
-<script src="global/st-app/st-util/directive/stMenuDirective.js"></script>
 <script src="global/st-app/st-util/directive/stSelectDirective.js"></script>
 <script src="global/st-app/st-util/directive/stInputDirective.js"></script>
 <script src="global/st-app/st-util/controller-module/stUtilController.js"></script>
 <!-- Fim stUtil -->
 
-<!-- endbuild -->
+<!-- stMenu -->
+<script src="global/st-app/st-menu/directive/stMenuDirective.js"></script>
+<script src="global/st-app/st-menu/factory/stMenuFactory.js"></script>
+
+
+
 
 <!-- stControl -->
 <script src="global/st-app/st-control/controller-module/stControl.js"></script>
@@ -292,6 +300,8 @@
 <script src="global/st-app/lead/leadConfig.js"></script>
 <script src="global/st-app/lead/controller-route/listaLeadController.js"></script>
 <script src="global/st-app/lead/controller-module/detalheLeadController.js"></script>
+<script src="global/st-app/lead/controller-module/filterLeadsController.js"></script>
+<script src="global/st-app/lead/directive/leadDirective.js"></script>
 
 
 <!-- / FIM LEAD -->
@@ -392,6 +402,8 @@
 <script src="global/st-app/onboarding/controller-module/onboardIntroController.js"></script>
 <!-- Fim onboard-->
 
+<!-- endbuild -->
+
 
 
 
@@ -477,6 +489,57 @@ if(window.location.href.indexOf("localhost")==-1 && window.location.href.indexOf
 }();
 drift.SNIPPET_VERSION = '0.3.1';
 drift.load('ksinakut9twv');
+
+<!-- place this script tag after the Drift embed tag -->
+
+  (function() {
+    /* Add this class to any elements you want to use to open Drift.
+     *
+     * Examples:
+     * - <a class="drift-open-chat">Questions? We're here to help!</a>
+     * - <button class="drift-open-chat">Chat now!</button>
+     *
+     * You can have any additional classes on those elements that you
+     * would ilke.
+     */
+    var DRIFT_CHAT_SELECTOR = '.drift-open-chat'
+    /* http://youmightnotneedjquery.com/#ready */
+    function ready(fn) {
+      if (document.readyState != 'loading') {
+        fn();
+      } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', fn);
+      } else {
+        document.attachEvent('onreadystatechange', function() {
+          if (document.readyState != 'loading')
+            fn();
+        });
+      }
+    }
+    /* http://youmightnotneedjquery.com/#each */
+    function forEachElement(selector, fn) {
+      var elements = document.querySelectorAll(selector);
+      for (var i = 0; i < elements.length; i++)
+        fn(elements[i], i);
+    }
+    function openSidebar(driftApi, event) {
+      event.preventDefault();
+      driftApi.sidebar.open();
+      return false;
+    }
+    ready(function() {
+      drift.on('ready', function(api) {
+        var handleClick = openSidebar.bind(this, api)
+        forEachElement(DRIFT_CHAT_SELECTOR, function(el) {
+          el.addEventListener('click', handleClick);
+        });
+      });
+    });
+  })();
+</script>
+
+
+
 </script>
 <!-- End of Async Drift Code -->
 

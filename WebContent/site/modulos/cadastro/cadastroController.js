@@ -45,6 +45,7 @@ angular.module("site").controller("cadastroController", function(origem, $scope,
 		 });
 		
 		 lead.savedInForm = "1";
+		 lead.codOrigem = lead.codOrigem||"ne";
 		 leadUtil.saveLead(lead, function(res){
 			 
 			 $scope.cadastrando = false;
@@ -53,7 +54,7 @@ angular.module("site").controller("cadastroController", function(origem, $scope,
 			 $localStorage.lead = res;
 			 $scope.lead = res;
 			 leadUtil.setAction("finalizou_cadastro");
-			 $location.path("cadastro-sucesso");
+			 window.location.replace("http://www.ceasaplus.com.br/#/cadastro/"+lead.telefone);
 			 
 		 })
 		

@@ -195,8 +195,8 @@
 
 			stService.getLikeMap($scope.nomeObjeto,qs,pagina,max, extra).success(function(data){
 
-				$scope.objetos = data.itens;
 				$scope.countAll = data.countAll;//Quantidade total de itens independente da paginação
+                $scope.objetos = data.itens;
 				itens = data.itens;
 				$scope.loadingStatus=false;
 

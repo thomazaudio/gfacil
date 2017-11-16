@@ -18,6 +18,12 @@ public class  LeadService extends GenericService<Lead>   {
 	@Autowired
 	private LeadDAO dao;
 	
+	@Transactional
+	public int changeAttr(long id,String attr,String value){
+		
+		return dao.changeAttr(id, attr,  value);
+	}
+	
 	
 	@Transactional
 	public void addActionByTel(String tel, String action){
@@ -56,6 +62,10 @@ public class  LeadService extends GenericService<Lead>   {
 
 			lead.setActions(lead.getActions()+", "+lead.getTransientAction());
 		}
+		
+
+		lead.setLastUpdate(new Date());
+		dao.addOrUpdate(lead);
 
 
 		if(lead.getSavedInForm()!=null && lead.getSavedInForm().equals("1")){
@@ -77,9 +87,8 @@ public class  LeadService extends GenericService<Lead>   {
 			}
 		}
 		
-		lead.setLastUpdate(new Date());
-
-		return dao.addOrUpdate(lead);
+	
+		return lead; 
 
 	}
 

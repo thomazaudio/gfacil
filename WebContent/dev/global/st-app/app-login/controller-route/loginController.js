@@ -46,11 +46,15 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 		loginUtil.logar(login,lembrarSenha,function(loginData){
 			
 			$scope.carregando=false;
+			
+			console.log("login data: ");
+			console.log(loginData);
 		
 			if(loginData){
 				
 				leadUtil.addMetricaTipoDispositivo();
 				leadUtil.addSubsMetric("dataUltimoLogin", new Date().getTime());
+				leadUtil.changeAttr("dataUltimoLogin", new Date().getTime(), loginData.idLead);
 			
 				if($rootScope.config.confs.mudouSenha != 'true'){
 					

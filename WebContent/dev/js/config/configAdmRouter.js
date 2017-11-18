@@ -153,7 +153,7 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 	});
 
 	//Intercepta um erro de resposta
-	$httpProvider.interceptors.push(function ($q, $rootScope, $location, stUtil, $localStorage, usSpinnerService) {
+	$httpProvider.interceptors.push(function ($q, $rootScope, $location, $localStorage, usSpinnerService) {
 		return {
 
 			'responseError': function(rejection) {
@@ -164,11 +164,6 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 				usSpinnerService.stop('spinner-1');
 
-
-				if(status==-1){
-
-					stUtil.showMessage("Sem conexão com a internet!");
-				}
 
 				if (status == 401) {
 

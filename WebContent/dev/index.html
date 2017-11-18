@@ -142,8 +142,8 @@
 
 
 
-<!-- Libs base-->
-<!-- build:js js/base.js -->
+<!-- Libs-->
+<!-- build:js js/lib.js -->
 <script src="global/lib/jquery.min.js"></script>
 <script src="global/lib/jlinq.js"></script>
 <script src="global/lib/maskedinput.js"></script>
@@ -161,9 +161,6 @@
 <script src="global/lib/angular/angular-route.js"></script>
 <script src="global/lib/angular/angular-chrono.min.js"></script>
 <script src="global/lib/bootstrap-tour.js"></script>
-<script src="js/app.js"></script>
-<script src="js/config/configAdmRouter.js"></script>
-<script src="value/config.js"></script>
 <script src="global/lib/ui-bootstrap.js"></script>
 <script src="global/lib/Chart.js" type="text/javascript"></script>
 <script src="global/lib/angular/angular-chart.js" type="text/javascript"></script>
@@ -189,14 +186,18 @@
 <script src="global/lib/ng-device-detector.min.js"></script>
 <script src="global/lib/re-tree.min.js"></script>
 <script src="global/lib/ng-onboarding.js"></script>
-<script src="global/st-app/st-util/factory/stUtilFactory.js"></script>
+<!-- endbuild -->
 
+<!-- Libs-->
+<!-- build:js js/base.js -->
+<script src="js/app.js"></script>
+<script src="js/config/configAdmRouter.js"></script>
+<script src="value/config.js"></script>
 <!-- endbuild -->
 
 <!-- build:js js/app.js -->
-
-
 <!-- stUtil -->
+<script src="global/st-app/st-util/factory/stUtilFactory.js"></script>
 <script src="global/st-app/st-util/stUtilConfig.js"></script>
 <script src="global/st-app/st-util/factory/stUtilFactory.js"></script>
 <script src="global/st-app/st-util/factory/onlineStatusFactory.js"></script>

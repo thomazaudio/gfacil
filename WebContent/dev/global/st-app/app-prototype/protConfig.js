@@ -5,7 +5,7 @@ angular.module("adm").config(function($routeProvider, $httpProvider){
 
 		templateUrl:"global/st-app/app-prototype/template-route/prototype.html",
 
-		controller: function($scope, $rootScope, $route, stService, $localStorage, $http, loginUtil, $localStorage){
+		controller: function($scope, $rootScope, $route, stService, $localStorage, $http, loginUtil){
 			
 			loginUtil.logar({usuario:$localStorage.usuario,empresa:$localStorage.empresa, senha:$localStorage.senha}, true, function(){
 				

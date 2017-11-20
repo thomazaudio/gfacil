@@ -1,5 +1,6 @@
 
-
+"use strict";
+(function(){
 angular.module("adm").controller("changePasswordController",function($rootScope, $scope,stService,$cookieStore,$location,st,$localStorage, stUtil, configUtil){
 
 	$scope.usuarioSistema =  $cookieStore.get("usuarioSistema");
@@ -36,6 +37,5 @@ angular.module("adm").controller("changePasswordController",function($rootScope,
 		});
 	}
 
-
-
-});
+})
+})();

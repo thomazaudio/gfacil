@@ -1,3 +1,5 @@
+"use strict";
+(function(){
 angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	$routeProvider.when("/produto",{
@@ -36,6 +38,8 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	});
 
-});
+})
+
+})();
 
 

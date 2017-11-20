@@ -1,3 +1,5 @@
+"use strict";
+(function(){
 angular.module("adm").controller("testeController", function($scope, chronoService, stService, dateUtil){
 	
 	
@@ -28,9 +30,7 @@ angular.module("adm").controller("testeController", function($scope, chronoServi
 			execute((i+1), tam);
 		});
 	}
+
 	
-	
-	
-	
-	
-});
+})
+})();

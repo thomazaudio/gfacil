@@ -1,3 +1,5 @@
+"use strict";
+(function(){
 angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	$routeProvider.when("/pdv",{
@@ -50,3 +52,4 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 	}); 
 
 })
+})();

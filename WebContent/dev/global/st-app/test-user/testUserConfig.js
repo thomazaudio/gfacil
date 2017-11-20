@@ -1,3 +1,5 @@
+"use strict";
+(function(){
 angular.module("adm").config(function($routeProvider, $httpProvider){
 
 	//Lista de todas a movimentações
@@ -33,5 +35,6 @@ angular.module("adm").config(function($routeProvider, $httpProvider){
 	
 	}); 
 
-});
+})
+})();
 

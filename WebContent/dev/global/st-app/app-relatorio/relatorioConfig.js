@@ -1,3 +1,5 @@
+"use strict";
+(function(){
 angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	$routeProvider.when("/relatorio",{
@@ -7,4 +9,5 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	}); 
 
-});
+})
+})();

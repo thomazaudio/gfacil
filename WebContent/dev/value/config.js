@@ -1,3 +1,6 @@
+
+"use strict";
+(function(){
 angular.module('adm').factory('config',function($location, $rootScope, $http, $templateCache){
 
 	
@@ -49,4 +52,5 @@ angular.module('adm').factory('config',function($location, $rootScope, $http, $t
 	};
 
 
-}); 
+})
+})();

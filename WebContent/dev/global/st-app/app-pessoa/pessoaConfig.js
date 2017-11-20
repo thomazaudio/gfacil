@@ -1,3 +1,5 @@
+"use strict";
+(function(){
 angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	$routeProvider.when("/cliente",{
@@ -25,5 +27,6 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	}); 
 
-});
+})
+})();
 

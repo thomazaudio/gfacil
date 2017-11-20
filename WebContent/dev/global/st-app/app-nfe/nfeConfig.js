@@ -1,3 +1,5 @@
+"use strict";
+(function(){
 angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	//Detalhes de uma NFe
@@ -25,4 +27,5 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 		
 	});
 
-});
+})
+})();

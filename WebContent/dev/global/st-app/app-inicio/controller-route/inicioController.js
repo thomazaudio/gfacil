@@ -1,3 +1,6 @@
+
+"use strict";
+(function(){
 angular.module("adm").controller("inicioController",function($scope, $rootScope, dateUtil, stService, $route, movUtil, pdvUtil, estoqueUtil, onboardUtil, deviceDetector, $timeout, menuUtil, configUtil, leadUtil){
 
 
@@ -89,7 +92,6 @@ angular.module("adm").controller("inicioController",function($scope, $rootScope,
 		pdvUtil.openVendaInModal();
 	}
 
+})
 
-
-
-});
+})();

@@ -1,3 +1,5 @@
+"use strict";
+(function(){
 angular.module("adm").controller("movimentacoesController",function($scope){
 	
 	$scope.activeTab = 0;
@@ -8,5 +10,5 @@ angular.module("adm").controller("movimentacoesController",function($scope){
 		
 	}
 	
-
-});
+})
+})();

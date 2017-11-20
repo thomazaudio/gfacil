@@ -1,3 +1,5 @@
+"use strict";
+(function(){
 angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	$routeProvider.when("/cadastros",{
@@ -7,5 +9,6 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	}); 
 
-});
+})
+})();
 

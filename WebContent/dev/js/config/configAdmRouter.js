@@ -1,3 +1,6 @@
+
+"use strict";
+(function(){
 angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	//Teste de pagamento
@@ -140,10 +143,8 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 	/* ATUALIZAÇÃO DE ESTOQUE ANTIGA
    $routeProvider.when("/atualiza-estoque",{
-
 		templateUrl:"view/produto/atualizaEstoque.html",
 		controller: "atualizaEstoqueController",
-
 	});
 	 */
 
@@ -266,5 +267,6 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 	);
 
 
-});
+})
 
+})();

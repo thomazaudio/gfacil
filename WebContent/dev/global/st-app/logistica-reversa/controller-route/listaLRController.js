@@ -1,3 +1,5 @@
+"use strict";
+(function(){
 angular.module("adm").controller("listaLRController",function($route, $scope, $window, $uibModal, stService, stUtil, lrUtil, dateUtil){
 
 	var vm = this;
@@ -92,4 +94,5 @@ angular.module("adm").controller("listaLRController",function($route, $scope, $w
 	}
 
 
-});
+})
+})();

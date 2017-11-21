@@ -19,6 +19,7 @@
 		<tr>
 			<th></th>
 			<th>Nome</th>
+			<th>Apresentação</th>
 			<th>Ultimo login</th>
 			<th>Etapa</th>
 			<th>Telefone</th>
@@ -47,11 +48,14 @@
 		       > 
 		       {{lead.nome|uppercase}}</strong>
 		    </td>
+		    <td>
+		       <span><strong>{{lead.dataApresentacao|date:'dd/MM/yyyy'}}</strong> <i uib-tooltip="A apresentação já foi realizada :-)" ng-show="lead.apresentacaoRealizada==1" class="fa fa-check-circle" style="color: var(--secondary-color)"></i> </span>
+		    </td>
 		     <td>
 		       <span>{{lead.dataUltimoLogin|date:'dd/MM/yyyy'}}</span>
 		    </td>
 		    <td>
-		       <span class="destaque-item">{{lead.etapaFunil}}</span>
+		       <span uib-tooltip="Desde: {{lead.dataUltimaEtapa|date:'dd/MM/yyyy'}}" class="destaque-item">{{lead.etapaFunil}}</span>
 		    </td>
 		    <td>
 		       <strong>{{lead.telefone}}</strong>

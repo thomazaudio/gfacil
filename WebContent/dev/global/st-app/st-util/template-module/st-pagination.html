@@ -1,8 +1,10 @@
 <meta charset="UTF-8" />
+
 <footer  ng-hide="$parent.objetos.length==0 && pagina==0" class="st-pagination">
        <div class="col-lg-3"></div>
       <!-- Paginação -->
 		<div  class="col-lg-6 filter-map filter-map-pagination">
+		    <p class="text-muted text-small text-center">Exibindo <strong>{{$parent.objetos.length}}</strong> de  <strong>{{$parent.countAll}}</strong></p>
 			<div class="st-pagination">
 			 <div class="panel" style="height:42px">
 			   <div class="panel-body" style="padding:0px;">

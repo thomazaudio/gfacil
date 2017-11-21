@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import pdv.Pdv;
-
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Controller
@@ -122,9 +120,12 @@ public class LeadControl extends GenericControl<Lead> {
 	}
 
 	@Override
-	public AjaxResponse<lead.Lead> delete(long[] ids) {
+	@JsonView(util.Views.Public.class)
+	@ResponseBody
+	@RequestMapping(value="/lead/delete/", method=RequestMethod.POST)
+	public AjaxResponse<lead.Lead> delete(@RequestBody long[] ids) {
 		// TODO Auto-generated method stub
-		return null;
+		return deleteByIdAndRespond(ids);
 	}
 
 	@Override

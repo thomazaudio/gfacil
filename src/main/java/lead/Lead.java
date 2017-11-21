@@ -38,17 +38,12 @@ public class Lead extends CrudClass {
 	private Date horaApresentacao;
 
 	@JsonView(util.Views.Public.class)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataApresentacao;
+	private Long dataApresentacao;
 
 	//id da lista na ferramenta externa
 	@JsonView(util.Views.Public.class)
 	private Long dataUltimaEtapa;
 
-	public void setDataApresentacao(String data) {
-
-		this.dataApresentacao  = DataUtil.formatData(data);
-	}
 
 	
 

@@ -2,7 +2,7 @@
 (function(){
 	angular.module("adm") 
 
-	.controller("detalheLeadController",function(lead, stService, dateUtil, movUtil, $rootScope, $modalInstance, stUtil, leadUtil){
+	.controller("detalheLeadController",function(lead, stService, dateUtil, movUtil, $rootScope, $modalInstance, stUtil, leadUtil, $route){
 		
 		var vm = this;
 		vm.emailTemplates = [
@@ -73,6 +73,16 @@
 			});
 
 		}
+		
+		vm.deletarLead = function(lead){
+			
+			stService.executePost("lead/delete/",[lead.id]).success(function(data){
+
+				stUtil.showMessage("","Deletado com sucesso");
+				$route.reload();
+
+			});
+		}
 
 
 		vm.enviarSMS = function(sms){
@@ -109,7 +119,8 @@
 		vm.lead = lead;
 		vm.lead.horaApresentacao = new Date(vm.lead.horaApresentacao);
 
-		vm.diasUltimaEtapaLead = dateUtil.daysBetween(vm.lead.dataUltimaEtapa, new Date().getTime());
+		if(vm.lead.dataUltimaEtapa)
+		   vm.diasUltimaEtapaLead = dateUtil.daysBetween(dateUtil.getDate(vm.lead.dataUltimaEtapa), new Date().getTime());
 
 		vm.atualizarLead = function(){
 			stService.getById("lead", vm.lead.id).success(function(data){

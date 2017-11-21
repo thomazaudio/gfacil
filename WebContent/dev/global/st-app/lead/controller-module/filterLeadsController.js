@@ -2,7 +2,7 @@
 (function(){
 	angular.module("adm") 
 
-	.controller("filterLeadsController",function($scope, $rootScope){
+	.controller("filterLeadsController",function($scope, $rootScope, dateUtil){
 		
 		var vm = this;
 		
@@ -17,8 +17,21 @@
 		}
 		
 		vm.listaBuscaLabel = [
-		  {attr:"nome",titulo:"Buscar pelo nome do Lead"}                    
+		  {attr:"nome",titulo:"Buscar pelo nome do Lead"},  
+		  {attr:"telefone",titulo:"Buscar pelo Telefone"},    
+		  {attr:"email",titulo:"Buscar pelo Email"},
+		  {attr:"codOrigem",titulo:"Origem de aquisição"}
 		 ];
+		
+		vm.buscaLabel =  vm.listaBuscaLabel[0];
+		
+		vm.filtrosOnboard = [
+		   {attr:"metrics.metrics_KEY",titulo:"Menu"},  
+		   {attr:"metrics.onboard_intro",titulo:"Introdução"},  
+		   {attr:"metrics.onboard_listagem_produtos",titulo:"Listagem dos produtos"},  
+		];
+		
+		
 		
 		vm.changeFilters = function(){
 			
@@ -32,14 +45,24 @@
 			
 		
 			
-			if(vm.attrData){
+			if(vm.attrData && vm.dataValue){
 				
-				var dataDe = vm.dataDe.getTime();
-				var dataAte = vm.dataAte.getTime();
-				var queryData = vm.attrData+" between "+dataDe+" and "+dataAte;
+				var dataDe = dateUtil.getDate(vm.dataValue).getTime();
+				
+				var dataAte = dateUtil.getDate(vm.dataValue);
+				dataAte.setHours(23,59,59,0);
+				dataAte = dataAte.getTime();
+		
+				var queryData = vm.attrData+" >= "+dataDe+" and "+vm.attrData+" <= "+dataAte;
 				qs.push(queryData);
 				
 			}
+			
+			if(vm.buscaEtapaFunil){
+				qs.push("etapaFunil='"+vm.buscaEtapaFunil+"'");
+			}
+			
+			console.log(vm.filtrosOnboard);
 			
 			console.log(qs);
 			vm.qs = qs;
@@ -48,9 +71,10 @@
 		
 		vm.limparFiltros = function(){
 			vm.qs = [];
-			vm.buscaLabel = {};
+			vm.buscaLabel = vm.listaBuscaLabel[0];
 			vm.ativacaoLastDays = 0;
 			vm.dataValue = "";
+			vm.buscaEtapaFunil = "";
 			vm.aplicarFiltros();
 		}
 		

@@ -1,5 +1,5 @@
 <meta charset="UTF-8" />
-<div class="col-lg-4 form-group">
+<div class="col-lg-3 form-group">
      <label>Busca por ocorrencia de termo</label>
     <div  class="filter-map text-center">
 		      <form>
@@ -10,7 +10,7 @@
 				           <button id="btn-change-filtros"  class="btn btn-block btn-default dropdown-toggle" style="width:35px;height:42px;" type="button" data-toggle="dropdown"> 
 				                <span><i  class="fa fa-bars info" aria-hidden="true"></i></span></button>
 					            <ul class="dropdown-menu  list-group pull-left" style="padding:5px">
-					                <li ng-click="vm.buscaLabel = busca" class="list-group-item"  ng-repeat="busca in vm.listaBuscaLabel" ><strong>{{busca.titulo}}</strong> <i ng-show="vm.buscaLabel.attr==busca.attr" class="fa fa-check-circle-o" aria-hidden="true" style="color:var(--secondary-color)"></i></li>
+					                <li ng-click="vm.buscaLabel = busca;vm.changeFilters()" class="list-group-item"  ng-repeat="busca in vm.listaBuscaLabel" ><strong>{{busca.titulo}}</strong> <i ng-show="vm.buscaLabel.attr==busca.attr" class="fa fa-check-circle-o" aria-hidden="true" style="color:var(--secondary-color)"></i></li>
 					            </ul>
 				    </span>
 		  		</div>
@@ -18,18 +18,20 @@
 		</div>
 </div>
 
-<div class="col-lg-4">
+<div class="col-lg-3">
      <select  ng-change="vm.changeFilters()"   ng-model="vm.attrData" class="form-control" style="line-height: 15px!important;
     height: 25px!important;
     margin-bottom: 2px;
     font-size: 11px;">
         <option value="dataUltimoLogin">Data do ultimo login</option>
         <option value="dataApresentacao">Data de apresentação</option>
+        <option value="dataUltimaEtapa">Data da ultima etapa no funil</option>
+        
      </select>
       <input ng-change="vm.changeFilters()"  placeholder="Informe uma data" st-input tipo="data" class="form-control"  ng-model="vm.dataValue"  />
 </div>
 
-<div class="col-lg-4 form-group">
+<div class="col-lg-3 form-group">
    <label>Ativação</label>
    <br>
    <select ng-change="vm.changeFilters()"   ng-model="vm.ativacaoLastDays" class="form-control">
@@ -41,6 +43,12 @@
       
    </select>
 </div>
+<div class="col-lg-3 form-group">
+        <label>Etapa no funil</label>
+		<auto-complete-object ng-change="vm.changeFilters()" initial-busca="''"  inline="true"  value-only="true" extra-class="''"  label-cad="'Cadastrar nova etapa de funil'" place-holder="'Informe a etapa do lead'"  object-op="'opcao'"  label="'valor'" fix-properties="{descricao:'etapa_lead'}" ng-model="vm.buscaEtapaFunil" ></auto-complete-object>
+</div>
+
+
 <div class="col-lg-12 pull-right">
     <button ng-click="vm.limparFiltros()" class="btn btn-xs  btn btn-default"><i class="fa fa-trash"></i> limpar filtros</button>
     <button ng-click="vm.aplicarFiltros()" class="btn btn-xs btn-primary"> aplicar filtros <i class="fa fa-check"></i></button>

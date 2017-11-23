@@ -49,7 +49,7 @@
 		       {{lead.nome|uppercase}}</strong>
 		    </td>
 		    <td>
-		       <span><strong>{{lead.dataApresentacao|date:'dd/MM/yyyy'}}</strong> <i uib-tooltip="A apresentação já foi realizada :-)" ng-show="lead.apresentacaoRealizada==1" class="fa fa-check-circle" style="color: var(--secondary-color)"></i> </span>
+		       <span ng-show="lead.dataApresentacao>0"><strong>{{lead.dataApresentacao|date:'dd/MM/yyyy'}}</strong> <i uib-tooltip="A apresentação já foi realizada :-)" ng-show="lead.apresentacaoRealizada==1" class="fa fa-check-circle" style="color: var(--secondary-color)"></i> </span>
 		    </td>
 		     <td>
 		       <span>{{lead.dataUltimoLogin|date:'dd/MM/yyyy'}}</span>

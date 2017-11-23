@@ -6,6 +6,14 @@
 }
 
 
+.quantidade-negativa-estoque{
+	
+    background-color: white;
+    padding: 3px;
+    border-radius: 5px;
+    color:  var(--danger-color)!important;
+}
+
 
 .onboarding-quantidade-produto-arrow, .onboarding-quantidade-produto-arrow:after {
     position: absolute;

@@ -1182,7 +1182,7 @@ td>input {
 
 
 .btn-primary, .btn-info {
-	color: #fff;
+	color: #fff !important;
     background-color: var(--primary-color);
     border-color:var(--primary-color);
    

@@ -118,6 +118,8 @@
 
 		vm.lead = lead;
 		vm.lead.horaApresentacao = new Date(vm.lead.horaApresentacao);
+		if(vm.lead.dataApresentacao==0)
+			vm.lead.dataApresentacao = null;
 
 		if(vm.lead.dataUltimaEtapa)
 		   vm.diasUltimaEtapaLead = dateUtil.daysBetween(dateUtil.getDate(vm.lead.dataUltimaEtapa), new Date().getTime());

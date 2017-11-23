@@ -82,7 +82,7 @@
 			
 			configUtil.setConfig("visualizouOnboardingProdutos","true", function(){
 			
-				 leadUtil.addSubsMetric("onboard_listagem_produtos", 1);
+				 leadUtil.addSubsMetric("onboard_listagem_produtos", new Date().getTime());
 				 //$location.path("/inicio");
 			})
 		

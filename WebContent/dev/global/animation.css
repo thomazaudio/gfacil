@@ -19,6 +19,8 @@
     }
 }
 
+
+
 .generic-transition.ng-enter{
   transition: all 0.7s linear;
   opacity: 0;

@@ -42,6 +42,18 @@
 
 
 @media only screen and (max-width : 1199px) {
+	
+	.titulo-produto-pedidos{
+	
+
+    font-size: 15px;
+    white-space: nowrap;
+    width: 85%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+	
+	}
 
 .modal-content{
     height: 120%!important;

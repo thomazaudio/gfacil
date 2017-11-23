@@ -25,7 +25,7 @@
 			
 			if(vm.step==2){
 				configUtil.setConfig("visualizouOnboardIntro","true");
-				leadUtil.addSubsMetric("onboard_intro", 1);
+				leadUtil.addSubsMetric("onboard_intro", new Date().getTime());
 				vm.labelButton="Cadastrar  produto";
 				vm.showButtonCadastrarProdutoDepois = true;
 			}

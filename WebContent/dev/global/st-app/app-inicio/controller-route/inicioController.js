@@ -10,17 +10,15 @@ angular.module("adm").controller("inicioController",function($scope, $rootScope,
 
 	$scope.finalizarOnboardingMenu = function(){
 
+		$scope.showOnboardMenu = false;
 		configUtil.setConfig("visualizouOnboardingMenu","true", function(){
 
-			leadUtil.addSubsMetric("onboard_menu", 1);
+			leadUtil.addSubsMetric("onboard_menu", new Date().getTime());
 			onboardUtil.openOnboardIntro();
 
 		})
 
 	}
-
-
-
 
 	$scope.stepsMenu = [
 

@@ -1,23 +1,24 @@
 <meta charset="UTF-8" />
  <div   ng-repeat="r in vm.itens" class="panel-list-pedido" ng-class="r.quantidade==0||!r.quantidade ? 'panel-disable' : 'panel-secondary'" >
 	<div  class="panel-heading" style="padding: 7px 7px 0px 7px;">
-		<label  class="pull-left">
-		     <destaque-texto  style="font-size:17px;" texto="r.produto.nome|uppercase" busca="busca"></destaque-texto>
+		<label  class="pull-left titulo-produto-pedidos">
+		     <destaque-texto class="titulo-produto-pedidos"   style="font-size:17px;" texto="r.produto.nome|uppercase" busca="busca"></destaque-texto>
 		    <br class="only-mobile">
-		   <label class="text-small" ng-show="r.produto.quantidade!=null">(em estoque <strong ng-class="{'danger': r.produto.quantidade<0}"> {{r.produto.quantidade|number:2}}</strong> {{r.produto.uCom || 'uni'|lowercase}})</label>
+		   <label class="text-small" ng-show="r.produto.quantidade!=null">(em estoque <strong ng-class="{'quantidade-negativa-estoque': r.produto.quantidade<0}"> {{r.produto.quantidade|number:2}}</strong> {{r.produto.uCom || 'uni'|lowercase}})</label>
            <button-estoque hide-buttons="true" auto-load="true"  produto="r.produto"></button-estoque> 		   
 		</label>
 		<label class="pull-right"> 
+		  <!--  
 		  <a ng-click="vm.openDetalhePedido(r)" class="btn-option-pedido only-mobile"  ng-show="r.quantidade && r.quantidade>0" ><i class="fa fa-edit"></i></a>
+		  
+		  -->
+		  <!--  
 		  <a ng-click="vm.openDetalhePedido(r)" class="btn-option-pedido only-mobile" ng-show="!r.quantidade || r.quantidade==0" ><i class="fa fa-plus"></i></a>
+		  -->
 		  <a class="btn-option-pedido" ng-if="r.quantidade>0" ng-click="vm.deletarPedido(r)" ><i class="fa fa-trash-o"></i></a>
 		</label>
 		<div class="row"></div>
-		<div ng-show="r.quantidade>0" class="row only-mobile">
-		     <hr></hr>
-		     <label class="pull-left text-small">quantidade: <strong>{{r.quantidade}}</strong></label>
-		    <label class="pull-right text-small">valor unitário: <strong>R$ {{r.valorUnitario |number:2}}</strong></label>
-		</div>
+		
 	</div>
 	<div class="panel-body" style="padding: 0px 5px 0px 5px;">
 	    <vertical-space></vertical-space>

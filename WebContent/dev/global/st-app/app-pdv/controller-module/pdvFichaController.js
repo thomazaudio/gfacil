@@ -73,6 +73,8 @@
 			vm.pdv.movimentacao.pessoa = cacheGet.getObjectById("cliente",vm.pdv.movimentacao.pessoa.id);
 
 			getProdutosSugeridosByCliente(vm.pdv.movimentacao.pessoa);
+			
+			vm.changeStep(1);
 
 			
 

@@ -23,25 +23,15 @@ angular.module("site").controller("introducaoController", function(lead, deviceD
 	var savedTimeVideo5 = false;
 	var savedTimeVideo6 = false;
 	
-
-	if(lead.id){
-		
-		stService.executeGet("/lead/get-basic", {id: lead.id }).success(function(data){
-			
-			lead.nome = data.item.nome;
-			lead.telefone = data.item.telefone;
-			leadUtil.saveLead(lead);
-			
-		});
-		
-	}else{
-		
-		leadUtil.saveLead(lead);
-		
-	}
 	
-	$scope.cadastrar = function(){
-		leadUtil.setAction("clicou_botao_ir_formulario");
+   $localStorage.lead = lead;
+	
+	$scope.cadastrar = function(lead){
+		if(!lead.metrics)
+			lead.metrics = {};
+		
+		lead.metrics.assistiuVideoIntro = $scope.videoIntro.getCurrentTime();
+		$localStorage.lead  = lead;
 		$location.path("cadastro");
 	}
 	
@@ -64,12 +54,12 @@ angular.module("site").controller("introducaoController", function(lead, deviceD
 
 		$scope.step++;
 		
-		leadUtil.saveLead(lead);
+		 $localStorage.lead = lead;
 		
         if($scope.step==1){
         	
         	//Origem a partir do facebook
-    		if($rootScope.lead.codOrigem.indexOf("fv")!=-1){
+    		if($rootScope.lead.codOrigem.indexOf("f")!=-1){
     			
     			$location.path("cadastro");
     		}else{
@@ -77,6 +67,8 @@ angular.module("site").controller("introducaoController", function(lead, deviceD
     		}
 				
 		}
+        
+       
 		
 		
 	}
@@ -96,44 +88,6 @@ angular.module("site").controller("introducaoController", function(lead, deviceD
 			$scope.showButtonProx = true;
 		}
 		
-		
-		if($scope.videoIntro.getCurrentTime()>30 && savedTimeVideo1==false ){
-
-			savedTimeVideo1 = true;
-			leadUtil.setAction("assistiu_video_30");
-		
-			
-		}
-		
-		if($scope.videoIntro.getCurrentTime()>50 && savedTimeVideo2==false ){
-
-			savedTimeVideo2 = true;
-			leadUtil.setAction("assistiu_video_50");
-		}
-		
-		if($scope.videoIntro.getCurrentTime()>100 && savedTimeVideo3==false ){
-
-			savedTimeVideo3 = true;
-			leadUtil.setAction("assistiu_video_100");
-		}
-		
-		if($scope.videoIntro.getCurrentTime()>150 && savedTimeVideo4==false ){
-
-			savedTimeVideo4 = true;
-			leadUtil.setAction("assistiu_video_150");
-		}
-		
-		if($scope.videoIntro.getCurrentTime()>200 && savedTimeVideo5==false ){
-
-			savedTimeVideo5 = true;
-			leadUtil.setAction("assistiu_video_200");
-		}
-		
-		if($scope.videoIntro.getCurrentTime()>240 && savedTimeVideo6==false ){
-
-			savedTimeVideo6 = true;
-			leadUtil.setAction("assistiu_video_call_to_action");
-		}
 
 	},1000);
 

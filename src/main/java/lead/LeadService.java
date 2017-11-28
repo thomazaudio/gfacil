@@ -70,7 +70,7 @@ public class  LeadService extends GenericService<Lead>   {
 
 		if(lead.getSavedInForm()!=null && lead.getSavedInForm().equals("1")){
 			//Envia email de cadastro de novo usuário
-			new SendEmail().enviaEmailCadastroLead(lead);
+			//new SendEmail().enviaEmailCadastroLead(lead);
 			
 			//Envia email para o usuário
 			if(lead.getEmail()!=null){
@@ -80,7 +80,7 @@ public class  LeadService extends GenericService<Lead>   {
 			}
 			//Envia sms para o usuário
 			try {
-				SmsAPI.sendSimple(SMSUtil.getMensagemCadastroLead(lead.getNome(), lead.getTelefone()), lead.getTelefone());
+				//SmsAPI.sendSimple(SMSUtil.getMensagemCadastroLead(lead.getNome(), lead.getTelefone()), lead.getTelefone());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

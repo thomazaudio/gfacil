@@ -32,6 +32,10 @@
      <li>
       <label><input ng-model="lead.questions.problema_emprestimo_embalagens" ng-false-value="'false'"   ng-true-value="'true'"  type="checkbox" /> Gerenciar empréstimos </label>
      </li>
+     <li>
+      <label><input ng-model="lead.questions.outro_problema_check" ng-false-value="'false'"   ng-true-value="'true'"  type="checkbox" /> Outros </label>
+      <input  ng-show="lead.questions.outro_problema_check=='true'" placeholder="Outros problemas" class="form-control" ng-model="lead.questions.outro_problema">
+     </li>
    
  </ul>
 
@@ -51,7 +55,7 @@
 		<youtube-video   player-width="tamanhoVideo" player-height="tamanhoVideo" player-vars="playerVars"  video-url="'https://www.youtube.com/watch?v=T7wZmJHk1s8'" player="videoIntro"></youtube-video>
 		<div class="form-group">
 		            
-					<button ng-disabled="!showButtonProx || showButtonProx==false" ng-click="cadastrar()"  type="button" class="btn btn-primary btn-lg" ng-style="{'width': tamanhoVideo}">
+					<button ng-disabled="!showButtonProx || showButtonProx==false" ng-click="cadastrar(lead)"  type="button" class="btn btn-primary btn-lg" ng-style="{'width': tamanhoVideo}">
 					     <h2 ng-show="showButtonProx" style="color: white;line-height:15px;font-size:25px">Efetuar cadastro</h2>
 					     <h2 ng-show="!showButtonProx || showButtonProx==false" style="color: white;line-height:15px;font-size:15px"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Veja o vídeo para se cadastrar.</h2>
 					     <h4>({{vagasRestantes}} vagas restantes)</h4>

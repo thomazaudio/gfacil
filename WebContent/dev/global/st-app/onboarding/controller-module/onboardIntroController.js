@@ -2,9 +2,10 @@
 (function(){
 	angular.module("adm") 
 
-	.controller("onboardIntroController",function($rootScope, $modalInstance, estoqueUtil, $location,  $uibModal, configUtil, leadUtil){
+	.controller("onboardIntroController",function($rootScope, $modalInstance, estoqueUtil, $location,  $uibModal, configUtil, leadUtil, $timeout){
 		
 		var vm = this;
+		vm.showCountClientes=true;
 		vm.proj = {data:[[100]], labels:[""]};
 		vm.proj.colours =  [{
 		    fillColor: "#3276b1",
@@ -23,14 +24,23 @@
 		
 		vm.nextStep = function(){
 			
-			if(vm.step==2){
+			
+			if(vm.step==1){
+				
+				$timeout(function(){
+					vm.showCountClientes=false;
+				}, 5000);
+			}
+			
+			else if(vm.step==2){
 				configUtil.setConfig("visualizouOnboardIntro","true");
+				
 				leadUtil.addSubsMetric("onboard_intro", new Date().getTime());
 				vm.labelButton="Cadastrar  produto";
 				vm.showButtonCadastrarProdutoDepois = true;
 			}
 			
-			if(vm.step==3){
+			else if(vm.step==3){
 				$modalInstance.close();
 				estoqueUtil.cadProdutoStep({}, function(produto){
 					console.log("Produto cadastrado: ");

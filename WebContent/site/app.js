@@ -44,14 +44,7 @@ app.run(['$rootScope', '$route', 'stService', '$localStorage', '$location', func
 	
 	 $rootScope.$on('$routeChangeSuccess', function() {
 		 
-		if($localStorage.lead){
-			
-			$localStorage.lead.custom_1 = $route.current.$$route.originalPath;
-		
-			stService.executePost("lead/add/",$localStorage.lead).success(function(){
-				
-			});
-	    }
+	
 			    
     });
 	 

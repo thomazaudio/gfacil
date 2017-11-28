@@ -66,6 +66,21 @@
 			    <p style="margin-top:10px;" class="text-small text-muted">origem da aquisição: <span class="destaque-item">{{vm.lead.codOrigem}}</span></p>
 			</div>
 			
+		
+			
+			<div class="col-lg-12">
+			    <hr></hr>
+			    <p class="text-muted">Onboarding na Landing-Page</p>
+			</div>
+			
+			<div class="col-lg-4" style="padding-right:0px;">
+			    <button uib-tooltip="{{vm.lead.metrics.assistiuVideoIntro || 0}} segundos" ng-disabled="!vm.lead.metrics.assistiuVideoIntro" class="btn btn-block text-small" ng-class="{'btn-primary': vm.lead.metrics.assistiuVideoIntro>0}">
+			         <span class="text-center"><i class="fa fa-check" aria-hidden="true"></i> Vídeo de Introdução</span>
+			        
+			    </button>
+			</div>
+			
+		
 			<div class="col-lg-12">
 			    <hr></hr>
 			    <p class="text-muted">Onboarding no sistema</p>
@@ -313,6 +328,10 @@
 		     </li>
 		     <li>
 		      <label><input ng-model="vm.lead.questions.problema_emprestimo_embalagens" ng-false-value="'false'"   ng-true-value="'true'"  type="checkbox" /> Gerenciar empréstimos </label>
+		     </li>
+		     <li>
+		          <label class="text-small text-muted">Outros problemas</label>
+                   <input  placeholder="Outros problemas" class="form-control" ng-model="vm.lead.questions.outro_problema">
 		     </li>
             </ul>
 		</div>

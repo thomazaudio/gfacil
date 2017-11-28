@@ -44,12 +44,9 @@
 		    </div>
 	       
 			<div class="form-group  col-lg-6">
-					<label for="form-last-name">Unidade em que trabalha</label> <select 
-							class="form-control form-email">
-							<option>Ceasa Minas</option>
-							<option>Ceasa Campinas</option>
-							<option>Ceasa RJ</option>
-					</select>
+					<label for="form-last-name">Localização na Ceasa</label> 
+					    <input placeholder="Ex: Setor A5" ng-model="lead.localizacao"  class="form-control" />
+				
 			</div>
 			 
 			<button ng-disabled="cadastrando==true" class="btn btn-block">

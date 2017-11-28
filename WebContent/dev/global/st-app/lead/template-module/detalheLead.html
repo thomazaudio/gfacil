@@ -19,15 +19,18 @@
 		</div>
 		<div class="panel-body" >
 		    <div class="generic-transition" ng-show="!inEdit || inEdit==false">
-		          <div class="col-lg-4">
+		          <div class="col-lg-3">
 			     	 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-user-o"></i> <strong>{{vm.lead.nome|uppercase}}</strong></span>
 			     </div>
-			     <div class="col-lg-4">
+			     <div class="col-lg-3">
 			     	 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-phone-square"></i> <strong>{{vm.lead.telefone}}</strong></span>
 			     </div>
-			     <div class="col-lg-4">
+			     <div class="col-lg-3">
 			     	 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-envelope" aria-hidden="true"></i> <strong>{{vm.lead.email}}</strong></span>
 			     </div>
+			      <div class="col-lg-3">
+			           <span uib-tooltip="Setor/Localização" class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-map-marker" aria-hidden="true"></i> <strong>{{vm.lead.localizacao}}</strong></span>
+			      </div>
 		     </div>
 		      <div class="generic-transition"  ng-show="inEdit==true">
 		          <div class="col-lg-4 form-group">

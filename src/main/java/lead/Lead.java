@@ -30,6 +30,10 @@ public class Lead extends CrudClass {
 	@Transient
 	private String savedInForm;
 
+	//Salvo utilizando o formulário de cadasor
+	@JsonView(util.Views.Public.class)
+	private String localizacao;
+
 	@JsonView(util.Views.Public.class)
 	private Long dataUltimoLogin;
 
@@ -45,7 +49,7 @@ public class Lead extends CrudClass {
 	private Long dataUltimaEtapa;
 
 
-	
+
 
 	@JsonView(util.Views.Public.class)
 	private int apresentacaoRealizada;

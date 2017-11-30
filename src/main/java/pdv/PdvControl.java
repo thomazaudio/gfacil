@@ -24,7 +24,7 @@ public class PdvControl extends GenericControl<Pdv> {
 	@RequestMapping(value="/pdv/save-retirou", method=RequestMethod.GET)
 	public AjaxResponse<Pdv> saveRetirouMercadoria(@RequestParam long idPdv, @RequestParam int carregado) {
 
-		pdvService.changeAttr(idPdv,"carregado","carregado="+carregado);
+		pdvService.changeAttr(idPdv,"carregado",""+carregado);
 
 		return null;
 	}

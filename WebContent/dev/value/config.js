@@ -7,7 +7,7 @@ angular.module('adm').factory('config',function($location, $rootScope, $http, $t
 	
 	function getAppVersion(){
 		
-		return "CeasaPlus 3.1"
+		return "CeasaPlus 3.2"
 	}
 	
 	function getUrlBase(){

@@ -1,5 +1,5 @@
 <meta charset="UTF-8" />
-<div ng-if="singlePeriod!=true" class="input-group ">
+<div ng-show="singlePeriod!=true" class="input-group ">
       <input ng-change="change()" placeholder="Início" st-input tipo="data" class="form-control"  ng-model="de"  style="border-right:none"  />
       <span class="input-group-btn"><button class="btn btn-default button-periodo-ate" style="height:42px;" >Até</button></span>
 	  <input ng-change="change()"  placeholder="Fim" style="border-left:none"  st-input tipo="data" class="form-control"  ng-model="ate"  />
@@ -18,7 +18,7 @@
       <button  id="btn-ok" ng-disabled="mode=='day'" ng-click="submit()" class="btn btn-primary" style="height:42px;  border-bottom-right-radius: 3px!important; border-top-right-radius: 3px!important;">Ok</button>
       </span>
 </div>
-<div ng-if="singlePeriod==true" class="input-group">
+<div ng-show="singlePeriod==true" class="input-group">
      <input ng-change="ngChange()"  placeholder="Informe uma data" style="border-left:none"  st-input tipo="data" class="form-control"  ng-model="singleDate"  />
 </div>
 

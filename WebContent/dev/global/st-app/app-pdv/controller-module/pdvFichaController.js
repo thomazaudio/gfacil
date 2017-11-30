@@ -269,6 +269,7 @@
 				if(ped.quantidade && ped.quantidade>0)
 					return ped;
 			});
+			
 
 			vm.pdv.movimentacao.pedidos = pedidoUtil.mergeProdutoInPedidos(produtos, vm.pdv.movimentacao.pedidos);
 

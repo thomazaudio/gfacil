@@ -5,10 +5,7 @@
 
 	.controller("filialListController",function($scope, $rootScope, $localStorage, cacheGet, $route, filialUtil, stUtil, configUtil){
 
-		$scope.filiaisPermitidas = null;
-
-		if($rootScope.usuarioSistema.filiaisPermitidas)
-			$scope.filiaisPermitidas= $rootScope.usuarioSistema.filiaisPermitidas.split(",");
+		
 
 		$rootScope.$watch("currentFilial",function(currentFilial){
 
@@ -20,6 +17,11 @@
 
 			if(filiais)
 				$scope.filiais = filiais;
+			
+			$scope.filiaisPermitidas = null;
+
+			if($rootScope.usuarioSistema.filiaisPermitidas)
+				$scope.filiaisPermitidas= $rootScope.usuarioSistema.filiaisPermitidas.split(",");
 		});
 
 		$scope.config = $rootScope.config;

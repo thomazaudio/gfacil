@@ -100,8 +100,17 @@
 					var idFilialInConfig = parseInt($rootScope.config.confs.currentFilialId);
 					var nomeFilial = $rootScope.config.confs.labelCurrentFilial;
 
-					if(idFilialInConfig>0){
+					var filiaisPermitdas = [];
+					
+					if($rootScope.usuarioSistema.filiaisPermitidas)
+						filiaisPermitdas = $rootScope.usuarioSistema.filiaisPermitidas.split(",");
+					
+					if(idFilialInConfig>0 && filiaisPermitdas.indexOf(idFilialInConfig+"")!=-1 ){
 						$rootScope.currentFilial = {id: idFilialInConfig, xNome: nomeFilial};
+					}
+					else if(filiaisPermitdas[0]) {
+						
+						$rootScope.currentFilial = filialUtil.getFilialById(parseInt(filiaisPermitdas[0]));
 					}
 
 					callback(loginData);

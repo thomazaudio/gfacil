@@ -11,14 +11,11 @@
 			        <button ng-click="vm.deletarLead(vm.lead)" confirm="Tem certeza que deseja deletar?" class="btn btn-default btn-xs"><i class="fa fa-trash"></i> Apagar Lead</button> <button ng-click="vm.atualizarLead()" class="btn btn-secondary btn-xs"><i class="fa fa-refresh"></i> Atualizar</button>
 			   </div>
 			   
-			 
-			  
-			
 			  <div class="row"></div>		
 			  <div class="pivo-panel-separator"></div>
 		</div>
 		<div class="panel-body" >
-		    <div class="generic-transition" ng-show="!inEdit || inEdit==false">
+		    <div class="generic-transition" ng-show="(!inEdit || inEdit==false) && vm.lead.id">
 		          <div class="col-lg-3">
 			     	 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-user-o"></i> <strong>{{vm.lead.nome|uppercase}}</strong></span>
 			     </div>
@@ -32,7 +29,7 @@
 			           <span uib-tooltip="Setor/Localização" class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-map-marker" aria-hidden="true"></i> <strong>{{vm.lead.localizacao}}</strong></span>
 			      </div>
 		     </div>
-		      <div class="generic-transition"  ng-show="inEdit==true">
+		      <div class="generic-transition"  ng-show="inEdit==true || !vm.lead.id">
 		          <div class="col-lg-4 form-group">
 			     	 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-user-o"></i> Nome</span>
 			     	 <input class="form-control" ng-model="vm.lead.nome" />
@@ -46,7 +43,12 @@
 			      <div class="col-lg-4 form-group">
 			     	 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-envelope"></i> Email</span>
 			     	 <input class="form-control" ng-model="vm.lead.email" />
-			     </div>
+			      </div>
+			      
+			      <div class="col-lg-4 form-group">
+			     	 <span class="text-muted text-small"><i style="color:var(--secondary-color)" class="fa fa-envelope"></i> Campanha</span>
+			     	 <input class="form-control" ng-model="vm.lead.codOrigem" />
+			      </div>
 		      </div>
 		      <vertical-space></vertical-space>
 		      <div class="pull-left col-lg-12">
@@ -66,7 +68,7 @@
 			    
 			</div>
 			<div class="col-lg-4 pull-right">
-			    <p style="margin-top:10px;" class="text-small text-muted">origem da aquisição: <span class="destaque-item">{{vm.lead.codOrigem}}</span></p>
+			    <p style="margin-top:10px;" class="text-small text-muted">Campanha de aquisição: <span class="destaque-item">{{vm.lead.codOrigem}}</span></p>
 			</div>
 			
 		

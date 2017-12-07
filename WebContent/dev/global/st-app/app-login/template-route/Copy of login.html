@@ -1,0 +1,58 @@
+<meta charset="UTF-8" />
+ <vertical-space></vertical-space>
+<div class="col-lg-2"></div>
+
+<div class="col-lg-8" style="margin-top: -75px;">
+
+    <div style="background-color:rgba(234, 230, 230, 0.79);padding:12px;">
+	         <h3 class="text-center">
+		       <img   ng-src="logo-login.png" ></img>
+		     </h3> 
+		
+		<div ng-show="showButtons!=false && !login.usuario" class="generic-transition">
+		    <button ng-click="cadastrado=true; showButtons=false" class="btn btn-secondary btn-lg btn-block">
+		       <i class="fa fa-check fa-2x"></i>
+		       <br> 
+		        Já sou cadastrado 
+		        <p class="text-small">Clique para informar seu login e senha.</p>
+		    </button>
+		    
+		    <button class="btn btn-primary btn-lg btn-block">
+		        <i class="fa fa-smile-o fa-2x"></i>
+		        <br>
+		        Quero me cadastrar
+		        <p class="text-small">Faça seu cadastro e conheça os benefícios do CeasaPlus.</p>
+		    </button>
+		</div>     
+		     
+	   <div   ng-if="cadastrado==true || login.usuario" class="generic-transition">
+		    <div class="col-lg-12" style="padding:5px">
+			    <div class="col-lg-6 col-xs-6 text-center"> 
+			      <img style="width:120px" src="aws.png"/>
+			    </div>  
+			    <div class="col-lg-6 col-xs-6 text-center"> 
+			      <img style="width:120px" src="site-seguro.png"/>
+			    </div>   
+		    </div>
+	    
+		    <div class="form-group">
+		       <input placeholder="Usuário"   ng-model="login.usuario" class="form-control"/>
+		    </div>
+		    
+		    <div class="form-group">
+		       <input placeholder="Senha"  type="password" ng-model="login.senha" class="form-control"/>
+		    </div>
+	   
+			<div class="form-group">
+				<button ng-disabled="carregando==true" id="btn-login" type="button" ng-click="logar(login,lembrarSenha)" class="btn btn-secondary btn-lg btn-block">		
+				<i ng-show="carregando==true" class="fa fa-refresh faa-spin animated" aria-hidden="true"></i>
+				 Entrar no sistema </button>
+				 <div class="text-center" style="margin-top:9px;">
+				     <a class="text-center" ng-click="lembrarSenhaUsuario()">esqueci a senha</a>
+				 </div>
+			 </div>
+	   </div> 
+   </div>
+</div>
+<div class="col-lg-2"></div>
+

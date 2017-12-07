@@ -21,12 +21,7 @@ public class Teste {
 
 	public static void main(String[] args){
 		
-		Lead l  = new Lead();
-		l.setNome("Thomaz");
-		l.setTelefone("31992267947");
-		l.setEmail("thomaz-guitar@hotmail.com");
-		
-		new SendEmail().enviaEmailCadastroUsuario(l);
+		montar();
 		
 	}
 	
@@ -61,25 +56,13 @@ Connection con = database.DataBaseUtil.getConnection();
 	            	
 	            	if(posFirst!='2' && posFirst!='3' && posFirst!='2' && posFirst!='4' && posFirst!='5'){
 	            		
-	            	
 				            	if(t.length()==10){
 				            		 t  = new StringBuffer(t).insert(2, "9").toString();
 				            	}
 				            	
-				            	
-				            	
-				            
-				            	System.out.println(t+";"+id);
+				            	System.out.println("ceasa_mg -  "+nome+",,,,,,,,,,,,,,,,,,,,,,,,,,"+"* My Contacts,,,,,Mobile,"+t);
 	            	}   	
 	            	
-	            	if(i==150){
-	            		i=0;
-	            		System.out.println();
-	            		System.out.println("=============================================================");
-	            		System.out.println("=============================================================");
-	            		System.out.println("=============================================================");
-	            		System.out.println();
-	            	}
 	            	
 	            	i++;
 	            	

@@ -66,7 +66,7 @@ public class Lead extends CrudClass {
 	@JsonView(util.Views.Public.class)
 	private String etapaFunil;
 
-	//Origem do Lead ex: a1, a2, f1, f2, s1, s2, s3
+	//Campanha de origem do lead especificada em https://docs.google.com/document/d/1h6VvJUe5ILv48KwP-OoRzA71Tb_esKWViRPj5xRFupI/edit?usp=sharing
 	@JsonView(util.Views.Public.class)
 	private String codOrigem;
 

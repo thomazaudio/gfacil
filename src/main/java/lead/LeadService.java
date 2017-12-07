@@ -54,6 +54,8 @@ public class  LeadService extends GenericService<Lead>   {
 	@Transactional
 	public Lead addOrUpdate(Lead lead) {
 
+		if(lead.getIdFilial()==0)
+			lead.setIdFilial(1);
 
 		if(lead.getTransientAction()!=null){
 

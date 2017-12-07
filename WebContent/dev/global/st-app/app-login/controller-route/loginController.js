@@ -2,6 +2,12 @@
 (function(){
 angular.module("adm").controller("loginController",function(demo,$scope,$location,$rootScope,$localStorage,$cookieStore,loginUtil, stUtil, redirect, st, leadUtil){
 
+	
+	
+	if($location.$$absUrl.indexOf("admin")!=-1 || $location.$$absUrl.indexOf("localhost") !=-1)
+		$scope.showCampoEmpresa = true;
+	
+	
 	if(redirect==true){
 		st.evt({evento:"usuario_foi_deslogado", descricao:"O usuário foi deslogado do Sistema"});
 
@@ -40,7 +46,8 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 			return;
 		}
 
-		login.empresa = login.usuario;
+		if(!login.empresa)
+		   login.empresa = login.usuario;
 
 		$scope.carregando=true;
 		loginUtil.logar(login,lembrarSenha,function(loginData){

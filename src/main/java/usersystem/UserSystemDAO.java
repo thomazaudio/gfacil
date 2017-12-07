@@ -40,7 +40,8 @@ public class UserSystemDAO extends GenericDAO<UserSystem>  {
 				user.setId(res.getLong("id"));
 				user.setNome(res.getString("nome"));
 				user.setPermissoes(res.getString("permissoes"));
-				user.setDefaultPassword(res.getBoolean("defaultPassword"));
+				user.setFiliaisPermitidas(res.getString("filiaisPermitidas"));
+                user.setDefaultPassword(res.getBoolean("defaultPassword"));
 				user.setBanco(dbEmpresa);
 				user.setLogin(login);
 				user.setPassword(res.getString("senha"));

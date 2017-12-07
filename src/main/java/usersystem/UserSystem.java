@@ -1,5 +1,6 @@
 package usersystem;
 import com.fasterxml.jackson.annotation.JsonView;
+
 import config.Config;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,6 +42,8 @@ public class UserSystem {
 	@JsonView(util.Views.Public.class)
 	private String permissoes;
 
+	@JsonView(util.Views.Public.class)
+	private String filiaisPermitidas;
 
 	//Idetificação da filial corrente
 	@JsonView(util.Views.Public.class)

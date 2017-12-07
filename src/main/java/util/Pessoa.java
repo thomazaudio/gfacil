@@ -28,6 +28,10 @@ public class Pessoa extends CrudClass{
 
 	@JsonView(util.Views.Public.class)
 	private String observacoes;
+	
+	
+	@JsonView(util.Views.Public.class)
+	private String filiaisPermitidas;
 
 	@JsonView(util.Views.Public.class)
 	private String permissoes;

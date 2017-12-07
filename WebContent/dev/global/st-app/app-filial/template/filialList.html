@@ -5,10 +5,8 @@
 		   <strong>{{labelCurrentFilial|uppercase}}</strong>
 		  <span class="caret"></span></button>
 			     <ul class="dropdown-menu list-group lista-filiais" style="padding:5px">
-					 <li ng-click="alterarFilial(filial)" ng-repeat="filial in filiais" class="list-group-item filial-list"  >
+					 <li ng-show="filiaisPermitidas.indexOf(filial.id+'')!=-1" ng-click="alterarFilial(filial)" ng-repeat="filial in filiais" class="list-group-item filial-list"  >
 					        <i ng-show="filial.id==currentFilial.id" class="warning fa fa-check-circle-o" aria-hidden="true"></i>
-						    <strong>{{filial.xNome|uppercase}} </strong>
-					 </li>
-				 </ul>
-</div>
+						    <strong>{{filial.xNome|uppercase}}</strong>
+					 </li></div>
 	

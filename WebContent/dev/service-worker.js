@@ -15,6 +15,7 @@ var dataCacheName = 'CeasaPlus 3.5';
 var cacheName = dataCacheName;
 var filesToCache = [
                     '/',
+                    'service-worker.js',
                     'css/style.css',
                     'global/lib/spin.js',
                     'js/base.js',

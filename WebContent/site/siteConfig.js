@@ -1,5 +1,23 @@
 angular.module("site").config(function($routeProvider){
 
+	
+	
+	$routeProvider.when("/intro",{
+
+		templateUrl:"modulos/introducao/introducao.html",
+		controller:"introducaoController",
+		resolve: {
+
+			lead: function($route){
+
+				return {codOrigem: "www"};
+				
+				
+			}
+
+		}
+
+	})
 
 	$routeProvider.when("/intro/:origem",{
 

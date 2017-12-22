@@ -33,8 +33,8 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean
 			AccountUserDetails userDetails = new AccountUserDetails(UserLoginCache.get(userName));
 
 			userDetails.getAccount().setCurrentFilialId(extractCurrentFilialIdFromRequest(httpRequest));
-
-
+			
+			userDetails.getAccount().setCurrentOperadorId(extractCurrentOperadorIdFromRequest(httpRequest));
 
 			if (TokenUtils.validateToken(authToken, userDetails)) {
 
@@ -71,6 +71,14 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean
 		return Long.parseLong(httpRequest.getParameter("filialId"));
 
 	}
+	
+	private Long extractCurrentOperadorIdFromRequest(HttpServletRequest httpRequest)
+	{
+
+		return Long.parseLong(httpRequest.getParameter("operadorId"));
+
+	}
+
 
 
 	private String extractAuthTokenFromRequest(HttpServletRequest httpRequest)

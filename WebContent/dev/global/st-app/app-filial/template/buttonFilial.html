@@ -1,0 +1,19 @@
+<meta charset="UTF-8" />
+
+<button  ng-click="openChangeFilial()" class="btn btn-primary btn-escolher-filial" style="background-color: #3276b1;">
+		  
+		   <label class="button-filial-label only-desktop" >
+			   <i  class="fa fa-building-o" style="font-size:10px;" aria-hidden="true"></i>
+			   <strong > {{labelCurrentFilial || 'Todas' |uppercase}} / </strong>
+		   </label>
+		   
+		    <label class="button-filial-label only-desktop" >
+			   <i class="fa fa-user-o" aria-hidden="true" style="font-size:10px;" ></i>
+			   <strong  >{{currentOperador.nome || 'Todos' |uppercase}}</strong>
+		   </label>
+		   <div class="only-mobile">
+		      <strong class="button-filial-label"> {{labelCurrentFilial || 'Todas' |uppercase}} / {{currentOperador.nome || 'Todos' |uppercase}}  </strong>
+		   </div>
+ </button>
+		   
+		

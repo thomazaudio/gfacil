@@ -17,9 +17,6 @@ import util.AjaxResponse;
 @Secured("IS_AUTHENTICATED_FULLY")
 public class OperadorSistemaControl  extends GenericControl<OperadorSistema>{
 	
-	
-	
-	
 
 	@JsonView(util.Views.Public.class)
 	@ResponseBody

@@ -142,11 +142,6 @@
 				var dataFrontEnd  = dateUtil.getDate(new Date());
 				var dataBackEnd = dateUtil.getDate(data.dataBackEnd);
 
-				console.log("data do front end: ");
-				console.log(dataFrontEnd.getTime());
-				console.log("data do backend: ");
-				console.log(dataBackEnd.getTime());
-
 				if(dataFrontEnd.getTime() != dataBackEnd.getTime()){
 
 					st.evt({evento:"data_frontend_errada",descricao:"data_usuario_errada", descricao:"data do backend: "+dataBackEnd+", data do frontend: "+dataFrontEnd});

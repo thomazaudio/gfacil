@@ -48,6 +48,10 @@ public class UserSystem {
 	//Idetificação da filial corrente
 	@JsonView(util.Views.Public.class)
 	private long currentFilialId;
+	
+	//Idetificação do operadorcorrente
+	@JsonView(util.Views.Public.class)
+	private long currentOperadorId;
 
 	//Configurações do úsuario
 	@JsonView(util.Views.Public.class)

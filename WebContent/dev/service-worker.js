@@ -11,9 +11,10 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-var dataCacheName = 'CeasaPlus 3.2';
+var dataCacheName = 'CeasaPlus 3.5';
 var cacheName = dataCacheName;
 var filesToCache = [
+                    '/',
                     'css/style.css',
                     'global/lib/spin.js',
                     'js/base.js',
@@ -91,9 +92,11 @@ self.addEventListener('activate', function(e) {
 });
 
 self.addEventListener('fetch', function(e) {
-	console.log('[Service Worker] Fetch', e.request.url);
-	if (e.request.url.indexOf(".html") > -1 || e.request.url.indexOf(".jpg") > -1 || e.request.url.indexOf(".png") > -1 || e.request.url.indexOf(".woff") > -1) {
+	
+	if (e.request.url.indexOf(".html") > -1 || e.request.url.indexOf(".js") > -1  || e.request.url.indexOf(".jpg") > -1 || e.request.url.indexOf(".png") > -1 || e.request.url.indexOf(".woff") > -1) {
 
+		console.log('[Service Worker] Fetch no Cache', e.request.url);
+		
 		/*
 		 * The app is asking for app shell files. In this scenario the app uses the
 		 * "Cache, falling back to the network" offline strategy:
@@ -108,6 +111,7 @@ self.addEventListener('fetch', function(e) {
 
 	} else {
 
+		console.log('[Service Worker] Fetch na Rede', e.request.url);
 		/*
 		 * When the request URL contains dataUrl, the app is asking for fresh
 		 * weather data. In this case, the service worker always goes to the

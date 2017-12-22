@@ -57,6 +57,9 @@
 						$scope.salvando = true;
 					
 						var classe = tipoPessoa.charAt(0).toUpperCase() + tipoPessoa.slice(1);
+						
+						if(classe=='Operadorsistema')
+							classe="OperadorSistema";
 
 						stService.executeGet("/projecao/execute-query",{query:  "from "+classe+" where nome like '%"+pessoa.nome+"%' and disable=0"}).success(function(data){
 							

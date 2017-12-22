@@ -1,6 +1,8 @@
 package relatorio;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
+
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
@@ -20,18 +22,8 @@ public class ProjecaoDAO extends GenericDAO<Projecao> {
    public ArrayList<Map<String,Object>> getProjecoes (String objeto, ArrayList<String> qs,String extra,String columns, String groupBy, int max){
 	   
 	   
-	  //Caso seja um objeto pertencente a Crud, é inserido a query para filtragem da Filial definida 
-	  if(DataBaseUtil.isCrudEntity(SystemUtil.getClass(objeto))){
-		  
-		  String queryFilial = DataBaseUtil.getQueryFilial().replaceAll("and","");
-		  
-		  if(queryFilial.length()>0)
-		     qs.add(queryFilial);
-	  }
-	  else{
-		  System.out.println("A classe "+objeto+" NÃO é crudEntity");
-		  
-	  }
+	  String[] qs_ =  DataBaseUtil.getCrudQueries(SystemUtil.getClass(objeto), qs.toArray(new String[qs.size()] ));
+	  qs = new ArrayList<String>(Arrays.asList(qs_));
 	   
 	   String query = "select "+columns+" from "+objeto+" where ";
 	   String condicao ="";
@@ -62,6 +54,9 @@ public class ProjecaoDAO extends GenericDAO<Projecao> {
 	    	query+=" "+extra;
 	    }
 	    
+    	query  = query.replace("and and","and");
+		query  = query.replace("and  and","and");
+		query  = query.replace("and   and","and");
         
         System.out.println("Query a ser executada em getProjecoes: "+query);
 	    

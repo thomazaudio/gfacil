@@ -1,3 +1,20 @@
+
+
+.icone-atalhos-inicio{
+	
+	border-radius: 45px;
+    width: 90px;
+    /* height: 80px; */
+    border: 1px solid;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fcfcfc;
+}
+
+.button-filial-label{
+	font-size: 11px;
+}
+
 .btn-default {
     color: #645f5f!important;
 }

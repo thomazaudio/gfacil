@@ -1,6 +1,6 @@
 "use strict";
 (function(){
-angular.module("adm").controller("relatorioController",function($scope,$rootScope,$route,$window,stService,movimentacaoService,$filter,movUtil, stUtil,dateUtil, leadUtil){
+angular.module("adm").controller("relatorioController",function($scope, $timeout, $rootScope, $route, $window, stService, movimentacaoService, $filter, movUtil, stUtil,dateUtil, leadUtil){
 
 	$scope.imprimirRelatorio = function(){
 		leadUtil.addIncMetric("impressoes_relatorio",1);
@@ -16,6 +16,15 @@ angular.module("adm").controller("relatorioController",function($scope,$rootScop
 			labelColumn:"categoria",
 			valueColumn:"sum(valor)",
 			objeto:"Movimentacao",
+			
+	}
+	
+	$scope.relatorioPrecoMensal = {
+			qs: ["tipoEntrada=0","disable=0"],
+			periodColumn:"date",
+			labelColumn:"produto.nome",
+			valueColumn:"max(valorUnitario)",
+			objeto:"Pedido"
 			
 	}
 
@@ -42,9 +51,17 @@ angular.module("adm").controller("relatorioController",function($scope,$rootScop
 		$rootScope.$broadcast("changePeriod");
 
 	}
+	
+	
+	$timeout(function(){
+		if($scope.dataDe && $scope.dataAte)
+			$scope.atualizarDados();
+	},300);
+	
 
-	if($scope.dataDe && $scope.dataAte)
-		$scope.atualizarDados();
+	
+	
+	
 
 });
 

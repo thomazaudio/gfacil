@@ -162,10 +162,13 @@ CREATE TABLE `pessoa` (
 
 LOCK TABLES `pessoa` WRITE;
 /*!40000 ALTER TABLE `pessoa` DISABLE KEYS */;
-INSERT INTO `pessoa` VALUES ('admin',1,NULL,0,NULL,NULL,NULL,'31993901343','Admin',NULL,'pdv, vendas, estoque, clientes,funcionários, fornecedores, balanço, movimentações, cadastros, registros de ponto, logística reversa',NULL,'123',NULL,0,NULL,1,1,0,1);
+INSERT INTO `pessoa` (`id`,`tipo_pessoa`, `disable`, `doc`, `tipoDoc`, `defaultPassword`,`nome`,`allFilials` ) VALUES (1,'operador_sistema', 0, 'null', '0','0','Admin',1);
 INSERT INTO `pessoa` (`tipo_pessoa`, `disable`, `doc`, `tipoDoc`, `defaultPassword`,`nome`,`allFilials` ) VALUES ('cliente', 0, 'null', '0','0','OUTROS',1);
 /*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
 UNLOCK TABLES;
+
+INSERT INTO `db_apresentacao`.`filial` (`bloqueada`, `nome`, `tipoDoc`, `xFant`, `xNome`,  `allFilials`) VALUES ('0', 'Fazenda SP', '1', 'Fazenda SP', 'Fazenda SP',1);
+
 
 --
 -- Table structure for table `produto`

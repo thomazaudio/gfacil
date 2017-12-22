@@ -50,9 +50,10 @@
  Os dados exbibidos são referentes ao período de <strong>{{dataDe|date:'dd/MM/yyyy'}}</strong> a <strong>{{dataAte|date:'dd/MM/yyyy'}}</strong>
 </p>
 
+
 <!-- Balanço -->
 <st-collapse-panel class="col-lg-12" ng-if="config.confs.itensRelatorio.indexOf('balanco')!=-1"  icone="'balance-scale'" show="true" titulo="'Balanço'">
-			<component-balanco  id="component-balanco"   de="dataDe" ate="dataAte" ></component-balanco>
+			<component-balanco   de="dataDe" ate="dataAte" ></component-balanco>
 </st-collapse-panel>
 	
 
@@ -66,6 +67,12 @@
 <st-collapse-panel class="col-lg-6"  ng-if="config.confs.itensRelatorio.indexOf('despesas_por_categoria')!=-1" icone="'list'" show="true" titulo="'Gastos por categoria'">
     <component-projecao de="dataDe" ate="dataAte" info="relatorioGastosCategoria"></component-projecao>
 </st-collapse-panel>
+
+<st-collapse-panel class="col-lg-6"   icone="'list'" show="true" titulo="'Preço/mês'">
+    <component-projecao de="dataDe" ate="dataAte" info="relatorioPrecoMensal"></component-projecao>
+</st-collapse-panel>
+
+
 
 
 <vertical-space></vertical-space>

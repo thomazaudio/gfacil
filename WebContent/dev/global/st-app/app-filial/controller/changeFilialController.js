@@ -3,20 +3,25 @@
 
 	angular.module("adm")
 
-	.controller("filialListController",function($scope, $rootScope, $localStorage, cacheGet, $route, filialUtil, stUtil, configUtil){
+	.controller("changeFilialController",function($scope, $rootScope, $localStorage, cacheGet, $route, filialUtil, stUtil,stService,  configUtil, $modalInstance){
 
 		
-
-		$rootScope.$watch("currentFilial",function(currentFilial){
-
-			if(currentFilial)
-				$scope.labelCurrentFilial = currentFilial.xNome;
+		stService.executeGet("/operadorsistema").success(function(data){
+			
+			$scope.operadores = [{id:0, nome:"Todos"}];
+			$scope.operadores = $scope.operadores.concat(data.itens);
+			$scope.operadorEsc = 	$rootScope.currentOperador || $scope.operadores[0];
+			
 		});
-
+		
+		
+		
 		$rootScope.$watch("filiais",function(filiais){
 
-			if(filiais)
+			if(filiais){
 				$scope.filiais = filiais;
+				$scope.filialEsc  = $rootScope.currentFilial ||  filiais[0];
+			}
 			
 			$scope.filiaisPermitidas = null;
 
@@ -34,15 +39,15 @@
 			filialUtil.openDetalheFilial(filial);
 		}
 
-		//Altera a filial atual do sistema
-		$scope.alterarFilial = function(filial){
-
-
-			console.log("usuarioSistema: ");
-			console.log($rootScope.usuarioSistema);
-
+		$scope.fecharModal = function(){
+			
+			$modalInstance.close();
+		}
 		
+		//Altera a filial atual do sistema
+		$scope.alterarFilialAndOperador = function(filial, operador){
 
+			
 
 			if(filial.bloqueada==1){
 
@@ -52,7 +57,7 @@
 
 			if($scope.filiaisPermitidas!=null && $scope.filiaisPermitidas.indexOf(filial.id+"")==-1){
 
-				stUtil.showMessage("","A origem '"+filial.nome+"' não está disponível","danger");
+				stUtil.showMessage("","A origem '"+filial.nome+"' não está disponível para este usuário","danger");
 				return;
 			}
 
@@ -60,7 +65,8 @@
 			$scope.currentFilial = filial;
 			$rootScope.currentFilial = filial;
 			$localStorage.currentFilial = filial;
-
+			$rootScope.currentOperador = operador;
+			$localStorage.currentOperador = operador;
 
 			configUtil.setConfig("currentFilialId",filial.id+"");
 			configUtil.setConfig("labelCurrentFilial",filial.xNome);
@@ -69,7 +75,7 @@
 			//atualizar caches
 			cacheGet.getOfflineCache(function(){
 
-				stUtil.showMessage("","Origem alterada para  '"+filial.nome+"'.","info");
+				stUtil.showMessage("","Origem alterada para  '"+filial.nome || filial.xNome+"'.","info");
 
 				if($scope.inModal!=true)
 					$route.reload();

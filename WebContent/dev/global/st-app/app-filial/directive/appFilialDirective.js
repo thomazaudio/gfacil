@@ -3,16 +3,48 @@
 
 	angular.module("adm")
     
-	.directive("filialList",function(filialUtil){
+	.directive("buttonFilial",function(filialUtil, $uibModal){
 
 		return{
-			templateUrl:"global/st-app/app-filial/template/filialList.html",
+			templateUrl:"global/st-app/app-filial/template/buttonFilial.html",
 			scope:{
 				inModal:"="//Indica se está setada dentro de um modal (Para não charmar $route.reload())
 				
 			},
 
-			controller:"filialListController"
+			controller:function($scope, $rootScope, $timeout){
+				
+				$timeout(function(){
+					$scope.currentFilial = $rootScope.currentFilial;
+
+					
+				},300);
+				
+				$rootScope.$watch("currentFilial",function(currentFilial){
+
+					if(currentFilial)
+						$scope.labelCurrentFilial = currentFilial.xNome;
+				});
+				
+				
+				$rootScope.$watch("currentOperador",function(currentOperador){
+
+					if(currentOperador)
+						$scope.currentOperador= currentOperador;
+				});
+				
+				$scope.openChangeFilial = function(){
+					
+					$uibModal.open({
+						animation: true,
+						templateUrl:"global/st-app/app-filial/template/openChangeFilial.html",
+						size:'md',
+						controller:"changeFilialController"
+						
+					});
+					
+				}
+			}
 			
 		}
 

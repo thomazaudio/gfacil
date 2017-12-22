@@ -55,7 +55,7 @@
 					path = path.replace("/","");
 
 					var indexItem = stUtil.buscaOb( $scope.itens, path,"path");
-					var item = $scope.itens[indexItem];
+					var item = $scope.itens[indexItem] || {};
 
 					$scope.atualPage  = item.label;
 					$scope.currentPath = item.path;

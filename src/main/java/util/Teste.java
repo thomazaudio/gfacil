@@ -13,15 +13,23 @@ import lead.Lead;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
+import produto.Produto;
 import transactional.SendEmail;
 import cliente.Cliente;
+import database.DataBaseUtil;
 
 public class Teste {
 
 
 	public static void main(String[] args){
 		
-		montar();
+		
+		
+		String query = DataBaseUtil.getInlineCrudQueries(Produto.class);
+		
+		System.out.println("Query: "+query);
+		
+		//montar();
 		
 	}
 	

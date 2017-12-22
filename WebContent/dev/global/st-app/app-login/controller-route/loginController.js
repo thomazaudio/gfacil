@@ -2,8 +2,7 @@
 (function(){
 angular.module("adm").controller("loginController",function(demo,$scope,$location,$rootScope,$localStorage,$cookieStore,loginUtil, stUtil, redirect, st, leadUtil){
 
-	
-	
+
 	if($location.$$absUrl.indexOf("admin")!=-1 || $location.$$absUrl.indexOf("localhost") !=-1)
 		$scope.showCampoEmpresa = true;
 	
@@ -15,15 +14,6 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 
 	$scope.carregando = false;
 	$scope.lembrarSenha = true;
-
-	//Exibir ou não o campo 'empresa'
-	$scope.showEmpresa = true;
-
-	//Caso seja usuário do ceasa, o campo empresa nãoé exbido
-	if($location.$$absUrl.indexOf("ceasaplus")!=-1){
-
-		$scope.showEmpresa = false
-	}
 
 	if(!$rootScope.usuarioSistema)
 		$rootScope.usuarioSistema = $cookieStore.get("usuarioSistema");
@@ -46,7 +36,7 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 			return;
 		}
 
-		if(!login.empresa)
+		if(!$scope.showCampoEmpresa || $scope.showCampoEmpresa == false)
 		   login.empresa = login.usuario;
 
 		$scope.carregando=true;
@@ -54,9 +44,6 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 			
 			$scope.carregando=false;
 			
-			console.log("login data: ");
-			console.log(loginData);
-		
 			if(loginData){
 				
 				leadUtil.addMetricaTipoDispositivo();

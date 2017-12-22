@@ -195,10 +195,18 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 					var authToken = $rootScope.authToken ||$cookieStore.get("authToken"); 
 					var filialId = 0;
+					var operadorId= 0;
 
+					//Filtragem por filial
 					if($rootScope.currentFilial){
 
 						filialId = $rootScope.currentFilial.id;
+					}
+					
+					//Filtragem por operador
+					if($rootScope.currentOperador){
+
+						operadorId =  $rootScope.currentOperador.id;
 					}
 
 					var operator = "?";
@@ -210,6 +218,10 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 
 					if(config.url.indexOf("filialId")==-1){
 						config.url = config.url +"&&filialId="+filialId;
+					}
+					
+					if(config.url.indexOf("operadorId")==-1){
+						config.url = config.url +"&&operadorId="+operadorId;
 					}
 
 

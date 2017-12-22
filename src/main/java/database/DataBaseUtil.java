@@ -1,11 +1,14 @@
 package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Properties;
+
 import javax.sql.DataSource;
+
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
@@ -13,6 +16,7 @@ import org.hibernate.tool.hbm2ddl.SchemaUpdate;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+
 import com.mchange.v2.c3p0.C3P0Registry;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.mchange.v2.c3p0.PooledDataSource;
@@ -29,6 +33,68 @@ public class DataBaseUtil {
 	public static String DB_PREFIX = "db_";
 	
 	
+	
+	public static String[] getCrudQueries(Class classe, String[] qs){
+		
+		//Verifica se a classe é um CrudEntity
+				if(DataBaseUtil.isCrudEntity(classe))
+				{
+					ArrayList<String> querys = new ArrayList<String>(Arrays.asList(qs));
+					querys.add("(disable=0 or disable is null)");
+
+					//Retira o 'and' já que será adicionado posteriormente
+					String queryFilial = getQueryFilial();
+					String queryOperador = getQueryOperador();
+
+					if(queryFilial .length()>0)
+						querys.add(queryFilial );
+					
+					if(queryOperador!=null && queryOperador .length()>0)
+						querys.add(queryOperador );
+
+					qs = querys.toArray(new String[]{});
+
+
+				}
+				
+			
+				return qs;
+
+	}
+	
+	public static String getDisableQuery(Class classe){
+		
+		String disableQuery = "";
+		
+		if(DataBaseUtil.isCrudEntity(classe))
+		{
+			
+			disableQuery = "(disable=0 or disable is null)";
+		}
+		return disableQuery;
+	}
+	
+	public static String getInlineCrudQueries(Class classe){
+		
+		String queryCrud = "";
+		
+		String[] qs = getCrudQueries(classe, new String[0]);
+		int i=0;
+		
+		for(String q : qs){
+			
+			queryCrud +=" "+q;
+			i++;
+			
+			if(i<qs.length)
+				queryCrud+=" and ";
+		}
+		
+		System.out.println("queryCrud em getInlineCrudQueries: "+queryCrud);
+		
+		return queryCrud;
+	}
+	
 	//Injeta a query de filial em query completo. ex: "from Produto where nome like '%Teste%'"
 	public static String injectQueryFilial(String query, String queryFilial){
 		
@@ -38,12 +104,18 @@ public class DataBaseUtil {
 		if(!isCrudEntity(objectInQuery.getClass()))
 			return query;
 		
+		String queryOperador = getQueryOperador();
 		
 		if(queryFilial==null)
 			queryFilial = getQueryFilial();
 		
-		queryFilial = queryFilial.replace("and","");
-		
+		if(queryOperador!=null && queryOperador.length()>0){
+			
+			if(queryFilial!=null && queryFilial.length()>0){
+				queryFilial+=" and ";
+			}
+			  queryFilial+=queryOperador;
+		}
 		
 		//Caso não tenha filial definida
 		if(queryFilial.length()==0)
@@ -67,14 +139,12 @@ public class DataBaseUtil {
 			posBase = query.indexOf(nomeObjeto)+nomeObjeto.length();
 		}
 		
-	
-		
 		String novaQuery = query.substring(0,posBase)+sufix+query.substring(posBase);
 		
 		
 		novaQuery = novaQuery.trim();
 		
-		
+	
 		return novaQuery;
 		
 		
@@ -97,13 +167,34 @@ public class DataBaseUtil {
 
 		//TODO Query para filial relacionada, se houver
 		if(idFilial!=0)
-			query=" and (idFilial = "+idFilial+" or idFilial=0  or allFilials=1)";
-
+			query=" (idFilial = "+idFilial+" or idFilial=0  or allFilials=1) ";
+		
 		return query;
 
 	}
 	
 	
+	public static String getQueryOperador(){
+
+		AccountUserDetails user = SystemUtil.getCurrentUserDetails();
+
+		String query ="";
+	
+		
+		long idOperador  = 0;
+		
+		if(user!=null && user.getAccount()!=null){
+			
+   			idOperador = user.getAccount().getCurrentOperadorId();
+		}
+
+		if(idOperador!=0)
+		   query+=" idOperador = "+idOperador+" ";
+		
+
+		return query;
+
+	}
 	
 	   //Verifica se um objeto e CrudClass
 		public static  boolean isCrudEntity(Class classe){
@@ -320,6 +411,8 @@ public class DataBaseUtil {
 	        props.put("hibernate.connection.password",dataSource.getPassword());
 	        tenantConfig.addProperties(props);
 	       
+	        
+	        
 
 	        // Get connection
 	        Connection connection = DriverManager.getConnection(dataSource.getJdbcUrl(), 

@@ -2,21 +2,16 @@ package crud;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonView;
-
 import lombok.Getter;
 import lombok.Setter;
 import util.DataUtil;
-import util.Pessoa;
 
 @MappedSuperclass
 @Getter @Setter
@@ -27,6 +22,11 @@ public  class CrudClass {
 	@JsonView(util.Views.Public.class)
 	@Column(name = "idFilial", columnDefinition = "bigint(20) default 1",nullable=false)
 	private long idFilial;
+	
+	
+	@JsonView(util.Views.Public.class)
+	@Column(name = "idOperador", columnDefinition = "bigint(20) default 1",nullable=false)
+    private long idOperador;
 	
 	//Objeto disponivel para todas as filiais
 	@JsonView(util.Views.Public.class)
@@ -47,11 +47,6 @@ public  class CrudClass {
 	@Column( length = 100000 )
 	private String historicoObjeto;
 	
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_operador",nullable=true)
-	private Pessoa operador;//Operador logado no sistema, responsável pelo lançamento
-
 	
 	//Data de pagamento da movimentação
 	@Temporal(TemporalType.DATE)

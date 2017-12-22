@@ -90,19 +90,18 @@ public abstract class GenericDAO<E> {
 
 			CrudClass ent  = (CrudClass) item;
 
-			long idPessoa = 0;
-
+			long idOperador = 0;
 
 			AccountUserDetails user = SystemUtil.getCurrentUserDetails();
 
 			if(user!=null){
 
-				idPessoa = user.getAccount().getId();
+				idOperador = user.getAccount().getId();
 
 				//Operador que executou a ação
-				Pessoa p =  new Pessoa();
-				p.setId(idPessoa);
-				ent.setOperador(p);
+				if(ent.getId()==0){
+				ent.setIdOperador(idOperador);
+				}
 
 
 				String descricaoOperacao = CrudClassUtil.getDescricaoOperacaoOperador(ent,user.getAccount().getNome());
@@ -187,13 +186,12 @@ public abstract class GenericDAO<E> {
 	@SuppressWarnings("unchecked")
 	public ArrayList<E> getAll() {
 
-		String queryCrud="";
-
-		if(isCrudEntity()){
-
-			queryCrud=" where disable=0 or disable is null";
-			queryCrud+=DataBaseUtil.getQueryFilial();
-		}
+		String queryCrud= DataBaseUtil.getDisableQuery(classe);
+		
+		if(queryCrud.length()>0)
+			queryCrud  = " where "+queryCrud;
+        
+		System.out.println("disableQuery: "+queryCrud);
 
 		ArrayList<E>  lista = (ArrayList<E>) getSessionFactory().getCurrentSession().createQuery("from "+classe.getSimpleName()+queryCrud).list();
 		ArrayList<E>  aux = new ArrayList<E>();
@@ -206,15 +204,9 @@ public abstract class GenericDAO<E> {
 	@SuppressWarnings("unchecked")
 	public ArrayList<E> getLike(String propriedade,String query) {
 
-		String queryCrud="";
+		String queryCrud = DataBaseUtil.getInlineCrudQueries(classe);
 
-		if(isCrudEntity()){
-
-
-			queryCrud=" and ( disable=0 or disable is null) ";
-			queryCrud+=DataBaseUtil.getQueryFilial();
-
-		}
+		queryCrud = " and "+queryCrud;
 
 		ArrayList<E> itens;
 		Query q = getSessionFactory().getCurrentSession().createQuery("from "+classe.getSimpleName()+" where "+propriedade+" like :query"+queryCrud);
@@ -234,22 +226,7 @@ public abstract class GenericDAO<E> {
 		if(queryColumns==null)
 			queryColumns="";
 
-		//Verifica se a classe é um CrudEntity
-		if(isCrudEntity())
-		{
-			ArrayList<String> querys = new ArrayList<String>(Arrays.asList(qs));
-			querys.add("(disable=0 or disable is null)");
-
-			//Retira o 'and' já que será adicionado posteriormente
-			String queryFilial = DataBaseUtil.getQueryFilial().replaceAll("and","");
-
-			if(queryFilial .length()>0)
-				querys.add(queryFilial );
-
-			qs = querys.toArray(new String[]{});
-
-
-		}
+		qs = DataBaseUtil.getCrudQueries(this.classe, qs);
 
 		if(!extra.contains("order by"))
 			extra+=" order by id DESC";
@@ -279,6 +256,8 @@ public abstract class GenericDAO<E> {
 
 		query+=" "+extra;
 
+	
+		System.out.println("query no GenericDao.montaQuery(): "+query);
 
 		return query;
 
@@ -306,6 +285,7 @@ public abstract class GenericDAO<E> {
 
 		//Realiza a montagem da query
 		String query =  montaQuery(qs,extra,"select count(*)");
+		System.out.println("query em getCountItens: "+query);
 		return (Long)  getSessionFactory().getCurrentSession().createQuery(query).uniqueResult();
 	
 	}

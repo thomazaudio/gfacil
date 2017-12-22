@@ -964,10 +964,12 @@
 			templateUrl:"global/st-app/st-util/template-module/usuario-sistema/usuarioSistema.html",
 			controller:function($scope, $rootScope, $cookieStore, filialUtil){
 
-				if(!$rootScope.usuarioSistema)
-					$rootScope.usuarioSistema = $cookieStore.get("usuarioSistema");
 				
-				$scope.usuarioSistema = $rootScope.usuarioSistema;
+				$rootScope.$watch('usuarioSistema', function(usuarioSistema){
+					
+					$scope.usuarioSistema = usuarioSistema;
+				});
+				
 
 				$scope.logOut = function(){
 

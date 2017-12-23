@@ -11,9 +11,10 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-var dataCacheName = 'CeasaPlus 3.5';
+var dataCacheName = 'CeasaPlus 3.7';
 var cacheName = dataCacheName;
 var filesToCache = [
+                    '',
                     '/',
                     'service-worker.js',
                     'css/style.css',

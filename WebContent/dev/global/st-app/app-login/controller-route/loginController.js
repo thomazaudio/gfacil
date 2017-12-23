@@ -3,7 +3,7 @@
 angular.module("adm").controller("loginController",function(demo,$scope,$location,$rootScope,$localStorage,$cookieStore,loginUtil, stUtil, redirect, st, leadUtil){
 
 
-	if($location.$$absUrl.indexOf("admin")!=-1 || $location.$$absUrl.indexOf("localhost") !=-1)
+	if($location.$$absUrl.indexOf("teste")!=-1 || $location.$$absUrl.indexOf("admin")!=-1 || $location.$$absUrl.indexOf("localhost") !=-1)
 		$scope.showCampoEmpresa = true;
 	
 	

@@ -167,8 +167,9 @@ INSERT INTO `pessoa` (`tipo_pessoa`, `disable`, `doc`, `tipoDoc`, `defaultPasswo
 /*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
-INSERT INTO `db_apresentacao`.`filial` (`bloqueada`, `nome`, `tipoDoc`, `xFant`, `xNome`,  `allFilials`) VALUES ('0', 'Fazenda SP', '1', 'Fazenda SP', 'Fazenda SP',1);
-
+/*
+INSERT INTO `filial` (`bloqueada`, `nome`, `tipoDoc`, `xFant`, `xNome`,  `allFilials`) VALUES ('0', 'Fazenda SP', '1', 'Fazenda SP', 'Fazenda SP',1);
+*/
 
 --
 -- Table structure for table `produto`

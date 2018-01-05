@@ -54,7 +54,7 @@
 		      <div class="pull-left col-lg-12">
 		          <button ng-show="!inEdit || inEdit==false" ng-click="inEdit=true" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> editar</button>
 		          <button ng-show="inEdit==true"  ng-click="inEdit=false" class="btn btn-xs btn-default"><i class="fa fa-undo"></i> cancelar</button>
-		          <button ng-show="inEdit==true" ng-click="inEdit=false;vm.salvar(vm.lead)" class="btn btn-xs btn-default"><i class="fa fa-check"></i> salvar</button>
+		          <button ng-show="inEdit==true || !vm.lead.id"" ng-click="inEdit=false;vm.salvar(vm.lead)" class="btn btn-xs btn-default"><i class="fa fa-check"></i> salvar</button>
 		      </div>
 		      <div class="col-lg-12">
 		         <hr></hr>
@@ -333,6 +333,9 @@
 		     </li>
 		     <li>
 		      <label><input ng-model="vm.lead.questions.problema_emprestimo_embalagens" ng-false-value="'false'"   ng-true-value="'true'"  type="checkbox" /> Gerenciar empréstimos </label>
+		     </li>
+		     <li>
+		      <label><input ng-model="vm.lead.questions.nenhum" ng-false-value="'false'"   ng-true-value="'true'"  type="checkbox" /> Nenhum </label>
 		     </li>
 		     <li>
 		          <label class="text-small text-muted">Outros problemas</label>

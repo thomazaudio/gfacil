@@ -23,6 +23,8 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 	}
 	
 	$scope.logar = function(login,lembrarSenha){
+		
+		
 
 		if(!login.usuario){
 
@@ -85,6 +87,8 @@ angular.module("adm").controller("loginController",function(demo,$scope,$locatio
 		$scope.existeEmpresa = false;
 
 	}
+	
+	
 
 	if($localStorage.usuario && $localStorage.senha){
 		$scope.logar($scope.login, true);

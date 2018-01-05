@@ -77,6 +77,7 @@
 
 				//Empresa sem filiais
 				else{
+					$rootScope.filiais  = [{id:1,xNome:"Matriz"}];
 					$rootScope.currentFilial = {id:1,xNome:"Matriz"};
 				}
 

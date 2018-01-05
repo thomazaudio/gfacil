@@ -55,7 +55,7 @@ angular.module("site").config(function($routeProvider){
 
 	$routeProvider.when("/cadastro/:origem",{
 
-		templateUrl:"modulos/cadastro/cadastro.html",
+		templateUrl:"modulos/cadastro/cadastro2.html",
 		controller:"cadastroController",
 		resolve: {
 
@@ -70,7 +70,7 @@ angular.module("site").config(function($routeProvider){
 	
 	$routeProvider.when("/cadastro",{
 
-		templateUrl:"modulos/cadastro/cadastro.html",
+		templateUrl:"modulos/cadastro/cadastro2.html",
 		controller:"cadastroController",
 		resolve: {
 

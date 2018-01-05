@@ -1,0 +1,110 @@
+<!-- Defina aqui a descrição do protótipo -->
+<meta charset="UTF-8" />
+<form class="form-group col-lg-4">
+    <select class="form-control">
+       <option>Setor 1</option>
+       <option>Setor 2</option>
+       <option>Setor 3</option>
+    </select>
+</form>
+<div class="col-lg-3">
+   <p class="text-muted"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:orange;"></i> equipamento offline</p>
+</div>
+<form class="form-group col-lg-4">
+    <button class="btn btn-default"><i class="fa fa-plus"></i> Cadastrar novo setor</button>
+</form>
+
+<vertical-space></vertical-space>
+<div class="col-lg-12">
+<div class="col-lg-5" style="padding-left:0px;">
+	<div class="panel panel-body" style=" height: 230px;">
+	      <h4 class="text-muted"><i style="color: var(--secondary-color)" class="fa fa-clock-o"></i> Tempo Real</h4>
+	     <div class="pull-left">
+	        <h1 style="font-size:72px;" class="text-muted text-center"><img src="tempo-nublado.png" /> {{temparaturaAr}} <span style=" font-size:15px;vertical-align: text-top;margin-left:-15px;">ºC</span></h1>
+	     </div>
+	      <div class="pull-right">
+	         <p class="text-muted">Chuva: 0%</p>
+	         <p class="text-muted">Umidade: {{umidadeAr}}%</p>
+	         <p class="text-muted">Vento: 0 km/h</p>
+	         <p class="text-muted">Pressão:  0 Kgf/cm2</p>
+	          
+	      </div>
+	      <div class="col-lg-12">
+	          <hr></hr>
+	      </div>
+	</div>
+</div>
+	<div class="col-lg-7">
+			<div class="panel panel-body">
+			      <h4 class="text-muted"><i style="color: var(--secondary-color)" class="fa fa-cog"></i> Gerenciamento irrigação</h4>
+			         <div class="col-lg-4">
+				         <button ng-click="toggleIrrigacao()" confirm="Tem certeza de deseja iniciar a irrigação para o setor?" class="btn btn-lg- btn-primary btn-block">
+				             <h1><i class="fa fa-power-off" aria-hidden="true"></i></h1>
+				             <p ng-show="!irrigacaoOn || irrigacaoOn==false">Ligar</p>
+				             <p ng-show="irrigacaoOn==true">Desligar</p>
+				             <p style="font-size:9px;margin-top:-5px;">Iniciar irrigação para este setor</p>
+				         </button>
+			         </div>
+			         
+			         <div class="col-lg-4">
+				         <button ng-disabled="true" confirm="Tem certeza de deseja iniciar a irrigação para o setor?" class="btn btn-lg- btn-default btn-block">
+				             <h1><i class="fa fa-cog" aria-hidden="true"></i></h1>
+				             <p>Automação</p>
+				             <p style="font-size:9px;margin-top:-5px;">Acionamento automático das válvulas</p>
+				         </button>
+			         </div>
+			         <div class="col-lg-4">
+			             <button ng-disabled="true" confirm="Tem certeza de deseja iniciar a irrigação para o setor?" class="btn btn-lg- btn-secondary btn-block">
+				             <h1><i class="fa fa-pie-chart" aria-hidden="true"></i></h1>
+				             <p>Relatórios</p>
+				             <p style="font-size:9px;margin-top:-5px;">Estatísticas do sistema</p>
+				         </button>
+			         </div>
+			         
+			          <div class="col-lg-12">
+				          <hr></hr>
+				      </div>
+			     
+			</div>
+			
+	</div>
+	
+</div>
+
+<vertical-space></vertical-space>
+<div class="col-lg-12">
+   <div class="col-lg-3" style="padding-left:0px;">
+		<div class="panel panel-body">
+		      <h4 class="text-muted"><i style="color: var(--secondary-color)" class="fa fa-list"></i> Umidade do solo nível-1</h4>
+		      <h1 style="font-size:72px;" class="text-muted text-center"><img width="200" src="umidade-nivel-1.png" /></h1>
+		       <h1 style="font-size:72px;" class="text-muted text-center">{{umidadeNivel1|number:0}}%</h1>
+		</div>
+	</div>
+	<div class="col-lg-3">
+		<div class="panel panel-body">
+		      <h4 class="text-muted"><i style="color: var(--secondary-color)" class="fa fa-list"></i> Umidade do solo nível-2</h4>
+		      <h1 style="font-size:72px;" class="text-muted text-center"><img width="200" src="umidade-nivel-2.png" /></h1>
+		       <h1 style="font-size:72px;" class="text-muted text-center">{{umidadeNivel2|number:0}}%</h1>
+		</div>
+	</div>
+	<div class="col-lg-3">
+		<div class="panel panel-body">
+		      <h4 class="text-muted"><i style="color: var(--secondary-color)" class="fa fa-list"></i> Molhamento foliar</h4>
+		      <h1 style="font-size:72px;" class="text-muted text-center"><img width="225" src="agua-folha.png" /></h1>
+		       <h1 style="font-size:72px;" class="text-muted text-center">0%</h1>
+		</div>
+	</div>
+	<div class="col-lg-3">
+		<div class="panel panel-body">
+		      <h4 class="text-muted"><i style="color: var(--secondary-color)" class="fa fa-list"></i> Ph do Solo</h4>
+		       <h1 class="text-muted text-center"><span>{{phSolo|number:2}}</span></h1>
+		       <p class="text-muted">
+		           A faixa de pH ideal dos solos para a agricultura é entre 6,5 e 7,5. Isto porque é nesta faixa que os nutrientes ficam mais disponíveis às plantas.
+		       </p>
+	          <button class="btn btn-block btn-secondary"><i class="fa fa-check"></i> Regular</button>
+		</div>
+	</div>
+</div>
+
+
+

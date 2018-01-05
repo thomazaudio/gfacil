@@ -119,6 +119,9 @@ INSERT INTO `opcao` VALUES (1,'categoria_conta_pagar','Higienização caixa plá
 /*!40000 ALTER TABLE `opcao` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
+
+
 --
 -- Table structure for table `pessoa`
 --
@@ -167,9 +170,8 @@ INSERT INTO `pessoa` (`tipo_pessoa`, `disable`, `doc`, `tipoDoc`, `defaultPasswo
 /*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
-/*
-INSERT INTO `filial` (`bloqueada`, `nome`, `tipoDoc`, `xFant`, `xNome`,  `allFilials`) VALUES ('0', 'Fazenda SP', '1', 'Fazenda SP', 'Fazenda SP',1);
-*/
+
+
 
 --
 -- Table structure for table `produto`

@@ -18,6 +18,13 @@ angular.module("adm").config(function($routeProvider,$httpProvider){
 		}
 	}); 
 	
+	//Login
+	$routeProvider.when("/navegador-incompativel",{
+
+		templateUrl:"global/st-app/app-login/template-route/navegador-incompativel.html",
+		
+	}); 
+	
 	
 	$routeProvider.when("/initial-config",{
 

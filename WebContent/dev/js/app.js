@@ -6,18 +6,22 @@ try{
 }catch(e){
 	window.alert(e);
 }
-app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','$filter', function($rootScope, $route,$modalStack, $localStorage,$location,st,$filter) {
+app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','$filter','deviceDetector', function($rootScope, $route,$modalStack, $localStorage,$location,st,$filter,deviceDetector) {
 	
 	
 	try{
 		
 		//
+		
   
 	if('serviceWorker' in navigator) {
 		  navigator.serviceWorker
 		           .register('service-worker.js')
 		           .then(function() { console.log("Service r Registered"); });
 		}
+	
+	
+	
 	
 	
 	//Desabiliar zoom (Necessário para safari)
@@ -42,7 +46,8 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','
     	}
     	
     	//Caso o usuário não esteja logado, é direcionado para página de login
-    	else if(!$rootScope.usuarioSistema && (!next.$$route || next.$$route.originalPath.indexOf("/login/:login")==-1) && next.$$route.originalPath.indexOf("/cadastro/:login")==-1 && next.$$route.originalPath.indexOf("/teste")==-1 && next.$$route.originalPath.indexOf("/prot/:template")==-1){
+    	else if(!$rootScope.usuarioSistema && (!next.$$route || next.$$route.originalPath.indexOf("/login/:login")==-1) && next.$$route.originalPath.indexOf("/cadastro/:login")==-1 && next.$$route.originalPath.indexOf("/teste")==-1 && next.$$route.originalPath.indexOf("/prot/:template")==-1 && next.$$route.originalPath.indexOf("/lavoura")==-1){
+    		console.log("PATH: "+next.$$route.originalPath);
     		console.log("Não existe usuário logado no sistema");
     		$location.path("/login");
     	}
@@ -99,6 +104,9 @@ app.run(['$rootScope', '$route','$modalStack','$localStorage','$location','st','
             event.preventDefault();
            
      });
+    
+    
+    
     
 	}catch(e){
 		window.alert("O CeasaPlus não é compatível com seu navegador!\n"+e);

@@ -59,7 +59,7 @@ angular.module("site").controller("introducaoController", function(lead, deviceD
         if($scope.step==1){
         	
         	//Origem a partir do facebook
-    		if($rootScope.lead.codOrigem.indexOf("f")!=-1){
+    		if(true){
     			
     			$location.path("cadastro");
     		}else{
@@ -81,9 +81,11 @@ angular.module("site").controller("introducaoController", function(lead, deviceD
 			rel:0
 	};
 
+	
+	/*
 	$interval(function(){
 
-		if($scope.videoIntro.getCurrentTime()>=19 ){
+		if($scope.videoIntro.getCurrentTime()>=-1 ){
 
 			$scope.showButtonProx = true;
 		}
@@ -92,6 +94,7 @@ angular.module("site").controller("introducaoController", function(lead, deviceD
 	},1000);
 
 
+*/
 	$scope.$on('youtube.player.ready', function ($event, player) {
 
         youtubePlayer = player;

@@ -49,19 +49,21 @@
 		    </div>
 	   
 			<div class="form-group">
-				<button ng-disabled="carregando==true" id="btn-login" type="button" ng-click="logar(login,lembrarSenha)" class="btn btn-secondary btn-lg btn-block">		
-				<i ng-show="carregando==true" class="fa fa-refresh faa-spin animated" aria-hidden="true"></i>
-				 Entrar no sistema </button>
+			    <div class="col-lg-6" style="padding-left:0px;">
+					<button ng-disabled="carregando==true" id="btn-login" type="button" ng-click="logar(login,lembrarSenha)" class="btn btn-secondary btn-lg btn-block">		
+					<i ng-show="carregando==true" class="fa fa-refresh faa-spin animated" aria-hidden="true"></i>
+					 Entrar no sistema </button>
+				 </div>
+				 <div class="col-lg-6" style="padding-right:0px;">
+				    <a  href="https://www.ceasaplus.com.br/site/#/intro/" class="btn  btn-default btn-lg btn-block"> Efetuar cadastro</a>
+				 </div>
 				 <div class="text-center" style="margin-top:9px;">
 				     <a class="text-center" ng-click="lembrarSenhaUsuario()">esqueci a senha</a>
 				 </div>
 			 </div>
 	   </div> 
    </div>
-</div>
-			    
-			</form>
-	</div>
+  </div>
 </div>
 		
 

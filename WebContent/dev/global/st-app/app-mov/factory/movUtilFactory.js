@@ -3,9 +3,73 @@
 
 	angular.module("adm")
 
-	.factory("movUtil",function($http, config,$filter,$confirm,$location,$stModal,$modalStack,stUtil,pedidoUtil,stService,$window,movimentacaoService, $stDetalhe,$uibModal,dateUtil,estoqueUtil){
+	.factory("movUtil",function($http, config, $filter,$confirm,$location,$stModal,$modalStack,stUtil,pedidoUtil,stService,$window,movimentacaoService, $stDetalhe,$uibModal,dateUtil,estoqueUtil){
 
 		var _modalInstance;
+		
+		var _openParcelasInModal = function(originalMov, parcelas){
+			
+			
+			$uibModal.open({
+				animation: true,
+				templateUrl:"global/st-app/app-mov/template-module/modalParcelaMov.html",
+				size:'lg',
+				controllerAs:"vm",
+				controller:function($scope,  $modalInstance){
+
+					var vm = this;
+					vm.parcelas = parcelas;
+					vm.originalMov = originalMov;
+					
+					vm.salvar = function(){
+						
+						vm.salvando = true;
+						
+						_cadMov(vm.parcelas, function(res){
+							
+							vm.salvando = false;
+							
+							if(res){
+								
+							   $modalInstance.close();
+							   stUtil.showMessage("","Cadastrado com sucesso");
+							}
+							else
+								stUtil.showMessage("","Ocorreu um erro ao salvar","danger");
+								
+						});
+					
+					}
+
+				}
+			});
+			
+		}
+		
+		 var _escValorParcela = function(callback){
+					
+					$uibModal.open({
+						animation: true,
+						templateUrl:"global/st-app/app-mov/template-module/escValorParcela.html",
+						size:'lg',
+						controllerAs:"vm",
+						controller:function($scope,  $modalInstance){
+		
+							var vm = this;
+							vm.escValor = function(){
+								
+								var valor  = vm.valorParcela;
+								console.log("valor = "+valor);
+								$modalInstance.close();
+								callback(valor);
+							}
+		
+						}
+					});
+				}
+		
+		
+		
 		var _confirmAlterarBaixa = function(mov,callback){
 
 			//GAMBIARRA!!!
@@ -215,9 +279,11 @@
 
 			stService.executePost("movimentacao/add-parcelas/",movs).success(function(data){
 
-				if(callback)
-					callback(data.item)
+		         callback(data.item)
 
+			}).error(function(){
+				
+				callback();
 			});	
 
 		}
@@ -640,6 +706,8 @@
 
 		return {
 
+			openParcelasInModal: _openParcelasInModal,
+			escValorParcela: _escValorParcela,
 			openMovListInModal: _openMovListInModal,
 			alterarBaixa: _alterarBaixa,
 			alterarMov: _alterarMov,

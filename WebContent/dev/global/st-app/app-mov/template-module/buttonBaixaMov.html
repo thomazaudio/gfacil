@@ -13,8 +13,11 @@
 					<label class="text-muted" uib-tooltip="{{mov.baixada==true && mov.dataBaixa!=null ? 'Paga em: ' + (mov.dataBaixa|date:'dd/MM/yyyy') + ' (' + (mov.dataBaixa|date:'EEEE') + ')' :''}}">
 					    <strong>{{label}}</strong>
 					</label>
+						
 					
 </div>
+<a ng-click="openParcelas(mov)" ng-show="showPagamentos==true" >pagamentos <i class="fa fa-external-link"></i></a>
+
 
 
 

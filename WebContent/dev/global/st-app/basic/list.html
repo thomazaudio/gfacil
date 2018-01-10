@@ -1,0 +1,38 @@
+<meta charset="UTF-8" />
+<vertical-space></vertical-space>
+<div ng-controller="stControl">
+	<div class="col-lg-6">
+	    <st-filter-map
+			    filter-map-instace="filterMapInstance"
+				busca-especial="buscaEspecial"
+				filtros="[
+	 	        
+	 	        {attr:'atrr',placeholder:'Buscar pelo ...'},
+	 	        {attr:'attr',placeholder:'Buscar pela ...'}
+				
+				]
+				">
+	   </st-filter-map>
+	</div>
+	
+    <vertical-space class="only-desktop"></vertical-space>
+    <vertical-space class="only-desktop"></vertical-space>
+    <div class="col-lg-4 only-desktop" >
+	    <button ng-click="openItem()" class="btn btn-default"><i class="fa fa-plus"></i> <strong> Cadastrar </strong></button>
+	</div>
+	
+	<button-add ng-click="openItem()"></button-add>
+	<vertical-space></vertical-space>
+    <vertical-space></vertical-space>
+     <div ng-repeat="ob in objetos" class="col-lg-4 generic-transition">
+	   	 <card-list  index="{{$index}}"  ob="ob" pivo="''"  edit-function="openItem" delete-function="deletarItem">
+	   	 </card-list>
+	 </div>
+	 <div ng-if="objetos.length==0" class="col-lg-12">
+ <st-no-itens label="'Nenhum item econtrado.'"></st-no-itens>
+</div>
+
+    <vertical-space></vertical-space>
+    <st-pagination  filter-map-instance="filterMapInstance"></st-pagination>
+</div>
+

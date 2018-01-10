@@ -20,7 +20,9 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd">
-        
+      
+	<context:component-scan base-package="security" /> 
+	 <context:component-scan base-package="carregador" />   
 	<context:component-scan base-package="entrega" />
 	<context:component-scan base-package="produto" />
 	<context:component-scan base-package="servicevenda" />
@@ -38,7 +40,6 @@
 	<context:component-scan base-package="config" />
 	<context:component-scan base-package="database" />
 	<context:component-scan base-package="usersystem" />
-	<context:component-scan base-package="security" />
 	<context:component-scan base-package="pdv" />
 	<context:component-scan base-package="mercadopago" />
 	<context:component-scan base-package="database" />
@@ -53,7 +54,8 @@
     <context:component-scan base-package="filial" />
     <context:component-scan base-package="lead" />
     <context:component-scan base-package="gerencianet" />
-      <context:component-scan base-package="transactional" />
+    <context:component-scan base-package="transactional" />
+      
     
     
     <bean id="multipartResolver"

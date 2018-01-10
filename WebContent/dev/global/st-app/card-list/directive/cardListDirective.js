@@ -4,7 +4,6 @@
 
 	angular.module("adm")
 
-	//Diretiva para lista de movimentações
 	.directive('cardList', function (){
 		return {
 			restrict: 'E',

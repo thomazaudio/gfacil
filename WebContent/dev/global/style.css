@@ -859,7 +859,8 @@ td  .input-group {
 }
 
 .mov-valor>strong {
-	font-size: 13px;
+    font-size: 14px;
+    color: var(--secondary-color);
 }
 
 .mov-vencimento {

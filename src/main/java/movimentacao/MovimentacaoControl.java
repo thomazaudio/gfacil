@@ -112,9 +112,7 @@ public class MovimentacaoControl extends GenericControl<Movimentacao> {
 	@RequestMapping(value="/movimentacao/delete/", method=RequestMethod.POST)
 	public AjaxResponse<Movimentacao> delete(@RequestBody ObjectAltMov alt) {
 		
-		
        movService.deleteMov(alt.getMov(),alt.getModo());
-       
        return null;
 		
 	}

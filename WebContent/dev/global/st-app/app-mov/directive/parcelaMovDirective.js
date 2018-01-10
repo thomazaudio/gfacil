@@ -2,7 +2,8 @@
 (function(){
 
 	angular.module("adm")
-
+	
+	
 	.directive("parcelaMov",function(dateUtil,movUtil,$uibModal){
 
 		return{
@@ -10,6 +11,7 @@
 			templateUrl:"global/st-app/app-mov/template-module/parcelaMov.html",
 			scope:{
 
+				hideButtonSalvar:"=",
 				originalMov:"=",//Movimentação de origem
 				callBack:"=",//Função de retorno
 				movs:"=",//Movimentações geradas no parcelamento

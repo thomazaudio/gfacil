@@ -138,11 +138,17 @@
             
 			 <tr class="alert-info text-muted" ng-if="!mov.hideList || mov.hideList==false"  >
 			  
-			  	<td class="printHide" style="width:70px">
-				   <a ng-show="mov.id" ng-click="vm.openDetalheMov(mov)" class="default" ><i class="fa fa-edit fa-2x"></i></a>
-				    <a  style="margin-left:4px;" confirm="Tem certeza que deseja deletar este item?" ng-show="mov.id" ng-click="vm.deleteMov(mov)" class="default" ><i class="fa fa-trash fa-2x"></i></a>
+			  	<td class="printHide">
+			  	    <div class="only-desktop"  style="width:70px"> 
+				         <a ng-show="mov.id" ng-click="vm.openDetalheMov(mov)" class="default" ><i class="fa fa-edit fa-2x"></i></a>
+				         <a  style="margin-left:4px;" confirm="Tem certeza que deseja deletar este item?" ng-show="mov.id" ng-click="vm.deleteMov(mov)" class="default" ><i class="fa fa-trash fa-2x"></i></a>
+	                </div>
+	                <div class="only-mobile" >
+	                      <a ng-show="mov.id" ng-click="vm.openDetalheMov(mov)" class="btn btn-block btn-secondary" ><i class="fa fa-edit "></i> editar</a>
+				          <a  style="margin-top:3px;" confirm="Tem certeza que deseja deletar este item?" ng-show="mov.id" ng-click="vm.deleteMov(mov)" class="btn btn-block btn-default" ><i class="fa fa-trash"></i> apagar</a>
+	               </div>
 	            </td>
-	            <td ng-hide="vm.hideColumns.indexOf('id')!=-1" class=""><strong class="text-center">{{mov.id||'N/D'}}</strong></td>
+	            <td data-title="Nº"  ng-hide="vm.hideColumns.indexOf('id')!=-1" class=""><strong class="text-center">{{mov.id||'N/D'}}</strong></td>
 	            <td ng-hide="vm.hideColumns.indexOf('vencimento')!=-1" class="mov-vencimento " data-title="Vencimento" >
 				   <strong>{{mov.data|date:'dd/MM/yyyy'}}</strong>
 				   <span class="text-small text-muted" style="font-size:11px;"> {{mov.data|date:'EEEE'}}</span>
@@ -167,7 +173,7 @@
 				   <span class="text-small text-muted"  ng-if="mov.parcela!=0 && (mov.numeroParcelas>1||mov.originalMov.numeroParcelas>1)">({{mov.parcela}} de {{mov.numeroParcelas||mov.originalMov.numeroParcelas}})</span>
 				</td>
 				<td ng-hide="vm.hideColumns.indexOf('pago')!=-1" class="mov-pago " style="min-width:50px;" data-title="Pago">
-					 <button-baixa-mov  template-version="2"  class="printHide" mov="mov"></button-baixa-mov>
+					 <button-baixa-mov show-pagamentos="true"  template-version="2"  class="printHide" mov="mov"></button-baixa-mov>
 					 <input ng-model="mov.baixada" type="checkbox"  class="form-control printOnly" />
 				</td>
 				<!--  
@@ -188,3 +194,6 @@
 	<div class="row printHide" style="padding:10px;"></div>
 </div>
 </div>
+
+<vertical-space></vertical-space>
+<vertical-space></vertical-space>

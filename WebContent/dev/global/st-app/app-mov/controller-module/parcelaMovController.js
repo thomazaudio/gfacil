@@ -3,23 +3,29 @@
 
 	angular.module("adm") 
 
-	.controller("parcelaMovController",function($scope, movUtil, $window, $filter, pedidoUtil){
+	.controller("parcelaMovController",function($scope, movUtil, $window, $filter, pedidoUtil, $uibModal, stUtil){
+
 		
-		if(!$scope.originalMov)
-			$scope.originalMov = {};
+		$scope.salvar = function(movs){
+			
+			    $scope.salvando = true;
+			    
+			    if(movs[0].id){
+				    movUtil.cadMov(movs, function(res){
+				    	if(res)
+				    		stUtil.showMessage("","Salvo com sucesso!");
+				    	$scope.salvando = false;
+				    	
+				    	_init();
+				    });
+			    }
+			    else{
+			    	
+			    	$scope.salvando = false;
+			    }
+		}
 
-		//A movimentação original sempre é a primeira parcela (Caso ela já não seja uma parcela)
-		if(!$scope.originalMov.originalMov)
-		 $scope.originalMov.parcela= 1;
-
-		//Caso a data de vencimento não esteja definida
-		if(!$scope.originalMov.data)
-			$scope.originalMov.data  = new Date();
-
-		//Parcelas
-		$scope.movs  = $scope.movs || [];
-
-		//Realiza o recalculo automátio do valor das parcelas
+		//Realiza o recalculo automátio do valor das parcelas (deixa todas as parcelas com valores iguais)
 		//O recalculo de parcelas é realizado com base no valor total dos pedidos da movimentação original
 		$scope.recalcularParcelas = function(){
 
@@ -27,54 +33,25 @@
 				return;
 
 			var valorParcela = pedidoUtil.getTotalPedidos($scope.originalMov.pedidos)/$scope.movs.length;
-
-			console.log("Valor da parcela: "+valorParcela);
-
+			
 			for(var i in $scope.movs){
 
 				$scope.movs[i].valor = valorParcela;
 			}
 
-			setAlerts();
 		}
 
-		//Adicionar uma nova parcela as lista de parcelas
-		$scope.addParcela = function(mov){
+		$scope.escValorParcela = function(){
 
-			//A nova parcela é um espelho da movimentação original
-			var basicMov = angular.copy($scope.originalMov);
-			basicMov.pedidos=null;
-			basicMov.valor = 0;
-			basicMov.id=0;
-			basicMov.baixada=true;
-			basicMov.data = $scope.originalMov.data || new Date();
-			$scope.movs.push(mov||basicMov);
+			movUtil.escValorParcela(function(valor){
 
-			//Corrige mov.parcela e mov.numeroParcela de todas as parcelas
-			resetInfoParcelas();
-
-			$scope.recalcularParcelas();
-		}
-
-		//Recupera as parcelas definidas anteriormente para exibição
-		if($scope.originalMov.id){
-
-			movUtil.getParcelas($scope.originalMov.id,function(itens){
-				itens = itens||[];
-				//Adicionar a movimentação original na primeira posição
-				itens.unshift($scope.originalMov);
-				$scope.movs = itens;
+				_addParcela(null, valor)
 
 			});
-		}
-		else {
-			$scope.addParcela($scope.originalMov);
+
 		}
 
-		//Corrige mov.parcela e mov.numeroParcela de todas as parcelas
-		resetInfoParcelas();
-
-		$scope.deletarParcela = function(parcela,index){
+		$scope.deletarParcela = function(parcela,index,movs){
 
 			//Deleta parcela no Backend caso possua um id(Cadastrado)
 			if(parcela.id){
@@ -85,25 +62,86 @@
 				if(confirm==true){
 					movUtil.deleteMov(parcela, function(){
 
-						$scope.movs.splice(index,1);
-
-						setAlerts();
+						movs.splice(index,1);
 
 					},'onlyPeriod');//onlyPeriod é informado para deletar a movimentação diretamente
 				} 
 
 			}else{
-				$scope.movs.splice(index,1);
+				movs.splice(index,1);
 			}
 
 			//Corrige mov.parcela e mov.numeroParcela de todas as parcelas
 			resetInfoParcelas();
 
-			setAlerts();
+		}
 
-			//$scope.recalcularParcelas();
+		//Mudança no valor das parcelas (Exceto a original)
+		$scope.changeParcela = function(){
+
+			var soma = getTotalMovsExcetoOriginal();
+
+
+			$scope.movs[0].valor = movUtil.getTotalMov($scope.originalMov, "pedidos")  - soma;
 
 		}
+
+		//Adicionar uma nova parcela as lista de parcelas
+		var _addParcela = function(mov, valor){
+
+			//A nova parcela é um espelho da movimentação original
+			var basicMov = angular.copy($scope.originalMov);
+			basicMov.pedidos =null;
+			basicMov.valor = valor;
+			basicMov.id=0;
+			basicMov.baixada = true;
+			basicMov.data = $scope.originalMov.data || new Date();
+			$scope.movs.push(mov||basicMov);
+
+			//Corrige mov.parcela e mov.numeroParcela de todas as parcelas
+			resetInfoParcelas();
+
+			
+		}
+		$scope.addParcela = _addParcela;
+
+		function _init(){
+
+			if(!$scope.originalMov)
+				$scope.originalMov = {};
+
+			//A movimentação original sempre é a primeira parcela (Caso ela já não seja uma parcela)
+			if(!$scope.originalMov.originalMov)
+				$scope.originalMov.parcela= 1;
+
+			//Caso a data de vencimento não esteja definida
+			if(!$scope.originalMov.data)
+				$scope.originalMov.data  = new Date();
+
+			//Parcelas
+			$scope.movs  = $scope.movs || [];
+
+			//Recupera as parcelas definidas anteriormente para exibição
+			if($scope.originalMov.id){
+
+				movUtil.getParcelas($scope.originalMov.id,function(itens){
+					itens = itens||[];
+					//Adicionar a movimentação original na primeira posição
+					itens.unshift($scope.originalMov);
+					$scope.movs = itens;
+
+				});
+			}
+			else {
+				$scope.addParcela($scope.originalMov);
+			}
+
+
+			//Corrige mov.parcela e mov.numeroParcela de todas as parcelas
+			resetInfoParcelas();
+
+		}
+		_init();
 
 		//Escuta alteraçoes na movimentação original ara mudança das parcelas 
 		$scope.$watch('originalMov',function(originalMov){
@@ -117,38 +155,26 @@
 			//Sempre quando há mudanças em originalMov, movs[0] também muda
 			$scope.movs[0] = originalMov;
 
-			//Caso tenha apenas uma parcela definida, o valor sempre é refletido de acordo com a movimentação original
+			resetInfoParcelas();
 
-			if(originalMov.pedidos && originalMov.pedidos.length>0){
-
-				if($scope.movs.length==1){
-					$scope.movs[0].valor = pedidoUtil.getTotalPedidos(originalMov.pedidos);
-					
-					console.log("valor da originalMov: ");
-					console.log( pedidoUtil.getTotalPedidos(originalMov.pedidos));
-				}else{
-					$scope.movs[0].valor = valorAux;
-				}
-			}
-
-			setAlerts();
+			
 
 		},true);
 
-		//Mudança no valor das parcelas (Exceto a original)
-		$scope.changeParcela = function(){
+
+		function getTotalMovsExcetoOriginal (){
 
 			var soma = 0;
 			for(var i = 1;i<$scope.movs.length;i++){
 
 				soma+=$scope.movs[i].valor;
-				
+
 			}
-			
-			$scope.movs[0].valor = movUtil.getTotalMov($scope.originalMov, "pedidos")  - soma;
-			
-			//setAlerts();
+
+			return soma;
+
 		}
+
 
 		//Altera as informações mov.numeroParcelas e mov.parcela
 		function resetInfoParcelas(){
@@ -160,44 +186,38 @@
 				$scope.movs[i].parcela = i+1;
 				$scope.movs[i].numeroParcelas = numeroParcelas;
 			}
+			
+			if($scope.movs[0])
+			   $scope.movs[0].valor = pedidoUtil.getTotalPedidos($scope.originalMov.pedidos) - getTotalMovsExcetoOriginal();
+			
+			setTotalParcelas();
 
 		}
 
 		//Seta alerta de total das parcelas e alerta de valor das parcelas maior/menor que o total da venda
-		function setAlerts(){
+		function setTotalParcelas(){
 
-			$scope.totalParcelas = 0;
+			var _total = 0;
 			for(var i in $scope.movs){
-				$scope.totalParcelas+=$scope.movs[i].valor;
+				_total += $scope.movs[i].valor;
 
 			}
-
-			setTotalAlert($scope.originalMov);
-		}
-
-		//Diferenca entre o valor das parcelas e o valor da movimentção original
-		function getDiferenca(){
-
-			var totalParcelas = movUtil.getTotalMovs($scope.movs);
-			return  totalParcelas -  movUtil.getTotalMov($scope.movs[0]);
+			
+			$scope.totalParcelas = _total;
+			
+			console.log("Total parcelas: "+_total);
 
 		}
 
-		function setTotalAlert(originalMov){
 
-			var msg;
-			var totalParcelas = movUtil.getTotalMovs($scope.movs,"valor");
-			var valorOriginalMov = movUtil.getTotalMov(originalMov,"pedidos");
+		function getDiferenca(originalMov){
+
+			var totalParcelas = movUtil.getTotalMovs(angular.copy($scope.movs),"valor");
+			var valorOriginalMov = movUtil.getTotalMov(angular.copy(originalMov),"pedidos");
 			var diferenca = $filter("number") (valorOriginalMov - totalParcelas,2);
-
-			if(valorOriginalMov!=totalParcelas){
-
-				msg="O valor total das parcelas é diferente do valor total dos pedidos (Diferença: R$"+diferenca+")";
-
-			}
-
-			$scope.totalAlert = msg;
+			return diferenca;
 		}
+
 
 	})
 

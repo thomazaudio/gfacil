@@ -10,14 +10,17 @@
 	   <div class="panel">
 		   <div class="panel-body" style="padding-bottom:0px;">
 		   
+		       <div class="col-lg-5 col-xs-5">
 		        <p ng-click="vm.changeStep(0)" ng-show="vm.pdv.movimentacao.pessoa.nome && vm.step!=0" class="text-muted text-small"><i class="fa fa-user-o" style="color:var(--secondary-color)"></i> {{vm.pdv.movimentacao.pessoa.nome|uppercase}}</p>
-			   <div class="col-lg-5 col-xs-5">
-			         <p class="text-muted text-small" style="margin-left: 10px;">R$  <strong style="color:var(--secondary-color);font-size:19px">{{vm.totalPdv||0|number:2}}</strong></p>
+			   </div>
+			   <vertical-space></vertical-space>
+			   <div class="col-lg-4 col-xs-4">
+			         <p class="text-muted text-small" >R$  <strong style="color:var(--secondary-color);font-size:19px">{{vm.totalPdv||0|number:2}}</strong></p>
 			   </div>
 			   
-			   <div class="col-lg-3 col-xs-3">
+			   <div class="col-lg-4 col-xs-4">
 			        <button-baixa-mov template-version="2" label="Pago" class="printHide" mov="vm.pdv.movimentacao"></button-baixa-mov>
-			        <a ng-if="vm.pdv.movimentacao.valor>0 && config.confs.showParcelementoInPdv=='true'" data-toggle="modal" data-target="#modalParcelas">parcelas</a>
+			        <a class="text-small" ng-if="config.confs.showParcelementoInPdv=='true'" data-toggle="modal" data-target="#modalParcelas">pagamentos <i class="fa fa-external-link"></i></a>
 			    </div>
 			  
 			   <div class="col-lg-4 col-xs-4">
@@ -86,7 +89,7 @@
 	</div>
 </div>
 <!-- Modal parcelamento -->
-<st-modal titulo="Parcelamento" idmodal="modalParcelas"  size="lg">
+<st-modal titulo="Pagamentos" idmodal="modalParcelas"  size="lg">
 	<parcela-mov is-modal="true" id="parcelas-venda" original-mov="vm.pdv.movimentacao"  movs="vm.pdv.parcelas"></parcela-mov>
 </st-modal>
 </modal-content>	

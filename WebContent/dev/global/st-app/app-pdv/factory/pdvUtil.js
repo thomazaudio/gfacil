@@ -2,7 +2,7 @@
 (function(){
 	angular.module("adm") 
 
-	.factory("pdvUtil",function($uibModal,$location,stUtil,stService,estoqueUtil,$rootScope,$route,movUtil,$filter){
+	.factory("pdvUtil",function($uibModal,$location,stUtil,stService,estoqueUtil,$rootScope,$route,$filter){
 
 		//abre uma venda utilizando um modal
 		var _openVendaInModal = function(pdv, callback){
@@ -60,16 +60,16 @@
 		//Vai para um pdv a partir de uma movimentação
 		var _goToPdvFromMov = function(mov){
 
-			var idMov = mov.id;
+			var _mov = mov;
 
-			if(mov.originalMov)
-				idMov = mov.originalMov.id;
-
-			stService.getLike("pdv",idMov,"id_movimentacao").success(function(data){
-
-				var pdv = data.itens[0];
+			if(_mov.originalMov)
+				_mov = _mov.originalMov;
+			
+			
+			_getPDVByMovId(_mov, function(pdv){
+				
 				_goToPdv(pdv.id,pdv.tipoPdvLancamento);
-
+				
 			});
 
 		}
